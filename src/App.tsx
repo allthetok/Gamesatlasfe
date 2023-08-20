@@ -1,13 +1,10 @@
 import React from 'react'
 import './App.css'
+import { GameDtl } from './components/GameDtl'
 
 const App = () => {
 	return (
-		<div className="App">
-			<header className="App-header">
-				GamesAtlas
-			</header>
-		</div>
+		<GameDtl />
 	)
 }
 
