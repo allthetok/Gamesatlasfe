@@ -67,9 +67,12 @@ h1 {
 	display: inline-flex;
 }
 
-a {
+a { 
 	color: var(--primary-color);
 	text-decoration: none;
+}
+
+.addto {
 	display: inline-block;
 }
 
@@ -78,9 +81,50 @@ a {
 	flex-wrap: wrap;
 	list-style: none;
 	padding: 0;
+	margin-top: 0;
 	border: 1px solid var(--border-color);
 }
 
+.nav-tabs-li {
+	border: none;
+	margin: 0;
+	flex-grow: 0;
+}
+
+.nav-link {
+	position: relative;
+	display: block;
+	padding: var(--spacing-xxs);
+	font-weight: 700;
+	margin-bottom: -1px;
+	border-bottom: 1px solid transparent;
+}
+
+.game-info {
+	display: grid;
+	grid-template-areas: "cover release scores genres sites";
+	grid-template-columns:  1fr 1fr 1fr 1.5fr;
+	grid-gap: var(--spacing)
+}
+
+.info-box {
+	text-align: center;
+	grid-area: cover;
+	box-sizing: border-box;
+}
+
+.img-box {
+	height: auto;
+	max-width: 100%;
+	min-width: 213px;
+	min-height: 100px;
+	object-fit: contain;
+}
+
+.info-releaservw {
+	text-align: center;
+	grid-area: release;
+}
 .container {
 	width: 960px;
 	padding-left: 10px;

@@ -5,17 +5,18 @@ const response = {
 		'PEGI': 5
 	},
 	'artworks': [
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5ex.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5ey.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5ez.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5f0.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5f1.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5f2.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5f3.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5f4.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5f5.jpg',
-		'//images.igdb.com/igdb/image/upload/t_thumb/ar5f6.jpg'
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5ex.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5ey.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5ez.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f0.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f1.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f2.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f3.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f4.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f5.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f6.jpg'
 	],
+	'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2a23.jpg',
 	'external_games': [
 		{
 			'category': 1,

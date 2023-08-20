@@ -40,7 +40,7 @@ const GameDtl = () => {
 							<div>
 								<b>Add To</b>
 								<br/>
-								<a href=''>
+								<a className='addto' href=''>
 									<div className='smfont'>My List</div>
 									<IconButton sx={{ color: '#ddd' }}>
 										<AddBoxIcon/>
@@ -52,10 +52,42 @@ const GameDtl = () => {
 				</div>
 			</div>
 			<ul className='nav-tabs mb'>
-				<li>
-					
+				<li className='nav-tabs-li'>
+					<a className='nav-link'>Overview</a>
+				</li>
+				<li className='nav-tabs-li'>
+					<a className='nav-link'>Artworks</a>
+				</li>
+				<li className='nav-tabs-li'>
+					<a className='nav-link'>Screenshots</a>
+				</li>
+				<li className='nav-tabs-li'>
+					<a className='nav-link'>Similar Games</a>
+				</li>
+				<li className='nav-tabs-li'>
+					<a className='nav-link'>Videos</a>
+				</li>
+				<li className='nav-tabs-li'>
+					<a className='nav-link'>Community Websites</a>
+				</li>
+				<li className='nav-tabs-li'>
+					<a className='nav-link'>Language Details</a>
 				</li>
 			</ul>
+			<div id='infoBlock' className='game-info mb'>
+				<div className='info-box'>
+					<div>
+						<img className='img-box' src={response.cover}/>
+					</div>
+				</div>
+				<div className='info-releaservw'>
+					<div>
+						Release
+					</div>
+				</div>
+			</div>
+
+
 			<div className='row'>
 				<div className='span8'>
 					<table className='table table-bordered'>
