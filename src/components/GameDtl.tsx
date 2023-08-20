@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { response } from '../mockdata/response'
+import { IconButton } from '@mui/material'
+import AddBoxIcon from '@mui/icons-material/AddBox'
 import './GameDtl.css'
 
 type Platforms = {
@@ -26,6 +28,34 @@ const GameDtl = () => {
 
 	return (
 		<div className='header-wrapper'>
+			<div className='title'>
+				<div className='mb'>
+					<h1>
+						{response.title}
+					</h1>
+				</div>
+				<div className='flex flex-end'>
+					<div className='titleactions'>
+						<div className='collection'>
+							<div>
+								<b>Add To</b>
+								<br/>
+								<a href=''>
+									<div className='smfont'>My List</div>
+									<IconButton sx={{ color: '#ddd' }}>
+										<AddBoxIcon/>
+									</IconButton>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul className='nav-tabs mb'>
+				<li>
+					
+				</li>
+			</ul>
 			<div className='row'>
 				<div className='span8'>
 					<table className='table table-bordered'>

@@ -1,6 +1,7 @@
 :root {
 	--body-bg-color: #161920;
 	--body-color: #ddd;
+	--primary-color: #9fc1ea;
 	--muted-bg-color: #213145;
 	--muted-color: #999;
 	--border-color: #394960;
@@ -14,6 +15,7 @@
 	--size-xxl: 1400px;
 	--spacing: 1.25rem;
 	--spacing-xs: 0.75rem;
+	--spacing-xxs: 0.5rem;
 }
 
 .header-wrapper {
@@ -26,6 +28,57 @@
 	margin-right: auto;
 	max-width: var(--size-xl);
 	padding: var(--spacing) var(--spacing-xs);
+}
+
+.title {
+	justify-content: space-between;
+	display: flex;
+}
+
+h1 {
+	margin-bottom: 0!important;
+	color: #fff;
+	font-size: 1.75rem;
+}
+
+.flex-end {
+	align-items: flex-end;
+}
+
+.titleactions {
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+	display: block;
+}
+
+.collection {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border-bottom: none!important;
+	padding: var(--spacing-xxs) var(--spacing-xxs) var(--spacing-xxs) var(--spacing-xxs);
+	border: 1px solid var(--border-color)
+}
+
+.smfont {
+	font-size: 13.5px;
+	display: inline-flex;
+}
+
+a {
+	color: var(--primary-color);
+	text-decoration: none;
+	display: inline-block;
+}
+
+.nav-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	padding: 0;
+	border: 1px solid var(--border-color);
 }
 
 .container {
