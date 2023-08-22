@@ -19,12 +19,15 @@ const GameDtl = () => {
 				{platformsArr.map((val: Platforms) => (
 					<div className='platforms' key={val.name}>
 						<img className='logo' src={val.url} />
-						{val.name}
+						<p className='ptext'>{val.name}</p>
 					</div>
 				))}
 			</>
 		)
 	}
+
+	const formattedDateLong = (inpDate: string) => new Date(inpDate).toLocaleDateString('en-us', { year: 'numeric', 'month': 'long', 'day': 'numeric' })
+
 
 	return (
 		<div className='header-wrapper'>
@@ -81,9 +84,20 @@ const GameDtl = () => {
 					</div>
 				</div>
 				<div className='info-releaservw'>
-					<div>
-						Release
-					</div>
+					<dl className='releasedata'>
+						<dt>Released</dt>
+						<dd>
+							{formattedDateLong(response.releaseDate)}
+						</dd>
+						<dt>Platforms</dt>
+						<dd className='platforms'>
+							{getPlatforms(response.platforms)}
+						</dd>
+						<dt>Developers & Publishers</dt>
+						<dd>
+							{formattedDateLong(response.releaseDate)}
+						</dd>
+					</dl>
 				</div>
 			</div>
 

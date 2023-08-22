@@ -5,16 +5,16 @@ const response = {
 		'PEGI': 5
 	},
 	'artworks': [
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5ex.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5ey.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5ez.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f0.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f1.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f2.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f3.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f4.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f5.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ar5f6.jpg'
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5ex.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5ey.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5ez.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f0.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f1.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f2.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f3.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f4.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f5.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f6.jpg'
 	],
 	'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2a23.jpg',
 	'external_games': [
@@ -81,16 +81,16 @@ const response = {
 	],
 	'player_perspectives': 'Third person',
 	'screenshots': [
-		'https://images.igdb.com/igdb/image/upload/t_thumb/jjn6e6ivua5u142iukql.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/sk8lqukaqalhq2mrzkqd.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/tjxbj2hryec06ahdi2ep.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/sn1rmqcvrwomyuttaoyq.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ocxemodvr6oa72argpyo.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/sri6brei6tvapyyk6tse.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/jo1pi5md3myj0pxynz9p.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/cmootzhyx1l7scxeihej.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/ozcogbafdzztevnidcvt.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_thumb/smay0rol1vbibwop2t7n.jpg'
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/jjn6e6ivua5u142iukql.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/sk8lqukaqalhq2mrzkqd.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tjxbj2hryec06ahdi2ep.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/sn1rmqcvrwomyuttaoyq.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ocxemodvr6oa72argpyo.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/sri6brei6tvapyyk6tse.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/jo1pi5md3myj0pxynz9p.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/cmootzhyx1l7scxeihej.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ozcogbafdzztevnidcvt.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/smay0rol1vbibwop2t7n.jpg'
 	],
 	'similar_games': [
 		'Death Stranding',
