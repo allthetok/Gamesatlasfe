@@ -2,26 +2,36 @@ import React, { useState } from 'react'
 import { response } from '../mockdata/response'
 import { IconButton } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../../backendga/helpers/requests'
+import { ESRB, PEGI } from '../assets/ratingsvglinks'
 import './GameDtl.css'
-
-type Platforms = {
-	'name': string,
-	'category': number,
-	'platform_logo': number,
-	'url': string
-}
 
 const GameDtl = () => {
 
-	const getPlatforms = (platformsArr: Platforms[]) => {
+	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]) => {
 		return (
 			<>
-				{platformsArr.map((val: Platforms) => (
+				{platformsArr.map((val: Platforms | Companies) => (
 					<div className='platforms' key={val.name}>
 						<img className='logo' src={val.url} />
 						<p className='ptext'>{val.name}</p>
 					</div>
 				))}
+			</>
+		)
+	}
+
+	const getAgeRatings = (ratingsObj: AgeRatings) => {
+		return (
+			<>
+				<div className='platforms'>
+					<img className='logo' src={ESRB.filter((rating) => rating.IGDBRating === ratingsObj.ESRB)[0].src} />
+					<p className='ptext'>ESRB Rating</p>
+				</div>
+				<div className='platforms'>
+					<img className='logo' src={PEGI.filter((rating) => rating.IGDBRating === ratingsObj.PEGI)[0].src} />
+					<p className='ptext'>PEGI Rating</p>
+				</div>
 			</>
 		)
 	}
@@ -91,18 +101,26 @@ const GameDtl = () => {
 						</dd>
 						<dt>Platforms</dt>
 						<dd className='platforms'>
-							{getPlatforms(response.platforms)}
+							{getPlatformCompanies(response.platforms)}
 						</dd>
 						<dt>Developers & Publishers</dt>
+						<dd className='platforms'>
+							{getPlatformCompanies(response.involved_companies)}
+						</dd>
+						<dt>Age Ratings</dt>
 						<dd>
-							{formattedDateLong(response.releaseDate)}
+							{getAgeRatings(response.age_ratings)}
+						</dd>
+						<dt>Localizations</dt>
+						<dd>
+							{response.game_localizations}
 						</dd>
 					</dl>
 				</div>
 			</div>
 
 
-			<div className='row'>
+			{/* <div className='row'>
 				<div className='span8'>
 					<table className='table table-bordered'>
 						<tbody className='tbody'>
@@ -129,8 +147,8 @@ const GameDtl = () => {
 							<tr>
 								<td>Platforms</td>
 								<td className='platforms'>
-									{getPlatforms(response.platforms)}
-								</td>
+									{/* {getPlatforms(response.platforms)} */}
+			{/* </td>
 							</tr>
 							<tr>
 								<td>Player Perspective</td>
@@ -152,9 +170,9 @@ const GameDtl = () => {
 							</tr>
 						</tbody>
 					</table>
-				</div>
+				</div> */}
 
-			</div>
+			{/* </div> */}
 		</div>
 
 	)
