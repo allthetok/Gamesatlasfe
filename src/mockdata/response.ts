@@ -27,7 +27,9 @@ const response = {
 			'url': 'https://store.playstation.com/en-us/concept/232898'
 		}
 	],
-	'game_modes': 'Single player',
+	'game_modes': [
+		'Single player'
+	],
 	'genres': [
 		'Hack and slash/Beat \'em up',
 		'Adventure'
@@ -79,7 +81,9 @@ const response = {
 			'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl95.jpg'
 		}
 	],
-	'player_perspectives': 'Third person',
+	'player_perspectives': [
+		'Third person'
+	],
 	'screenshots': [
 		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/jjn6e6ivua5u142iukql.jpg',
 		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/sk8lqukaqalhq2mrzkqd.jpg',
@@ -260,8 +264,8 @@ const response = {
 		}
 	],
 	'game_localizations': '세키로: 섀도우 다이 트와이스',
-	'rating': 90.59230089390039,
-	'ratingCount': 703,
+	'rating': 90.59246766947331,
+	'ratingCount': 704,
 	'releaseDate': '2019-03-22T00:00:00.000Z',
 	'likes': 134,
 	'title': 'Sekiro: Shadows Die Twice',

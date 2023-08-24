@@ -38,6 +38,18 @@ const GameDtl = () => {
 		)
 	}
 
+	const getStringArr = (stringArr: string[]): React.JSX.Element => {
+		return (
+			<>
+				{stringArr.map((val: string) => (
+					<div key={val}>
+						<a href=''>{val}</a>
+					</div>
+				))}
+			</>
+		)
+	}
+
 	const ratingFloatToStar = (rating: number) : number => rating / 20
 
 	const formattedDateLong = (inpDate: string) => new Date(inpDate).toLocaleDateString('en-us', { year: 'numeric', 'month': 'long', 'day': 'numeric' })
@@ -172,57 +184,31 @@ const GameDtl = () => {
 						</dd>
 						<dt>IGDB Official Website</dt>
 						<dd>
-							<a href={response.url}>{response.title}</a>
+							<a href={response.url} target='_blank' rel='noreferrer'>{response.title}</a>
 						</dd>
 					</dl>
 				</div>
 				<div className='info-genres'>
 					<dl className='releasedata'>
-						<dt>IGDB Rating</dt>
-						<dd className='stars-rating'>
-							<Rating
-								name='rating'
-								value={ratingFloatToStar(response.rating)}
-								readOnly
-								precision={0.001}
-								emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
-								size='small'
-							/>
-							<p className='max-rating align'>
-								({response.ratingCount})
-							</p>
-						</dd>
-						<dt>User Reviews</dt>
+						<dt>Genres</dt>
 						<dd>
-							<span className='avg-rating'>
-								{parseFloat(response.rating.toString()).toFixed(2)}
-							</span>
-							<span className='max-rating'>
-								&nbsp;/ 100 based on
-							</span>
-							<span className='num-rating'>
-								&nbsp;{response.ratingCount}
-							</span>
-							&nbsp;
-							<span className='max-rating'>
-								reviews
-							</span>
+							{getStringArr(response.genres)}
 						</dd>
-						<dt>Hypes</dt>
+						<dt>Gameplay Perspective</dt>
 						<dd>
-							Hyped by {response.hypes} users pre-release!
+							{getStringArr(response.player_perspectives)}
 						</dd>
-						<dt>Follows</dt>
+						<dt>Game Modes</dt>
 						<dd>
-							Followed by {response.likes} users
+							{getStringArr(response.game_modes)}
 						</dd>
-						<dt>IGDB ID</dt>
+						<dt>Themes</dt>
 						<dd>
-							{response.id}
+							{getStringArr(response.themes)}
 						</dd>
-						<dt>IGDB Official Website</dt>
+						<dt>Keywords</dt>
 						<dd>
-							<a href={response.url}>{response.title}</a>
+							{getStringArr(response.keywords)}
 						</dd>
 					</dl>
 				</div>
