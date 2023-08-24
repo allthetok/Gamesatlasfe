@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { response } from '../mockdata/response'
-import { IconButton } from '@mui/material'
+import { IconButton, Rating } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import StarIcon from '@mui/icons-material/Star'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../../backendga/helpers/requests'
 import { ESRB, PEGI } from '../assets/ratingsvglinks'
+
 import './GameDtl.css'
 
 const GameDtl = () => {
@@ -35,6 +37,8 @@ const GameDtl = () => {
 			</>
 		)
 	}
+
+	const ratingFloatToStar = (rating: number) : number => rating / 20
 
 	const formattedDateLong = (inpDate: string) => new Date(inpDate).toLocaleDateString('en-us', { year: 'numeric', 'month': 'long', 'day': 'numeric' })
 
@@ -102,6 +106,54 @@ const GameDtl = () => {
 						<dt>Platforms</dt>
 						<dd className='platforms'>
 							{getPlatformCompanies(response.platforms)}
+						</dd>
+						<dt>Developers & Publishers</dt>
+						<dd className='platforms'>
+							{getPlatformCompanies(response.involved_companies)}
+						</dd>
+						<dt>Age Ratings</dt>
+						<dd>
+							{getAgeRatings(response.age_ratings)}
+						</dd>
+						<dt>Localizations</dt>
+						<dd>
+							{response.game_localizations}
+						</dd>
+					</dl>
+				</div>
+				<div className='info-box'>
+					<div>
+						<img className='img-box' src={response.cover}/>
+					</div>
+				</div>
+				<div className='info-scores'>
+					<dl className='releasedata'>
+						<dt>IGDB Rating</dt>
+						<dd>
+							<Rating
+								name='rating'
+								value={ratingFloatToStar(response.rating)}
+								readOnly
+								precision={0.001}
+								emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
+								size='small'
+							/>
+						</dd>
+						<dt>User Reviews</dt>
+						<dd>
+							<span className='avg-rating'>
+								{parseFloat(response.rating.toString()).toFixed(2)}
+							</span>
+							<span className='max-rating'>
+							&nbsp;/ 100 based on
+							</span>
+							<span className='num-rating'>
+							&nbsp;{response.ratingCount}
+							</span>
+							&nbsp;
+							<span className='max-rating'>
+							reviews
+							</span>
 						</dd>
 						<dt>Developers & Publishers</dt>
 						<dd className='platforms'>

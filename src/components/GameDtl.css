@@ -130,6 +130,25 @@ a {
 	grid-area: release;
 }
 
+.info-scores {
+	grid-area: scores;
+}
+
+.avg-rating {
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+.max-rating {
+	font-size: 0.9rem;
+	opacity: 0.75;
+}
+
+.num-rating {
+	font-size: 0.95rem;
+	font-weight: bold;
+}
+
 .releasedata {
 	margin-top: 0;
 	margin-bottom: 1rem;
