@@ -134,6 +134,10 @@ a {
 	grid-area: scores;
 }
 
+.info-genres {
+	grid-area: genres;
+}
+
 .avg-rating {
 	font-size: 1.2rem;
 	font-weight: bold;
@@ -149,6 +153,16 @@ a {
 	font-weight: bold;
 }
 
+.align {
+	vertical-align: text-top;
+	margin-top: -0.21rem;
+	display: inline-block;
+}
+
+.stars-rating {
+	margin-bottom: -0.375rem;
+}
+
 .releasedata {
 	margin-top: 0;
 	margin-bottom: 1rem;
@@ -160,7 +174,7 @@ a {
 }
 
 dt {
-	font-weight: 700;
+	font-weight: 1000;
 }
 
 dd {

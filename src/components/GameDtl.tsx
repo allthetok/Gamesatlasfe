@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { response } from '../mockdata/response'
-import { IconButton, Rating } from '@mui/material'
+import { IconButton, Rating, Box } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../../backendga/helpers/requests'
@@ -129,7 +129,7 @@ const GameDtl = () => {
 				<div className='info-scores'>
 					<dl className='releasedata'>
 						<dt>IGDB Rating</dt>
-						<dd>
+						<dd className='stars-rating'>
 							<Rating
 								name='rating'
 								value={ratingFloatToStar(response.rating)}
@@ -138,6 +138,9 @@ const GameDtl = () => {
 								emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
 								size='small'
 							/>
+							<p className='max-rating align'>
+								({response.ratingCount})
+							</p>
 						</dd>
 						<dt>User Reviews</dt>
 						<dd>
@@ -145,27 +148,81 @@ const GameDtl = () => {
 								{parseFloat(response.rating.toString()).toFixed(2)}
 							</span>
 							<span className='max-rating'>
-							&nbsp;/ 100 based on
+								&nbsp;/ 100 based on
 							</span>
 							<span className='num-rating'>
-							&nbsp;{response.ratingCount}
+								&nbsp;{response.ratingCount}
 							</span>
 							&nbsp;
 							<span className='max-rating'>
-							reviews
+								reviews
 							</span>
 						</dd>
-						<dt>Developers & Publishers</dt>
-						<dd className='platforms'>
-							{getPlatformCompanies(response.involved_companies)}
-						</dd>
-						<dt>Age Ratings</dt>
+						<dt>Hypes</dt>
 						<dd>
-							{getAgeRatings(response.age_ratings)}
+							Hyped by {response.hypes} users pre-release!
 						</dd>
-						<dt>Localizations</dt>
+						<dt>Follows</dt>
 						<dd>
-							{response.game_localizations}
+							Followed by {response.likes} users
+						</dd>
+						<dt>IGDB ID</dt>
+						<dd>
+							{response.id}
+						</dd>
+						<dt>IGDB Official Website</dt>
+						<dd>
+							<a href={response.url}>{response.title}</a>
+						</dd>
+					</dl>
+				</div>
+				<div className='info-genres'>
+					<dl className='releasedata'>
+						<dt>IGDB Rating</dt>
+						<dd className='stars-rating'>
+							<Rating
+								name='rating'
+								value={ratingFloatToStar(response.rating)}
+								readOnly
+								precision={0.001}
+								emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
+								size='small'
+							/>
+							<p className='max-rating align'>
+								({response.ratingCount})
+							</p>
+						</dd>
+						<dt>User Reviews</dt>
+						<dd>
+							<span className='avg-rating'>
+								{parseFloat(response.rating.toString()).toFixed(2)}
+							</span>
+							<span className='max-rating'>
+								&nbsp;/ 100 based on
+							</span>
+							<span className='num-rating'>
+								&nbsp;{response.ratingCount}
+							</span>
+							&nbsp;
+							<span className='max-rating'>
+								reviews
+							</span>
+						</dd>
+						<dt>Hypes</dt>
+						<dd>
+							Hyped by {response.hypes} users pre-release!
+						</dd>
+						<dt>Follows</dt>
+						<dd>
+							Followed by {response.likes} users
+						</dd>
+						<dt>IGDB ID</dt>
+						<dd>
+							{response.id}
+						</dd>
+						<dt>IGDB Official Website</dt>
+						<dd>
+							<a href={response.url}>{response.title}</a>
 						</dd>
 					</dl>
 				</div>
