@@ -4,13 +4,13 @@ import { IconButton, Rating, Box } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../../backendga/helpers/requests'
-import { ESRB, PEGI } from '../assets/ratingsvglinks'
+import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
 
 import './GameDtl.css'
 
 const GameDtl = () => {
 
-	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]) => {
+	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
 			<>
 				{platformsArr.map((val: Platforms | Companies) => (
@@ -23,7 +23,7 @@ const GameDtl = () => {
 		)
 	}
 
-	const getAgeRatings = (ratingsObj: AgeRatings) => {
+	const getAgeRatings = (ratingsObj: AgeRatings): React.JSX.Element => {
 		return (
 			<>
 				<div className='platforms'>
@@ -48,6 +48,45 @@ const GameDtl = () => {
 				))}
 			</>
 		)
+	}
+
+	const getWebsites = (categoriesArr: Categories[], specified: string): React.JSX.Element => {
+		return specified === 'External' ?
+			(
+				<>
+					{categoriesArr.map((el: Categories) => (
+						<div key={el.category}>
+							<p className='max-rating'>
+								{ExternalCategories.filter((field) => field.source === el.category)[0].category}
+							</p>
+							<a href={el.url}>Visit <a href={el.url} className='link-external'>
+								<img src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
+							</a>
+							</a>
+						</div>
+					))}
+				</>
+			) :
+			(
+				<>
+					{categoriesArr.map((el: Categories) => (
+						<div key={el.category}>
+							<p className='max-rating'>
+								{WebsiteCategories.filter((field) => field.source === el.category)[0].category}
+							</p>
+							<a href={el.url}>Visit</a>
+						</div>
+					))}
+				</>
+			)
+		// return (
+		// 	<>
+		// 		{categoriesArr.map(category,  )
+		// 		<p className='max-rating'>
+
+		// 		</p>
+		// 	</>
+		// )
 	}
 
 	const ratingFloatToStar = (rating: number) : number => rating / 20
@@ -197,6 +236,30 @@ const GameDtl = () => {
 						<dt>Gameplay Perspective</dt>
 						<dd>
 							{getStringArr(response.player_perspectives)}
+						</dd>
+						<dt>Game Modes</dt>
+						<dd>
+							{getStringArr(response.game_modes)}
+						</dd>
+						<dt>Themes</dt>
+						<dd>
+							{getStringArr(response.themes)}
+						</dd>
+						<dt>Keywords</dt>
+						<dd>
+							{getStringArr(response.keywords)}
+						</dd>
+					</dl>
+				</div>
+				<div className='info-sites'>
+					<dl className='releasedata'>
+						<dt>Buy</dt>
+						<dd>
+							{getWebsites(response.external_games, 'External')}
+						</dd>
+						<dt>Official Sites</dt>
+						<dd>
+							{getWebsites(response.websites, 'Official')}
 						</dd>
 						<dt>Game Modes</dt>
 						<dd>
