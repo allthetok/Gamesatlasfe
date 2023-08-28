@@ -64,9 +64,8 @@ const GameDtl = () => {
 							<p className='max-rating'>
 								{ExternalCategories.filter((field) => field.source === el.category)[0].category}
 							</p>
-							<a href={el.url}>Visit <a href={el.url} className='link-external'>
-								<img alt='Official Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
-							</a>
+							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
+								<img className='link-external' alt='Official Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
 							</a>
 						</div>
 					))}
@@ -79,7 +78,7 @@ const GameDtl = () => {
 							<p className='max-rating'>
 								{WebsiteCategories.filter((field) => field.source === el.category)[0].category}
 							</p>
-							<a href={el.url}>Visit</a>
+							<a href={el.url} target='_blank' rel='noreferrer'>Visit</a>
 						</div>
 					))}
 				</>
@@ -106,8 +105,7 @@ const GameDtl = () => {
 								<b>Add To</b>
 								<br/>
 								<a className='addto' href=''>
-									{/* <div className='smfont'>My List</div> */}
-									<p className='smfont'>My List</p>
+									<p className='smfontp'>My List</p>
 									<IconButton sx={{ color: '#ddd' }}>
 										<AddBoxIcon/>
 									</IconButton>

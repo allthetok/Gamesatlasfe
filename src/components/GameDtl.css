@@ -68,6 +68,10 @@ h1 {
 	display: inline-flex;
 }
 
+.smfontp {
+	display: inline-flex;
+}
+
 a { 
 	color: var(--primary-color);
 	text-decoration: none;
