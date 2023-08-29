@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React, { useState } from 'react'
 import { response } from '../mockdata/response'
 import { IconButton, Rating, Box } from '@mui/material'
@@ -5,6 +8,8 @@ import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../../backendga/helpers/requests'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
+import Image from 'next/image'
+import { Suspense } from 'react'
 
 import './GameDtl.css'
 
@@ -15,7 +20,7 @@ const GameDtl = () => {
 			<>
 				{platformsArr.map((val: Platforms | Companies) => (
 					<div className='platforms' key={val.name}>
-						<img className='logo' src={val.url} />
+						<img className='logo' alt='Logo of Company' src={val.url} />
 						<p className='ptext'>{val.name}</p>
 					</div>
 				))}
@@ -27,11 +32,11 @@ const GameDtl = () => {
 		return (
 			<>
 				<div className='platforms'>
-					<img className='logo' src={ESRB.filter((rating) => rating.IGDBRating === ratingsObj.ESRB)[0].src} />
+					<img className='logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === ratingsObj.ESRB)[0].src} />
 					<p className='ptext'>ESRB Rating</p>
 				</div>
 				<div className='platforms'>
-					<img className='logo' src={PEGI.filter((rating) => rating.IGDBRating === ratingsObj.PEGI)[0].src} />
+					<img className='logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === ratingsObj.PEGI)[0].src} />
 					<p className='ptext'>PEGI Rating</p>
 				</div>
 			</>
@@ -59,9 +64,8 @@ const GameDtl = () => {
 							<p className='max-rating'>
 								{ExternalCategories.filter((field) => field.source === el.category)[0].category}
 							</p>
-							<a href={el.url}>Visit <a href={el.url} className='link-external'>
-								<img src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
-							</a>
+							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
+								<img className='link-external' alt='Official Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
 							</a>
 						</div>
 					))}
@@ -74,19 +78,11 @@ const GameDtl = () => {
 							<p className='max-rating'>
 								{WebsiteCategories.filter((field) => field.source === el.category)[0].category}
 							</p>
-							<a href={el.url}>Visit</a>
+							<a href={el.url} target='_blank' rel='noreferrer'>Visit</a>
 						</div>
 					))}
 				</>
 			)
-		// return (
-		// 	<>
-		// 		{categoriesArr.map(category,  )
-		// 		<p className='max-rating'>
-
-		// 		</p>
-		// 	</>
-		// )
 	}
 
 	const ratingFloatToStar = (rating: number) : number => rating / 20
@@ -109,7 +105,7 @@ const GameDtl = () => {
 								<b>Add To</b>
 								<br/>
 								<a className='addto' href=''>
-									<div className='smfont'>My List</div>
+									<p className='smfontp'>My List</p>
 									<IconButton sx={{ color: '#ddd' }}>
 										<AddBoxIcon/>
 									</IconButton>
@@ -145,7 +141,7 @@ const GameDtl = () => {
 			<div id='infoBlock' className='game-info mb'>
 				<div className='info-box'>
 					<div>
-						<img className='img-box' src={response.cover}/>
+						<img className='img-box' alt='Cover Art of Game' src={response.cover}/>
 					</div>
 				</div>
 				<div className='info-releaservw'>
@@ -172,11 +168,6 @@ const GameDtl = () => {
 						</dd>
 					</dl>
 				</div>
-				<div className='info-box'>
-					<div>
-						<img className='img-box' src={response.cover}/>
-					</div>
-				</div>
 				<div className='info-scores'>
 					<dl className='releasedata'>
 						<dt>IGDB Rating</dt>
@@ -185,7 +176,7 @@ const GameDtl = () => {
 								name='rating'
 								value={ratingFloatToStar(response.rating)}
 								readOnly
-								precision={0.001}
+								precision={0.1}
 								emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
 								size='small'
 							/>
@@ -261,18 +252,6 @@ const GameDtl = () => {
 						<dd>
 							{getWebsites(response.websites, 'Official')}
 						</dd>
-						<dt>Game Modes</dt>
-						<dd>
-							{getStringArr(response.game_modes)}
-						</dd>
-						<dt>Themes</dt>
-						<dd>
-							{getStringArr(response.themes)}
-						</dd>
-						<dt>Keywords</dt>
-						<dd>
-							{getStringArr(response.keywords)}
-						</dd>
 					</dl>
 				</div>
 			</div>
@@ -336,4 +315,4 @@ const GameDtl = () => {
 	)
 }
 
-export { GameDtl }
+export default GameDtl
