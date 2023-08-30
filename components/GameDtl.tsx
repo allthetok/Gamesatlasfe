@@ -1,16 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import React, { useState } from 'react'
-import { response } from '../mockdata/response'
+import React, { useState, Suspense } from 'react'
 import { IconButton, Rating, Box } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
-import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../../backendga/helpers/requests'
+import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
+import { response } from '../mockdata/response'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
-import Image from 'next/image'
-import { Suspense } from 'react'
-
 import './GameDtl.css'
 
 const GameDtl = () => {
@@ -61,11 +58,12 @@ const GameDtl = () => {
 				<>
 					{categoriesArr.map((el: Categories) => (
 						<div key={el.category}>
-							<p className='max-rating'>
+							<p className='max-rating smallmargin'>
 								{ExternalCategories.filter((field) => field.source === el.category)[0].category}
+								<img className='logo pad-left' alt={`${ExternalCategories.filter((field) => field.source === el.category)[0].category}`} src={`${ExternalCategories.filter((field) => field.source === el.category)[0].src}`} />
 							</p>
 							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
-								<img className='link-external' alt='Official Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
+								<img className='link-external' alt='Open Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
 							</a>
 						</div>
 					))}
@@ -75,10 +73,13 @@ const GameDtl = () => {
 				<>
 					{categoriesArr.map((el: Categories) => (
 						<div key={el.category}>
-							<p className='max-rating'>
+							<p className='max-rating smallmargin'>
 								{WebsiteCategories.filter((field) => field.source === el.category)[0].category}
+								<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === el.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === el.category)[0].src}`} />
 							</p>
-							<a href={el.url} target='_blank' rel='noreferrer'>Visit</a>
+							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
+								<img className='link-external' alt='Open Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
+							</a>
 						</div>
 					))}
 				</>
@@ -255,61 +256,6 @@ const GameDtl = () => {
 					</dl>
 				</div>
 			</div>
-
-
-			{/* <div className='row'>
-				<div className='span8'>
-					<table className='table table-bordered'>
-						<tbody className='tbody'>
-							<tr>
-								<td className='span3'>Game ID</td>
-								<td>{response.id}</td>
-							</tr>
-							<tr>
-								<td>Game Mode</td>
-								<td>{response.game_modes}</td>
-							</tr>
-							<tr>
-								<td>Genres</td>
-								<td>{response.genres.join(', ')}</td>
-							</tr>
-							<tr>
-								<td>Developers</td>
-								<td>{response.involved_companies.map(val => val.name).join(', ')}</td>
-							</tr>
-							<tr>
-								<td>Keywords</td>
-								<td>{response.keywords.join(', ')}</td>
-							</tr>
-							<tr>
-								<td>Platforms</td>
-								<td className='platforms'>
-									{/* {getPlatforms(response.platforms)} */}
-			{/* </td>
-							</tr>
-							<tr>
-								<td>Player Perspective</td>
-								<td>
-									{response.player_perspectives}
-								</td>
-							</tr>
-							<tr>
-								<td>Similar Games</td>
-								<td>
-									{response.similar_games.join(', ')}
-								</td>
-							</tr>
-							<tr>
-								<td>Themes</td>
-								<td>
-									{response.themes.join(', ')}
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div> */}
-
-			{/* </div> */}
 		</div>
 
 	)
