@@ -256,6 +256,12 @@ const GameDtl = () => {
 					</dl>
 				</div>
 			</div>
+			<div>
+				<h2>Official Description</h2>
+				<div className='shrink-headings toggle-long-text line-clamp'>
+
+				</div>
+			</div>
 		</div>
 
 	)

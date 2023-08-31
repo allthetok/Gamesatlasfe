@@ -17,6 +17,7 @@
 	--spacing: 1.25rem;
 	--spacing-xs: 0.75rem;
 	--spacing-xxs: 0.5rem;
+	--header-color: #ffffff;
 }
 
 .header-wrapper {
@@ -40,6 +41,27 @@ h1 {
 	margin-bottom: 0!important;
 	color: #fff;
 	font-size: 1.75rem;
+}
+
+h2 {
+	margin-bottom: var(--spacing);
+	color: var(--header-color);
+}
+
+@media (min-width: 1200px) {
+	h2 {
+		font-size: 1.75rem;
+	}
+}
+
+.line-clamp {
+	-webkit-line-clamp: 1000;
+}
+
+.toggle-long-text {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 .pad-left {
