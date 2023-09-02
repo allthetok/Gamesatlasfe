@@ -1,18 +1,20 @@
 const ButtonSx = {
 	'&:hover': {
 		// borderBottom: '1px solid #394960',
-		color: '#ddd'
+		color: 'var(--body-color)'
 	},
 	'&:active': {
-		color: '#ddd',
+		color: 'var(--body-color)',
 	},
 	position: 'relative',
 	display: 'block',
 	padding: 'var(--spacing-xxs)',
 	fontWeight: '700',
+	fontSize: '1rem',
 	marginBottom: '-1px',
-	color: '#9fc1ea',
+	color: 'var(--primary-color)',
 	letterSpacing: '0em',
+	lineHeight: '2',
 	textTransform: 'none'
 }
 
@@ -21,21 +23,23 @@ const ButtonActiveSx = {
 	display: 'block',
 	padding: 'var(--spacing-xxs)',
 	fontWeight: '700',
+	fontSize: '1rem',
 	marginBottom: '-1px',
-	color: '#ddd',
+	color: 'var(--body-color)',
 	letterSpacing: '0em',
+	lineHeight: '2',
 	textTransform: 'none'
 }
 
 const BoxSx = {
 	'&:hover': {
-		'background': '#1b1e22',
+		'background': 'var(--body-bg-color-dark)',
 		'borderBottom': '1px solid transparent'
 	}
 }
 
 const BoxActiveSx = {
-	'background': '#1b1e22',
+	'background': 'var(--body-bg-color-dark)',
 	'borderBottom': '1px solid transparent'
 }
 
