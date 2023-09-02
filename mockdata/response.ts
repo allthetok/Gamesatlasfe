@@ -5,16 +5,16 @@ const response = {
 		'PEGI': 5
 	},
 	'artworks': [
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5ex.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5ey.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5ez.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f0.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f1.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f2.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f3.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f4.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f5.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ar5f6.jpg'
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5ex.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5ey.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5ez.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5f0.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5f1.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5f2.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5f3.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5f4.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5f5.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ar5f6.jpg'
 	],
 	'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2a23.jpg',
 	'external_games': [
@@ -85,16 +85,16 @@ const response = {
 		'Third person'
 	],
 	'screenshots': [
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/jjn6e6ivua5u142iukql.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/sk8lqukaqalhq2mrzkqd.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tjxbj2hryec06ahdi2ep.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/sn1rmqcvrwomyuttaoyq.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ocxemodvr6oa72argpyo.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/sri6brei6tvapyyk6tse.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/jo1pi5md3myj0pxynz9p.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/cmootzhyx1l7scxeihej.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ozcogbafdzztevnidcvt.jpg',
-		'https://images.igdb.com/igdb/image/upload/t_screenshot_big/smay0rol1vbibwop2t7n.jpg'
+		'https://images.igdb.com/igdb/image/upload/t_1080p/jjn6e6ivua5u142iukql.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/sk8lqukaqalhq2mrzkqd.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/tjxbj2hryec06ahdi2ep.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/sn1rmqcvrwomyuttaoyq.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ocxemodvr6oa72argpyo.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/sri6brei6tvapyyk6tse.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/jo1pi5md3myj0pxynz9p.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/cmootzhyx1l7scxeihej.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/ozcogbafdzztevnidcvt.jpg',
+		'https://images.igdb.com/igdb/image/upload/t_1080p/smay0rol1vbibwop2t7n.jpg'
 	],
 	'similar_games': [
 		'Death Stranding',
@@ -264,8 +264,8 @@ const response = {
 		}
 	],
 	'game_localizations': '세키로: 섀도우 다이 트와이스',
-	'rating': 90.59246766947331,
-	'ratingCount': 704,
+	'rating': 90.57513233453105,
+	'ratingCount': 708,
 	'releaseDate': '2019-03-22T00:00:00.000Z',
 	'likes': 134,
 	'title': 'Sekiro: Shadows Die Twice',

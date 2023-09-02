@@ -6,6 +6,7 @@ import { IconButton } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { NavButtonList } from './NavButtonList'
 import { Overview } from './Overview'
+import { Artworks } from './Artworks'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
@@ -126,7 +127,18 @@ const GameDtl = () => {
 			{
 				tabSelect === 'overview' ?
 					<Overview response={response} formattedDateLong={formattedDateLong} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites} ratingFloatToStar={ratingFloatToStar} />
-					: <></>}
+					: <></>
+			}
+			{
+				tabSelect === 'artworks' ?
+					<Artworks response={response} tabSelected='artworks'/>
+					: <></>
+			}
+			{
+				tabSelect === 'screenshots' ?
+					<Artworks response={response} tabSelected='screenshots'/>
+					: <></>
+			}
 			<div>
 				<h2>Official Description</h2>
 				<div className='shrink-headings toggle-long-text line-clamp'>

@@ -8,7 +8,7 @@ type ButtonField = {
 type GameDetailObj = {
 	id: number | null,
 	age_ratings: AgeRatings,
-	artworks: string | string[],
+	artworks: string[],
 	cover: string | undefined,
 	external_games: Categories[],
 	game_modes: string[],
@@ -18,7 +18,7 @@ type GameDetailObj = {
 	keywords: string[],
 	platforms: Platforms[],
 	player_perspectives: string[],
-	screenshots: string | string[],
+	screenshots: string[],
 	similar_games: string | string[],
 	tags: string,
 	themes: string[],
