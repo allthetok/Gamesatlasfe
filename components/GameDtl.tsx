@@ -2,12 +2,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, { useState, Suspense } from 'react'
-import { IconButton, Rating, Box } from '@mui/material'
+import { IconButton, Rating, Box, Button } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
+import { ButtonSx } from '../sxstyling/styles'
 import './GameDtl.css'
 
 const GameDtl = () => {
@@ -118,25 +119,25 @@ const GameDtl = () => {
 			</div>
 			<ul className='nav-tabs mb'>
 				<li className='nav-tabs-li'>
-					<a className='nav-link'>Overview</a>
+					<Button sx={ButtonSx}>Overview</Button>
 				</li>
 				<li className='nav-tabs-li'>
-					<a className='nav-link'>Artworks</a>
+					<Button sx={ButtonSx}>Artworks</Button>
 				</li>
 				<li className='nav-tabs-li'>
-					<a className='nav-link'>Screenshots</a>
+					<Button sx={ButtonSx}>Screenshots</Button>
 				</li>
 				<li className='nav-tabs-li'>
-					<a className='nav-link'>Similar Games</a>
+					<Button sx={ButtonSx}>Similar Games</Button>
 				</li>
 				<li className='nav-tabs-li'>
-					<a className='nav-link'>Videos</a>
+					<Button sx={ButtonSx}>Videos</Button>
 				</li>
 				<li className='nav-tabs-li'>
-					<a className='nav-link'>Community Websites</a>
+					<Button sx={ButtonSx}>Community Websites</Button>
 				</li>
 				<li className='nav-tabs-li'>
-					<a className='nav-link'>Language Details</a>
+					<Button sx={ButtonSx}>Language Details</Button>
 				</li>
 			</ul>
 			<div id='infoBlock' className='game-info mb'>

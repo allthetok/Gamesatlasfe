@@ -20,6 +20,7 @@
 	--spacing-xs: 0.75rem;
 	--spacing-xxs: 0.5rem;
 	--header-color: #ffffff;
+	--text-color: #daddeb;
 }
 
 .header-wrapper {
@@ -129,6 +130,11 @@ a {
 	text-decoration: none;
 }
 
+button {
+	color: var(--primary-color);
+	text-decoration: none;
+}
+
 .link { 
 	color: var(--primary-color);
 	text-decoration: none;
@@ -160,7 +166,14 @@ a {
 	font-weight: 700;
 	margin-bottom: -1px;
 	border-bottom: 1px solid transparent;
+	cursor: pointer;
 }
+
+.nav-link-active {
+	background: var(--body-bg-color);
+	border-bottom: 1px solid var(--border-color);
+}
+
 
 .game-info {
 	display: grid;
