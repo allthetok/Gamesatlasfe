@@ -8,10 +8,11 @@ import StarIcon from '@mui/icons-material/Star'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
-import { ButtonSx } from '../sxstyling/styles'
+import { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx } from '../sxstyling/styles'
 import './GameDtl.css'
 
 const GameDtl = () => {
+	const [tabSelect, setTabSelect] = useState('overview')
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
@@ -119,25 +120,74 @@ const GameDtl = () => {
 			</div>
 			<ul className='nav-tabs mb'>
 				<li className='nav-tabs-li'>
-					<Button sx={ButtonSx}>Overview</Button>
+					<Box
+						sx={tabSelect === 'overview' ? BoxActiveSx : BoxSx}>
+						<Button
+							sx={tabSelect === 'overview' ? ButtonActiveSx : ButtonSx}
+							onClick={() => setTabSelect('overview')}>
+							Overview
+						</Button>
+					</Box>
 				</li>
 				<li className='nav-tabs-li'>
-					<Button sx={ButtonSx}>Artworks</Button>
+					<Box
+						sx={tabSelect === 'artworks' ? BoxActiveSx : BoxSx}>
+						<Button
+							sx={tabSelect === 'artworks' ? ButtonActiveSx : ButtonSx}
+							onClick={() => setTabSelect('artworks')}>
+							Artworks
+						</Button>
+					</Box>
 				</li>
 				<li className='nav-tabs-li'>
-					<Button sx={ButtonSx}>Screenshots</Button>
+					<Box
+						sx={tabSelect === 'screenshots' ? BoxActiveSx : BoxSx}>
+						<Button
+							sx={tabSelect === 'screenshots' ? ButtonActiveSx : ButtonSx}
+							onClick={() => setTabSelect('screenshots')}>
+						Screenshots
+						</Button>
+					</Box>
 				</li>
 				<li className='nav-tabs-li'>
-					<Button sx={ButtonSx}>Similar Games</Button>
+					<Box
+						sx={tabSelect === 'similargames' ? BoxActiveSx : BoxSx}>
+						<Button
+							sx={tabSelect === 'similargames' ? ButtonActiveSx : ButtonSx}
+							onClick={() => setTabSelect('similargames')}>
+							Similar Games
+						</Button>
+					</Box>
 				</li>
 				<li className='nav-tabs-li'>
-					<Button sx={ButtonSx}>Videos</Button>
+					<Box
+						sx={tabSelect === 'videos' ? BoxActiveSx : BoxSx}>
+						<Button
+							sx={tabSelect === 'videos' ? ButtonActiveSx : ButtonSx}
+							onClick={() => setTabSelect('videos')}>
+							Videos
+						</Button>
+					</Box>
 				</li>
 				<li className='nav-tabs-li'>
-					<Button sx={ButtonSx}>Community Websites</Button>
+					<Box
+						sx={tabSelect === 'websites' ? BoxActiveSx : BoxSx}>
+						<Button
+							sx={tabSelect === 'websites' ? ButtonActiveSx : ButtonSx}
+							onClick={() => setTabSelect('websites')}>
+							Community Websites
+						</Button>
+					</Box>
 				</li>
 				<li className='nav-tabs-li'>
-					<Button sx={ButtonSx}>Language Details</Button>
+					<Box
+						sx={tabSelect === 'languages' ? BoxActiveSx : BoxSx}>
+						<Button
+							sx={tabSelect === 'languages' ? ButtonActiveSx : ButtonSx}
+							onClick={() => setTabSelect('languages')}>
+							Language Details
+						</Button>
+					</Box>
 				</li>
 			</ul>
 			<div id='infoBlock' className='game-info mb'>
