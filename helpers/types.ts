@@ -22,7 +22,7 @@ type GameDetailObj = {
 	similar_games: string | string[],
 	tags: string,
 	themes: string[],
-	videos: string | Videos[],
+	videos: Videos[],
 	websites: Categories[],
 	language_supports: string | Languages[],
 	game_localizations: string,

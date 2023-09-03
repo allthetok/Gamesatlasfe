@@ -118,35 +118,35 @@ const response = {
 	'videos': [
 		{
 			'name': 'Gameplay video',
-			'ytlink': 'https://youtube.com/watch?v=ndZv4mix9qg'
+			'ytlink': 'ndZv4mix9qg'
 		},
 		{
 			'name': 'Gameplay video',
-			'ytlink': 'https://youtube.com/watch?v=gV010Rgu_2M'
+			'ytlink': 'gV010Rgu_2M'
 		},
 		{
 			'name': 'Trailer',
-			'ytlink': 'https://youtube.com/watch?v=uP8lFi_BibY'
+			'ytlink': 'uP8lFi_BibY'
 		},
 		{
 			'name': 'Trailer',
-			'ytlink': 'https://youtube.com/watch?v=iWFgvbf_Zu8'
+			'ytlink': 'iWFgvbf_Zu8'
 		},
 		{
 			'name': 'Trailer',
-			'ytlink': 'https://youtube.com/watch?v=J3AbM_JRkWQ'
+			'ytlink': 'J3AbM_JRkWQ'
 		},
 		{
 			'name': 'Trailer',
-			'ytlink': 'https://youtube.com/watch?v=0wggC3y2aQo'
+			'ytlink': '0wggC3y2aQo'
 		},
 		{
 			'name': 'Trailer',
-			'ytlink': 'https://youtube.com/watch?v=OqsJSeJ_0kU'
+			'ytlink': 'OqsJSeJ_0kU'
 		},
 		{
 			'name': 'Overview Trailer',
-			'ytlink': 'https://youtube.com/watch?v=O6rN540rzjY'
+			'ytlink': 'O6rN540rzjY'
 		}
 	],
 	'websites': [

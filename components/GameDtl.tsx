@@ -7,6 +7,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox'
 import { NavButtonList } from './NavButtonList'
 import { Overview } from './Overview'
 import { Artworks } from './Artworks'
+import { VideoList } from './VideoList'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
@@ -137,6 +138,11 @@ const GameDtl = () => {
 			{
 				tabSelect === 'screenshots' ?
 					<Artworks response={response} tabSelected='screenshots'/>
+					: <></>
+			}
+			{
+				tabSelect === 'videos' ?
+					<VideoList response={response} />
 					: <></>
 			}
 			<div>
