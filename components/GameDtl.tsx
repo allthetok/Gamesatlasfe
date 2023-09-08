@@ -8,6 +8,7 @@ import { NavButtonList } from './NavButtonList'
 import { Overview } from './Overview'
 import { Artworks } from './Artworks'
 import { VideoList } from './VideoList'
+import { Language } from './Language'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
@@ -143,6 +144,11 @@ const GameDtl = () => {
 			{
 				tabSelect === 'videos' ?
 					<VideoList response={response} />
+					: <></>
+			}
+			{
+				tabSelect === 'languages' ?
+					<Language response={response} />
 					: <></>
 			}
 			<div>

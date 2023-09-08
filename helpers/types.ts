@@ -24,7 +24,7 @@ type GameDetailObj = {
 	themes: string[],
 	videos: Videos[],
 	websites: Categories[],
-	language_supports: string | Languages[],
+	language_supports: Languages[],
 	game_localizations: string,
 	rating: number,
 	ratingCount: number | null,
