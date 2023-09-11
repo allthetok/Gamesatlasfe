@@ -5,6 +5,13 @@ type ButtonField = {
 	formatName: string
 }
 
+type LanguageTable = {
+	language: string,
+	locale: string,
+	native: string,
+	language_support_types: string[]
+}
+
 type GameDetailObj = {
 	id: number | null,
 	age_ratings: AgeRatings,
@@ -36,4 +43,4 @@ type GameDetailObj = {
 	url: string
 }
 
-export type { ButtonField, GameDetailObj }
+export type { ButtonField, GameDetailObj, LanguageTable }

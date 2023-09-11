@@ -191,6 +191,48 @@ const response = {
 			'url': 'https://sekiroshadowsdietwice.wiki.fextralife.com/Sekiro+Shadows+Die+Twice+Wiki'
 		}
 	],
+	'language_tableformat': [
+		{
+			'language': 'English',
+			'locale': 'en-US',
+			'native': 'English (US)',
+			'language_support_types': [
+				'Interface',
+				'Audio',
+				'Subtitles'
+			],
+		},
+		{
+			'language': 'French',
+			'locale': 'fr-FR',
+			'native': 'Français',
+			'language_support_types': [
+				'Interface',
+				'Audio',
+				'Subtitles'
+			],
+		},
+		{
+			'language': 'Italian',
+			'locale': 'it-IT',
+			'native': 'Italiano',
+			'language_support_types': [
+				'Interface',
+				'Audio',
+				'Subtitles'
+			],
+		},
+		{
+			'language': 'German',
+			'locale': 'de-DE',
+			'native': 'Deutsch',
+			'language_support_types': [
+				'Interface',
+				'',
+				''
+			],
+		}
+	],
 	'language_supports': [
 		{
 			'language': 'English',
