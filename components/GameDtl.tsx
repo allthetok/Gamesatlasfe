@@ -9,6 +9,7 @@ import { Overview } from './Overview'
 import { Artworks } from './Artworks'
 import { VideoList } from './VideoList'
 import { Language } from './Language'
+import { Website } from './Website'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
@@ -67,7 +68,7 @@ const GameDtl = () => {
 								{ExternalCategories.filter((field) => field.source === el.category)[0].category}
 								<img className='logo pad-left' alt={`${ExternalCategories.filter((field) => field.source === el.category)[0].category}`} src={`${ExternalCategories.filter((field) => field.source === el.category)[0].src}`} />
 							</p>
-							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
+							<a href={el.url} target='_blank' rel='noreferrer'>Visit
 								<img className='link-external' alt='Open Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
 							</a>
 						</div>
@@ -149,6 +150,11 @@ const GameDtl = () => {
 			{
 				tabSelect === 'languages' ?
 					<Language response={response} />
+					: <></>
+			}
+			{
+				tabSelect === 'websites' ?
+					<Website response={response} />
 					: <></>
 			}
 			<div>

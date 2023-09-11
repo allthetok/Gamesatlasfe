@@ -23,6 +23,10 @@ const response = {
 			'url': 'https://store.steampowered.com/app/814380'
 		},
 		{
+			'category': 20,
+			'url': 'https://amazon.com/dp/B07DJWBYJN'
+		},
+		{
 			'category': 36,
 			'url': 'https://store.playstation.com/en-us/concept/232898'
 		}
@@ -191,48 +195,6 @@ const response = {
 			'url': 'https://sekiroshadowsdietwice.wiki.fextralife.com/Sekiro+Shadows+Die+Twice+Wiki'
 		}
 	],
-	'language_tableformat': [
-		{
-			'language': 'English',
-			'locale': 'en-US',
-			'native': 'English (US)',
-			'language_support_types': [
-				'Interface',
-				'Audio',
-				'Subtitles'
-			],
-		},
-		{
-			'language': 'French',
-			'locale': 'fr-FR',
-			'native': 'Français',
-			'language_support_types': [
-				'Interface',
-				'Audio',
-				'Subtitles'
-			],
-		},
-		{
-			'language': 'Italian',
-			'locale': 'it-IT',
-			'native': 'Italiano',
-			'language_support_types': [
-				'Interface',
-				'Audio',
-				'Subtitles'
-			],
-		},
-		{
-			'language': 'German',
-			'locale': 'de-DE',
-			'native': 'Deutsch',
-			'language_support_types': [
-				'Interface',
-				'',
-				''
-			],
-		}
-	],
 	'language_supports': [
 		{
 			'language': 'English',
@@ -303,11 +265,165 @@ const response = {
 			'marked': false,
 			'locale': 'de-DE',
 			'native': 'Deutsch'
+		},
+		{
+			'language': 'German',
+			'language_support_type': 'Audio',
+			'marked': false,
+			'locale': 'de-DE',
+			'native': 'Deutsch'
+		},
+		{
+			'language': 'German',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'de-DE',
+			'native': 'Deutsch'
+		},
+		{
+			'language': 'Spanish (Spain)',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'es-ES',
+			'native': 'Español (España)'
+		},
+		{
+			'language': 'Spanish (Spain)',
+			'language_support_type': 'Audio',
+			'marked': false,
+			'locale': 'es-ES',
+			'native': 'Español (España)'
+		},
+		{
+			'language': 'Spanish (Spain)',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'es-ES',
+			'native': 'Español (España)'
+		},
+		{
+			'language': 'Japanese',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'ja-JP',
+			'native': '日本語'
+		},
+		{
+			'language': 'Japanese',
+			'language_support_type': 'Audio',
+			'marked': false,
+			'locale': 'ja-JP',
+			'native': '日本語'
+		},
+		{
+			'language': 'Japanese',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'ja-JP',
+			'native': '日本語'
+		},
+		{
+			'language': 'Korean',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'ko-KR',
+			'native': '한국어'
+		},
+		{
+			'language': 'Korean',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'ko-KR',
+			'native': '한국어'
+		},
+		{
+			'language': 'Polish',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'pl-PL',
+			'native': 'Polski'
+		},
+		{
+			'language': 'Polish',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'pl-PL',
+			'native': 'Polski'
+		},
+		{
+			'language': 'Russian',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'ru-RU',
+			'native': 'Русский'
+		},
+		{
+			'language': 'Russian',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'ru-RU',
+			'native': 'Русский'
+		},
+		{
+			'language': 'Chinese (Simplified)',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'zh-CN',
+			'native': '简体中文'
+		},
+		{
+			'language': 'Chinese (Simplified)',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'zh-CN',
+			'native': '简体中文'
+		},
+		{
+			'language': 'Thai',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'th-TH',
+			'native': 'ไทย'
+		},
+		{
+			'language': 'Thai',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'th-TH',
+			'native': 'ไทย'
+		},
+		{
+			'language': 'Chinese (Traditional)',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'zh-TW',
+			'native': '繁體中文'
+		},
+		{
+			'language': 'Chinese (Traditional)',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'zh-TW',
+			'native': '繁體中文'
+		},
+		{
+			'language': 'Portuguese (Brazil)',
+			'language_support_type': 'Interface',
+			'marked': false,
+			'locale': 'pt-BR',
+			'native': 'Português (Brasil)'
+		},
+		{
+			'language': 'Portuguese (Brazil)',
+			'language_support_type': 'Subtitles',
+			'marked': false,
+			'locale': 'pt-BR',
+			'native': 'Português (Brasil)'
 		}
 	],
 	'game_localizations': '세키로: 섀도우 다이 트와이스',
-	'rating': 90.57513233453105,
-	'ratingCount': 708,
+	'rating': 90.57478544766968,
+	'ratingCount': 710,
 	'releaseDate': '2019-03-22T00:00:00.000Z',
 	'likes': 134,
 	'title': 'Sekiro: Shadows Die Twice',

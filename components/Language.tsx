@@ -79,10 +79,7 @@ const TableRows = ( { response }: LanguageProps) => {
 			)}
 		</>
 	)
-
 }
-
-
 
 const Language = ({ response }: LanguageProps) => {
 	return (
