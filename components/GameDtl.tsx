@@ -9,6 +9,7 @@ import { Overview } from './Overview'
 import { Artworks } from './Artworks'
 import { VideoList } from './VideoList'
 import { Language } from './Language'
+import { Similar } from './Similar'
 import { Website } from './Website'
 import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
@@ -155,6 +156,11 @@ const GameDtl = () => {
 			{
 				tabSelect === 'websites' ?
 					<Website response={response} />
+					: <></>
+			}
+			{
+				tabSelect === 'similargames' ?
+					<Similar response={response} />
 					: <></>
 			}
 			<div>

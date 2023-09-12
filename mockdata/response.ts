@@ -101,16 +101,46 @@ const response = {
 		'https://images.igdb.com/igdb/image/upload/t_1080p/smay0rol1vbibwop2t7n.jpg'
 	],
 	'similar_games': [
-		'Death Stranding',
-		'GreedFall',
-		'A Plague Tale: Innocence',
-		'Shadows: Awakening',
-		'Immortal: Unchained',
-		'Dragon: Marked for Death',
-		'The Elder Scrolls VI',
-		'Eternity: The Last Unicorn',
-		'Warhammer: Chaosbane',
-		'Torchlight III'
+		{
+			'name': 'Death Stranding',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co5vq8.jpg'
+		},
+		{
+			'name': 'GreedFall',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1ppo.jpg'
+		},
+		{
+			'name': 'A Plague Tale: Innocence',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1lat.jpg'
+		},
+		{
+			'name': 'Shadows: Awakening',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1mht.jpg'
+		},
+		{
+			'name': 'Immortal: Unchained',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1re8.jpg'
+		},
+		{
+			'name': 'Dragon: Marked for Death',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1r6a.jpg'
+		},
+		{
+			'name': 'The Elder Scrolls VI',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1ycv.jpg'
+		},
+		{
+			'name': 'Eternity: The Last Unicorn',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1k9j.jpg'
+		},
+		{
+			'name': 'Warhammer: Chaosbane',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2nix.jpg'
+		},
+		{
+			'name': 'Torchlight III',
+			'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2t2f.jpg'
+		}
 	],
 	'tags': '1,17,22,23,268435481,268435487,536871076,536872479,536882999,536888944,536908846,536909962',
 	'themes': [

@@ -1,4 +1,4 @@
-import { AgeRatings, Categories, Companies, Languages, Platforms, Videos } from '../../backendga/helpers/requests'
+import { AgeRatings, Categories, Companies, Covers, Languages, Platforms, Videos } from '../../backendga/helpers/requests'
 
 type ButtonField = {
 	stateSrc: string,
@@ -26,7 +26,7 @@ type GameDetailObj = {
 	platforms: Platforms[],
 	player_perspectives: string[],
 	screenshots: string[],
-	similar_games: string | string[],
+	similar_games: Covers[],
 	tags: string,
 	themes: string[],
 	videos: Videos[],
