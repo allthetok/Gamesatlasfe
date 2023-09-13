@@ -11,12 +11,6 @@ type NavGameProps = {
 
 
 const NavGame = ({ response }: NavGameProps) => {
-	const [tabSelect, setTabSelect] = useState('overview')
-
-	const handleActiveChange = (tabSelected: string) => {
-		setTabSelect(tabSelected)
-	}
-
 	return (
 		<>
 			<div className='title'>
@@ -42,7 +36,7 @@ const NavGame = ({ response }: NavGameProps) => {
 					</div>
 				</div>
 			</div>
-			<NavButtonList tabSelect={tabSelect} handleActiveChange={handleActiveChange}/>
+			<NavButtonList/>
 		</>
 	)
 }

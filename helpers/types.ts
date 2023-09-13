@@ -1,7 +1,7 @@
 import { AgeRatings, Categories, Companies, Covers, Languages, Platforms, Videos } from '../../backendga/helpers/requests'
 
 type ButtonField = {
-	stateSrc: string,
+	link: string,
 	formatName: string
 }
 

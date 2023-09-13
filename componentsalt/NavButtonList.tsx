@@ -4,16 +4,12 @@ import { buttonArray } from '../helpers/button'
 import { ButtonField } from '../helpers/types'
 import './GameDtl.css'
 
-type NavButtonListProps = {
-	tabSelect: string,
-	handleActiveChange: (tabSelected: string) => void
-}
-const NavButtonList = ({ tabSelect, handleActiveChange }: NavButtonListProps) => {
+const NavButtonList = () => {
 	return (
 		<ul className='nav-tabs mb'>
 			{buttonArray.map((el: ButtonField) => (
-				<li className='nav-tabs-li' key={el.stateSrc}>
-					<NavButton tabSelect={tabSelect} handleActiveChange={handleActiveChange} src={el.stateSrc} formatName={el.formatName} />
+				<li className='nav-tabs-li' key={el.link}>
+					<NavButton link={el.link} formatName={el.formatName} />
 				</li>
 			))}
 		</ul>

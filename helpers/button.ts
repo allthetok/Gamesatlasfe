@@ -2,31 +2,31 @@ import { ButtonField } from './types'
 
 const buttonArray: ButtonField[] = [
 	{
-		stateSrc: 'overview',
+		link: '/game',
 		formatName: 'Overview'
 	},
 	{
-		stateSrc: 'artworks',
+		link: '/game/artwork',
 		formatName: 'Artworks'
 	},
 	{
-		stateSrc: 'screenshots',
+		link: '/game/screenshot',
 		formatName: 'Screenshots'
 	},
 	{
-		stateSrc: 'similargames',
+		link: '/game/similargame',
 		formatName: 'Similar Games'
 	},
 	{
-		stateSrc: 'videos',
+		link: '/game/video',
 		formatName: 'Videos'
 	},
 	{
-		stateSrc: 'websites',
+		link: '/game/website',
 		formatName: 'Community Websites'
 	},
 	{
-		stateSrc: 'languages',
+		link: '/game/language',
 		formatName: 'Language Details'
 	},
 ]
