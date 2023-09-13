@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense } from 'react'
-import GameDtl from '../../components/GameDtl'
+import GameDtl from '../../deprecated/GameDtl'
 import { Inter } from 'next/font/google'
 import './globals.css'
 

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Similar } from '../../componentsalt/Similar'
+import { Similar } from '../../components/Similar'
 import { response } from '../../mockdata/response'
 import '../../src/app/globals.css'
 

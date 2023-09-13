@@ -6,19 +6,20 @@ import { Rating } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
 import { AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
-import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
 import { GameDetailObj } from '../helpers/types'
 import './GameDtl.css'
 
 type OverViewProps = {
 	response: GameDetailObj,
+	formattedDateLong: (inpDate: string) => string,
 	getPlatformCompanies: (platformsArr: Platforms[] | Companies[]) => React.JSX.Element,
 	getAgeRatings: (ratingsObj: AgeRatings) => React.JSX.Element,
 	getStringArr: (stringArr: string[]) => React.JSX.Element,
 	getWebsites: (categoriesArr: Categories[], specified: string) => React.JSX.Element,
+	ratingFloatToStar: (rating: number) => number,
 }
 
-const Overview = ({ response, getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
+const Overview = ({ response, formattedDateLong, getPlatformCompanies, getAgeRatings, getStringArr, getWebsites, ratingFloatToStar }: OverViewProps) => {
 	return (
 		<div id='infoBlock' className='game-info mb'>
 			<div className='info-box'>

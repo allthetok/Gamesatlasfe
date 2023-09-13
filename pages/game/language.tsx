@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Languages } from '../../componentsalt/Languages'
+import { Languages } from '../../components/Languages'
 import { response } from '../../mockdata/response'
 import '../../src/app/globals.css'
 

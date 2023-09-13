@@ -2,7 +2,7 @@
 import React from 'react'
 import '../../src/app/globals.css'
 import { response } from '../../mockdata/response'
-import { Websites } from '../../componentsalt/Websites'
+import { Websites } from '../../components/Websites'
 
 
 export default function Website() {

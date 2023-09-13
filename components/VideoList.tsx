@@ -9,6 +9,8 @@ import { GameDetailObj } from '../helpers/types'
 import './Artworks.css'
 import { Videos } from '../../backendga/helpers/requests'
 import { Video } from './Video'
+import { NavGame } from './NavGame'
+import { Description } from './Description'
 
 type VideoListProps = {
 	response: GameDetailObj
@@ -27,8 +29,10 @@ const VideoList = ({ response }: VideoListProps) => {
 	}
 
 	return (
-		<Carousel autoPlay={false}>
-			{response.videos.map((el: Videos) => (
+		<div className='header-wrapper'>
+			<NavGame response={response}/>
+			<Carousel autoPlay={false}>
+				{response.videos.map((el: Videos) => (
 				// <>
 				// 	<h2>{el.name}</h2>
 				// 	<iframe src={el.ytlink} width='1373.88' height='730' allowFullScreen={true}></iframe>
@@ -37,9 +41,11 @@ const VideoList = ({ response }: VideoListProps) => {
 				// 	<h2>{el.name}</h2>
 				// 	<Youtube videoId={el.ytlink} opts={opts}/>
 				// </div>
-				<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
-			))}
-		</Carousel>
+					<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
+				))}
+			</Carousel>
+			<Description response={response} />
+		</div>
 	)
 	{/* <h2>{response.videos[0].name}</h2>
 			<iframe src={response.videos[0].ytlink} width='560' height='315' frameBorder={0} allowFullScreen={true}></iframe> */}
