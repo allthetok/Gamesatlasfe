@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IconButton } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { NavButtonList } from './NavButtonList'
 import { GameDetailObj } from '../helpers/types'
 import './GameDtl.css'
-
-type NavGameProps = {
-	response: GameDetailObj
-}
+import { GameContext } from '@/app/gamecontext'
 
 
-const NavGame = ({ response }: NavGameProps) => {
+const NavGame = () => {
+	const response: GameDetailObj = useContext(GameContext)
+
 	return (
 		<>
 			<div className='title'>

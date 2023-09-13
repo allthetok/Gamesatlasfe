@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Youtube, { YouTubeProps } from 'react-youtube'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -11,16 +11,15 @@ import { Videos } from '../../backendga/helpers/requests'
 import { Video } from './Video'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
+import { GameContext } from '@/app/gamecontext'
 
-type VideoListProps = {
-	response: GameDetailObj
-}
+const VideoList = () => {
 
-const VideoList = ({ response }: VideoListProps) => {
 	// const opts: YouTubeProps['opts'] = {
 	// 	height: '700',
 	// 	width: '1200'
 	// }
+	const response: GameDetailObj = useContext(GameContext)
 
 	const [videoPlaying, setVideoPlaying] = useState('')
 
@@ -30,7 +29,7 @@ const VideoList = ({ response }: VideoListProps) => {
 
 	return (
 		<div className='header-wrapper'>
-			<NavGame response={response}/>
+			<NavGame />
 			<Carousel autoPlay={false}>
 				{response.videos.map((el: Videos) => (
 				// <>
@@ -44,7 +43,7 @@ const VideoList = ({ response }: VideoListProps) => {
 					<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
 				))}
 			</Carousel>
-			<Description response={response} />
+			<Description />
 		</div>
 	)
 	{/* <h2>{response.videos[0].name}</h2>

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import React from 'react'
+import React, { useContext } from 'react'
 import { Rating } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
@@ -9,16 +9,18 @@ import { AgeRatings, Categories, Companies, Platforms, Videos, Languages } from 
 import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
 import { GameDetailObj } from '../helpers/types'
 import './GameDtl.css'
+import { GameContext } from '@/app/gamecontext'
 
 type OverViewProps = {
-	response: GameDetailObj,
 	getPlatformCompanies: (platformsArr: Platforms[] | Companies[]) => React.JSX.Element,
 	getAgeRatings: (ratingsObj: AgeRatings) => React.JSX.Element,
 	getStringArr: (stringArr: string[]) => React.JSX.Element,
 	getWebsites: (categoriesArr: Categories[], specified: string) => React.JSX.Element,
 }
 
-const Overview = ({ response, getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
+const Overview = ({ getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
+	const response: GameDetailObj = useContext(GameContext)
+
 	return (
 		<div id='infoBlock' className='game-info mb'>
 			<div className='info-box'>

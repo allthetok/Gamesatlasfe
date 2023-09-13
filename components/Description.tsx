@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { GameDetailObj } from '../helpers/types'
 import { formattedDateLong } from '../helpers/fctns'
+import { GameContext } from '@/app/gamecontext'
 
-type DescriptionProps = {
-	response: GameDetailObj
-}
 
-const Description = ({ response }: DescriptionProps) => {
+// type DescriptionProps = {
+// 	response: GameDetailObj
+// }
+
+const Description = () => {
+	const response: GameDetailObj = useContext(GameContext)
 	return (
 		<>
 			<h2>Official Description</h2>

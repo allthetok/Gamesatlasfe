@@ -1,6 +1,5 @@
 'use client'
-import React, { Suspense } from 'react'
-import GameDtl from '../../deprecated/GameDtl'
+import React, { Suspense, useContext } from 'react'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -10,7 +9,7 @@ const App = () => {
 	return (
 		<main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<GameDtl/>
+				Homepage
 			</Suspense>
 		</main>
 	)

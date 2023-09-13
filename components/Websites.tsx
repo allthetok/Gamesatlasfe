@@ -2,7 +2,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useContext } from 'react'
 import { GameDetailObj } from '../helpers/types'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { WebsiteCategories } from '../assets/ratingsvglinks'
@@ -10,6 +10,7 @@ import { Categories } from '../../backendga/helpers/requests'
 import './GameDtl.css'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
+import { GameContext } from '@/app/gamecontext'
 
 type WebsiteProps = {
 	response: GameDetailObj
@@ -47,10 +48,12 @@ const TableRows = ( { response }: WebsiteProps) => {
 	)
 }
 
-const Websites = ({ response }: WebsiteProps) => {
+const Websites = () => {
+	const response: GameDetailObj = useContext(GameContext)
+
 	return (
 		<div className='header-wrapper'>
-			<NavGame response={response}/>
+			<NavGame/>
 			<div>
 				<TableContainer component={Paper}>
 					<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
@@ -63,7 +66,7 @@ const Websites = ({ response }: WebsiteProps) => {
 					</Table>
 				</TableContainer>
 			</div>
-			<Description response={response} />
+			<Description/>
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Overview } from './Overview'
 import { AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { response } from '../mockdata/response'
@@ -10,8 +10,11 @@ import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
 import './GameDtl.css'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
+import { GameContext } from '@/app/gamecontext'
+import { GameDetailObj } from '../helpers/types'
 
 const GameDtl = () => {
+	const response: GameDetailObj = useContext(GameContext)
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
@@ -89,9 +92,9 @@ const GameDtl = () => {
 
 	return (
 		<div className='header-wrapper'>
-			<NavGame response={response} />
-			<Overview response={response} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-			<Description response={response}/>
+			<NavGame />
+			<Overview getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
+			<Description />
 		</div>
 
 	)

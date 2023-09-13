@@ -1,18 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useContext } from 'react'
 import { GameDetailObj } from '../helpers/types'
 import { Covers } from '../../backendga/helpers/requests'
 import './GameDtl.css'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
+import { GameContext } from '@/app/gamecontext'
 
-type SimilarProps = {
-	response: GameDetailObj
-}
-const Similar = ({ response }: SimilarProps) => {
+const Similar = () => {
+	const response: GameDetailObj = useContext(GameContext)
+
 	return (
 		<div className='header-wrapper'>
-			<NavGame response={response}/>
+			<NavGame/>
 			<div>
 				<ul className='similar-ul'>
 					{response.similar_games.map((el: Covers) => (
@@ -27,7 +27,7 @@ const Similar = ({ response }: SimilarProps) => {
 					))}
 				</ul>
 			</div>
-			<Description response={response} />
+			<Description/>
 		</div>
 	)
 }
