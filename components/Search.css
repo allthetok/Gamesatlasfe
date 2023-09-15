@@ -21,7 +21,7 @@
 	padding: 0rem 0.5rem;
 }
 
-.search-bar input {
+.search-bar-input {
 	background: transparent;
 	text-align: center;
 	flex: 1;
@@ -36,3 +36,7 @@
 ::placeholder {
 	color: #d6ecff;
 }
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	color: #d6ecff;
+  }
