@@ -2,6 +2,7 @@
 import React, { Suspense, useContext } from 'react'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Search } from '../../components/Search'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,7 +10,7 @@ const App = () => {
 	return (
 		<main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				Homepage
+				<Search/>
 			</Suspense>
 		</main>
 	)
