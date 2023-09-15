@@ -10,19 +10,23 @@ import './Artworks.css'
 import './GameDtl.css'
 import { Description } from './Description'
 import { GameContext } from '@/app/gamecontext'
+import { Search } from './Search'
 
 const Screenshots = () => {
 	const response: GameDetailObj = useContext(GameContext)
 
 	return (
-		<div className='header-wrapper'>
-			<NavGame/>
-			<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
-				{response.screenshots.map((el: string) => (
-					<img className='image-carousel' src={el} alt='In-Game Screenshot' />
-				))}
-			</Carousel>
-			<Description/>
+		<div>
+			<Search />
+			<div className='header-wrapper'>
+				<NavGame/>
+				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
+					{response.screenshots.map((el: string) => (
+						<img className='image-carousel' src={el} alt='In-Game Screenshot' />
+					))}
+				</Carousel>
+				<Description/>
+			</div>
 		</div>
 	)
 }

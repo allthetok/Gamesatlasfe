@@ -40,7 +40,7 @@ const Search = () => {
 
 	return (
 		<Box sx={{ flexGrow: 1, minWidth: '100%' }}>
-			<AppBar position="static" sx={{ backgroundColor: '#1f2328' }}>
+			<AppBar position="static" sx={{ backgroundColor: '#1f2328', boxShadow: 'none' }}>
 				<Toolbar>
 					<Box sx={{ flexGrow: 0.5 }}/>
 					<div className='search-wrap'>

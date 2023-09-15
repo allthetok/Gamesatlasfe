@@ -10,6 +10,7 @@ import './Artworks.css'
 import './GameDtl.css'
 import { Description } from './Description'
 import { GameContext } from '@/app/gamecontext'
+import { Search } from './Search'
 
 
 // type ArtworksProps = {
@@ -20,14 +21,17 @@ import { GameContext } from '@/app/gamecontext'
 const Artworks = () => {
 	const response: GameDetailObj = useContext(GameContext)
 	return (
-		<div className='header-wrapper'>
-			<NavGame/>
-			<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
-				{response.artworks.map((el: string) => (
-					<img className='image-carousel' src={el} alt='Artwork' />
-				))}
-			</Carousel>
-			<Description/>
+		<div>
+			<Search />
+			<div className='header-wrapper'>
+				<NavGame/>
+				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
+					{response.artworks.map((el: string) => (
+						<img className='image-carousel' src={el} alt='Artwork' />
+					))}
+				</Carousel>
+				<Description/>
+			</div>
 		</div>
 	)
 }

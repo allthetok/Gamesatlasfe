@@ -12,6 +12,7 @@ import { Video } from './Video'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { GameContext } from '@/app/gamecontext'
+import { Search } from './Search'
 
 const VideoList = () => {
 
@@ -28,22 +29,25 @@ const VideoList = () => {
 	}
 
 	return (
-		<div className='header-wrapper'>
-			<NavGame />
-			<Carousel autoPlay={false}>
-				{response.videos.map((el: Videos) => (
-				// <>
-				// 	<h2>{el.name}</h2>
-				// 	<iframe src={el.ytlink} width='1373.88' height='730' allowFullScreen={true}></iframe>
-				// </>
-				// <div>
-				// 	<h2>{el.name}</h2>
-				// 	<Youtube videoId={el.ytlink} opts={opts}/>
-				// </div>
-					<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
-				))}
-			</Carousel>
-			<Description />
+		<div>
+			<Search />
+			<div className='header-wrapper'>
+				<NavGame />
+				<Carousel autoPlay={false}>
+					{response.videos.map((el: Videos) => (
+					// <>
+					// 	<h2>{el.name}</h2>
+					// 	<iframe src={el.ytlink} width='1373.88' height='730' allowFullScreen={true}></iframe>
+					// </>
+					// <div>
+					// 	<h2>{el.name}</h2>
+					// 	<Youtube videoId={el.ytlink} opts={opts}/>
+					// </div>
+						<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
+					))}
+				</Carousel>
+				<Description />
+			</div>
 		</div>
 	)
 	{/* <h2>{response.videos[0].name}</h2>

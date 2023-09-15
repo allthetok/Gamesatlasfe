@@ -11,6 +11,7 @@ import './GameDtl.css'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { GameContext } from '@/app/gamecontext'
+import { Search } from './Search'
 
 type WebsiteProps = {
 	response: GameDetailObj
@@ -52,21 +53,24 @@ const Websites = () => {
 	const response: GameDetailObj = useContext(GameContext)
 
 	return (
-		<div className='header-wrapper'>
-			<NavGame/>
-			<div>
-				<TableContainer component={Paper}>
-					<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
-						<TableHead>
-							<TableCells/>
-						</TableHead>
-						<TableBody>
-							<TableRows response={response} />
-						</TableBody>
-					</Table>
-				</TableContainer>
+		<div>
+			<Search />
+			<div className='header-wrapper'>
+				<NavGame/>
+				<div>
+					<TableContainer component={Paper}>
+						<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
+							<TableHead>
+								<TableCells/>
+							</TableHead>
+							<TableBody>
+								<TableRows response={response} />
+							</TableBody>
+						</Table>
+					</TableContainer>
+				</div>
+				<Description/>
 			</div>
-			<Description/>
 		</div>
 	)
 }

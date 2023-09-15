@@ -12,6 +12,7 @@ import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { GameContext } from '@/app/gamecontext'
 import { GameDetailObj } from '../helpers/types'
+import { Search } from './Search'
 
 const GameDtl = () => {
 	const response: GameDetailObj = useContext(GameContext)
@@ -91,12 +92,14 @@ const GameDtl = () => {
 	}
 
 	return (
-		<div className='header-wrapper'>
-			<NavGame />
-			<Overview getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-			<Description />
+		<div>
+			<Search />
+			<div className='header-wrapper'>
+				<NavGame />
+				<Overview getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
+				<Description />
+			</div>
 		</div>
-
 	)
 }
 
