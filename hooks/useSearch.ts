@@ -40,7 +40,7 @@ const useSearch = ({ gameSearch	}: UseSearchProps) => {
 		getGameDtl()
 	}, [getGameDtl])
 
-	return [dataFetch, error, loading]
+	return { dataFetch, error, loading }
 }
 
 export { useSearch }

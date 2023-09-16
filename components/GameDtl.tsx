@@ -15,7 +15,7 @@ import { GameDetailObj } from '../helpers/types'
 import { Search } from './Search'
 
 const GameDtl = () => {
-	const response: GameDetailObj = useContext(GameContext)
+	// const response: GameDetailObj = useContext(GameContext)
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (

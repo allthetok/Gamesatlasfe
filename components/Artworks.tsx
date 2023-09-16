@@ -5,11 +5,11 @@ import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { NavGame } from './NavGame'
-import { GameDetailObj } from '../helpers/types'
+import { GameContextObj, GameDetailObj } from '../helpers/types'
 import './Artworks.css'
 import './GameDtl.css'
 import { Description } from './Description'
-import { GameContext } from '@/app/gamecontext'
+import { useGameContext } from '@/app/gamecontext'
 import { Search } from './Search'
 
 
@@ -19,14 +19,14 @@ import { Search } from './Search'
 
 // const Artworks = ({ response }: ArtworksProps) => {
 const Artworks = () => {
-	const response: GameDetailObj = useContext(GameContext)
+	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 	return (
 		<div>
 			<Search />
 			<div className='header-wrapper'>
 				<NavGame/>
 				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
-					{response.artworks.map((el: string) => (
+					{dataFetch?.artworks.map((el: string) => (
 						<img className='image-carousel' src={el} alt='Artwork' />
 					))}
 				</Carousel>

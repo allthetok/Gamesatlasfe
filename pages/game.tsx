@@ -1,6 +1,7 @@
 'use client'
 import React, { Suspense } from 'react'
 import GameDtl from '../components/GameDtl'
+import { ContextDtl } from '../src/app/gamecontext'
 import { Inter } from 'next/font/google'
 import '../src/app/globals.css'
 
@@ -10,7 +11,9 @@ export default function Game() {
 	return (
 		<main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<GameDtl/>
+				<ContextDtl>
+					<GameDtl/>
+				</ContextDtl>
 			</Suspense>
 		</main>
 	)
