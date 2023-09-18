@@ -2,14 +2,17 @@
 import React from 'react'
 import { Screenshots } from '../../components/Screenshots'
 import { ContextDtl } from '../../src/app/gamecontext'
+import { ContextSear } from '@/app/searchcontext'
 import '../../src/app/globals.css'
 
 
 export default function Screenshot() {
 	return (
-		<ContextDtl>
-			<Screenshots/>
-		</ContextDtl>
+		<ContextSear>
+			<ContextDtl>
+				<Screenshots/>
+			</ContextDtl>
+		</ContextSear>
 	)
 }
 

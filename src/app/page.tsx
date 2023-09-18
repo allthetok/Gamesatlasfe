@@ -1,7 +1,7 @@
 'use client'
-import React, { Suspense, useContext } from 'react'
+import React, { Suspense } from 'react'
 import { Search } from '../../components/Search'
-import { ContextDtl } from '../../src/app/gamecontext'
+import { ContextSear } from '../../src/app/searchcontext'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -11,9 +11,9 @@ const App = () => {
 	return (
 		<main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<ContextDtl>
+				<ContextSear>
 					<Search/>
-				</ContextDtl>
+				</ContextSear>
 			</Suspense>
 		</main>
 	)

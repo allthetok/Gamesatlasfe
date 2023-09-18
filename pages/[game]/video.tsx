@@ -2,15 +2,18 @@
 import React from 'react'
 import { VideoList } from '../../components/VideoList'
 import { ContextDtl } from '../../src/app/gamecontext'
+import { ContextSear } from '@/app/searchcontext'
 import '../../src/app/globals.css'
 
 
 
 export default function Video() {
 	return (
-		<ContextDtl>
-			<VideoList/>
-		</ContextDtl>
+		<ContextSear>
+			<ContextDtl>
+				<VideoList/>
+			</ContextDtl>
+		</ContextSear>
 	)
 }
 

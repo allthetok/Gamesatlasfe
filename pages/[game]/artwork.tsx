@@ -2,15 +2,18 @@
 import React from 'react'
 import { Artworks } from '../../components/Artworks'
 import { ContextDtl } from '../../src/app/gamecontext'
+import { ContextSear } from '@/app/searchcontext'
 import '../../src/app/globals.css'
 
 
 export default function Artwork() {
 	return (
 		<div>
-			<ContextDtl>
-				<Artworks/>
-			</ContextDtl>
+			<ContextSear>
+				<ContextDtl>
+					<Artworks/>
+				</ContextDtl>
+			</ContextSear>
 		</div>
 	)
 }

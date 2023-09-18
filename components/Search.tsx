@@ -7,8 +7,7 @@ import Link from 'next/link'
 import { AppBar, Box, Toolbar, IconButton } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
-import { useGameContext } from '@/app/gamecontext'
-import { GameContextObj } from '../helpers/types'
+import { useSearchContext } from '@/app/searchcontext'
 import './Search.css'
 
 
@@ -19,25 +18,27 @@ import './Search.css'
 // }
 
 const Search = () => {
-	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+	const { gameSearch, setGameSearch } = useSearchContext()
 
-	const [textInput, setTextInput] = useState('')
-	//const [searchTerm, setSearchTerm] = useState('')
 
-	// const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-	// 	setTextInput(e.currentTarget.value)
-	// }
+	// const [textInput, setTextInput] = useState('')
+	// //const [searchTerm, setSearchTerm] = useState('')
+
+	// // const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+	// // 	setTextInput(e.currentTarget.value)
+	// // }
 	const handleChange= (e: React.ChangeEvent<HTMLInputElement>) => {
-		setTextInput(e.target.value)
+		setGameSearch(e.target.value)
+		console.log(gameSearch)
 	}
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		console.log('submitted' + textInput)
+		console.log('submitted' + gameSearch)
 	}
 
 	const handleClear = (e: React.MouseEvent<HTMLElement>) => {
-		setTextInput('')
+		setGameSearch('')
 	}
 
 	return (
@@ -47,7 +48,7 @@ const Search = () => {
 					<Box sx={{ flexGrow: 0.5 }}/>
 					<div className='search-wrap'>
 						<form className='search-bar' onSubmit={handleSubmit}>
-							<input type='text' className='search-bar-input' value={textInput} onChange={handleChange} required placeholder='Search...' />
+							<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
 							{/* <TextField variant='standard' type='search' value={textInput} onChange={handleChange} required placeholder='Search...'
 								sx={{
 									background: 'transparent',
@@ -73,15 +74,15 @@ const Search = () => {
 								InputProps={{
 									disableUnderline: true
 								}} /> */}
-							{textInput !== '' ?
+							{gameSearch !== '' ?
 								<IconButton onClick={handleClear} size='medium'>
 									<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
 								</IconButton>
 								: <></>
 							}
 							<IconButton type='submit' size='medium'>
-								{textInput !== '' ?
-									<Link href={textInput !== '' ? `/game/?search=${textInput}` : ''}>
+								{gameSearch !== '' ?
+									<Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
 										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
 									</Link>
 									:

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext } from 'react'
 import { useSearch } from '../../hooks/useSearch'
 import { GameDetailObj } from '../../helpers/types'
+import { ContextSear, useSearchContext } from './searchcontext'
 
 type GameContextObj = {
 	dataFetch: GameDetailObj | undefined,
@@ -12,12 +13,17 @@ type GameContextObj = {
 const GameContext = createContext<GameContextObj>({ dataFetch: undefined, error: null, loading: false })
 
 const ContextDtl = ({ children }: any) => {
-	const [gameSearch, setGameSearch] = useState('')
-	const { dataFetch, error, loading } = useSearch({ gameSearch: 'sekiro' })
+	const { gameSearch } = useSearchContext()
+
+	// const { dataFetch, error, loading } = useSearch({ gameSearch: 'sekiro' })
+	console.log(gameSearch)
+	const { dataFetch, error, loading } = useSearch({ gameSearch })
 	return (
-		<GameContext.Provider value={{ dataFetch, error, loading }}>
-			{children}
-		</GameContext.Provider>
+		<ContextSear>
+			<GameContext.Provider value={{ dataFetch, error, loading }}>
+				{children}
+			</GameContext.Provider>
+		</ContextSear>
 	)
 }
 
