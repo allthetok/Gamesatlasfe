@@ -1,18 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import React, { useContext, useState } from 'react'
-import Youtube, { YouTubeProps } from 'react-youtube'
+// import Youtube, { YouTubeProps } from 'react-youtube'
+// import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+// import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import React, { useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import './Artworks.css'
-import { Videos } from '../../backendga/helpers/requests'
 import { Video } from './Video'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
-import { GameDetailObj, GameContextObj } from '../helpers/types'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
+import { Videos } from '../../backendga/helpers/requests'
+import { GameContextObj } from '../helpers/types'
+import { useGameContext } from '@/app/gamecontext'
+import './Artworks.css'
+
+
 
 const VideoList = () => {
 
@@ -40,7 +42,7 @@ const VideoList = () => {
 					<div className='header-wrapper'>
 						<NavGame />
 						<Carousel autoPlay={false}>
-							{dataFetch!.videos.map((el: Videos) => (
+							{dataFetch?.videos.map((el: Videos) => (
 								// <>
 								// 	<h2>{el.name}</h2>
 								// 	<iframe src={el.ytlink} width='1373.88' height='730' allowFullScreen={true}></iframe>

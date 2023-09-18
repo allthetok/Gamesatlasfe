@@ -1,18 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import React, { useContext } from 'react'
-import { Overview } from './Overview'
-import { AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
-import { response } from '../mockdata/response'
-import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
-import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
-import './GameDtl.css'
-import { NavGame } from './NavGame'
+import React from 'react'
 import { Description } from './Description'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
-import { GameContextObj, GameDetailObj } from '../helpers/types'
 import { Search } from './Search'
+import { NavGame } from './NavGame'
+import { Overview } from './Overview'
+import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
+import { useGameContext } from '@/app/gamecontext'
+import { GameContextObj } from '../helpers/types'
+import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
+import './GameDtl.css'
+
 
 const GameDtl = () => {
 	// const response: GameDetailObj = useContext(GameContext)

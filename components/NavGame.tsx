@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { NavButtonList } from './NavButtonList'
 import { IconButton } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import { NavButtonList } from './NavButtonList'
+import { GameContextObj } from '../helpers/types'
+import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
-import { GameDetailObj, GameContextObj } from '../helpers/types'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
+
 
 const NavGame = () => {
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()

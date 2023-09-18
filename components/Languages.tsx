@@ -2,14 +2,15 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
-import React, { useContext } from 'react'
-import { GameContextObj, GameDetailObj, LanguageTable } from '../helpers/types'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import { Languages } from '../../backendga/helpers/requests'
+import React from 'react'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
 import { Search } from './Search'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import { GameContextObj, GameDetailObj, LanguageTable } from '../helpers/types'
+import { Languages } from '../../backendga/helpers/requests'
+import { useGameContext } from '@/app/gamecontext'
+
 
 type LanguageProps = {
 	response: GameDetailObj

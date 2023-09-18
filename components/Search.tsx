@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
-import React, { FormEventHandler, LegacyRef, useState } from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
+// import { TextField } from '@mui/material'
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { AppBar, Box, Toolbar, IconButton } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
-import Link from 'next/link'
+import { useGameContext } from '@/app/gamecontext'
+import { GameContextObj } from '../helpers/types'
 import './Search.css'
-import { TextField } from '@mui/material'
+
 
 // type SearchProps = {
 // 	handleSubmit: FormEventHandler<HTMLFormElement> | undefined,
@@ -19,6 +19,8 @@ import { TextField } from '@mui/material'
 // }
 
 const Search = () => {
+	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+
 	const [textInput, setTextInput] = useState('')
 	//const [searchTerm, setSearchTerm] = useState('')
 

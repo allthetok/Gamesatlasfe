@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
+// import Youtube, { YouTubeProps, YouTubePlayer, YouTubeEvent } from 'react-youtube'
+// import Carousel from 'react-material-ui-carousel'
 import React, { useEffect } from 'react'
-import Youtube, { YouTubeProps, YouTubePlayer, YouTubeEvent } from 'react-youtube'
-import Carousel from 'react-material-ui-carousel'
-import { GameDetailObj } from '../helpers/types'
+import Youtube, { YouTubeProps, YouTubeEvent } from 'react-youtube'
 import './Artworks.css'
+
 
 type VideoProps = {
 	videoId: string,

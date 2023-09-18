@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-import React, { useContext } from 'react'
+import React from 'react'
 import { Rating } from '@mui/material'
-import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
-import { AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
+import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
 import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
-import { GameDetailObj, GameContextObj } from '../helpers/types'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
+import { GameContextObj } from '../helpers/types'
+import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 type OverViewProps = {

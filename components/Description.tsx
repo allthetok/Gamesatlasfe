@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { formattedDateLong } from '../helpers/fctns'
-import { GameDetailObj, GameContextObj } from '../helpers/types'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
+import { GameContextObj } from '../helpers/types'
+import { useGameContext } from '@/app/gamecontext'
 
 
 // type DescriptionProps = {

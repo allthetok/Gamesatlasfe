@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import React, { useContext } from 'react'
+import React from 'react'
+import { Description } from './Description'
+import { Search } from './Search'
+import { NavGame } from './NavGame'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { NavGame } from './NavGame'
-import { GameDetailObj, GameContextObj } from '../helpers/types'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
+import { GameContextObj } from '../helpers/types'
+import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
-import { Description } from './Description'
-import { Search } from './Search'
+
 
 
 // type ArtworksProps = {

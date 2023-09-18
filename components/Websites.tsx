@@ -2,16 +2,17 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
-import React, { useContext } from 'react'
+import React from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import { WebsiteCategories } from '../assets/ratingsvglinks'
-import { Categories } from '../../backendga/helpers/requests'
-import './GameDtl.css'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
+import { WebsiteCategories } from '../assets/ratingsvglinks'
+import { Categories } from '../../backendga/helpers/requests'
 import { GameDetailObj, GameContextObj } from '../helpers/types'
-import { ContextDtl, useGameContext } from '@/app/gamecontext'
+import { useGameContext } from '@/app/gamecontext'
+import './GameDtl.css'
+
 
 type WebsiteProps = {
 	response: GameDetailObj
@@ -54,23 +55,32 @@ const Websites = () => {
 
 	return (
 		<div>
-			<Search />
-			<div className='header-wrapper'>
-				<NavGame/>
+			{loading ?
+				<div>Loading...</div>
+				: <></>
+			}
+			{!loading && !error && dataFetch ?
 				<div>
-					<TableContainer component={Paper}>
-						<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
-							<TableHead>
-								<TableCells/>
-							</TableHead>
-							<TableBody>
-								<TableRows response={response} />
-							</TableBody>
-						</Table>
-					</TableContainer>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame/>
+						<div>
+							<TableContainer component={Paper}>
+								<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
+									<TableHead>
+										<TableCells/>
+									</TableHead>
+									<TableBody>
+										<TableRows response={dataFetch} />
+									</TableBody>
+								</Table>
+							</TableContainer>
+						</div>
+						<Description/>
+					</div>
 				</div>
-				<Description/>
-			</div>
+				: <></>
+			}
 		</div>
 	)
 }
