@@ -43,4 +43,10 @@ type GameDetailObj = {
 	url: string
 }
 
-export type { ButtonField, GameDetailObj, LanguageTable }
+type GameContextObj = {
+	dataFetch: GameDetailObj | undefined,
+	error: null,
+	loading: boolean
+}
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj }

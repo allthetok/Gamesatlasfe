@@ -8,9 +8,9 @@ import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
 import { AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
 import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
-import { GameDetailObj } from '../helpers/types'
-import './GameDtl.css'
+import { GameDetailObj, GameContextObj } from '../helpers/types'
 import { ContextDtl, useGameContext } from '@/app/gamecontext'
+import './GameDtl.css'
 
 type OverViewProps = {
 	getPlatformCompanies: (platformsArr: Platforms[] | Companies[]) => React.JSX.Element,
@@ -21,12 +21,7 @@ type OverViewProps = {
 
 const Overview = ({ getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
 	//const response: GameDetailObj = useContext(GameContext)
-	type GameContextObj = {
-		dataFetch: GameDetailObj | undefined,
-		error: null,
-		loading: boolean
-	}
-	const { dataFetch, error, loading } = useGameContext()
+	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (
 		<div>
@@ -34,7 +29,7 @@ const Overview = ({ getPlatformCompanies, getAgeRatings, getStringArr, getWebsit
 				<div>Loading...</div>
 				: <></>
 			}
-			{!loading && !error ?
+			{!loading && !error && dataFetch ?
 				<div id='infoBlock' className='game-info mb'>
 					<div className='info-box'>
 						<div>

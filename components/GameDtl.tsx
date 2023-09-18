@@ -10,12 +10,14 @@ import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
 import './GameDtl.css'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
-import { GameContext } from '@/app/gamecontext'
-import { GameDetailObj } from '../helpers/types'
+import { ContextDtl, useGameContext } from '@/app/gamecontext'
+import { GameContextObj, GameDetailObj } from '../helpers/types'
 import { Search } from './Search'
 
 const GameDtl = () => {
 	// const response: GameDetailObj = useContext(GameContext)
+	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
@@ -93,12 +95,21 @@ const GameDtl = () => {
 
 	return (
 		<div>
-			<Search />
-			<div className='header-wrapper'>
-				<NavGame />
-				<Overview getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-				<Description />
-			</div>
+			{loading ?
+				<div>Loading...</div>
+				: <></>
+			}
+			{!loading && !error && dataFetch ?
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame />
+						<Overview getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
+						<Description />
+					</div>
+				</div>
+				: <></>
+			}
 		</div>
 	)
 }

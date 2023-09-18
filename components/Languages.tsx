@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useContext } from 'react'
-import { GameDetailObj, LanguageTable } from '../helpers/types'
+import { GameContextObj, GameDetailObj, LanguageTable } from '../helpers/types'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { Languages } from '../../backendga/helpers/requests'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
-import { GameContext } from '@/app/gamecontext'
+import { ContextDtl, useGameContext } from '@/app/gamecontext'
 import { Search } from './Search'
 
 type LanguageProps = {
@@ -67,7 +68,6 @@ const TableCells = ({ response }: LanguageProps) => {
 
 const TableRows = ( { response }: LanguageProps) => {
 	const formattedLanguageTable: LanguageTable[] = createLanguageTable(response.language_supports)
-	console.log(formattedLanguageTable)
 	return (
 		<>
 			{formattedLanguageTable.map((item: LanguageTable) => (
@@ -86,27 +86,35 @@ const TableRows = ( { response }: LanguageProps) => {
 }
 
 const Languages = () => {
-	const response: GameDetailObj = useContext(GameContext)
+	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (
 		<div>
-			<Search />
-			<div className='header-wrapper'>
-				<NavGame />
+			{loading ?
+				<div>Loading...</div>
+				: <></>
+			}
+			{!loading && !error && dataFetch ?
 				<div>
-					<TableContainer component={Paper}>
-						<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
-							<TableHead>
-								<TableCells response={response}/>
-							</TableHead>
-							<TableBody>
-								<TableRows response={response} />
-							</TableBody>
-						</Table>
-					</TableContainer>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame />
+						<div>
+							<TableContainer component={Paper}>
+								<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
+									<TableHead>
+										<TableCells response={dataFetch!}/>
+									</TableHead>
+									<TableBody>
+										<TableRows response={dataFetch!} />
+									</TableBody>
+								</Table>
+							</TableContainer>
+						</div>
+						<Description/>
+					</div>
 				</div>
-				<Description/>
-			</div>
+				: <></>}
 		</div>
 	)
 }

@@ -3,15 +3,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useContext } from 'react'
-import { GameDetailObj } from '../helpers/types'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { WebsiteCategories } from '../assets/ratingsvglinks'
 import { Categories } from '../../backendga/helpers/requests'
 import './GameDtl.css'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
-import { GameContext } from '@/app/gamecontext'
 import { Search } from './Search'
+import { GameDetailObj, GameContextObj } from '../helpers/types'
+import { ContextDtl, useGameContext } from '@/app/gamecontext'
 
 type WebsiteProps = {
 	response: GameDetailObj
@@ -50,7 +50,7 @@ const TableRows = ( { response }: WebsiteProps) => {
 }
 
 const Websites = () => {
-	const response: GameDetailObj = useContext(GameContext)
+	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (
 		<div>

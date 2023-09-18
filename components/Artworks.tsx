@@ -5,11 +5,11 @@ import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { NavGame } from './NavGame'
-import { GameContextObj, GameDetailObj } from '../helpers/types'
+import { GameDetailObj, GameContextObj } from '../helpers/types'
+import { ContextDtl, useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
 import { Description } from './Description'
-import { useGameContext } from '@/app/gamecontext'
 import { Search } from './Search'
 
 
@@ -22,16 +22,25 @@ const Artworks = () => {
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 	return (
 		<div>
-			<Search />
-			<div className='header-wrapper'>
-				<NavGame/>
-				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
-					{dataFetch?.artworks.map((el: string) => (
-						<img className='image-carousel' src={el} alt='Artwork' />
-					))}
-				</Carousel>
-				<Description/>
-			</div>
+			{loading ?
+				<div>Loading...</div>
+				: <></>
+			}
+			{!loading && !error && dataFetch ?
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame/>
+						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
+							{dataFetch?.artworks.map((el: string) => (
+								<img className='image-carousel' src={el} alt='Artwork' />
+							))}
+						</Carousel>
+						<Description/>
+					</div>
+				</div>
+				: <></>
+			}
 		</div>
 	)
 }
