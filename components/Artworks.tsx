@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import { Description } from './Description'
 import { Search } from './Search'
 import { NavGame } from './NavGame'
@@ -20,6 +20,11 @@ import './GameDtl.css'
 
 // const Artworks = ({ response }: ArtworksProps) => {
 const Artworks = () => {
+	const [gameId, setGameId] = useState(() => {
+		const gameId = localStorage.getItem('gameid')
+		const initialVal = JSON.parse(gameId!)
+		return initialVal || null
+	})
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 	return (
 		<div>

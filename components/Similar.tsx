@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useState } from 'react'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
@@ -9,6 +9,11 @@ import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 const Similar = () => {
+	const [gameId, setGameId] = useState(() => {
+		const gameId = localStorage.getItem('gameid')
+		const initialVal = JSON.parse(gameId!)
+		return initialVal || null
+	})
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (

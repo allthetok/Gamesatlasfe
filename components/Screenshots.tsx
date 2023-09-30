@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import { Search } from './Search'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
@@ -14,6 +14,11 @@ import './Artworks.css'
 import './GameDtl.css'
 
 const Screenshots = () => {
+	const [gameId, setGameId] = useState(() => {
+		const gameId = localStorage.getItem('gameid')
+		const initialVal = JSON.parse(gameId!)
+		return initialVal || null
+	})
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (

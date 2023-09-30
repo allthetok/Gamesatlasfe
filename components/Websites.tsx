@@ -2,7 +2,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
@@ -51,6 +51,11 @@ const TableRows = ( { response }: WebsiteProps) => {
 }
 
 const Websites = () => {
+	const [gameId, setGameId] = useState(() => {
+		const gameId = localStorage.getItem('gameid')
+		const initialVal = JSON.parse(gameId!)
+		return initialVal || null
+	})
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (

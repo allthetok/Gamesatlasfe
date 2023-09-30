@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import { Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
 import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
@@ -19,6 +19,12 @@ type OverViewProps = {
 
 const Overview = ({ getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
 	//const response: GameDetailObj = useContext(GameContext)
+
+	const [searchTerm, setSearchTerm] = useState(() => {
+		const gameSearch = localStorage.getItem('searchterm')
+		const initialVal = JSON.parse(gameSearch!)
+		return initialVal || null
+	})
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (

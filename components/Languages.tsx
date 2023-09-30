@@ -2,7 +2,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
@@ -87,6 +87,11 @@ const TableRows = ( { response }: LanguageProps) => {
 }
 
 const Languages = () => {
+	const [gameId, setGameId] = useState(() => {
+		const gameId = localStorage.getItem('gameid')
+		const initialVal = JSON.parse(gameId!)
+		return initialVal || null
+	})
 	const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (

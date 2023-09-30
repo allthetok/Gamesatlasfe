@@ -34,6 +34,7 @@ const Search = () => {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		localStorage.setItem('searchterm', gameSearch)
 		console.log('submitted' + gameSearch)
 	}
 
@@ -80,7 +81,7 @@ const Search = () => {
 								</IconButton>
 								: <></>
 							}
-							<IconButton type='submit' size='medium'>
+							<IconButton type='submit' size='medium' onClick={() => localStorage.setItem('searchterm', gameSearch)}>
 								{gameSearch !== '' ?
 									<Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
 										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
