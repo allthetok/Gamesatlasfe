@@ -5,27 +5,31 @@ import React, { useState } from 'react'
 import { Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
 import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
+import { OverviewObj } from '../helpers/types'
 import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
 import { GameContextObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 type OverViewProps = {
+	dataFetch: OverviewObj,
+	loading: boolean,
+	error: null,
 	getPlatformCompanies: (platformsArr: Platforms[] | Companies[]) => React.JSX.Element,
 	getAgeRatings: (ratingsObj: AgeRatings) => React.JSX.Element,
 	getStringArr: (stringArr: string[]) => React.JSX.Element,
 	getWebsites: (categoriesArr: Categories[], specified: string) => React.JSX.Element,
 }
 
-const Overview = ({ getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
+const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
 	//const response: GameDetailObj = useContext(GameContext)
 
-	const [searchTerm, setSearchTerm] = useState(() => {
-		const gameSearch = localStorage.getItem('searchterm')
-		const initialVal = JSON.parse(gameSearch!)
-		return initialVal || null
-	})
-	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+	// const [searchTerm, setSearchTerm] = useState(() => {
+	// 	const gameSearch = localStorage.getItem('searchterm')
+	// 	const initialVal = JSON.parse(gameSearch!)
+	// 	return initialVal || null
+	// })
+	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (
 		<div>

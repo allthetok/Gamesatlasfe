@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Description } from './Description'
 import { Search } from './Search'
 import { NavGame } from './NavGame'
@@ -9,12 +10,48 @@ import { useGameContext } from '@/app/gamecontext'
 import { GameContextObj } from '../helpers/types'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
 import './GameDtl.css'
+import axios from 'axios'
 
 
 const GameDtl = () => {
 	// const response: GameDetailObj = useContext(GameContext)
-	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+	const [searchTerm, setSearchTerm] = useState(() => {
+		if (typeof window !== 'undefined') {
+			return localStorage.getItem('searchterm') || null
+		}
+	})
+	const [dataFetch, setDataFetch] = useState(null)
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
+	//const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
+	const searchConfig = {
+		method: 'post',
+		url: 'http://localhost:3001/api/overview',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'searchterm': searchTerm
+		}
+	}
+	const getGameDtl = useCallback(async () => {
+		await axios(searchConfig)
+			.then((response) => {
+				setDataFetch(response.data)
+				setLoading(false)
+			})
+			.catch((err) => {
+				setError(err)
+				console.error(err)
+
+			})
+	}, [searchTerm])
+
+	useEffect(() => {
+		console.log('effect fired')
+		getGameDtl()
+	}, [getGameDtl])
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
@@ -101,8 +138,8 @@ const GameDtl = () => {
 					<Search />
 					<div className='header-wrapper'>
 						<NavGame />
-						<Overview getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-						<Description />
+						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
+						{/* <Description dataFetch={dataFetch} loading={loading} error={error} /> */}
 					</div>
 				</div>
 				: <></>
