@@ -2,18 +2,19 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import { GameContextObj, GameDetailObj, LanguageTable } from '../helpers/types'
+import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable } from '../helpers/types'
 import { Languages } from '../../backendga/helpers/requests'
 import { useGameContext } from '@/app/gamecontext'
+import axios from 'axios'
 
 
 type LanguageProps = {
-	response: GameDetailObj
+	response: LanguageObj
 }
 
 const createLanguageTable = (language_supports: Languages[]) => {
@@ -87,12 +88,47 @@ const TableRows = ( { response }: LanguageProps) => {
 }
 
 const Languages = () => {
+	// const [gameId, setGameId] = useState(() => {
+	// 	const gameId = localStorage.getItem('gameid')
+	// 	const initialVal = JSON.parse(gameId!)
+	// 	return initialVal || null
+	// })
+	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 	const [gameId, setGameId] = useState(() => {
-		const gameId = localStorage.getItem('gameid')
-		const initialVal = JSON.parse(gameId!)
-		return initialVal || null
+		if (typeof window !== 'undefined') {
+			return localStorage.getItem('gameID') || null
+		}
 	})
-	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+	const [dataFetch, setDataFetch] = useState<LanguageObj>()
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
+
+	const searchConfig = {
+		method: 'post',
+		url: 'http://localhost:3001/api/language',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'gameid': gameId
+		}
+	}
+	const getGameDtl = useCallback(async () => {
+		await axios(searchConfig)
+			.then((response) => {
+				setDataFetch(response.data)
+				setLoading(false)
+			})
+			.catch((err) => {
+				setError(err)
+				console.error(err)
+
+			})
+	}, [gameId])
+
+	useEffect(() => {
+		getGameDtl()
+	}, [getGameDtl])
 
 	return (
 		<div>
@@ -104,7 +140,7 @@ const Languages = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame />
+						<NavGame title={dataFetch.title} loading={loading} error={error} />
 						<div>
 							<TableContainer component={Paper}>
 								<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
@@ -117,7 +153,7 @@ const Languages = () => {
 								</Table>
 							</TableContainer>
 						</div>
-						<Description/>
+						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
 					</div>
 				</div>
 				: <></>}

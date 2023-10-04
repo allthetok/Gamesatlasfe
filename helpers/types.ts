@@ -72,6 +72,8 @@ type OverviewObj = {
 type ArtworkObj = {
 	id: number | null,
 	artworks: string[],
+	involved_companies: Companies[],
+	releaseDate: string,
 	title: string,
 	story: string,
 	summary: string,
@@ -80,6 +82,8 @@ type ArtworkObj = {
 type LanguageObj = {
 	id: number | null,
 	language_supports: Languages[],
+	involved_companies: Companies[],
+	releaseDate: string,
 	title: string,
 	story: string,
 	summary: string,
@@ -88,6 +92,8 @@ type LanguageObj = {
 type ScreenshotsObj = {
 	id: number | null,
 	screenshots: string[],
+	involved_companies: Companies[],
+	releaseDate: string,
 	title: string,
 	story: string,
 	summary: string,
@@ -96,6 +102,8 @@ type ScreenshotsObj = {
 type SimilarObj = {
 	id: number | null,
 	similar_games: Covers[],
+	involved_companies: Companies[],
+	releaseDate: string,
 	title: string,
 	story: string,
 	summary: string,
@@ -104,6 +112,8 @@ type SimilarObj = {
 type VideoObj = {
 	id: number | null,
 	videos: Videos[],
+	involved_companies: Companies[],
+	releaseDate: string,
 	title: string,
 	story: string,
 	summary: string,
@@ -112,6 +122,8 @@ type VideoObj = {
 type WebsiteObj = {
 	id: number | null,
 	websites: Categories[],
+	involved_companies: Companies[],
+	releaseDate: string,
 	title: string,
 	story: string,
 	summary: string,

@@ -3,16 +3,17 @@
 // import Youtube, { YouTubeProps } from 'react-youtube'
 // import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 // import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
 import { Video } from './Video'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { Videos } from '../../backendga/helpers/requests'
-import { GameContextObj } from '../helpers/types'
+import { GameContextObj, VideoObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
+import axios from 'axios'
 
 
 
@@ -22,13 +23,49 @@ const VideoList = () => {
 	// 	height: '700',
 	// 	width: '1200'
 	// }
-	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	const [videoPlaying, setVideoPlaying] = useState('')
 
 	const changeActiveVideo = (videoId: string): void => {
 		setVideoPlaying(videoId)
 	}
+
+	const [gameId, setGameId] = useState(() => {
+		if (typeof window !== 'undefined') {
+			return localStorage.getItem('gameID') || null
+		}
+	})
+	const [dataFetch, setDataFetch] = useState<VideoObj>()
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
+
+	const searchConfig = {
+		method: 'post',
+		url: 'http://localhost:3001/api/videos',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'gameid': gameId
+		}
+	}
+	const getGameDtl = useCallback(async () => {
+		await axios(searchConfig)
+			.then((response) => {
+				setDataFetch(response.data)
+				setLoading(false)
+			})
+			.catch((err) => {
+				setError(err)
+				console.error(err)
+
+			})
+	}, [gameId])
+
+	useEffect(() => {
+		getGameDtl()
+	}, [getGameDtl])
 
 	return (
 		<div>
@@ -40,7 +77,7 @@ const VideoList = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame />
+						<NavGame title={dataFetch.title} loading={loading} error={error} />
 						<Carousel autoPlay={false}>
 							{dataFetch?.videos.map((el: Videos) => (
 								// <>
@@ -54,7 +91,7 @@ const VideoList = () => {
 								<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
 							))}
 						</Carousel>
-						<Description />
+						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
 					</div>
 				</div>
 				: <></>

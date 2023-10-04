@@ -1,15 +1,21 @@
 import React from 'react'
 import { formattedDateLong } from '../helpers/fctns'
-import { GameContextObj } from '../helpers/types'
+import { GameContextObj, OverviewObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
+import { Companies } from '../../backendga/helpers/requests'
 
+type DescriptionProps = {
+	title: string,
+	involved_companies: Companies[],
+	summary: string,
+	story: string,
+	releaseDate: string,
+	error: any,
+	loading: boolean
+}
 
-// type DescriptionProps = {
-// 	response: GameDetailObj
-// }
-
-const Description = () => {
-	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+const Description = ({ title, involved_companies, summary, story, releaseDate, error, loading }: DescriptionProps) => {
+	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 	// const response: GameDetailObj = useContext(GameContext)
 	return (
 		<>
@@ -17,22 +23,22 @@ const Description = () => {
 				<div>Loading...</div>
 				: <></>
 			}
-			{!loading && !error && dataFetch ?
+			{!loading && !error && title && involved_companies && summary && story && releaseDate ?
 				<div>
 					<h2>Official Description</h2>
 					<div className='shrink-headings toggle-long-text line-clamp'>
 						<p className='text-desc'>
-							{dataFetch.summary}
+							{summary}
 						</p>
 						<p className='text-desc'>
 							In&nbsp;
 							<strong>
-								<em>{dataFetch.title}</em>
+								<em>{title}</em>
 							</strong>
-							,&nbsp;{dataFetch.story.charAt(0).toLowerCase() + dataFetch.story.slice(1)}
+							,&nbsp;{story.charAt(0).toLowerCase() + story.slice(1)}
 						</p>
 						<p className='text-desc'>
-							Released by {dataFetch.involved_companies.map(company => company.name).join(', ')} on {formattedDateLong(dataFetch.releaseDate)}.
+							Released by {involved_companies.map((company: Companies) => company.name).join(', ')} on {formattedDateLong(releaseDate)}.
 						</p>
 					</div>
 				</div>

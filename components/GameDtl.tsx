@@ -7,7 +7,7 @@ import { NavGame } from './NavGame'
 import { Overview } from './Overview'
 import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
 import { useGameContext } from '@/app/gamecontext'
-import { GameContextObj } from '../helpers/types'
+import { GameContextObj, OverviewObj } from '../helpers/types'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
 import './GameDtl.css'
 import axios from 'axios'
@@ -15,15 +15,16 @@ import axios from 'axios'
 
 const GameDtl = () => {
 	// const response: GameDetailObj = useContext(GameContext)
+	//const { dataFetch, error, loading }: GameContextObj = useGameContext()
+
 	const [searchTerm, setSearchTerm] = useState(() => {
 		if (typeof window !== 'undefined') {
 			return localStorage.getItem('searchterm') || null
 		}
 	})
-	const [dataFetch, setDataFetch] = useState(null)
+	const [dataFetch, setDataFetch] = useState<OverviewObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
-	//const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	const searchConfig = {
 		method: 'post',
@@ -39,6 +40,7 @@ const GameDtl = () => {
 		await axios(searchConfig)
 			.then((response) => {
 				setDataFetch(response.data)
+				localStorage.setItem('gameID', response.data.id!.toString())
 				setLoading(false)
 			})
 			.catch((err) => {
@@ -49,7 +51,6 @@ const GameDtl = () => {
 	}, [searchTerm])
 
 	useEffect(() => {
-		console.log('effect fired')
 		getGameDtl()
 	}, [getGameDtl])
 
@@ -137,9 +138,9 @@ const GameDtl = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame />
+						<NavGame title={dataFetch.title} loading={loading} error={error} />
 						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-						{/* <Description dataFetch={dataFetch} loading={loading} error={error} /> */}
+						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
 					</div>
 				</div>
 				: <></>

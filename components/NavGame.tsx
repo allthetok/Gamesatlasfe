@@ -2,13 +2,18 @@ import React from 'react'
 import { NavButtonList } from './NavButtonList'
 import { IconButton } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import { GameContextObj } from '../helpers/types'
+import { GameContextObj, OverviewObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
+type NavGameProps = {
+	title: string,
+	error: any,
+	loading: boolean
+}
 
-const NavGame = () => {
-	const { dataFetch, error, loading }: GameContextObj = useGameContext()
+const NavGame = ({ title, error, loading }: NavGameProps) => {
+	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (
 		<>
@@ -16,12 +21,12 @@ const NavGame = () => {
 				<div>Loading...</div>
 				: <></>
 			}
-			{!loading && !error && dataFetch ?
+			{!loading && !error && title !== '' ?
 				<>
 					<div className='title'>
 						<div className='mb'>
 							<h1>
-								{dataFetch?.title}
+								{title}
 							</h1>
 						</div>
 						<div className='flex flex-end'>
