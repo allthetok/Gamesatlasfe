@@ -11,6 +11,7 @@ import { GameContextObj, OverviewObj } from '../helpers/types'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
 import './GameDtl.css'
 import axios from 'axios'
+import ReactLoading from 'react-loading'
 
 
 const GameDtl = () => {
@@ -24,7 +25,7 @@ const GameDtl = () => {
 	})
 	const [dataFetch, setDataFetch] = useState<OverviewObj>()
 	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 
 	const searchConfig = {
 		method: 'post',
@@ -131,8 +132,14 @@ const GameDtl = () => {
 	return (
 		<div>
 			{loading ?
-				<div>Loading...</div>
-				: <></>
+				<ReactLoading
+					type={'spinningBubbles'}
+					color={'#ddd'}
+					height={100}
+					width={100}
+				/>
+				:
+				<></>
 			}
 			{!loading && !error && dataFetch ?
 				<div>

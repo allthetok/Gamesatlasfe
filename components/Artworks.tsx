@@ -12,6 +12,7 @@ import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
 import axios from 'axios'
+import ReactLoading from 'react-loading'
 
 
 
@@ -30,7 +31,7 @@ const Artworks = () => {
 
 	const [dataFetch, setDataFetch] = useState<ArtworkObj>()
 	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 
 	const searchConfig = {
 		method: 'post',
@@ -61,8 +62,14 @@ const Artworks = () => {
 	return (
 		<div>
 			{loading ?
-				<div>Loading...</div>
-				: <></>
+				<ReactLoading
+					type={'spinningBubbles'}
+					color={'#ddd'}
+					height={100}
+					width={100}
+				/>
+				:
+				<></>
 			}
 			{!loading && !error && dataFetch ?
 				<div>

@@ -7,6 +7,7 @@ import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import ReactLoading from 'react-loading'
 import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable } from '../helpers/types'
 import { Languages } from '../../backendga/helpers/requests'
 import { useGameContext } from '@/app/gamecontext'
@@ -101,7 +102,7 @@ const Languages = () => {
 	})
 	const [dataFetch, setDataFetch] = useState<LanguageObj>()
 	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 
 	const searchConfig = {
 		method: 'post',
@@ -133,8 +134,14 @@ const Languages = () => {
 	return (
 		<div>
 			{loading ?
-				<div>Loading...</div>
-				: <></>
+				<ReactLoading
+					type={'spinningBubbles'}
+					color={'#ddd'}
+					height={100}
+					width={100}
+			  	/>
+				:
+				<></>
 			}
 			{!loading && !error && dataFetch ?
 				<div>
