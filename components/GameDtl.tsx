@@ -7,7 +7,7 @@ import { NavGame } from './NavGame'
 import { Overview } from './Overview'
 import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
 import { useGameContext } from '@/app/gamecontext'
-import { GameContextObj, OverviewObj } from '../helpers/types'
+import { GameContextObj, LocalStorageObj, OverviewObj } from '../helpers/types'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
 import './GameDtl.css'
 import axios from 'axios'
@@ -41,6 +41,15 @@ const GameDtl = () => {
 		await axios(searchConfig)
 			.then((response) => {
 				setDataFetch(response.data)
+				const auxiliaryObj: LocalStorageObj = {
+					gameID: response.data.id!.toString(),
+					title: response.data.title,
+					involved_companies: response.data.involved_companies.map((company: Companies) => company.name).join(', '),
+					summary: response.data.summary,
+					story: response.data.story,
+					releaseDate: response.data.releaseDate
+				}
+				localStorage.setItem('auxiliaryObj', )
 				localStorage.setItem('gameID', response.data.id!.toString())
 				setLoading(false)
 			})

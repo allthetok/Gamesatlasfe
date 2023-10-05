@@ -129,10 +129,19 @@ type WebsiteObj = {
 	summary: string,
 }
 
+type LocalStorageObj = {
+	gameID: number,
+	title: string,
+	involved_companies: string,
+	summary: string,
+	story: string,
+	releaseDate: string
+}
+
 type GameContextObj = {
 	dataFetch: GameDetailObj | undefined,
 	error: null,
 	loading: boolean
 }
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj }
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, LocalStorageObj }
