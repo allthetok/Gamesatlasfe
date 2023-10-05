@@ -14,6 +14,7 @@ import { GameContextObj, VideoObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import axios from 'axios'
+import ReactLoading from 'react-loading'
 
 
 
@@ -38,7 +39,7 @@ const VideoList = () => {
 	})
 	const [dataFetch, setDataFetch] = useState<VideoObj>()
 	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 
 	const searchConfig = {
 		method: 'post',
@@ -70,8 +71,14 @@ const VideoList = () => {
 	return (
 		<div>
 			{loading ?
-				<div>Loading...</div>
-				: <></>
+				<ReactLoading
+					type={'spinningBubbles'}
+					color={'#ddd'}
+					height={100}
+					width={100}
+				/>
+				:
+				<></>
 			}
 			{!loading && !error && dataFetch ?
 				<div>

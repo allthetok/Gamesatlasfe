@@ -8,6 +8,7 @@ import { GameContextObj, SimilarObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 import axios from 'axios'
+import ReactLoading from 'react-loading'
 
 const Similar = () => {
 	// const [gameId, setGameId] = useState(() => {
@@ -23,7 +24,7 @@ const Similar = () => {
 	})
 	const [dataFetch, setDataFetch] = useState<SimilarObj>()
 	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 
 	const searchConfig = {
 		method: 'post',
@@ -55,8 +56,14 @@ const Similar = () => {
 	return (
 		<div>
 			{loading ?
-				<div>Loading...</div>
-				: <></>
+				<ReactLoading
+					type={'spinningBubbles'}
+					color={'#ddd'}
+					height={100}
+					width={100}
+				/>
+				:
+				<></>
 			}
 			{!loading && !error && dataFetch ?
 				<div>
