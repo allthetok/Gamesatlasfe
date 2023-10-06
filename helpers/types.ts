@@ -70,63 +70,27 @@ type OverviewObj = {
 }
 
 type ArtworkObj = {
-	id: number | null,
-	artworks: string[],
-	involved_companies: Companies[],
-	releaseDate: string,
-	title: string,
-	story: string,
-	summary: string,
+	artworks: string[]
 }
 
 type LanguageObj = {
-	id: number | null,
-	language_supports: Languages[],
-	involved_companies: Companies[],
-	releaseDate: string,
-	title: string,
-	story: string,
-	summary: string,
+	language_supports: Languages[]
 }
 
 type ScreenshotsObj = {
-	id: number | null,
 	screenshots: string[],
-	involved_companies: Companies[],
-	releaseDate: string,
-	title: string,
-	story: string,
-	summary: string,
 }
 
 type SimilarObj = {
-	id: number | null,
 	similar_games: Covers[],
-	involved_companies: Companies[],
-	releaseDate: string,
-	title: string,
-	story: string,
-	summary: string,
 }
 
 type VideoObj = {
-	id: number | null,
 	videos: Videos[],
-	involved_companies: Companies[],
-	releaseDate: string,
-	title: string,
-	story: string,
-	summary: string,
 }
 
 type WebsiteObj = {
-	id: number | null,
 	websites: Categories[],
-	involved_companies: Companies[],
-	releaseDate: string,
-	title: string,
-	story: string,
-	summary: string,
 }
 
 type LocalStorageObj = {

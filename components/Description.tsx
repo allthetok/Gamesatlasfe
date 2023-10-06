@@ -23,8 +23,7 @@ const Description = ({ auxiliaryObj }: DescriptionProps) => {
 
 	return (
 		<>
-			{/* {title && involved_companies && summary && story && releaseDate ? */}
-			{ auxiliaryObj ?
+			{auxiliaryObj ?
 				<div>
 					<h2>Official Description</h2>
 					<div className='shrink-headings toggle-long-text line-clamp'>
@@ -38,7 +37,6 @@ const Description = ({ auxiliaryObj }: DescriptionProps) => {
 							</strong>
 							,&nbsp;{auxiliaryObj.story.charAt(0).toLowerCase() + auxiliaryObj.story.slice(1)}
 						</p>
-						{/* Released by {involved_companies.map((company: Companies) => company.name).join(', ')} on {formattedDateLong(releaseDate)}. */}
 						<p className='text-desc'>
 							Released by {auxiliaryObj.involved_companies} on {formattedDateLong(auxiliaryObj.releaseDate)}.
 						</p>

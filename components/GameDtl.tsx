@@ -156,8 +156,8 @@ const GameDtl = () => {
 				<ReactLoading
 					type={'spinningBubbles'}
 					color={'#ddd'}
-					height={100}
-					width={100}
+					height={150}
+					width={150}
 				/>
 				:
 				<></>
@@ -166,12 +166,9 @@ const GameDtl = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						{/* <NavGame title={dataFetch.title} /> */}
 						<NavGame title={auxiliaryObj.title} />
 						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-						{/* <Description title={dataFetch.title} involved_companies={dataFetch.involved_companies.map((company: Companies) => company.name).join(', ')} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} /> */}
 						<Description auxiliaryObj={auxiliaryObj} />
-
 					</div>
 				</div>
 				: <></>

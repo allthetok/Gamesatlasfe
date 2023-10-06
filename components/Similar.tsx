@@ -8,7 +8,7 @@ import { GameContextObj, SimilarObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 import axios from 'axios'
-import ReactLoading from 'react-loading'
+import { Loading } from './Loading'
 
 const Similar = () => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
@@ -75,25 +75,11 @@ const Similar = () => {
 								))}
 							</ul>
 						</div>
-						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
 						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
 				:
-				<div>
-					<Search />
-					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} />
-						<ReactLoading
-							type={'spinningBubbles'}
-							color={'#ddd'}
-							height={100}
-							width={100}
-						/>
-						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
-						<Description auxiliaryObj={auxiliaryObj} />
-					</div>
-				</div>
+				<Loading auxiliaryObj={auxiliaryObj}/>
 			}
 		</div>
 	)

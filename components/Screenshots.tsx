@@ -13,7 +13,7 @@ import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
 import axios from 'axios'
-import ReactLoading from 'react-loading'
+import { Loading } from './Loading'
 
 const Screenshots = () => {
 	// const [gameId, setGameId] = useState(() => {
@@ -70,25 +70,11 @@ const Screenshots = () => {
 								<img className='image-carousel' src={el} alt='In-Game Screenshot' />
 							))}
 						</Carousel>
-						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
 						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
 				:
-				<div>
-					<Search />
-					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} />
-						<ReactLoading
-							type={'spinningBubbles'}
-							color={'#ddd'}
-							height={100}
-							width={100}
-						/>
-						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
-						<Description auxiliaryObj={auxiliaryObj} />
-					</div>
-				</div>
+				<Loading auxiliaryObj={auxiliaryObj}/>
 			}
 		</div>
 	)
