@@ -32,11 +32,18 @@ const VideoList = () => {
 		setVideoPlaying(videoId)
 	}
 
-	const [gameId, setGameId] = useState(() => {
-		if (typeof window !== 'undefined') {
-			return localStorage.getItem('gameID') || null
+	// const [gameId, setGameId] = useState(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		return localStorage.getItem('gameID') || null
+	// 	}
+	// })
+	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
+		if (typeof window !== 'undefined'){
+			const localstorageObj =  localStorage.getItem('auxiliaryObj')
+			return JSON.parse(localstorageObj!)
 		}
 	})
+
 	const [dataFetch, setDataFetch] = useState<VideoObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
@@ -48,7 +55,7 @@ const VideoList = () => {
 			'Content-Type': 'application/json'
 		},
 		data: {
-			'gameid': gameId
+			'gameid': auxiliaryObj.gameID
 		}
 	}
 	const getGameDtl = useCallback(async () => {
@@ -62,7 +69,7 @@ const VideoList = () => {
 				console.error(err)
 
 			})
-	}, [gameId])
+	}, [auxiliaryObj.gameID])
 
 	useEffect(() => {
 		getGameDtl()
@@ -70,21 +77,11 @@ const VideoList = () => {
 
 	return (
 		<div>
-			{loading ?
-				<ReactLoading
-					type={'spinningBubbles'}
-					color={'#ddd'}
-					height={100}
-					width={100}
-				/>
-				:
-				<></>
-			}
 			{!loading && !error && dataFetch ?
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} loading={loading} error={error} />
+						<NavGame title={auxiliaryObj.title} />
 						<Carousel autoPlay={false}>
 							{dataFetch?.videos.map((el: Videos) => (
 								// <>
@@ -98,10 +95,25 @@ const VideoList = () => {
 								<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
 							))}
 						</Carousel>
-						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
+						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
-				: <></>
+				:
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame title={auxiliaryObj.title} />
+						<ReactLoading
+							type={'spinningBubbles'}
+							color={'#ddd'}
+							height={100}
+							width={100}
+						/>
+						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
+					</div>
+				</div>
 			}
 		</div>
 	)

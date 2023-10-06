@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { Description } from './Description'
 import { Search } from './Search'
 import { NavGame } from './NavGame'
@@ -27,6 +27,15 @@ const GameDtl = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>({
+		gameID: 0,
+		title: '',
+		involved_companies: '',
+		summary: '',
+		story: '',
+		releaseDate: ''
+	})
+
 	const searchConfig = {
 		method: 'post',
 		url: 'http://localhost:3001/api/overview',
@@ -41,7 +50,9 @@ const GameDtl = () => {
 		await axios(searchConfig)
 			.then((response) => {
 				setDataFetch(response.data)
-				const auxiliaryObj: LocalStorageObj = {
+				localStorage.removeItem('auxiliaryObj')
+				localStorage.removeItem('gameID')
+				const dataFetchAuxiliary: LocalStorageObj = {
 					gameID: response.data.id!.toString(),
 					title: response.data.title,
 					involved_companies: response.data.involved_companies.map((company: Companies) => company.name).join(', '),
@@ -49,7 +60,8 @@ const GameDtl = () => {
 					story: response.data.story,
 					releaseDate: response.data.releaseDate
 				}
-				localStorage.setItem('auxiliaryObj', JSON.stringify(auxiliaryObj))
+				setAuxiliaryObj(dataFetchAuxiliary)
+				localStorage.setItem('auxiliaryObj', JSON.stringify(dataFetchAuxiliary))
 				// localStorage.setItem('gameID', response.data.id!.toString())
 				setLoading(false)
 			})
@@ -154,9 +166,12 @@ const GameDtl = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} />
+						{/* <NavGame title={dataFetch.title} /> */}
+						<NavGame title={auxiliaryObj.title} />
 						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} />
+						{/* <Description title={dataFetch.title} involved_companies={dataFetch.involved_companies.map((company: Companies) => company.name).join(', ')} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
+
 					</div>
 				</div>
 				: <></>

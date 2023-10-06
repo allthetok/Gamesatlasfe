@@ -13,6 +13,7 @@ import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
 import axios from 'axios'
+import ReactLoading from 'react-loading'
 
 const Screenshots = () => {
 	// const [gameId, setGameId] = useState(() => {
@@ -21,9 +22,10 @@ const Screenshots = () => {
 	// 	return initialVal || null
 	// })
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
-	const [gameId, setGameId] = useState(() => {
-		if (typeof window !== 'undefined') {
-			return localStorage.getItem('gameID') || null
+	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
+		if (typeof window !== 'undefined'){
+			const localstorageObj =  localStorage.getItem('auxiliaryObj')
+			return JSON.parse(localstorageObj!)
 		}
 	})
 	const [dataFetch, setDataFetch] = useState<ScreenshotsObj>()
@@ -37,7 +39,7 @@ const Screenshots = () => {
 			'Content-Type': 'application/json'
 		},
 		data: {
-			'gameid': gameId
+			'gameid': auxiliaryObj.gameID
 		}
 	}
 	const getGameDtl = useCallback(async () => {
@@ -51,31 +53,42 @@ const Screenshots = () => {
 				console.error(err)
 
 			})
-	}, [gameId])
+	}, [auxiliaryObj.gameID])
 
 	useEffect(() => {
 		getGameDtl()
 	}, [getGameDtl])
 	return (
 		<div>
-			{loading ?
-				<div>Loading...</div>
-				: <></>
-			}
 			{!loading && !error && dataFetch ?
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} loading={loading} error={error} />
+						<NavGame title={auxiliaryObj.title} />
 						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 							{dataFetch?.screenshots.map((el: string) => (
 								<img className='image-carousel' src={el} alt='In-Game Screenshot' />
 							))}
 						</Carousel>
-						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
+						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
-				: <></>
+				:
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame title={auxiliaryObj.title} />
+						<ReactLoading
+							type={'spinningBubbles'}
+							color={'#ddd'}
+							height={100}
+							width={100}
+						/>
+						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
+					</div>
+				</div>
 			}
 		</div>
 	)

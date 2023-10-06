@@ -53,17 +53,20 @@ const TableRows = ( { response }: WebsiteProps) => {
 }
 
 const Websites = () => {
-	// const [gameId, setGameId] = useState(() => {
-	// 	const gameId = localStorage.getItem('gameid')
-	// 	const initialVal = JSON.parse(gameId!)
-	// 	return initialVal || null
-	// })
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
-	const [gameId, setGameId] = useState(() => {
-		if (typeof window !== 'undefined') {
-			return localStorage.getItem('gameID') || null
+	// const [gameId, setGameId] = useState(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		return localStorage.getItem('gameID') || null
+	// 	}
+	// })
+
+	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
+		if (typeof window !== 'undefined'){
+			const localstorageObj =  localStorage.getItem('auxiliaryObj')
+			return JSON.parse(localstorageObj!)
 		}
 	})
+
 	const [dataFetch, setDataFetch] = useState<WebsiteObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
@@ -75,7 +78,7 @@ const Websites = () => {
 			'Content-Type': 'application/json'
 		},
 		data: {
-			'gameid': gameId
+			'gameid': auxiliaryObj.gameID
 		}
 	}
 	const getGameDtl = useCallback(async () => {
@@ -89,7 +92,7 @@ const Websites = () => {
 				console.error(err)
 
 			})
-	}, [gameId])
+	}, [auxiliaryObj.gameID])
 
 	useEffect(() => {
 		getGameDtl()
@@ -97,21 +100,11 @@ const Websites = () => {
 
 	return (
 		<div>
-			{loading ?
-				<ReactLoading
-					type={'spinningBubbles'}
-					color={'#ddd'}
-					height={100}
-					width={100}
-			  	/>
-				:
-				<></>
-			}
 			{!loading && !error && dataFetch ?
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} loading={loading} error={error} />
+						<NavGame title={auxiliaryObj.title} />
 						<div>
 							<TableContainer component={Paper}>
 								<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
@@ -124,10 +117,25 @@ const Websites = () => {
 								</Table>
 							</TableContainer>
 						</div>
-						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
+						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
-				: <></>
+				:
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame title={auxiliaryObj.title} />
+						<ReactLoading
+							type={'spinningBubbles'}
+							color={'#ddd'}
+							height={100}
+							width={100}
+						/>
+						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
+					</div>
+				</div>
 			}
 		</div>
 	)

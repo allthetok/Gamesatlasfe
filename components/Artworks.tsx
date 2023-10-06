@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
@@ -31,7 +32,7 @@ const Artworks = () => {
 	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
 		if (typeof window !== 'undefined'){
 			const localstorageObj =  localStorage.getItem('auxiliaryObj')
-			return JSON.parse(auxiliaryObj)
+			return JSON.parse(localstorageObj!)
 		}
 	})
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
@@ -72,13 +73,14 @@ const Artworks = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} />
+						<NavGame title={auxiliaryObj.title} />
 						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 							{dataFetch?.artworks.map((el: string) => (
 								<img className='image-carousel' src={el} alt='Artwork' />
 							))}
 						</Carousel>
-						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} />
+						{/* <Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} /> */}
+						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
 				:
@@ -92,7 +94,7 @@ const Artworks = () => {
 							height={100}
 							width={100}
 						/>
-						<Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} />
+						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
 			}
