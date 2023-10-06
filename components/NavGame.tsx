@@ -7,22 +7,16 @@ import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 type NavGameProps = {
-	title: string,
-	error: any,
-	loading: boolean
+	title: string
 }
 
-const NavGame = ({ title, error, loading }: NavGameProps) => {
+const NavGame = ({ title }: NavGameProps) => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (
 		<>
-			{loading ?
-				<div>Loading...</div>
-				: <></>
-			}
-			{!loading && !error && title !== '' ?
-				<>
+			{title ?
+				<div>
 					<div className='title'>
 						<div className='mb'>
 							<h1>
@@ -47,10 +41,10 @@ const NavGame = ({ title, error, loading }: NavGameProps) => {
 						</div>
 					</div>
 					<NavButtonList />
-				</>
-				: <></>
-			}
+				</div>
+				: <></>}
 		</>
+
 	)
 }
 

@@ -9,21 +9,16 @@ type DescriptionProps = {
 	involved_companies: Companies[],
 	summary: string,
 	story: string,
-	releaseDate: string,
-	error: any,
-	loading: boolean
+	releaseDate: string
 }
 
-const Description = ({ title, involved_companies, summary, story, releaseDate, error, loading }: DescriptionProps) => {
+const Description = ({ title, involved_companies, summary, story, releaseDate }: DescriptionProps) => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 	// const response: GameDetailObj = useContext(GameContext)
+
 	return (
 		<>
-			{loading ?
-				<div>Loading...</div>
-				: <></>
-			}
-			{!loading && !error && title && involved_companies && summary && story && releaseDate ?
+			{title && involved_companies && summary && story && releaseDate ?
 				<div>
 					<h2>Official Description</h2>
 					<div className='shrink-headings toggle-long-text line-clamp'>

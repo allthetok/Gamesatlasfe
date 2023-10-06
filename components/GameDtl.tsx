@@ -49,8 +49,8 @@ const GameDtl = () => {
 					story: response.data.story,
 					releaseDate: response.data.releaseDate
 				}
-				localStorage.setItem('auxiliaryObj', )
-				localStorage.setItem('gameID', response.data.id!.toString())
+				localStorage.setItem('auxiliaryObj', JSON.stringify(auxiliaryObj))
+				// localStorage.setItem('gameID', response.data.id!.toString())
 				setLoading(false)
 			})
 			.catch((err) => {
@@ -154,9 +154,9 @@ const GameDtl = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} loading={loading} error={error} />
+						<NavGame title={dataFetch.title} />
 						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
-						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
+						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} />
 					</div>
 				</div>
 				: <></>

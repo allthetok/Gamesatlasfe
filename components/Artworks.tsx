@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
@@ -7,7 +8,7 @@ import { NavGame } from './NavGame'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { ArtworkObj, GameContextObj } from '../helpers/types'
+import { ArtworkObj, GameContextObj, LocalStorageObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
@@ -22,9 +23,15 @@ import ReactLoading from 'react-loading'
 
 // const Artworks = ({ response }: ArtworksProps) => {
 const Artworks = () => {
-	const [gameId, setGameId] = useState(() => {
-		if (typeof window !== 'undefined') {
-			return localStorage.getItem('gameID') || null
+	// const [gameId, setGameId] = useState(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		return localStorage.getItem('gameID') || null
+	// 	}
+	// })
+	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
+		if (typeof window !== 'undefined'){
+			const localstorageObj =  localStorage.getItem('auxiliaryObj')
+			return JSON.parse(auxiliaryObj)
 		}
 	})
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
@@ -40,7 +47,7 @@ const Artworks = () => {
 			'Content-Type': 'application/json'
 		},
 		data: {
-			'gameid': gameId
+			'gameid': auxiliaryObj.gameID
 		}
 	}
 	const getGameDtl = useCallback(async () => {
@@ -54,37 +61,40 @@ const Artworks = () => {
 				console.error(err)
 
 			})
-	}, [gameId])
+	}, [auxiliaryObj.gameID])
 
 	useEffect(() => {
 		getGameDtl()
 	}, [getGameDtl])
 	return (
 		<div>
-			{loading ?
-				<ReactLoading
-					type={'spinningBubbles'}
-					color={'#ddd'}
-					height={100}
-					width={100}
-				/>
-				:
-				<></>
-			}
 			{!loading && !error && dataFetch ?
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} loading={loading} error={error} />
+						<NavGame title={dataFetch.title} />
 						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 							{dataFetch?.artworks.map((el: string) => (
 								<img className='image-carousel' src={el} alt='Artwork' />
 							))}
 						</Carousel>
-						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} loading={loading} error={error} />
+						<Description title={dataFetch.title} involved_companies={dataFetch.involved_companies} summary={dataFetch.summary} story={dataFetch.story} releaseDate={dataFetch.releaseDate} />
 					</div>
 				</div>
-				: <></>
+				:
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame title={auxiliaryObj.title} />
+						<ReactLoading
+							type={'spinningBubbles'}
+							color={'#ddd'}
+							height={100}
+							width={100}
+						/>
+						<Description title={auxiliaryObj.title} involved_companies={auxiliaryObj.involved_companies} summary={auxiliaryObj.summary} story={auxiliaryObj.story} releaseDate={auxiliaryObj.releaseDate} />
+					</div>
+				</div>
 			}
 		</div>
 	)
