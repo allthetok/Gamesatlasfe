@@ -89,6 +89,7 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	margin-top: 0.5rem;
 }
 
 .card-heading:hover {
@@ -114,8 +115,8 @@
 
 .card-logo {
 	/* padding-top: 0.125rem; */
-	width: 25px;
-	height: 25px;
+	width: 1.875rem;
+	height: 1.875rem;
 }
 
 .card-rating {
@@ -161,4 +162,53 @@
     box-shadow: var(--badge-shadow);
     font-size: 0.875rem;
     border-radius: 4px;
+}
+
+.card-likesstack {
+	/* display: flex; */
+	/* text-align: end; */
+	/* float: left; */
+    /* -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify; */
+    /* justify-content: space-between; */
+    /* flex-direction: row; */
+    /* gap: 0.5rem; */
+	/* margin-bottom: 1rem; */
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0.5rem;
+    /* margin-bottom: 0.25rem; */
+}
+
+.card-heart {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: -0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-heart:hover .like-text {
+	visibility: visible;
+}
+
+.like-text {
+	visibility: hidden;
+	width: 90px;
+	font-size: 0.75rem;
+	background-color: #1b1e22;
+	color: #ddd;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	margin-left: 2.1875rem;
+	position: absolute;
+	z-index: 1;
 }

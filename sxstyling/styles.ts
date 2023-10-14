@@ -43,5 +43,9 @@ const BoxActiveSx = {
 	'borderBottom': '1px solid transparent'
 }
 
+const FavoriteIconSx = {
+	'&:hover': { color: '#ddd', cursor: 'pointer' }
+}
 
-export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx }
+
+export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, FavoriteIconSx }

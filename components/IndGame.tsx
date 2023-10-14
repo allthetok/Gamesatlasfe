@@ -8,6 +8,7 @@ import { ESRB, PEGI } from '../assets/ratingsvglinks'
 import { formattedYear } from '../helpers/fctns'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { SvgIcon } from '@mui/material'
+import { FavoriteIconSx } from '../sxstyling/styles'
 
 import './IndGame.css'
 
@@ -33,10 +34,15 @@ const IndGame = () => {
 							</div>
 							<span className='card-year'>{formattedYear(multiResponse[0].releaseDate)}</span>
 						</div>
-						<SvgIcon htmlColor='red'>
-							<FavoriteIcon/>
-						</SvgIcon>
-						<span className='card-year'>{multiResponse[0].likes}</span>
+						<div className='card-likesstack'>
+							<div className='card-heart'>
+								<SvgIcon sx={FavoriteIconSx} htmlColor='#d2042d' fontSize='large'>
+									<FavoriteIcon/>
+								</SvgIcon>
+								<span className='like-text'>Like this game</span>
+							</div>
+							<span className='card-likes'>{multiResponse[0].likes}</span>
+						</div>
 						<h2 className='card-heading'>
 							{multiResponse[0].title}
 						</h2>
