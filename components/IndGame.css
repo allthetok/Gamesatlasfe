@@ -3,11 +3,17 @@
 	--card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);
 	--card-radius: 0.375rem;
 	--card-color: #ffffffeb;
-	--header-color: #ffffff;
-	--card-padding: 1.25rem;
+	--header-color: #ddd;
+	--card-padding: 0.5rem 1.25rem 1.25rem 1.25rem;
 	--font-bold: 700;
 	--badge-color: #9ae6b4;
 	--badge-bg: #9ae6b429;
+	--release-color: #addfef;
+	/* --release-color: #99c3e6; */
+	--release-bg: #99c3e629;
+	--likes-color: #e69ab4;
+	--likes-bg: #e69ab429;
+	--hover-color: #0095ff;
 }
 
 :where(*) {
@@ -20,8 +26,11 @@
 	border-radius: 10px;
 	overflow: hidden;
 	border-width: 0px;
-	width: 264px;
-	height: 685px;
+	/* width: 264px; */
+	/* width: 515px;
+	height: 685px; */
+	width: 450px;
+	height: auto;
 }
 .card-game {
 	display: flex;
@@ -42,12 +51,19 @@
 	max-width: 100%;
 	min-width: 213px;
 	min-height: 100px; */
-	width: 264px;
-	height: 352px;
+	/* width: 264px;
+	height: 352px; */
+	width: inherit;
+	/* height: 625px; */
 	object-fit: contain;
+	/* aspect-ratio: 16 / 9; */
 	
 }
 .card-body {
+	/* padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	padding-bottom: 1.25rem;
+	padding-top: 0.5rem; */
 	padding: var(--card-padding);
 	flex: 1 1 0%;
 }
@@ -59,17 +75,27 @@
     justify-content: space-between;
     flex-direction: row;
     gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    /* margin-bottom: 0.25rem; */
 }
 .card-heading {
 	font-family: 'Inter', sans-serif;
-	font-size: 1.75rem;
+	font-size: 1.5rem;
 	justify-content: space-between;
-	display: flex;
+	display: block;
 	font-weight: var(--font-bold);
 	line-height: 1.33;
 	margin-bottom: var(--spacing-xxs);
 	color: var(--header-color);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.card-heading:hover {
+	/* overflow: visible; */
+	color: var(--hover-color);
+	cursor: pointer;
+	text-decoration: none;
 }
 @media (min-width: 1200px) {
 	h2 {
@@ -102,6 +128,36 @@
 	font-weight: var(--font-bold);
 	color: var(--badge-color);
     background: var(--badge-bg);
+    box-shadow: var(--badge-shadow);
+    font-size: 0.875rem;
+    border-radius: 4px;
+}
+
+.card-year {
+	display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-inline-start: 0.5rem;
+    padding-inline-end: 0.5rem;
+    text-transform: uppercase;
+	font-weight: var(--font-bold);
+	color: var(--release-color);
+    background: var(--release-bg);
+    box-shadow: var(--badge-shadow);
+    font-size: 0.875rem;
+    border-radius: 4px;
+}
+
+.card-likes {
+	display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-inline-start: 0.5rem;
+    padding-inline-end: 0.5rem;
+    text-transform: uppercase;
+	font-weight: var(--font-bold);
+	color: var(--likes-color);
+    background: var(--likes-bg);
     box-shadow: var(--badge-shadow);
     font-size: 0.875rem;
     border-radius: 4px;

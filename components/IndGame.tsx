@@ -6,6 +6,9 @@ import React from 'react'
 import { multiResponse } from '../mockdata/multi'
 import { ESRB, PEGI } from '../assets/ratingsvglinks'
 import { formattedYear } from '../helpers/fctns'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { SvgIcon } from '@mui/material'
+
 import './IndGame.css'
 
 const IndGame = () => {
@@ -23,11 +26,17 @@ const IndGame = () => {
 							</div>
 							<span className='card-rating'>{Math.round(multiResponse[0].rating)}</span>
 						</div>
-						<div className='card-platforms'>
-							<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === multiResponse[0].age_ratings.ESRB)[0].src} />
-							<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === multiResponse[0].age_ratings.PEGI)[0].src} />
+						<div className='card-stack'>
+							<div className='card-platforms'>
+								<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === multiResponse[0].age_ratings.ESRB)[0].src} />
+								<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === multiResponse[0].age_ratings.PEGI)[0].src} />
+							</div>
+							<span className='card-year'>{formattedYear(multiResponse[0].releaseDate)}</span>
 						</div>
-						<span className='card-rating'>{formattedYear(multiResponse[0].releaseDate)}</span>
+						<SvgIcon htmlColor='red'>
+							<FavoriteIcon/>
+						</SvgIcon>
+						<span className='card-year'>{multiResponse[0].likes}</span>
 						<h2 className='card-heading'>
 							{multiResponse[0].title}
 						</h2>

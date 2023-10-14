@@ -5,7 +5,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1wz4.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1wz4.jpg',
 		'platforms': [
 			{
 				'id': 6,
