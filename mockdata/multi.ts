@@ -41,7 +41,7 @@ const multiResponse = [
 			'ESRB': 8,
 			'PEGI': 2
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co5osy.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5osy.jpg',
 		'platforms': [
 			{
 				'id': 5,
@@ -91,7 +91,7 @@ const multiResponse = [
 			'ESRB': 8,
 			'PEGI': 2
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co3vzn.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co3vzn.jpg',
 		'platforms': [
 			{
 				'id': 5,
@@ -148,7 +148,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 4
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co4jni.jpg',
 		'platforms': [
 			{
 				'id': 6,
@@ -198,7 +198,7 @@ const multiResponse = [
 			'ESRB': 8,
 			'PEGI': 2
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co65za.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co65za.jpg',
 		'platforms': [
 			{
 				'id': 5,
@@ -254,7 +254,7 @@ const multiResponse = [
 			'ESRB': 9,
 			'PEGI': 3
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmg.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5vmg.jpg',
 		'platforms': [
 			{
 				'id': 130,
@@ -276,7 +276,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 0
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co4a7a.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co4a7a.jpg',
 		'platforms': [
 			{
 				'id': 9,
@@ -305,7 +305,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co5zks.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5zks.jpg',
 		'platforms': [
 			{
 				'id': 48,
@@ -327,7 +327,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 4
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1nic.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1nic.jpg',
 		'platforms': [
 			{
 				'id': 6,
@@ -384,7 +384,7 @@ const multiResponse = [
 			'ESRB': 9,
 			'PEGI': 3
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co3p2d.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co3p2d.jpg',
 		'platforms': [
 			{
 				'id': 41,
@@ -413,7 +413,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1tmu.jpg',
 		'platforms': [
 			{
 				'id': 6,
@@ -442,7 +442,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1vd6.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1vd6.jpg',
 		'platforms': [
 			{
 				'id': 8,
@@ -464,7 +464,7 @@ const multiResponse = [
 			'ESRB': 10,
 			'PEGI': 3
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co31c2.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co31c2.jpg',
 		'platforms': [
 			{
 				'id': 5,
@@ -514,7 +514,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co5s5v.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5s5v.jpg',
 		'platforms': [
 			{
 				'id': 48,
@@ -543,7 +543,7 @@ const multiResponse = [
 			'ESRB': 10,
 			'PEGI': 1
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co21yv.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co21yv.jpg',
 		'platforms': [
 			{
 				'id': 21,
@@ -565,7 +565,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2lgo.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2lgo.jpg',
 		'platforms': [
 			{
 				'id': 6,
@@ -622,7 +622,7 @@ const multiResponse = [
 			'ESRB': 8,
 			'PEGI': 0
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2kn9.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2kn9.jpg',
 		'platforms': [
 			{
 				'id': 19,
@@ -658,7 +658,7 @@ const multiResponse = [
 			'ESRB': 8,
 			'PEGI': 3
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co218t.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co218t.jpg',
 		'platforms': [
 			{
 				'id': 3,
@@ -694,7 +694,7 @@ const multiResponse = [
 			'ESRB': 10,
 			'PEGI': 3
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co3w4w.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co3w4w.jpg',
 		'platforms': [
 			{
 				'id': 21,
@@ -716,7 +716,7 @@ const multiResponse = [
 			'ESRB': 10,
 			'PEGI': 4
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2kia.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2kia.jpg',
 		'platforms': [
 			{
 				'id': 6,
@@ -759,7 +759,7 @@ const multiResponse = [
 			'ESRB': 8,
 			'PEGI': 1
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co21ro.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co21ro.jpg',
 		'platforms': [
 			{
 				'id': 5,
@@ -781,7 +781,7 @@ const multiResponse = [
 			'ESRB': 10,
 			'PEGI': 3
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1xv9.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1xv9.jpg',
 		'platforms': [
 			{
 				'id': 6,
@@ -810,7 +810,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co5ziw.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5ziw.jpg',
 		'platforms': [
 			{
 				'id': 48,
@@ -832,7 +832,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co20ac.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co20ac.jpg',
 		'platforms': [
 			{
 				'id': 6,
@@ -868,7 +868,7 @@ const multiResponse = [
 			'ESRB': 11,
 			'PEGI': 5
 		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg',
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1q1f.jpg',
 		'platforms': [
 			{
 				'id': 6,

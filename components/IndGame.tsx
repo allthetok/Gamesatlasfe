@@ -22,7 +22,7 @@ const IndGame = () => {
 						<div className='card-stack'>
 							<div className='card-platforms'>
 								{multiResponse[0].platforms.map((val: any) => (
-									<img key={val.id} className='card-logo' alt='Logo of Company' src={val.url} />
+									<img key={val.id} className='card-platformlogo' alt='Logo of Company' src={val.url} />
 								))}
 							</div>
 							<span className='card-rating'>{Math.round(multiResponse[0].rating)}</span>

@@ -47,6 +47,7 @@
 }
 .card-img {
 	border-style: none;
+	/* border: 1px solid black; */
 	/* height: auto;
 	max-width: 100%;
 	min-width: 213px;
@@ -117,6 +118,17 @@
 	/* padding-top: 0.125rem; */
 	width: 1.875rem;
 	height: 1.875rem;
+	/* border: 0.5px solid #ddd; */
+	border-radius: 10% / 50%;
+}
+
+.card-platformlogo {
+	/* padding-top: 0.125rem; */
+	width: 1.875rem;
+	height: 1.875rem;
+	border: 2px solid #87ceeb;
+	/* border: 2px solid #92e2e1; */
+	border-radius: 10% / 50%;
 }
 
 .card-rating {
