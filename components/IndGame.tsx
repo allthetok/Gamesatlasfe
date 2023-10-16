@@ -3,16 +3,26 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { SvgIcon } from '@mui/material'
 import { multiResponse } from '../mockdata/multi'
 import { ESRB, PEGI } from '../assets/ratingsvglinks'
 import { formattedYear } from '../helpers/fctns'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import { SvgIcon } from '@mui/material'
+import { AgeRatings } from '../../backendga/helpers/requests'
 import { FavoriteIconSx } from '../sxstyling/styles'
-
 import './IndGame.css'
 
-const IndGame = () => {
+type IndGameProps = {
+	cover: string,
+	platforms: any[],
+	rating: number,
+	age_ratings: AgeRatings,
+	releaseDate: string,
+	likes: string,
+	title: string
+}
+
+const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, title }: IndGameProps) => {
 	return (
 		<div>
 			<div className='ind-wrapper'>
@@ -22,7 +32,7 @@ const IndGame = () => {
 						<div className='card-stack'>
 							<div className='card-platforms'>
 								{multiResponse[0].platforms.map((val: any) => (
-									<img key={val.id} className='card-platformlogo' alt='Logo of Company' src={val.url} />
+									<img key={val.id} className='card-platformlogo' alt={`${val.name} Logo`} src={val.url} />
 								))}
 							</div>
 							<span className='card-rating'>{Math.round(multiResponse[0].rating)}</span>
