@@ -10,11 +10,13 @@ const IndGameList = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	const [sortBy, setSortBy] = useState('')
+	const [sortBy, setSortBy] = useState('desc')
 	const [externalFilter, setExternalFilter] = useState('')
 	const [limit, setLimit] = useState('25')
 
 	const numOptions = ['5', '10', '25', '50']
+	const platformOptions = ['PC', 'Playstation', 'Xbox', 'iOS', 'Android', 'Switch', 'Wii']
+	const sortOptions = ['IGDB Rating', 'Relevance', 'Title', 'Release Date']
 
 	const searchConfig = {
 		method: 'post',
@@ -59,10 +61,11 @@ const IndGameList = () => {
 				<div>
 					<div className='filter-wrap'>
 						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={numOptions} onChange={onTextChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Limit"/>} />
+						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={platformOptions} onChange={onTextChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Platform"/>} />
+						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} onChange={onTextChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Sort By"/>} />
+						<Button onClick={() => setSortBy('asc')} variant={sortBy === 'asc' ? 'contained' : 'outlined'} disabled={sortBy === 'asc'}>Ascending</Button>
+						<Button onClick={() => setSortBy('desc')} variant={sortBy === 'desc' ? 'contained' : 'outlined'} disabled={sortBy === 'desc'}>Descending</Button>
 					</div>
-					{/* <Button onClick={() => setSortOptions('AIR_DATE')} variant={sortOptions === 'AIR_DATE' ? 'contained' : 'outlined'}>Released</Button>
-						<Button onClick={() => setSortOptions('ALPHABETICAL')} variant={sortOptions === 'ALPHABETICAL' ? 'contained' : 'outlined'}>Alphabetical</Button>
-						<Button onClick={() => setSortOptions('RELEVANCE')} variant={sortOptions === 'RELEVANCE' ? 'contained' : 'outlined'}>Relevance</Button> */}
 					<div className='grid-wrapper'>
 						{multiResp.map((item: any) => (
 							<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} />
