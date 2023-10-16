@@ -5,7 +5,6 @@
 import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { SvgIcon } from '@mui/material'
-import { multiResponse } from '../mockdata/multi'
 import { ESRB, PEGI } from '../assets/ratingsvglinks'
 import { formattedYear } from '../helpers/fctns'
 import { AgeRatings } from '../../backendga/helpers/requests'
@@ -27,22 +26,22 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 		<div>
 			<div className='ind-wrapper'>
 				<div className='card-game'>
-					<img className='card-img' src={multiResponse[0].cover} />
+					<img className='card-img' src={cover} />
 					<div className='card-body'>
 						<div className='card-stack'>
 							<div className='card-platforms'>
-								{multiResponse[0].platforms.map((val: any) => (
+								{platforms.map((val: any) => (
 									<img key={val.id} className='card-platformlogo' alt={`${val.name} Logo`} src={val.url} />
 								))}
 							</div>
-							<span className='card-rating'>{Math.round(multiResponse[0].rating)}</span>
+							<span className='card-rating'>{Math.round(rating)}</span>
 						</div>
 						<div className='card-stack'>
 							<div className='card-platforms'>
-								<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === multiResponse[0].age_ratings.ESRB)[0].src} />
-								<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === multiResponse[0].age_ratings.PEGI)[0].src} />
+								<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0] ? ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0].src : ''} />
+								<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0] ? PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0].src : ''} />
 							</div>
-							<span className='card-year'>{formattedYear(multiResponse[0].releaseDate)}</span>
+							<span className='card-year'>{formattedYear(releaseDate)}</span>
 						</div>
 						<div className='card-likesstack'>
 							<div className='card-heart'>
@@ -51,10 +50,10 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 								</SvgIcon>
 								<span className='like-text'>Like this game</span>
 							</div>
-							<span className='card-likes'>{multiResponse[0].likes}</span>
+							<span className='card-likes'>{likes}</span>
 						</div>
 						<h2 className='card-heading'>
-							{multiResponse[0].title}
+							{title}
 						</h2>
 					</div>
 				</div>
