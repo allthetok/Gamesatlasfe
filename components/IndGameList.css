@@ -6,6 +6,22 @@
 	padding: 10px;
 }
 
+.filter-wrap {
+    /* padding-bottom: 25px;
+    padding-top: 20px; */
+    text-align: center;
+    display: flex;
+	box-sizing: border-box;
+}
+
+.auto-comp {
+    display: flex;
+    margin-left: auto;
+	margin-right: 1.25rem;
+	margin-top: 0.5rem;
+	
+}
+
 @media (max-width: 3200px) and (min-width: 2750px) {
 	.grid-wrapper {
 		grid-template-columns: repeat(6, minmax(450px, 1fr));

@@ -108,4 +108,16 @@ type GameContextObj = {
 	loading: boolean
 }
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, LocalStorageObj }
+type MultiObj = {
+	id: number,
+	age_ratings: AgeRatings,
+	cover: string,
+	platforms: {id: number, category: number, name: string, platform_logo: number | null | undefined, url: string}[],
+	rating: number,
+	ratingCount: number,
+	releaseDate: string,
+	likes: number,
+	title: string
+}
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, LocalStorageObj, MultiObj }
