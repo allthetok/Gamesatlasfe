@@ -5,14 +5,15 @@ const formattedDateLong = (inpDate: string) => new Date(inpDate).toLocaleDateStr
 const formattedYear = (inpDate: string) => new Date(inpDate).getFullYear()
 
 const sortMap = new Map<string, string>([
-	['IGDB Rating', 'total_rating_count'],
+	['IGDB Rating', 'total_rating'],
 	['Relevance', 'follows'],
 	['Title', 'name'],
 	['Release Date', 'first_release_date']
 ])
 
 const platformMap = new Map<string, string[]>([
-	['Xbox', ['169', '12', '49']],
+	// ['Xbox', ['169', '12', '49']],
+	['Xbox', ['12', '49']],
 	['Playstation', ['7', '8', '9', '48', '167', '165']],
 	['Linux', ['3']],
 	['Nintendo', ['130', '4', '41', '18', '22', '20', '21', '33', '5']],
@@ -27,4 +28,14 @@ export { ratingFloatToStar, formattedDateLong, formattedYear, sortMap, platformM
 // 	limit 50;
 // };
 
+// query games "Filtered 50" {fields id ,age_ratings.category, age_ratings.rating, cover.url, platforms.name,platforms.category,platforms.platform_logo, platforms.platform_family, first_release_date,follows,name,total_rating,total_rating_count;
+// 	where total_rating_count > 100 & age_ratings!=n & platforms = {48} | platforms = {167};
+// 	limit 50;
+// };
+
+// query games "Filtered 50" {fields id ,age_ratings.category, age_ratings.rating, cover.url, platforms.name,platforms.category,platforms.platform_logo, platforms.platform_family, first_release_date,follows,name,total_rating,total_rating_count;
+// 	where total_rating_count > 50 & age_ratings!=n;
+//    sort first_release_date desc;
+// 	limit 10;
+// };
 
