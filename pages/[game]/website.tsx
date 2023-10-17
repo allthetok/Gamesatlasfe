@@ -8,9 +8,9 @@ import '../../src/app/globals.css'
 export default function Website() {
 	return (
 		<ContextSear>
-			<ContextDtl>
-				<Websites/>
-			</ContextDtl>
+			{/* <ContextDtl> */}
+			<Websites/>
+			{/* </ContextDtl> */}
 		</ContextSear>
 
 	)

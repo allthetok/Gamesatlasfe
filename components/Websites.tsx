@@ -37,7 +37,7 @@ const TableRows = ( { response }: WebsiteProps) => {
 	return (
 		<>
 			{response.websites.map((item: Categories) => (
-				<TableRow sx={{ textAlign: 'center' }}>
+				<TableRow key={item.category} sx={{ textAlign: 'center' }}>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
 						{`${WebsiteCategories.filter((field) => field.source === item.category)[0].category}`}
 						<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === item.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === item.category)[0].src}`} />

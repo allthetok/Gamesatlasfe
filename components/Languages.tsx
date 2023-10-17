@@ -61,7 +61,7 @@ const TableCells = ({ response }: LanguageProps) => {
 	return (
 		<TableRow>
 			{supportTypes.map((item: any) => (
-				<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+				<TableCell key={item} align='center' sx={{ minWidth: 300, color: '#ddd' }}>
 					{item}
 				</TableCell>
 			))}
@@ -130,7 +130,7 @@ const Languages = () => {
 
 	return (
 		<div>
-			{/* {!loading && !error && dataFetch ?
+			{!loading && !error && dataFetch ?
 				<div>
 					<Search />
 					<div className='header-wrapper'>
@@ -150,9 +150,9 @@ const Languages = () => {
 						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
-				: */}
-			<Loading auxiliaryObj={auxiliaryObj}/>
-			{/* } */}
+				:
+				<Loading auxiliaryObj={auxiliaryObj}/>
+			}
 		</div>
 	)
 }

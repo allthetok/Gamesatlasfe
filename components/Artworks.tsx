@@ -76,7 +76,7 @@ const Artworks = () => {
 						<NavGame title={auxiliaryObj.title} />
 						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 							{dataFetch?.artworks.map((el: string) => (
-								<img className='image-carousel' src={el} alt='Artwork' />
+								<img key={el} className='image-carousel' src={el} alt='Artwork' />
 							))}
 						</Carousel>
 						<Description auxiliaryObj={auxiliaryObj} />

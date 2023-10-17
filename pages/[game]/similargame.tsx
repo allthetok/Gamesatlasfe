@@ -9,9 +9,9 @@ import '../../src/app/globals.css'
 export default function SimilarGame() {
 	return (
 		<ContextSear>
-			<ContextDtl>
-				<Similar/>
-			</ContextDtl>
+			{/* <ContextDtl> */}
+			<Similar/>
+			{/* </ContextDtl> */}
 		</ContextSear>
 	)
 }

@@ -10,9 +10,9 @@ import '../../src/app/globals.css'
 export default function Video() {
 	return (
 		<ContextSear>
-			<ContextDtl>
-				<VideoList/>
-			</ContextDtl>
+			{/* <ContextDtl> */}
+			<VideoList/>
+			{/* </ContextDtl> */}
 		</ContextSear>
 	)
 }

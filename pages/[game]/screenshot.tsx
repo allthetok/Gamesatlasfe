@@ -9,9 +9,9 @@ import '../../src/app/globals.css'
 export default function Screenshot() {
 	return (
 		<ContextSear>
-			<ContextDtl>
-				<Screenshots/>
-			</ContextDtl>
+			{/* <ContextDtl> */}
+			<Screenshots/>
+			{/* </ContextDtl> */}
 		</ContextSear>
 	)
 }

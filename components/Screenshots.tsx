@@ -67,7 +67,7 @@ const Screenshots = () => {
 						<NavGame title={auxiliaryObj.title} />
 						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 							{dataFetch?.screenshots.map((el: string) => (
-								<img className='image-carousel' src={el} alt='In-Game Screenshot' />
+								<img key={el} className='image-carousel' src={el} alt='In-Game Screenshot' />
 							))}
 						</Carousel>
 						<Description auxiliaryObj={auxiliaryObj} />

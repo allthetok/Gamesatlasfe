@@ -13,9 +13,9 @@ export default function Game() {
 		<main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
 				<ContextSear>
-					<ContextDtl>
-						<GameDtl/>
-					</ContextDtl>
+					{/* <ContextDtl> */}
+					<GameDtl/>
+					{/* </ContextDtl> */}
 				</ContextSear>
 			</Suspense>
 		</main>

@@ -10,9 +10,9 @@ export default function Artwork() {
 	return (
 		<div>
 			<ContextSear>
-				<ContextDtl>
-					<Artworks/>
-				</ContextDtl>
+				{/* <ContextDtl> */}
+				<Artworks/>
+				{/* </ContextDtl> */}
 			</ContextSear>
 		</div>
 	)

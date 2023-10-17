@@ -8,9 +8,9 @@ import '../../src/app/globals.css'
 export default function Language() {
 	return (
 		<ContextSear>
-			<ContextDtl>
-				<Languages/>
-			</ContextDtl>
+			{/* <ContextDtl> */}
+			<Languages/>
+			{/* </ContextDtl> */}
 		</ContextSear>
 	)
 }
