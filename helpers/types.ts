@@ -120,4 +120,5 @@ type MultiObj = {
 	title: string
 }
 
+
 export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, LocalStorageObj, MultiObj }

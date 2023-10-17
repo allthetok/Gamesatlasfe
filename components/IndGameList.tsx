@@ -12,10 +12,11 @@ const IndGameList = () => {
 
 	const [sortBy, setSortBy] = useState('desc')
 	const [externalFilter, setExternalFilter] = useState('')
+	const [platform, setPlatform] = useState('')
 	const [limit, setLimit] = useState('25')
 
-	const numOptions = ['5', '10', '25', '50']
-	const platformOptions = ['PC', 'Playstation', 'Xbox', 'iOS', 'Android', 'Switch', 'Wii']
+	const numOptions = ['10', '25', '50', '100']
+	const platformOptions = ['PC', 'Playstation', 'Xbox', 'Nintendo', 'Linux']
 	const sortOptions = ['IGDB Rating', 'Relevance', 'Title', 'Release Date']
 
 	const searchConfig = {
@@ -30,6 +31,8 @@ const IndGameList = () => {
 			'limit': 25
 		}
 	}
+
+
 	const getMultiResp = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
@@ -46,9 +49,19 @@ const IndGameList = () => {
 		getMultiResp()
 	}, [getMultiResp])
 
-	const onTextChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
+	const onLimitChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
 		e.preventDefault()
 		setLimit(value!)
+	}
+
+	const onPlatformChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
+		e.preventDefault()
+		setPlatform(value!)
+	}
+
+	const onSortChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
+		e.preventDefault()
+		setSortBy(value!)
 	}
 
 	return (
@@ -60,9 +73,9 @@ const IndGameList = () => {
 			{!loading && !error && multiResp ?
 				<div>
 					<div className='filter-wrap'>
-						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={numOptions} onChange={onTextChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Limit"/>} />
-						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={platformOptions} onChange={onTextChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Platform"/>} />
-						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} onChange={onTextChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Sort By"/>} />
+						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={numOptions} onChange={onLimitChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Limit"/>} />
+						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={platformOptions} onChange={onPlatformChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Platform"/>} />
+						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} onChange={onSortChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Sort By"/>} />
 						<Button onClick={() => setSortBy('asc')} variant={sortBy === 'asc' ? 'contained' : 'outlined'} disabled={sortBy === 'asc'}>Ascending</Button>
 						<Button onClick={() => setSortBy('desc')} variant={sortBy === 'desc' ? 'contained' : 'outlined'} disabled={sortBy === 'desc'}>Descending</Button>
 					</div>
