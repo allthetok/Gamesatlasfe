@@ -1,66 +1,42 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useEffect, useCallback, SyntheticEvent } from 'react'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
 import { Button, Autocomplete, TextField } from '@mui/material'
-import { sortMap, platformMap } from '../helpers/fctns'
+import { createAxiosConfig } from '../helpers/fctns'
 import { IndGame } from './IndGame'
 import './IndGameList.css'
 
 const IndGameList = () => {
-	const [multiResp, setMultiResp] = useState(null)
+	const [multiResp, setMultiResp] = useState([])
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	const [sortBy, setSortBy] = useState('desc')
-	const [externalFilter, setExternalFilter] = useState('IGDB Rating')
+	const [sortBy, setSortBy] = useState('IGDB Rating')
+	const [sortDirection, setSortDirection] = useState('desc')
 	const [platform, setPlatform] = useState('')
 	const [limit, setLimit] = useState('25')
+	const [viewToggle, setViewToggle] = useState('list')
 
 	const numOptions = ['10', '25', '50', '100']
 	const platformOptions = ['PC', 'Playstation', 'Xbox', 'Nintendo', 'Linux']
 	const sortOptions = ['IGDB Rating', 'Relevance', 'Title', 'Release Date']
 
-	// const searchConfig = {
-	// 	method: 'post',
-	// 	url: 'http://localhost:3001/api/explore',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	data : {
-	// 		'sortBy': 'total_rating desc',
-	// 		'externalFilter': 'total_rating_count > 50 & age_ratings!=n',
-	// 		'limit': 25
-	// 	}
-	// }
-
-	/*
-	PASS platform Option as ExternalFilter and have backend map it to actual necessary query.
-	*/
-
 	const getMultiResp = useCallback(async () => {
-		const searchConfig = {
-			method: 'post',
-			url: 'http://localhost:3001/api/explore',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'sortBy': `${sortMap.get(externalFilter)} ${sortBy}`,
-				'externalFilter': 'total_rating_count > 50 & age_ratings!=n & follows!=n',
-				'limit': parseInt(limit)
-			}
-		}
+		const searchConfig = createAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit)
+		setLoading(true)
 		await axios(searchConfig)
 			.then((response) => {
 				setMultiResp(response.data)
 				console.log(response.data)
+				console.log('effect fired')
 				setLoading(false)
 			})
 			.catch((err) => {
 				setError(err)
 				console.error(err)
 			})
-	}, [sortBy, externalFilter, limit])
+	}, [sortBy, sortDirection, platform, limit])
 
 	useEffect(() => {
 		getMultiResp()
@@ -70,15 +46,13 @@ const IndGameList = () => {
 		e.preventDefault()
 		setLimit(value!)
 	}
-
 	const onPlatformChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
 		e.preventDefault()
 		setPlatform(value!)
 	}
-
 	const onSortChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
 		e.preventDefault()
-		setExternalFilter(value!)
+		setSortBy(value!)
 	}
 
 	return (
@@ -91,10 +65,10 @@ const IndGameList = () => {
 				<div>
 					<div className='filter-wrap'>
 						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={numOptions} onChange={onLimitChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Limit"/>} />
-						{/* <Autocomplete className='auto-comp' disablePortal id='combo-box' options={platformOptions} onChange={onPlatformChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Platform"/>} /> */}
+						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={platformOptions} onChange={onPlatformChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Platform"/>} />
 						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} onChange={onSortChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Sort By"/>} />
-						<Button onClick={() => setSortBy('asc')} variant={sortBy === 'asc' ? 'contained' : 'outlined'} disabled={sortBy === 'asc'}>Ascending</Button>
-						<Button onClick={() => setSortBy('desc')} variant={sortBy === 'desc' ? 'contained' : 'outlined'} disabled={sortBy === 'desc'}>Descending</Button>
+						<Button onClick={() => setSortDirection('asc')} variant={sortDirection === 'asc' ? 'contained' : 'outlined'} disabled={sortDirection === 'asc'}>Ascending</Button>
+						<Button onClick={() => setSortDirection('desc')} variant={sortDirection === 'desc' ? 'contained' : 'outlined'} disabled={sortDirection === 'desc'}>Descending</Button>
 					</div>
 					<div className='grid-wrapper'>
 						{multiResp.map((item: any) => (

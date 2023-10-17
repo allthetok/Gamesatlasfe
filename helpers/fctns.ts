@@ -4,23 +4,25 @@ const formattedDateLong = (inpDate: string) => new Date(inpDate).toLocaleDateStr
 
 const formattedYear = (inpDate: string) => new Date(inpDate).getFullYear()
 
-const sortMap = new Map<string, string>([
-	['IGDB Rating', 'total_rating'],
-	['Relevance', 'follows'],
-	['Title', 'name'],
-	['Release Date', 'first_release_date']
-])
+const createAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, platform: string, limit: string) => {
+	return {
+		method: method,
+		url: `http://localhost:3001/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'sortBy': sortBy,
+			'sortDirection': sortDirection,
+			'externalFilter': 'total_rating_count > 25',
+			'nullable': 'age_ratings, follows',
+			'platformFamily': platform,
+			'limit': parseInt(limit)
+		}
+	}
+}
 
-const platformMap = new Map<string, string[]>([
-	// ['Xbox', ['169', '12', '49']],
-	['Xbox', ['12', '49']],
-	['Playstation', ['7', '8', '9', '48', '167', '165']],
-	['Linux', ['3']],
-	['Nintendo', ['130', '4', '41', '18', '22', '20', '21', '33', '5']],
-	['PC', ['6']]
-])
-
-export { ratingFloatToStar, formattedDateLong, formattedYear, sortMap, platformMap }
+export { ratingFloatToStar, formattedDateLong, formattedYear, createAxiosConfig }
 
 // query games "Filtered 50" {fields id ,age_ratings.category, age_ratings.rating, cover.url, platforms.name,platforms.category,platforms.platform_logo,first_release_date,follows,name,total_rating,total_rating_count;
 // 	where total_rating_count > 100 & age_ratings!=n;
