@@ -251,6 +251,11 @@ button {
 	opacity: 0.75;
 }
 
+.num-rating {
+	font-size: 0.95rem;
+	font-weight: bold;
+}
+
 .link-external {
 	display: inline-block;
 	content: "";
@@ -259,11 +264,6 @@ button {
 	height: 12px;
 	margin: 0 3px 0 5px;
 	background-color: var(--icon-color);
-}
-
-.num-rating {
-	font-size: 0.95rem;
-	font-weight: bold;
 }
 
 .align {

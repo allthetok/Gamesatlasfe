@@ -47,5 +47,11 @@ const FavoriteIconSx = {
 	'&:hover': { color: '#ddd', cursor: 'pointer' }
 }
 
+const TableFavoriteIconSx = {
+	'&:hover': { color: '#ddd', cursor: 'pointer' },
+	'verticalAlign': 'middle',
+	'marginBottom': '0.5rem'
+}
 
-export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, FavoriteIconSx }
+
+export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, FavoriteIconSx, TableFavoriteIconSx }

@@ -100,8 +100,19 @@
 	text-decoration: none;
 }
 @media (min-width: 1200px) {
-	h2 {
+	.card-heading {
+		font-family: 'Inter', sans-serif;
 		font-size: 1.75rem;
+		justify-content: space-between;
+		display: block;
+		font-weight: var(--font-bold);
+		line-height: 1.33;
+		margin-bottom: var(--spacing-xxs);
+		color: var(--header-color);
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		margin-top: 0.5rem;
 	}
 }
 .card-platforms {

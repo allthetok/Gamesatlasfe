@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useEffect, useCallback, SyntheticEvent } from 'react'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
-import { Button, Autocomplete, TextField } from '@mui/material'
+import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
+import GridViewIcon from '@mui/icons-material/GridView'
+import TableRowsIcon from '@mui/icons-material/TableRows'
 import { createAxiosConfig } from '../helpers/fctns'
 import { IndGame } from './IndGame'
+import { IndGameTable } from './IndGameTable'
 import './IndGameList.css'
+import { FavoriteIconSx } from '../sxstyling/styles'
 
 const IndGameList = () => {
 	const [multiResp, setMultiResp] = useState([])
@@ -69,12 +74,25 @@ const IndGameList = () => {
 						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} onChange={onSortChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Sort By"/>} />
 						<Button onClick={() => setSortDirection('asc')} variant={sortDirection === 'asc' ? 'contained' : 'outlined'} disabled={sortDirection === 'asc'}>Ascending</Button>
 						<Button onClick={() => setSortDirection('desc')} variant={sortDirection === 'desc' ? 'contained' : 'outlined'} disabled={sortDirection === 'desc'}>Descending</Button>
+						<Button sx={{ bgcolor: '#202020' }} onClick={() => setViewToggle('list')} variant={viewToggle === 'list' ? 'contained' : 'outlined'} disabled={sortDirection === 'list'}>
+							<SvgIcon sx={FavoriteIconSx} fontSize='large' htmlColor='#ddd'>
+								<GridViewIcon/>
+							</SvgIcon>
+						</Button>
+						<Button sx={{ bgcolor: '#202020' }} onClick={() => setViewToggle('table')} variant={viewToggle === 'table' ? 'contained' : 'outlined'} disabled={sortDirection === 'table'}>
+							<SvgIcon sx={FavoriteIconSx} fontSize='large' htmlColor='#ddd'>
+								<TableRowsIcon/>
+							</SvgIcon>
+						</Button>
 					</div>
-					<div className='grid-wrapper'>
-						{multiResp.map((item: any) => (
-							<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} />
-						))}
-					</div>
+					{ viewToggle === 'list' ?
+						<div className='grid-wrapper'>
+							{multiResp.map((item: any) => (
+								<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} />
+							))}
+						</div>
+						: <IndGameTable multiResp={multiResp}/>
+					}
 				</div>
 				: <></>
 			}
