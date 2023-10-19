@@ -22,6 +22,10 @@
 	
 }
 
+/* .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+	color: #ddd;
+} */
+
 @media (max-width: 3200px) and (min-width: 2750px) {
 	.grid-wrapper {
 		grid-template-columns: repeat(6, minmax(450px, 1fr));

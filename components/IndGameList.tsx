@@ -3,14 +3,16 @@
 import React, { useState, useEffect, useCallback, SyntheticEvent } from 'react'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
-import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
+import { Button, Autocomplete, TextField, SvgIcon, styled } from '@mui/material'
+import { ThemeProvider, makeStyles } from '@mui/material/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
 import { createAxiosConfig } from '../helpers/fctns'
 import { IndGame } from './IndGame'
 import { IndGameTable } from './IndGameTable'
-import './IndGameList.css'
 import { FavoriteIconSx } from '../sxstyling/styles'
+import { theme } from '../sxstyling/theme'
+import './IndGameList.css'
 
 const IndGameList = () => {
 	const [multiResp, setMultiResp] = useState([])
@@ -60,6 +62,16 @@ const IndGameList = () => {
 		setSortBy(value!)
 	}
 
+	const MyTextField = styled(TextField)({
+		color: '#dddddd',
+		backgroundColor: '#202020'
+	  })
+
+	const StyledComponents = () => {
+		return <MyTextField>Styled Components</MyTextField>
+	  }
+
+
 	return (
 		<div>
 			{loading ?
@@ -69,9 +81,42 @@ const IndGameList = () => {
 			{!loading && !error && multiResp ?
 				<div>
 					<div className='filter-wrap'>
-						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={numOptions} onChange={onLimitChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Limit"/>} />
-						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={platformOptions} onChange={onPlatformChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Platform"/>} />
-						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} onChange={onSortChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center' }} renderInput={(params) => <TextField {...params} sx={{ color: '#dddddd' }} label="Sort By"/>} />
+						<ThemeProvider theme={theme}>
+							<Autocomplete 
+							className='auto-comp' 
+							disablePortal 
+							id='combo-box' 
+							options={numOptions} 
+							value={limit}
+							onChange={onLimitChange} 
+							sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '20px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Limit" />} 
+							/>
+						</ThemeProvider>
+						<ThemeProvider theme={theme}>
+							<Autocomplete 
+							className='auto-comp' 
+							disablePortal 
+							id='combo-box' 
+							options={platformOptions} 
+							value={platform}
+							onChange={onPlatformChange} 
+							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '20px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Platform" />} 
+							/>
+						</ThemeProvider>
+						<ThemeProvider theme={theme}>
+							<Autocomplete 
+							className='auto-comp' 
+							disablePortal 
+							id='combo-box' 
+							options={sortOptions} 
+							value={sortBy}
+							onChange={onSortChange} 
+							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '20px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} variant='outlined' label="Sort By" />} 
+							/>
+						</ThemeProvider>
+
+						{/* <Autocomplete className='auto-comp' disablePortal id='combo-box' options={platformOptions} value={platform} onChange={onPlatformChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center',  marginLeft: '0rem', marginRight: '1.25rem' }} renderInput={(params) => <TextField {...params} sx={{ input: { color: '#ddd' }} } label="Platform"/>} />
+						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} value={sortBy} onChange={onSortChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center',  marginLeft: '0rem', marginRight: '1.25rem' }} renderInput={(params) => <TextField {...params} sx={{ color: '#ddd' }} label="Sort By"/>} /> */}
 						<Button onClick={() => setSortDirection('asc')} variant={sortDirection === 'asc' ? 'contained' : 'outlined'} disabled={sortDirection === 'asc'}>Ascending</Button>
 						<Button onClick={() => setSortDirection('desc')} variant={sortDirection === 'desc' ? 'contained' : 'outlined'} disabled={sortDirection === 'desc'}>Descending</Button>
 						<Button sx={{ bgcolor: '#202020' }} onClick={() => setViewToggle('list')} variant={viewToggle === 'list' ? 'contained' : 'outlined'} disabled={sortDirection === 'list'}>
