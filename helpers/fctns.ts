@@ -4,7 +4,7 @@ const formattedDateLong = (inpDate: string) => new Date(inpDate).toLocaleDateStr
 
 const formattedYear = (inpDate: string) => new Date(inpDate).getFullYear()
 
-const createAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, platform: string, limit: string) => {
+const createAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, platform: string, limit: string, genre: string) => {
 	return {
 		method: method,
 		url: `http://localhost:3001/api/${endpoint}`,
@@ -14,10 +14,11 @@ const createAxiosConfig = (method: string, endpoint: string, sortBy: string, sor
 		data: {
 			'sortBy': sortBy,
 			'sortDirection': sortDirection,
-			'externalFilter': 'total_rating_count > 25',
+			'externalFilter': 'total_rating_count > 20',
 			'nullable': 'age_ratings, follows',
 			'platformFamily': platform,
-			'limit': parseInt(limit)
+			'limit': parseInt(limit),
+			'genres': genre
 		}
 	}
 }

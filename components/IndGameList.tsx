@@ -23,6 +23,7 @@ const IndGameList = () => {
 	const [sortDirection, setSortDirection] = useState('desc')
 	const [platform, setPlatform] = useState('')
 	const [limit, setLimit] = useState('25')
+	const [genre, setGenre] = useState('')
 	const [viewToggle, setViewToggle] = useState('list')
 
 	const numOptions = ['10', '25', '50', '100']
@@ -30,13 +31,12 @@ const IndGameList = () => {
 	const sortOptions = ['IGDB Rating', 'Relevance', 'Title', 'Release Date']
 
 	const getMultiResp = useCallback(async () => {
-		const searchConfig = createAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit)
+		const searchConfig = createAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
 		setLoading(true)
 		await axios(searchConfig)
 			.then((response) => {
 				setMultiResp(response.data)
 				console.log(response.data)
-				console.log('effect fired')
 				setLoading(false)
 			})
 			.catch((err) => {
@@ -89,7 +89,7 @@ const IndGameList = () => {
 							options={numOptions} 
 							value={limit}
 							onChange={onLimitChange} 
-							sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '20px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Limit" />} 
+							sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Limit" />} 
 							/>
 						</ThemeProvider>
 						<ThemeProvider theme={theme}>
@@ -100,7 +100,7 @@ const IndGameList = () => {
 							options={platformOptions} 
 							value={platform}
 							onChange={onPlatformChange} 
-							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '20px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Platform" />} 
+							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Platform" />} 
 							/>
 						</ThemeProvider>
 						<ThemeProvider theme={theme}>
@@ -111,7 +111,7 @@ const IndGameList = () => {
 							options={sortOptions} 
 							value={sortBy}
 							onChange={onSortChange} 
-							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '20px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} variant='outlined' label="Sort By" />} 
+							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} InputProps={{...params.InputProps, disableUnderline: true}} label="Sort By" />} 
 							/>
 						</ThemeProvider>
 
@@ -133,7 +133,7 @@ const IndGameList = () => {
 					{ viewToggle === 'list' ?
 						<div className='grid-wrapper'>
 							{multiResp.map((item: any) => (
-								<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} />
+								<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} />
 							))}
 						</div>
 						: <IndGameTable multiResp={multiResp}/>

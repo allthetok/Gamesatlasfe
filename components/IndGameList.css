@@ -66,3 +66,15 @@
 		grid-template-columns: auto;
 	}
 }
+
+fieldset.css-9425fu-MuiOutlinedInput-notchedOutline {
+	border-style: none;
+}
+
+label.css-17y3sg2-MuiFormLabel-root-MuiInputLabel-root {
+	color: var(--text-color);
+}
+
+label.css-17y3sg2-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+	color: var(--text-color);
+}

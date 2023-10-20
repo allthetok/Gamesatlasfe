@@ -18,6 +18,24 @@ const themeOptions: ThemeOptions = {
   },
 }
 
+// const themeOptions: ThemeOptions = {
+// 	palette: {
+// 	  mode: 'dark',
+// 	  primary: {
+// 		main: '#383838',
+// 	  },
+// 	  secondary: {
+// 		main: '#383838',
+// 	  },
+// 	  background: {
+// 		default: '#383838',
+// 	  },
+// 	  text: {
+// 		primary: '#dddddd',
+// 	  },
+// 	},
+//   }
+
 const theme = createTheme({
 	palette: {
 		mode: 'dark',

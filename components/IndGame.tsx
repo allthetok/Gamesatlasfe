@@ -4,8 +4,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { SvgIcon } from '@mui/material'
-import { ESRB, PEGI } from '../assets/ratingsvglinks'
+import { Button, SvgIcon } from '@mui/material'
+import { ESRB, PEGI, placeholderImages } from '../assets/ratingsvglinks'
 import { formattedYear } from '../helpers/fctns'
 import { AgeRatings } from '../../backendga/helpers/requests'
 import { FavoriteIconSx } from '../sxstyling/styles'
@@ -18,10 +18,11 @@ type IndGameProps = {
 	age_ratings: AgeRatings,
 	releaseDate: string,
 	likes: string,
-	title: string
+	title: string,
+	genres: any[]
 }
 
-const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, title }: IndGameProps) => {
+const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, title, genres }: IndGameProps) => {
 	return (
 		<div>
 			<div className='ind-wrapper'>
@@ -30,16 +31,23 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 					<div className='card-body'>
 						<div className='card-stack'>
 							<div className='card-platforms'>
+								{genres.map((val: any) => (
+									<a key={val.id} className='tag-link'> {val.name}</a>
+								))}
+							</div>
+						</div>
+						<div className='card-stack'>
+							<div className='card-platforms'>
 								{platforms.map((val: any) => (
-									<img key={val.id} className='card-platformlogo' alt={`${val.name} Logo`} src={val.url} />
+									<img key={val.id} className='card-platformlogo' alt={`${val.name} Logo`} src={val.url !== '' ? val.url : placeholderImages.NoLogo} />
 								))}
 							</div>
 							<span className='card-rating'>{Math.round(rating)}</span>
 						</div>
 						<div className='card-stack'>
 							<div className='card-platforms'>
-								<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0] ? ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0].src : ''} />
-								<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0] ? PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0].src : ''} />
+								<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0] ? ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0].src : ESRB.filter((rating) => rating.IGDBRating === 7)[0].src} />
+								<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0] ? PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0].src : PEGI.filter((rating) => rating.IGDBRating === 7)[0].src} />
 							</div>
 							<span className='card-year'>{formattedYear(releaseDate)}</span>
 						</div>

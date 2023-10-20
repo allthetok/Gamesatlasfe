@@ -13,7 +13,8 @@ const PEGI = [
 	{ 'IGDBRating': 2, 'src': 'https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi7.png?itok=eI0Gk8v4' },
 	{ 'IGDBRating': 3, 'src': 'https://pegi.info/sites/default/files/styles/medium/public/2017-03/PEGI_12.png?itok=YbTznZS9' },
 	{ 'IGDBRating': 4, 'src': 'https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi16.png?itok=GyBvYeoU' },
-	{ 'IGDBRating': 5, 'src':  'https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi18.png?itok=2iF_eHO6' }
+	{ 'IGDBRating': 5, 'src': 'https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi18.png?itok=2iF_eHO6' },
+	{ 'IGDBRating': 7, 'src': 'https://pegi.info/sites/default/files/inline-images/PEGI_Parental_Guidance_Recommended.png' }
 ]
 
 const ExternalCategories = [
@@ -59,4 +60,8 @@ const WebsiteCategories = [
 	{ 'source': 18, 'category': 'Discord Server', 'src': 'https://seeklogo.com/images/D/discord-logo-134E148657-seeklogo.com.png' },
 ]
 
-export { ESRB, PEGI, ExternalCategories, WebsiteCategories }
+const placeholderImages = {
+	'NoLogo': 'https://w7.pngwing.com/pngs/937/386/png-transparent-registered-trademark-symbol-copyright-copyright-game-text-trademark-thumbnail.png',
+}
+
+export { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages }
