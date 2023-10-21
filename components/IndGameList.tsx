@@ -10,7 +10,7 @@ import TableRowsIcon from '@mui/icons-material/TableRows'
 import { createAxiosConfig } from '../helpers/fctns'
 import { IndGame } from './IndGame'
 import { IndGameTable } from './IndGameTable'
-import { FavoriteIconSx } from '../sxstyling/styles'
+import { IconSx, ListTblToggleSx } from '../sxstyling/styles'
 import { theme } from '../sxstyling/theme'
 import './IndGameList.css'
 
@@ -119,13 +119,15 @@ const IndGameList = () => {
 						<Autocomplete className='auto-comp' disablePortal id='combo-box' options={sortOptions} value={sortBy} onChange={onSortChange} sx={{ width: 150, bgcolor: '#ddd', borderRadius: '20px', float: 'center',  marginLeft: '0rem', marginRight: '1.25rem' }} renderInput={(params) => <TextField {...params} sx={{ color: '#ddd' }} label="Sort By"/>} /> */}
 						<Button onClick={() => setSortDirection('asc')} variant={sortDirection === 'asc' ? 'contained' : 'outlined'} disabled={sortDirection === 'asc'}>Ascending</Button>
 						<Button onClick={() => setSortDirection('desc')} variant={sortDirection === 'desc' ? 'contained' : 'outlined'} disabled={sortDirection === 'desc'}>Descending</Button>
-						<Button sx={{ bgcolor: '#202020' }} onClick={() => setViewToggle('list')} variant={viewToggle === 'list' ? 'contained' : 'outlined'} disabled={sortDirection === 'list'}>
-							<SvgIcon sx={FavoriteIconSx} fontSize='large' htmlColor='#ddd'>
+						<Button sx={ListTblToggleSx(viewToggle, 'listbtn')} onClick={() => setViewToggle('list')} variant={viewToggle === 'list' ? 'contained' : 'outlined'}>
+							{/* disabled={viewToggle === 'list'}> */}
+							<SvgIcon sx={IconSx} fontSize='large' htmlColor='#ddd'>
 								<GridViewIcon/>
 							</SvgIcon>
 						</Button>
-						<Button sx={{ bgcolor: '#202020' }} onClick={() => setViewToggle('table')} variant={viewToggle === 'table' ? 'contained' : 'outlined'} disabled={sortDirection === 'table'}>
-							<SvgIcon sx={FavoriteIconSx} fontSize='large' htmlColor='#ddd'>
+						<Button sx={ListTblToggleSx(viewToggle, 'tblbtn')} onClick={() => setViewToggle('table')} variant={viewToggle === 'table' ? 'contained' : 'outlined'}>
+							{/* disabled={viewToggle === 'table'} */}
+							<SvgIcon sx={IconSx} fontSize='large' htmlColor='#ddd'>
 								<TableRowsIcon/>
 							</SvgIcon>
 						</Button>

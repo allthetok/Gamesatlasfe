@@ -8,7 +8,7 @@ import { Button, SvgIcon } from '@mui/material'
 import { ESRB, PEGI, placeholderImages } from '../assets/ratingsvglinks'
 import { formattedYear } from '../helpers/fctns'
 import { AgeRatings } from '../../backendga/helpers/requests'
-import { FavoriteIconSx } from '../sxstyling/styles'
+import { IconSx } from '../sxstyling/styles'
 import './IndGame.css'
 
 type IndGameProps = {
@@ -49,7 +49,7 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 						</div>
 						<div className='card-likesstack'>
 							<div className='card-heart'>
-								<SvgIcon sx={FavoriteIconSx} htmlColor='#d2042d' fontSize='large'>
+								<SvgIcon sx={IconSx} htmlColor='#d2042d' fontSize='large'>
 									<FavoriteIcon/>
 								</SvgIcon>
 								<span className='like-text'>Like this game</span>

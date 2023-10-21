@@ -43,7 +43,7 @@ const BoxActiveSx = {
 	'borderBottom': '1px solid transparent'
 }
 
-const FavoriteIconSx = {
+const IconSx = {
 	'&:hover': { color: '#ddd', cursor: 'pointer' }
 }
 
@@ -53,5 +53,20 @@ const TableFavoriteIconSx = {
 	'marginBottom': '0.5rem'
 }
 
+const ListTblToggleSx = (selected: string, button: string) => {
+	if (selected === 'list' && button === 'listbtn') {
+		return { bgcolor: '#121212', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+	}
+	else if (selected === 'table' && button === 'listbtn') {
+		return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
+	}
+	else if (selected === 'list' && button === 'tblbtn') {
+		return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
+	}
+	else {
+		return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+	}
+	// return selected=== 'list' ? { bgcolor: `${selected === 'list' ? '#121212': '#202020'}`, border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } } : { bgcolor: `${selected === 'table' ? '#121212': '#202020'}`, border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
+}
 
-export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, FavoriteIconSx, TableFavoriteIconSx }
+export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, IconSx, TableFavoriteIconSx, ListTblToggleSx }
