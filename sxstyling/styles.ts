@@ -58,14 +58,23 @@ const ListTblToggleSx = (selected: string, button: string) => {
 		return { bgcolor: '#121212', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
 	else if (selected === 'table' && button === 'listbtn') {
-		return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
+		return { bgcolor: '#383838', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
-	else if (selected === 'list' && button === 'tblbtn') {
-		return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
+	else if (selected === 'table' && button === 'tblbtn') {
+		return { bgcolor: '#121212', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
-	else {
-		return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+	else { //selected === 'list' && button === 'tbltn'
+		return { bgcolor: '#383838', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
+	// else if (selected === 'table' && button === 'listbtn') {
+	// 	return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
+	// }
+	// else if (selected === 'list' && button === 'tblbtn') {
+	// 	return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
+	// }
+	// else {
+	// 	return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+	// }
 	// return selected=== 'list' ? { bgcolor: `${selected === 'list' ? '#121212': '#202020'}`, border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } } : { bgcolor: `${selected === 'table' ? '#121212': '#202020'}`, border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
 }
 
