@@ -27,7 +27,7 @@ const IndGameList = () => {
 	const [viewToggle, setViewToggle] = useState('list')
 
 	const numOptions = ['10', '25', '50', '100']
-	const platformOptions = ['PC', 'Playstation', 'Xbox', 'Nintendo', 'Linux']
+	const platformOptions = ['PC', 'Playstation', 'Xbox', 'Nintendo', 'Linux', '']
 	const sortOptions = ['IGDB Rating', 'Relevance', 'Title', 'Release Date']
 
 	const getMultiResp = useCallback(async () => {
@@ -65,11 +65,11 @@ const IndGameList = () => {
 	const MyTextField = styled(TextField)({
 		color: '#dddddd',
 		backgroundColor: '#202020'
-	  })
+	})
 
 	const StyledComponents = () => {
 		return <MyTextField>Styled Components</MyTextField>
-	  }
+	}
 
 
 	return (
@@ -82,36 +82,36 @@ const IndGameList = () => {
 				<div>
 					<div className='filter-wrap'>
 						<ThemeProvider theme={theme}>
-							<Autocomplete 
-							className='auto-comp' 
-							disablePortal 
-							id='combo-box' 
-							options={numOptions} 
-							value={limit}
-							onChange={onLimitChange} 
-							sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Limit" />} 
+							<Autocomplete
+								className='auto-comp'
+								disablePortal
+								id='combo-box'
+								options={numOptions}
+								value={limit}
+								onChange={onLimitChange}
+								sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Limit" />}
 							/>
 						</ThemeProvider>
 						<ThemeProvider theme={theme}>
-							<Autocomplete 
-							className='auto-comp' 
-							disablePortal 
-							id='combo-box' 
-							options={platformOptions} 
-							value={platform}
-							onChange={onPlatformChange} 
-							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Platform" />} 
+							<Autocomplete
+								className='auto-comp'
+								disablePortal
+								id='combo-box'
+								options={platformOptions}
+								value={platform}
+								onChange={onPlatformChange}
+								sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Platform" />}
 							/>
 						</ThemeProvider>
 						<ThemeProvider theme={theme}>
-							<Autocomplete 
-							className='auto-comp' 
-							disablePortal 
-							id='combo-box' 
-							options={sortOptions} 
-							value={sortBy}
-							onChange={onSortChange} 
-							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} InputProps={{...params.InputProps, disableUnderline: true}} label="Sort By" />} 
+							<Autocomplete
+								className='auto-comp'
+								disablePortal
+								id='combo-box'
+								options={sortOptions}
+								value={sortBy}
+								onChange={onSortChange}
+								sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginLeft: '0.75rem', marginRight: '1.25rem' }} renderInput={(params) =>  <TextField {...params} label="Sort By" />}
 							/>
 						</ThemeProvider>
 
@@ -133,7 +133,7 @@ const IndGameList = () => {
 					{ viewToggle === 'list' ?
 						<div className='grid-wrapper'>
 							{multiResp.map((item: any) => (
-								<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} />
+								<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} companies={item.involved_companies} />
 							))}
 						</div>
 						: <IndGameTable multiResp={multiResp}/>

@@ -19,10 +19,11 @@ type IndGameProps = {
 	releaseDate: string,
 	likes: string,
 	title: string,
-	genres: any[]
+	genres: any[],
+	companies: any[]
 }
 
-const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, title, genres }: IndGameProps) => {
+const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, title, genres, companies }: IndGameProps) => {
 	return (
 		<div>
 			<div className='ind-wrapper'>
@@ -60,6 +61,11 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 							</div>
 							<span className='card-likes'>{likes}</span>
 						</div>
+							<div className='card-companies'>
+								{companies.map((val: any) => (
+									<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name}</a>
+								))}
+							</div>
 						<h2 className='card-heading'>
 							{title}
 						</h2>

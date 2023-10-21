@@ -256,7 +256,42 @@
 	margin-bottom: 0.125rem;
 }
 
+.tag-link-company {
+	display: inline-block;
+    cursor: pointer;
+	color: var(--text-color);
+    /* background: #273b4b; */
+	/* background: var(--input-color); */
+	background: #383838;
+    padding: 0 10px;
+    font-size: 15px;
+    line-height: 30px;
+    border-radius: 6px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	margin-top: 0rem;
+	margin-bottom: 0.125rem;
+	text-decoration: none;
+}
 .tag-link:hover {
 	color: var(--hover-color);
 	background: #273b4b;
+}
+
+.tag-link-company:hover {
+	color: var(--hover-color);
+	background: #273b4b;
+}
+
+.card-companies {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+	justify-content: center;
+
 }

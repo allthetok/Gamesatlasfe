@@ -15,7 +15,7 @@ const createAxiosConfig = (method: string, endpoint: string, sortBy: string, sor
 			'sortBy': sortBy,
 			'sortDirection': sortDirection,
 			'externalFilter': 'total_rating_count > 20',
-			'nullable': 'age_ratings, follows',
+			'nullable': 'age_ratings, follows, involved_companies, involved_companies.developer',
 			'platformFamily': platform,
 			'limit': parseInt(limit),
 			'genres': genre
