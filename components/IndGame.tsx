@@ -30,13 +30,8 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 				<div className='card-game'>
 					<img className='card-img' src={cover} />
 					<div className='card-body'>
-						<div className='card-stack'>
-							<div className='card-platforms'>
-								{genres.map((val: any) => (
-									<a key={val.id} className='tag-link'> {val.name}</a>
-								))}
-							</div>
-						</div>
+						{/* <div className='card-stack'> */}
+						{/* </div> */}
 						<div className='card-stack'>
 							<div className='card-platforms'>
 								{platforms.map((val: any) => (
@@ -61,14 +56,31 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 							</div>
 							<span className='card-likes'>{likes}</span>
 						</div>
-							<div className='card-companies'>
-								{companies.map((val: any) => (
-									<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name}</a>
-								))}
-							</div>
 						<h2 className='card-heading'>
 							{title}
 						</h2>
+						{/* <div className='card-companies'>
+							{companies.map((val: any) => (
+								<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name}</a>
+							))}
+						</div> */}
+						<div className='card-companies'>
+							{genres.map((val: any) => (
+								<a key={val.id} className='tag-link-company'> {val.name}</a>
+
+								// <div className='tags'>
+								// 	<span className='tag-text'>{val.name}</span>
+								// 	<a key={val.id} className='tag-link-company'> {val.name}</a>
+								// </div>
+							))}
+							{companies.map((val: any) => (
+								<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name}</a>
+								// <div className='tags'>
+								// 	<span className='tag-text'>{val.name}</span>
+								// 	<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name}</a>
+								// </div>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
