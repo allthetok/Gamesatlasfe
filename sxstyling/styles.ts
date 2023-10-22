@@ -44,6 +44,8 @@ const BoxActiveSx = {
 }
 
 const IconSx = {
+	height: '40px',
+	width: '40px',
 	'&:hover': { color: '#ddd', cursor: 'pointer' }
 }
 
@@ -55,27 +57,32 @@ const TableFavoriteIconSx = {
 
 const ListTblToggleSx = (selected: string, button: string) => {
 	if (selected === 'list' && button === 'listbtn') {
-		return { bgcolor: '#121212', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+		return { bgcolor: '#121212', border: 'none', marginTop: '0.5rem',  width: '56px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
 	else if (selected === 'table' && button === 'listbtn') {
-		return { bgcolor: '#383838', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+		return { bgcolor: '#383838', border: 'none', marginTop: '0.5rem', width: '56px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
 	else if (selected === 'table' && button === 'tblbtn') {
-		return { bgcolor: '#121212', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+		return { bgcolor: '#121212', border: 'none', marginTop: '0.5rem', width: '56px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
 	else { //selected === 'list' && button === 'tbltn'
-		return { bgcolor: '#383838', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
+		return { bgcolor: '#383838', border: 'none', marginTop: '0.5rem', width: '56px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none' } }
 	}
-	// else if (selected === 'table' && button === 'listbtn') {
-	// 	return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
-	// }
-	// else if (selected === 'list' && button === 'tblbtn') {
-	// 	return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
-	// }
-	// else {
-	// 	return { bgcolor: '#202020', border: 'none', '&:hover': { bgcolor: '#121212', border: 'none' } }
-	// }
-	// return selected=== 'list' ? { bgcolor: `${selected === 'list' ? '#121212': '#202020'}`, border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } } : { bgcolor: `${selected === 'table' ? '#121212': '#202020'}`, border: 'none', '&:hover': { bgcolor: '#383838', border: 'none' } }
 }
 
-export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, IconSx, TableFavoriteIconSx, ListTblToggleSx }
+const AscDescSx = (selected: string, button: string) => {
+	if (selected === 'asc' && button === 'ascbtn') {
+		return { bgcolor: '#121212', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none', fontWeight: '700' } }
+	}
+	else if (selected === 'desc' && button === 'ascbtn') {
+		return { bgcolor: '#383838', border: 'none', color: '#ddd', font: 'Inter', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none', fontWeight: '700' } }
+	}
+	else if (selected === 'desc' && button === 'descbtn') {
+		return { bgcolor: '#121212', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none', fontWeight: '700' } }
+	}
+	else { //selected === 'asc' && button === 'descbtn'
+		return { bgcolor: '#383838', border: 'none', color: '#ddd', font: 'Inter', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#121212', border: 'none', fontWeight: '700' } }
+	}
+}
+
+export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, IconSx, TableFavoriteIconSx, ListTblToggleSx, AscDescSx }

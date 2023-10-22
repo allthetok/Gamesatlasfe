@@ -9,9 +9,46 @@
 .filter-wrap {
     /* padding-bottom: 25px;
     padding-top: 20px; */
-    text-align: center;
+    /* text-align: center;
+    display: flex;
+	box-sizing: border-box; */
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.drop-wrap {
+	text-align: center;
     display: flex;
 	box-sizing: border-box;
+	margin-left: -10rem;
+	/* display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center; */
+}
+
+.button-wrap {
+	text-align: center;
+    display: flex;
+	box-sizing: border-box;
+	/* height: inherit; */
+}
+
+.ascdesc-wrap {
+	float: right;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.inline-dir {
+	display: block;
 }
 
 .auto-comp {
@@ -19,7 +56,6 @@
     margin-left: auto;
 	margin-right: 1.25rem;
 	margin-top: 0.5rem;
-	
 }
 
 /* .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
@@ -59,13 +95,24 @@
 	.grid-wrapper {
 		grid-template-columns: repeat(2, minmax(450px, 1fr));
 	}
+	.drop-wrap {
+		margin-left: 0rem;
+	}
 }
 
 @media (max-width: 895px) {
 	.grid-wrapper {
 		grid-template-columns: auto;
 	}
+	.drop-wrap {
+		margin-left: 0rem;
+		display: inline-block;
+	}
+	.button-wrap {
+		display: inline-block;
+	}
 }
+
 
 fieldset.css-9425fu-MuiOutlinedInput-notchedOutline {
 	border-style: none;
