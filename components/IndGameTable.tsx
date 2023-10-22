@@ -4,7 +4,7 @@
 import React from 'react'
 import { TableRow, TableCell, TableContainer, Paper, Table, TableHead, TableBody, SvgIcon } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { ESRB, PEGI } from '../assets/ratingsvglinks'
+import { ESRB, PEGI, placeholderImages } from '../assets/ratingsvglinks'
 import { formattedDateLong } from '../helpers/fctns'
 import { TableFavoriteIconSx } from '../sxstyling/styles'
 import './IndGameTable.css'
@@ -28,8 +28,14 @@ const TableCells = () => {
 			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
 				<h2 className='column-heading'>Platforms</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={{ minWidth: 100, color: '#ddd' }}>
 				<h2 className='column-heading'>Age Ratings</h2>
+			</TableCell>
+			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+				<h2 className='column-heading'>Genres</h2>
+			</TableCell>
+			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+				<h2 className='column-heading'>Developers</h2>
 			</TableCell>
 			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
 				<h2 className='column-heading'>Likes</h2>
@@ -73,17 +79,34 @@ const TableRows = ({ multiResp }: IndGameTableProps) => {
 						))}
 					</TableCell>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
-						{game.age_ratings.ESRB !== 0 ? <img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === game.age_ratings.ESRB)[0] ? ESRB.filter((rating) => rating.IGDBRating === game.age_ratings.ESRB)[0].src : ''} /> : <></>}
-						{game.age_ratings.PEGI !== 0 ? <img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === game.age_ratings.PEGI)[0] ? PEGI.filter((rating) => rating.IGDBRating === game.age_ratings.PEGI)[0].src : ''} /> : <></>}
+						<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === game.age_ratings.ESRB)[0] ? ESRB.filter((rating) => rating.IGDBRating === game.age_ratings.ESRB)[0].src : ESRB.filter((rating) => rating.IGDBRating === 7)[0].src} />
+						<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === game.age_ratings.PEGI)[0] ? PEGI.filter((rating) => rating.IGDBRating === game.age_ratings.PEGI)[0].src : PEGI.filter((rating) => rating.IGDBRating === 7)[0].src} />
+					</TableCell>
+					<TableCell align='center' sx={{ color: '#ddd' }}>
+						<div className='genres-wrap'>
+							{game.genres.map((val: any) => (
+								<a key={val.id} className='tag-link-company'> {val.name}</a>
+							))}
+						</div>
+					</TableCell>
+					<TableCell align='center' sx={{ color: '#ddd' }}>
+						<div className='companies-wrap'>
+							{game.involved_companies.map((val: any) => (
+								<a key={val.name} className='tag-company' href={val.officialSite} target='_blank'>
+									<img key={val.id} className='companylogo' alt={`${val.name} Logo`} src={val.url !== '' ? val.url : placeholderImages.NoLogo} />
+									<p>{val.name}</p>
+								</a>
+							))}
+						</div>
 					</TableCell>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
 						<div>
-							<span className='avg-rating'>
-								{game.likes}
-							</span>
 							<SvgIcon sx={TableFavoriteIconSx} htmlColor='#d2042d' fontSize='large'>
 								<FavoriteIcon/>
 							</SvgIcon>
+							<span className='avg-rating'>
+								{game.likes}
+							</span>
 							<span className='like-text'>Like this game</span>
 						</div>
 					</TableCell>
@@ -97,20 +120,11 @@ const TableRows = ({ multiResp }: IndGameTableProps) => {
 			)}
 		</>
 	)
-
-	{/* <TableCell align='center' sx={{ color: '#ddd' }}>
-						{`${WebsiteCategories.filter((field) => field.source === item.category)[0].category}`}
-						<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === item.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === item.category)[0].src}`} />
-					</TableCell>
-					<TableCell align='center' sx={{ color: '#ddd' }}>
-						<a href={item.url} target='_blank' rel='noreferrer'>{item.url}</a>
-					</TableCell> */}
 }
 
 const IndGameTable = ({ multiResp }: IndGameTableProps) => {
-	console.log(multiResp[0])
 	return (
-		<div>
+		<div className='marginTable'>
 			<TableContainer component={Paper}>
 				<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
 					<TableHead>
