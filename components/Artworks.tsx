@@ -41,9 +41,19 @@ const Artworks = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
+	// const searchConfig = {
+	// 	method: 'post',
+	// 	url: 'http://localhost:3001/api/artwork',
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	},
+	// 	data: {
+	// 		'gameid': auxiliaryObj.gameID
+	// 	}
+	// }
 	const searchConfig = {
 		method: 'post',
-		url: 'http://localhost:3001/api/artwork',
+		url: 'http://localhost:3001/api/altartwork',
 		headers: {
 			'Content-Type': 'application/json'
 		},

@@ -71,9 +71,19 @@ const Websites = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
+	// const searchConfig = {
+	// 	method: 'post',
+	// 	url: 'http://localhost:3001/api/websites',
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	},
+	// 	data: {
+	// 		'gameid': auxiliaryObj.gameID
+	// 	}
+	// }
 	const searchConfig = {
 		method: 'post',
-		url: 'http://localhost:3001/api/websites',
+		url: 'http://localhost:3001/api/altwebsites',
 		headers: {
 			'Content-Type': 'application/json'
 		},

@@ -9,6 +9,8 @@ import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 import axios from 'axios'
 import { Loading } from './Loading'
+import { IndGame } from './IndGame'
+import './IndGameList.css'
 
 const Similar = () => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
@@ -23,13 +25,14 @@ const Similar = () => {
 			return JSON.parse(localstorageObj!)
 		}
 	})
-	const [dataFetch, setDataFetch] = useState<SimilarObj>()
+	// const [dataFetch, setDataFetch] = useState<SimilarObj>()
+	const [dataFetch, setDataFetch] = useState<any>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
 	const searchConfig = {
 		method: 'post',
-		url: 'http://localhost:3001/api/similargames',
+		url: 'http://localhost:3001/api/altsimilargames',
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -40,7 +43,8 @@ const Similar = () => {
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
-				setDataFetch(response.data)
+				setDataFetch(response.data.similar_games)
+				console.log(response.data)
 				setLoading(false)
 			})
 			.catch((err) => {
@@ -62,7 +66,12 @@ const Similar = () => {
 					<div className='header-wrapper'>
 						<NavGame title={auxiliaryObj.title}/>
 						<div>
-							<ul className='similar-ul'>
+							<div className='grid-wrapper'>
+								{dataFetch.map((item: any) => (
+									<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} companies={item.involved_companies} />
+								))}
+							</div>
+							{/* <ul className='similar-ul'>
 								{dataFetch.similar_games.map((el: Covers) => (
 									<li className='similar-li' key={el.name}>
 										<div className='similar'>
@@ -73,7 +82,7 @@ const Similar = () => {
 										</div>
 									</li>
 								))}
-							</ul>
+							</ul> */}
 						</div>
 						<Description auxiliaryObj={auxiliaryObj} />
 					</div>

@@ -101,9 +101,19 @@ const Languages = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
+	// const searchConfig = {
+	// 	method: 'post',
+	// 	url: 'http://localhost:3001/api/language',
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	},
+	// 	data: {
+	// 		'gameid': auxiliaryObj.gameID
+	// 	}
+	// }
 	const searchConfig = {
 		method: 'post',
-		url: 'http://localhost:3001/api/language',
+		url: 'http://localhost:3001/api/altlanguage',
 		headers: {
 			'Content-Type': 'application/json'
 		},

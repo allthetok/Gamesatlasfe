@@ -32,9 +32,19 @@ const Screenshots = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
 
+	// const searchConfig = {
+	// 	method: 'post',
+	// 	url: 'http://localhost:3001/api/screenshots',
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	},
+	// 	data: {
+	// 		'gameid': auxiliaryObj.gameID
+	// 	}
+	// }
 	const searchConfig = {
 		method: 'post',
-		url: 'http://localhost:3001/api/screenshots',
+		url: 'http://localhost:3001/api/altscreenshots',
 		headers: {
 			'Content-Type': 'application/json'
 		},

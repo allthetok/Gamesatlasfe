@@ -48,9 +48,19 @@ const VideoList = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
+	// const searchConfig = {
+	// 	method: 'post',
+	// 	url: 'http://localhost:3001/api/videos',
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	},
+	// 	data: {
+	// 		'gameid': auxiliaryObj.gameID
+	// 	}
+	// }
 	const searchConfig = {
 		method: 'post',
-		url: 'http://localhost:3001/api/videos',
+		url: 'http://localhost:3001/api/altvideos',
 		headers: {
 			'Content-Type': 'application/json'
 		},
