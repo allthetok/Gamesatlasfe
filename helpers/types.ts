@@ -120,5 +120,10 @@ type MultiObj = {
 	title: string
 }
 
+type GenericStringObj = {
+	id: number,
+	name: string
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, LocalStorageObj, MultiObj }
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, LocalStorageObj, MultiObj, GenericStringObj }

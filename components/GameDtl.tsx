@@ -7,8 +7,8 @@ import { NavGame } from './NavGame'
 import { Overview } from './Overview'
 import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
 import { useGameContext } from '@/app/gamecontext'
-import { GameContextObj, LocalStorageObj, OverviewObj } from '../helpers/types'
-import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
+import { GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../helpers/types'
+import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../assets/ratingsvglinks'
 import './GameDtl.css'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
@@ -23,7 +23,8 @@ const GameDtl = () => {
 			return localStorage.getItem('searchterm') || null
 		}
 	})
-	const [dataFetch, setDataFetch] = useState<OverviewObj>()
+	// const [dataFetch, setDataFetch] = useState<OverviewObj>()
+	const [dataFetch, setDataFetch] = useState()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
@@ -36,9 +37,19 @@ const GameDtl = () => {
 		releaseDate: ''
 	})
 
+	// const searchConfig = {
+	// 	method: 'post',
+	// 	url: 'http://localhost:3001/api/overview',
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	},
+	// 	data: {
+	// 		'searchterm': searchTerm
+	// 	}
+	// }
 	const searchConfig = {
 		method: 'post',
-		url: 'http://localhost:3001/api/overview',
+		url: 'http://localhost:3001/api/altoverview',
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -104,6 +115,18 @@ const GameDtl = () => {
 		)
 	}
 
+	const getGenericArr = (stringArr: GenericStringObj[]): React.JSX.Element => {
+		return (
+			<>
+				{stringArr.map((val: GenericStringObj) => (
+					<div key={val.id}>
+						<a href=''>{val.name}</a>
+					</div>
+				))}
+			</>
+		)
+	}
+
 	const getStringArr = (stringArr: string[]): React.JSX.Element => {
 		return (
 			<>
@@ -117,6 +140,7 @@ const GameDtl = () => {
 	}
 
 	const getWebsites = (categoriesArr: Categories[], specified: string): React.JSX.Element => {
+		console.log(categoriesArr)
 		return specified === 'External' ?
 			(
 				<>
@@ -127,7 +151,7 @@ const GameDtl = () => {
 								<img className='logo pad-left' alt={`${ExternalCategories.filter((field) => field.source === el.category)[0].category}`} src={`${ExternalCategories.filter((field) => field.source === el.category)[0].src}`} />
 							</p>
 							<a href={el.url} target='_blank' rel='noreferrer'>Visit
-								<img className='link-external' alt='Open Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
+								<img className='link-external' alt='Open Website' src={placeholderImages.LinkButtons}/>
 							</a>
 						</div>
 					))}
@@ -142,7 +166,7 @@ const GameDtl = () => {
 								<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === el.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === el.category)[0].src}`} />
 							</p>
 							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
-								<img className='link-external' alt='Open Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
+								<img className='link-external' alt='Open Website' src={placeholderImages.LinkButtons}/>
 							</a>
 						</div>
 					))}
@@ -167,7 +191,7 @@ const GameDtl = () => {
 					<Search />
 					<div className='header-wrapper'>
 						<NavGame title={auxiliaryObj.title} />
-						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites}/>
+						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
 						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>

@@ -74,7 +74,7 @@ const IndGame = ({ cover, platforms, rating, age_ratings, releaseDate, likes, ti
 								// </div>
 							))}
 							{companies.map((val: any) => (
-								<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name}</a>
+								<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name} </a>
 								// <div className='tags'>
 								// 	<span className='tag-text'>{val.name}</span>
 								// 	<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name}</a>

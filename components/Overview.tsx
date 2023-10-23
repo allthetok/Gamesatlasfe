@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -5,23 +6,25 @@ import React, { useState } from 'react'
 import { Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
 import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
-import { OverviewObj } from '../helpers/types'
+import { GenericStringObj, OverviewObj } from '../helpers/types'
 import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
 import { GameContextObj } from '../helpers/types'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 type OverViewProps = {
-	dataFetch: OverviewObj,
+	// dataFetch: OverviewObj,
+	dataFetch: any,
 	loading: boolean,
 	error: null,
 	getPlatformCompanies: (platformsArr: Platforms[] | Companies[]) => React.JSX.Element,
 	getAgeRatings: (ratingsObj: AgeRatings) => React.JSX.Element,
+	getGenericArr: (stringArr: GenericStringObj[]) => React.JSX.Element,
 	getStringArr: (stringArr: string[]) => React.JSX.Element,
 	getWebsites: (categoriesArr: Categories[], specified: string) => React.JSX.Element,
 }
 
-const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatings, getStringArr, getWebsites }: OverViewProps) => {
+const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatings, getGenericArr, getStringArr, getWebsites }: OverViewProps) => {
 	//const response: GameDetailObj = useContext(GameContext)
 
 	// const [searchTerm, setSearchTerm] = useState(() => {
@@ -64,7 +67,9 @@ const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatin
 							</dd>
 							<dt>Localizations</dt>
 							<dd>
-								{dataFetch?.game_localizations}
+								{dataFetch?.game_localizations.map((indLocal: any) => (
+									<p>{indLocal.name} ({indLocal.region})</p>
+								))}
 							</dd>
 						</dl>
 					</div>
@@ -122,7 +127,7 @@ const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatin
 						<dl className='releasedata'>
 							<dt>Genres</dt>
 							<dd>
-								{getStringArr(dataFetch!.genres)}
+								{getGenericArr(dataFetch!.genres)}
 							</dd>
 							<dt>Gameplay Perspective</dt>
 							<dd>
@@ -134,7 +139,7 @@ const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatin
 							</dd>
 							<dt>Themes</dt>
 							<dd>
-								{getStringArr(dataFetch!.themes)}
+								{getGenericArr(dataFetch!.themes)}
 							</dd>
 							<dt>Keywords</dt>
 							<dd>
