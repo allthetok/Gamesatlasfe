@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react'
 import Youtube, { YouTubeProps, YouTubePlayer, YouTubeEvent } from 'react-youtube'
 import Carousel from 'react-material-ui-carousel'
-import { GameDetailObj } from '../helpers/types'
+import { GameDetailObj } from '../helpers/fetypes'
 import './Artworks.css'
 
 type VideoProps = {

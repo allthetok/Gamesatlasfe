@@ -5,13 +5,14 @@ import { Description } from './Description'
 import { Search } from './Search'
 import { NavGame } from './NavGame'
 import { Overview } from './Overview'
-import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
+import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
-import { GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../helpers/types'
+import { GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../helpers/fetypes'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../assets/ratingsvglinks'
 import './GameDtl.css'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
+import { createGameDtlConfig } from '../helpers/fctns'
 
 
 const GameDtl = () => {
@@ -20,11 +21,11 @@ const GameDtl = () => {
 
 	const [searchTerm, setSearchTerm] = useState(() => {
 		if (typeof window !== 'undefined') {
-			return localStorage.getItem('searchterm') || null
+			return localStorage.getItem('searchterm') || ''
 		}
 	})
-	// const [dataFetch, setDataFetch] = useState<OverviewObj>()
-	const [dataFetch, setDataFetch] = useState()
+	const [dataFetch, setDataFetch] = useState<GameObj>()
+	// const [dataFetch, setDataFetch] = useState()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
@@ -37,26 +38,9 @@ const GameDtl = () => {
 		releaseDate: ''
 	})
 
-	// const searchConfig = {
-	// 	method: 'post',
-	// 	url: 'http://localhost:3001/api/overview',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	data: {
-	// 		'searchterm': searchTerm
-	// 	}
-	// }
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/altoverview',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'searchterm': searchTerm
-		}
-	}
+	const searchConfig = createGameDtlConfig('post', 'overview', searchTerm!)
+	console.log(searchConfig)
+
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

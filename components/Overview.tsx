@@ -5,16 +5,16 @@
 import React, { useState } from 'react'
 import { Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
-import { AgeRatings, Categories, Companies, Platforms } from '../../backendga/helpers/requests'
-import { GenericStringObj, OverviewObj } from '../helpers/types'
+import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
+import { GenericStringObj, OverviewObj } from '../helpers/fetypes'
 import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
-import { GameContextObj } from '../helpers/types'
+import { GameContextObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 type OverViewProps = {
 	// dataFetch: OverviewObj,
-	dataFetch: any,
+	dataFetch: GameObj,
 	loading: boolean,
 	error: null,
 	getPlatformCompanies: (platformsArr: Platforms[] | Companies[]) => React.JSX.Element,
@@ -51,7 +51,7 @@ const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatin
 						<dl className='releasedata'>
 							<dt>Released</dt>
 							<dd>
-								{formattedDateLong(dataFetch!.releaseDate)}
+								{formattedDateLong(dataFetch.releaseDate)}
 							</dd>
 							<dt>Platforms</dt>
 							<dd className='platforms'>

@@ -9,12 +9,13 @@ import { Video } from './Video'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
-import { Videos } from '../../backendga/helpers/requests'
-import { GameContextObj, VideoObj } from '../helpers/types'
+import { Videos } from '../../backendga/helpers/betypes'
+import { GameContextObj, VideoObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import axios from 'axios'
 import { Loading } from './Loading'
+import { createAuxiliaryConfig } from '../helpers/fctns'
 
 
 
@@ -48,26 +49,8 @@ const VideoList = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	// const searchConfig = {
-	// 	method: 'post',
-	// 	url: 'http://localhost:3001/api/videos',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	data: {
-	// 		'gameid': auxiliaryObj.gameID
-	// 	}
-	// }
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/altvideos',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'gameid': auxiliaryObj.gameID
-		}
-	}
+	const searchConfig = createAuxiliaryConfig('post', 'videos', auxiliaryObj.gameID)
+
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

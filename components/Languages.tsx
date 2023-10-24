@@ -7,11 +7,12 @@ import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable } from '../helpers/types'
-import { Languages } from '../../backendga/helpers/requests'
+import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable } from '../helpers/fetypes'
+import { Languages } from '../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
 import axios from 'axios'
 import { Loading } from './Loading'
+import { createAuxiliaryConfig } from '../helpers/fctns'
 
 
 type LanguageProps = {
@@ -101,26 +102,7 @@ const Languages = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	// const searchConfig = {
-	// 	method: 'post',
-	// 	url: 'http://localhost:3001/api/language',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	data: {
-	// 		'gameid': auxiliaryObj.gameID
-	// 	}
-	// }
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/altlanguage',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'gameid': auxiliaryObj.gameID
-		}
-	}
+	const searchConfig = createAuxiliaryConfig('post', 'language', auxiliaryObj.gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

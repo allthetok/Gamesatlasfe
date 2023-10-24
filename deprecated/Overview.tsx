@@ -6,7 +6,7 @@ import { Rating } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import StarIcon from '@mui/icons-material/Star'
 import { AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
-import { GameDetailObj } from '../helpers/types'
+import { GameDetailObj } from '../helpers/fetypes'
 import './GameDtl.css'
 
 type OverViewProps = {

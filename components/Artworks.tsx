@@ -9,12 +9,13 @@ import { NavGame } from './NavGame'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { ArtworkObj, GameContextObj, LocalStorageObj } from '../helpers/types'
+import { ArtworkObj, GameContextObj, LocalStorageObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
 import axios from 'axios'
 import { Loading } from './Loading'
+import { createAuxiliaryConfig } from '../helpers/fctns'
 
 
 
@@ -41,26 +42,7 @@ const Artworks = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	// const searchConfig = {
-	// 	method: 'post',
-	// 	url: 'http://localhost:3001/api/artwork',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	data: {
-	// 		'gameid': auxiliaryObj.gameID
-	// 	}
-	// }
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/altartwork',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'gameid': auxiliaryObj.gameID
-		}
-	}
+	const searchConfig = createAuxiliaryConfig('post', 'artwork', auxiliaryObj.gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

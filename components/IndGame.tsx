@@ -7,7 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import { Button, SvgIcon } from '@mui/material'
 import { ESRB, PEGI, placeholderImages } from '../assets/ratingsvglinks'
 import { formattedYear } from '../helpers/fctns'
-import { AgeRatings } from '../../backendga/helpers/requests'
+import { AgeRatings } from '../../backendga/helpers/betypes'
 import { IconSx } from '../sxstyling/styles'
 import './IndGame.css'
 
@@ -16,8 +16,8 @@ type IndGameProps = {
 	platforms: any[],
 	rating: number,
 	age_ratings: AgeRatings,
-	releaseDate: string,
-	likes: string,
+	releaseDate: string | Date,
+	likes: number,
 	title: string,
 	genres: any[],
 	companies: any[]

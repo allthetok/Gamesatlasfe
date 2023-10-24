@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React from 'react'
-import { GameDetailObj, LanguageTable } from '../helpers/types'
+import { GameDetailObj, LanguageTable } from '../helpers/fetypes'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { Languages } from '../../backendga/helpers/requests'
 

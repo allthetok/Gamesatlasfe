@@ -8,12 +8,13 @@ import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { WebsiteCategories } from '../assets/ratingsvglinks'
-import { Categories } from '../../backendga/helpers/requests'
-import { GameDetailObj, GameContextObj, WebsiteObj } from '../helpers/types'
+import { Categories } from '../../backendga/helpers/betypes'
+import { GameDetailObj, GameContextObj, WebsiteObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 import axios from 'axios'
 import { Loading } from './Loading'
+import { createAuxiliaryConfig } from '../helpers/fctns'
 
 
 type WebsiteProps = {
@@ -71,26 +72,8 @@ const Websites = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	// const searchConfig = {
-	// 	method: 'post',
-	// 	url: 'http://localhost:3001/api/websites',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	data: {
-	// 		'gameid': auxiliaryObj.gameID
-	// 	}
-	// }
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/altwebsites',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'gameid': auxiliaryObj.gameID
-		}
-	}
+	const searchConfig = createAuxiliaryConfig('post', 'websites', auxiliaryObj.gameID)
+
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

@@ -7,7 +7,7 @@ import { Button, Autocomplete, TextField, SvgIcon, styled } from '@mui/material'
 import { ThemeProvider, makeStyles } from '@mui/material/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
-import { createAxiosConfig } from '../helpers/fctns'
+import { createExploreAxiosConfig } from '../helpers/fctns'
 import { IndGame } from './IndGame'
 import { IndGameTable } from './IndGameTable'
 import { IconSx, ListTblToggleSx, AscDescSx } from '../sxstyling/styles'
@@ -31,7 +31,7 @@ const IndGameList = () => {
 	const sortOptions = ['IGDB Rating', 'Relevance', 'Title', 'Release Date']
 
 	const getMultiResp = useCallback(async () => {
-		const searchConfig = createAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
+		const searchConfig = createExploreAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
 		setLoading(true)
 		await axios(searchConfig)
 			.then((response) => {

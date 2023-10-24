@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext } from 'react'
 import { useSearch } from '../../hooks/useSearch'
-import { GameDetailObj } from '../../helpers/types'
+import { GameDetailObj } from '../../helpers/fetypes'
 import { ContextSear, useSearchContext } from './searchcontext'
 
 type GameContextObj = {

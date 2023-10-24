@@ -1,4 +1,4 @@
-import { ButtonField } from './types'
+import { ButtonField } from './fetypes'
 
 const buttonArray: ButtonField[] = [
 	{

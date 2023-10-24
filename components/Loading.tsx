@@ -3,7 +3,7 @@ import ReactLoading from 'react-loading'
 import { Description } from './Description'
 import { NavGame } from './NavGame'
 import { Search } from './Search'
-import { LocalStorageObj } from '../helpers/types'
+import { LocalStorageObj } from '../helpers/fetypes'
 import './Loading.css'
 
 type LoadingProps = {

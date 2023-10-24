@@ -1,4 +1,4 @@
-import { AgeRatings, Categories, Companies, Covers, Languages, Platforms, Videos } from '../../backendga/helpers/requests'
+import { AgeRatings, Categories, Companies, Covers, Languages, Platforms, Videos } from '../../backendga/helpers/betypes'
 
 type ButtonField = {
 	link: string,

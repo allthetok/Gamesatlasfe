@@ -1,8 +1,8 @@
 import React from 'react'
 import { formattedDateLong } from '../helpers/fctns'
-import { GameContextObj, LocalStorageObj, OverviewObj } from '../helpers/types'
+import { GameContextObj, LocalStorageObj, OverviewObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
-import { Companies } from '../../backendga/helpers/requests'
+import { Companies } from '../../backendga/helpers/betypes'
 
 // type DescriptionProps = {
 // 	title: string,

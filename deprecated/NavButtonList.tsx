@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavButton } from './NavButton'
 import { buttonArray } from '../helpers/button'
-import { ButtonField } from '../helpers/types'
+import { ButtonField } from '../helpers/fetypes'
 import './GameDtl.css'
 
 type NavButtonListProps = {

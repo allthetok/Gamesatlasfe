@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React from 'react'
-import { GameDetailObj } from '../helpers/types'
+import { GameDetailObj } from '../helpers/fetypes'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { WebsiteCategories } from '../assets/ratingsvglinks'
 import { Categories } from '../../backendga/helpers/requests'

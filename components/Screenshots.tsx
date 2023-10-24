@@ -8,12 +8,13 @@ import { Description } from './Description'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { GameContextObj, ScreenshotsObj } from '../helpers/types'
+import { GameContextObj, ScreenshotsObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
 import './GameDtl.css'
 import axios from 'axios'
 import { Loading } from './Loading'
+import { createAuxiliaryConfig } from '../helpers/fctns'
 
 const Screenshots = () => {
 	// const [gameId, setGameId] = useState(() => {
@@ -32,26 +33,8 @@ const Screenshots = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
 
-	// const searchConfig = {
-	// 	method: 'post',
-	// 	url: 'http://localhost:3001/api/screenshots',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	data: {
-	// 		'gameid': auxiliaryObj.gameID
-	// 	}
-	// }
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/altscreenshots',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'gameid': auxiliaryObj.gameID
-		}
-	}
+	const searchConfig = createAuxiliaryConfig('post', 'screenshots', auxiliaryObj.gameID)
+
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

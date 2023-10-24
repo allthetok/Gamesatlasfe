@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useCallback } from 'react'
-import { GameDetailObj } from '../helpers/types'
+import { GameDetailObj } from '../helpers/fetypes'
 import axios from 'axios'
 
 type UseSearchProps = {

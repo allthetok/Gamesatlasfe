@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import React, { useCallback, useEffect, useState } from 'react'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
-import { Covers } from '../../backendga/helpers/requests'
-import { GameContextObj, SimilarObj } from '../helpers/types'
+import { Explore } from '../../backendga/helpers/betypes'
+import { GameContextObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 import axios from 'axios'
 import { Loading } from './Loading'
 import { IndGame } from './IndGame'
 import './IndGameList.css'
+import { createAuxiliaryConfig } from '../helpers/fctns'
 
 const Similar = () => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
@@ -25,21 +27,12 @@ const Similar = () => {
 			return JSON.parse(localstorageObj!)
 		}
 	})
-	// const [dataFetch, setDataFetch] = useState<SimilarObj>()
-	const [dataFetch, setDataFetch] = useState<any>()
+	const [dataFetch, setDataFetch] = useState<Explore[]>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/altsimilargames',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'gameid': auxiliaryObj.gameID
-		}
-	}
+	const searchConfig = createAuxiliaryConfig('post', 'similargames', auxiliaryObj.gameID)
+
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
@@ -67,8 +60,8 @@ const Similar = () => {
 						<NavGame title={auxiliaryObj.title}/>
 						<div>
 							<div className='grid-wrapper'>
-								{dataFetch.map((item: any) => (
-									<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} companies={item.involved_companies} />
+								{dataFetch.map((item: Explore) => (
+									<IndGame key={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
 								))}
 							</div>
 							{/* <ul className='similar-ul'>

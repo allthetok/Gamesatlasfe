@@ -4,7 +4,7 @@ import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { GameDetailObj } from '../helpers/types'
+import { GameDetailObj } from '../helpers/fetypes'
 import './Artworks.css'
 
 type ArtworksProps = {
