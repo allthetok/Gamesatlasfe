@@ -4,15 +4,6 @@ import { GameContextObj, LocalStorageObj, OverviewObj } from '../helpers/fetypes
 import { useGameContext } from '@/app/gamecontext'
 import { Companies } from '../../backendga/helpers/betypes'
 
-// type DescriptionProps = {
-// 	title: string,
-// 	// involved_companies: Companies[],
-// 	involved_companies: string,
-// 	summary: string,
-// 	story: string,
-// 	releaseDate: string
-// }
-
 type DescriptionProps = {
 	auxiliaryObj: LocalStorageObj
 }

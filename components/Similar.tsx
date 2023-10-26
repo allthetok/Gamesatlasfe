@@ -13,6 +13,7 @@ import { Loading } from './Loading'
 import { IndGame } from './IndGame'
 import './IndGameList.css'
 import { createAuxiliaryConfig } from '../helpers/fctns'
+import './Similar.css'
 
 const Similar = () => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
@@ -59,7 +60,7 @@ const Similar = () => {
 					<div className='header-wrapper'>
 						<NavGame title={auxiliaryObj.title}/>
 						<div>
-							<div className='grid-wrapper'>
+							<div className='similar-grid-wrapper'>
 								{dataFetch.map((item: Explore) => (
 									<IndGame key={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
 								))}

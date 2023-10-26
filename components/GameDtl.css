@@ -16,7 +16,7 @@
 	--size-md: 768px;
 	--size-lg: 992px;
 	--size-xl: 1200px;
-	--size-xxl: 1400px;
+	--size-xxl: 1450px;
 	--spacing: 1.25rem;
 	--spacing-xs: 0.75rem;
 	--spacing-xxs: 0.5rem;
@@ -362,3 +362,6 @@ dd {
 	vertical-align: text-top;
 }
 
+.similar-grid {
+	grid-template-columns: repeat(3, minmax(450px, 1fr));
+}

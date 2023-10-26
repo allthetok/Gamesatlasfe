@@ -39,7 +39,6 @@ const GameDtl = () => {
 	})
 
 	const searchConfig = createGameDtlConfig('post', 'overview', searchTerm!)
-	console.log(searchConfig)
 
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
@@ -57,7 +56,6 @@ const GameDtl = () => {
 				}
 				setAuxiliaryObj(dataFetchAuxiliary)
 				localStorage.setItem('auxiliaryObj', JSON.stringify(dataFetchAuxiliary))
-				// localStorage.setItem('gameID', response.data.id!.toString())
 				setLoading(false)
 			})
 			.catch((err) => {

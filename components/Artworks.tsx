@@ -15,27 +15,13 @@ import './Artworks.css'
 import './GameDtl.css'
 import axios from 'axios'
 import { Loading } from './Loading'
-import { createAuxiliaryConfig } from '../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
 
 
-
-// type ArtworksProps = {
-// 	response: GameDetailObj
-// }
-
-// const Artworks = ({ response }: ArtworksProps) => {
 const Artworks = () => {
-	// const [gameId, setGameId] = useState(() => {
-	// 	if (typeof window !== 'undefined') {
-	// 		return localStorage.getItem('gameID') || null
-	// 	}
-	// })
-	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
-		if (typeof window !== 'undefined'){
-			const localstorageObj =  localStorage.getItem('auxiliaryObj')
-			return JSON.parse(localstorageObj!)
-		}
-	})
+
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
+
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	const [dataFetch, setDataFetch] = useState<ArtworkObj>()

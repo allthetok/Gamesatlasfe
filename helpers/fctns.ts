@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { LocalStorageObj } from './fetypes'
+
 const ratingFloatToStar = (rating: number) : number => rating / 20
 
 const formattedDateLong = ((inpDate: string | Date) => new Date(inpDate).toLocaleDateString('en-us', { year: 'numeric', 'month': 'long', 'day': 'numeric' }))
-
 
 const formattedYear = (inpDate: string | Date) => inpDate !== 'N/A' ? new Date(inpDate).getFullYear() : 'N/A'
 
@@ -51,6 +52,27 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameid: number)
 	}
 }
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig }
+// const retrieveLocalStorageObj = (): LocalStorageObj => {
+// 	if (typeof window !== 'undefined'){
+// 		const localstorageObj =  JSON.parse(localStorage.getItem('auxiliaryObj')!)
+// 		// console.log(JSON.parse(localstorageObj!))
+// 		// return JSON.parse(localstorageObj!)
+// 		return localstorageObj
+// 	}
+// 	else {
+// 		return {
+// 			gameID: 0,
+// 			title: 'None',
+// 			involved_companies: '',
+// 			summary: '',
+// 			story: '',
+// 			releaseDate: ''
+// 		}
+// 	}
+// }
+
+const retrieveLocalStorageObj = (gameDtl: boolean): LocalStorageObj => typeof window !== 'undefined' && !gameDtl ? JSON.parse(localStorage.getItem('auxiliaryObj')!) : { gameID: 0, title: '', involved_companies: '', summary: '', story: '', releaseDate: '' }
+
+export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj }
 
 
