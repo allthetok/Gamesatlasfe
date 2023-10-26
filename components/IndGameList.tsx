@@ -1,21 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useEffect, useCallback, SyntheticEvent } from 'react'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
-import { Button, Autocomplete, TextField, SvgIcon, styled } from '@mui/material'
-import { ThemeProvider, makeStyles } from '@mui/material/styles'
+import { createExploreAxiosConfig } from '../helpers/fctns'
+import { Explore } from '../../backendga/helpers/betypes'
+import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
-import { createExploreAxiosConfig } from '../helpers/fctns'
 import { IndGame } from './IndGame'
-import { IndGameTable } from './IndGameTable'
 import { IconSx, ListTblToggleSx, AscDescSx } from '../sxstyling/styles'
+import { MyTextField, StyledComponents } from '../sxstyling/styledmui'
 import { theme } from '../sxstyling/theme'
+import { IndGameTable } from './IndGameTable'
 import './IndGameList.css'
 
 const IndGameList = () => {
-	const [multiResp, setMultiResp] = useState([])
+	const [multiResp, setMultiResp] = useState<Explore[]>([])
+
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
@@ -43,7 +47,7 @@ const IndGameList = () => {
 				setError(err)
 				console.error(err)
 			})
-	}, [sortBy, sortDirection, platform, limit])
+	}, [sortBy, sortDirection, platform, limit, genre])
 
 	useEffect(() => {
 		getMultiResp()
@@ -61,16 +65,6 @@ const IndGameList = () => {
 		e.preventDefault()
 		setSortBy(value!)
 	}
-
-	const MyTextField = styled(TextField)({
-		color: '#dddddd',
-		backgroundColor: '#202020'
-	})
-
-	const StyledComponents = () => {
-		return <MyTextField>Styled Components</MyTextField>
-	}
-
 
 	return (
 		<div>
@@ -139,8 +133,8 @@ const IndGameList = () => {
 					</div>
 					{ viewToggle === 'list' ?
 						<div className='grid-wrapper'>
-							{multiResp.map((item: any) => (
-								<IndGame key={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} companies={item.involved_companies} />
+							{multiResp.map((item: Explore) => (
+								<IndGame key={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
 							))}
 						</div>
 						: <IndGameTable multiResp={multiResp}/>

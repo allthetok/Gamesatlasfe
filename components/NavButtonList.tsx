@@ -3,6 +3,7 @@ import { NavButton } from './NavButton'
 import { buttonArray } from '../helpers/button'
 import { ButtonField } from '../helpers/fetypes'
 import './GameDtl.css'
+import Link from 'next/link'
 
 const NavButtonList = () => {
 	return (
@@ -15,5 +16,6 @@ const NavButtonList = () => {
 		</ul>
 	)
 }
+
 
 export { NavButtonList }

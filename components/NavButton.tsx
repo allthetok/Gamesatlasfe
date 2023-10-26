@@ -18,8 +18,16 @@ const NavButton = ({ link, formatName }: NavButtonProps) => {
 					{formatName}
 				</Button>
 			</Link>
+			{/* <Link href={`${link}`}>
+				<Button sx={currentPath === link ? ButtonActiveSx : ButtonSx}>
+					{formatName}
+				</Button>
+			</Link> */}
 		</Box>
 	)
+	// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+	// 									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+	// 								</Link>
 }
 
 export { NavButton }

@@ -2,15 +2,17 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
+import { Companies, Explore, Platforms } from '../../backendga/helpers/betypes'
+import { GenericStringObj } from '../helpers/fetypes'
+import { formattedDateLong } from '../helpers/fctns'
 import { TableRow, TableCell, TableContainer, Paper, Table, TableHead, TableBody, SvgIcon } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { ESRB, PEGI, placeholderImages } from '../assets/ratingsvglinks'
-import { formattedDateLong } from '../helpers/fctns'
 import { TableFavoriteIconSx } from '../sxstyling/styles'
 import './IndGameTable.css'
 
 type IndGameTableProps = {
-	multiResp: any[] | never[]
+	multiResp: Explore[]
 }
 
 const TableCells = () => {
@@ -50,7 +52,7 @@ const TableCells = () => {
 const TableRows = ({ multiResp }: IndGameTableProps) => {
 	return (
 		<>
-			{multiResp!.map((game: any) => (
+			{multiResp!.map((game: Explore) => (
 				<TableRow key={game.id} sx={{ textAlign: 'center' }}>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
 						<p className='title-link'>{game.title}</p>
@@ -74,7 +76,7 @@ const TableRows = ({ multiResp }: IndGameTableProps) => {
 						<p className='table-text'>{formattedDateLong(game.releaseDate)}</p>
 					</TableCell>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
-						{game.platforms.map((val: any) => (
+						{game.platforms.map((val: Platforms) => (
 							val.url ? <img key={val.id} className='card-platformlogo' alt={`${val.name} Logo`} src={val.url} /> : <></>
 						))}
 					</TableCell>
@@ -84,16 +86,16 @@ const TableRows = ({ multiResp }: IndGameTableProps) => {
 					</TableCell>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
 						<div className='genres-wrap'>
-							{game.genres.map((val: any) => (
+							{game.genres.map((val: GenericStringObj) => (
 								<a key={val.id} className='tag-link-company'> {val.name}</a>
 							))}
 						</div>
 					</TableCell>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
 						<div className='companies-wrap'>
-							{game.involved_companies.map((val: any) => (
+							{game.involved_companies.map((val: Companies) => (
 								<a key={val.name} className='tag-company' href={val.officialSite} target='_blank'>
-									<img key={val.id} className='companylogo' alt={`${val.name} Logo`} src={val.url !== '' ? val.url : placeholderImages.NoLogo} />
+									<img className='companylogo' alt={`${val.name} Logo`} src={val.url !== '' ? val.url : placeholderImages.NoLogo} />
 									<p>{val.name}</p>
 								</a>
 							))}
