@@ -3,13 +3,12 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
+import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
+import { GenericStringObj, OverviewObj, GameContextObj } from '../helpers/fetypes'
+import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
+import { useGameContext } from '@/app/gamecontext'
 import { Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
-import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
-import { GenericStringObj, OverviewObj } from '../helpers/fetypes'
-import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
-import { GameContextObj } from '../helpers/fetypes'
-import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 type OverViewProps = {
@@ -26,12 +25,6 @@ type OverViewProps = {
 
 const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatings, getGenericArr, getStringArr, getWebsites }: OverViewProps) => {
 	//const response: GameDetailObj = useContext(GameContext)
-
-	// const [searchTerm, setSearchTerm] = useState(() => {
-	// 	const gameSearch = localStorage.getItem('searchterm')
-	// 	const initialVal = JSON.parse(gameSearch!)
-	// 	return initialVal || null
-	// })
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (

@@ -2,36 +2,28 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
-import { Search } from './Search'
-import { NavGame } from './NavGame'
-import { Description } from './Description'
+import axios from 'axios'
+import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { GameContextObj, LocalStorageObj, ScreenshotsObj } from '../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { GameContextObj, ScreenshotsObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
+import { Loading } from './Loading'
+import { Search } from './Search'
+import { NavGame } from './NavGame'
+import { Description } from './Description'
 import './Artworks.css'
 import './GameDtl.css'
-import axios from 'axios'
-import { Loading } from './Loading'
-import { createAuxiliaryConfig } from '../helpers/fctns'
+
 
 const Screenshots = () => {
-	// const [gameId, setGameId] = useState(() => {
-	// 	const gameId = localStorage.getItem('gameid')
-	// 	const initialVal = JSON.parse(gameId!)
-	// 	return initialVal || null
-	// })
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
-	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
-		if (typeof window !== 'undefined'){
-			const localstorageObj =  localStorage.getItem('auxiliaryObj')
-			return JSON.parse(localstorageObj!)
-		}
-	})
 	const [dataFetch, setDataFetch] = useState<ScreenshotsObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
+
 
 	const searchConfig = createAuxiliaryConfig('post', 'screenshots', auxiliaryObj.gameID)
 

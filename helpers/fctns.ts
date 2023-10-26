@@ -73,6 +73,8 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameid: number)
 
 const retrieveLocalStorageObj = (gameDtl: boolean): LocalStorageObj => typeof window !== 'undefined' && !gameDtl ? JSON.parse(localStorage.getItem('auxiliaryObj')!) : { gameID: 0, title: '', involved_companies: '', summary: '', story: '', releaseDate: '' }
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj }
+const retrieveSearchTerm = (): string => typeof window !== 'undefined' ? localStorage.getItem('searchterm') || '' : ''
+
+export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm }
 
 

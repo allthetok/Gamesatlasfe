@@ -2,7 +2,7 @@ import React from 'react'
 import { NavButtonList } from './NavButtonList'
 import { IconButton } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import { GameContextObj, OverviewObj } from '../helpers/fetypes'
+import { GameContextObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 

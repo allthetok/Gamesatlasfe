@@ -1,36 +1,27 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import React, { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
+import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { Explore } from '../../backendga/helpers/betypes'
+import { GameContextObj, LocalStorageObj } from '../helpers/fetypes'
+import { useGameContext } from '@/app/gamecontext'
+import { Loading } from './Loading'
+import { IndGame } from './IndGame'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
-import { Explore } from '../../backendga/helpers/betypes'
-import { GameContextObj } from '../helpers/fetypes'
-import { useGameContext } from '@/app/gamecontext'
-import './GameDtl.css'
-import axios from 'axios'
-import { Loading } from './Loading'
-import { IndGame } from './IndGame'
 import './IndGameList.css'
-import { createAuxiliaryConfig } from '../helpers/fctns'
+import './GameDtl.css'
 import './Similar.css'
 
 const Similar = () => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
-	// const [gameId, setGameId] = useState(() => {
-	// 	if (typeof window !== 'undefined') {
-	// 		return localStorage.getItem('gameID') || null
-	// 	}
-	// })
-	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
-		if (typeof window !== 'undefined'){
-			const localstorageObj =  localStorage.getItem('auxiliaryObj')
-			return JSON.parse(localstorageObj!)
-		}
-	})
+
 	const [dataFetch, setDataFetch] = useState<Explore[]>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
 	const searchConfig = createAuxiliaryConfig('post', 'similargames', auxiliaryObj.gameID)
 

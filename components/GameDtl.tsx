@@ -1,42 +1,30 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useCallback, useEffect, useRef } from 'react'
+import axios from 'axios'
+import ReactLoading from 'react-loading'
+import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
+import { useGameContext } from '@/app/gamecontext'
+import { GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../helpers/fetypes'
+import { createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm } from '../helpers/fctns'
+import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../assets/ratingsvglinks'
 import { Description } from './Description'
 import { Search } from './Search'
 import { NavGame } from './NavGame'
 import { Overview } from './Overview'
-import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
-import { useGameContext } from '@/app/gamecontext'
-import { GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../helpers/fetypes'
-import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../assets/ratingsvglinks'
 import './GameDtl.css'
-import axios from 'axios'
-import ReactLoading from 'react-loading'
-import { createGameDtlConfig } from '../helpers/fctns'
 
 
 const GameDtl = () => {
 	// const response: GameDetailObj = useContext(GameContext)
 	//const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
-	const [searchTerm, setSearchTerm] = useState(() => {
-		if (typeof window !== 'undefined') {
-			return localStorage.getItem('searchterm') || ''
-		}
-	})
 	const [dataFetch, setDataFetch] = useState<GameObj>()
-	// const [dataFetch, setDataFetch] = useState()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>({
-		gameID: 0,
-		title: '',
-		involved_companies: '',
-		summary: '',
-		story: '',
-		releaseDate: ''
-	})
+	const [searchTerm, setSearchTerm] = useState<string>(retrieveSearchTerm())
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(true))
 
 	const searchConfig = createGameDtlConfig('post', 'overview', searchTerm!)
 

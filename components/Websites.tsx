@@ -3,18 +3,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
+import { Categories } from '../../backendga/helpers/betypes'
+import { GameDetailObj, GameContextObj, WebsiteObj, LocalStorageObj } from '../helpers/fetypes'
+import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import { useGameContext } from '@/app/gamecontext'
+import { Loading } from './Loading'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { WebsiteCategories } from '../assets/ratingsvglinks'
-import { Categories } from '../../backendga/helpers/betypes'
-import { GameDetailObj, GameContextObj, WebsiteObj } from '../helpers/fetypes'
-import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
-import axios from 'axios'
-import { Loading } from './Loading'
-import { createAuxiliaryConfig } from '../helpers/fctns'
+
+
 
 
 type WebsiteProps = {
@@ -55,22 +57,11 @@ const TableRows = ( { response }: WebsiteProps) => {
 
 const Websites = () => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
-	// const [gameId, setGameId] = useState(() => {
-	// 	if (typeof window !== 'undefined') {
-	// 		return localStorage.getItem('gameID') || null
-	// 	}
-	// })
-
-	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
-		if (typeof window !== 'undefined'){
-			const localstorageObj =  localStorage.getItem('auxiliaryObj')
-			return JSON.parse(localstorageObj!)
-		}
-	})
 
 	const [dataFetch, setDataFetch] = useState<WebsiteObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
 	const searchConfig = createAuxiliaryConfig('post', 'websites', auxiliaryObj.gameID)
 

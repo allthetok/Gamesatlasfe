@@ -4,27 +4,23 @@
 // import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 // import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import React, { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
+import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { Videos } from '../../backendga/helpers/betypes'
+import { GameContextObj, LocalStorageObj, VideoObj } from '../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
+import { useGameContext } from '@/app/gamecontext'
+import { Loading } from './Loading'
 import { Video } from './Video'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
-import { Videos } from '../../backendga/helpers/betypes'
-import { GameContextObj, VideoObj } from '../helpers/fetypes'
-import { useGameContext } from '@/app/gamecontext'
 import './Artworks.css'
-import axios from 'axios'
-import { Loading } from './Loading'
-import { createAuxiliaryConfig } from '../helpers/fctns'
+
 
 
 
 const VideoList = () => {
-
-	// const opts: YouTubeProps['opts'] = {
-	// 	height: '700',
-	// 	width: '1200'
-	// }
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	const [videoPlaying, setVideoPlaying] = useState('')
@@ -33,21 +29,10 @@ const VideoList = () => {
 		setVideoPlaying(videoId)
 	}
 
-	// const [gameId, setGameId] = useState(() => {
-	// 	if (typeof window !== 'undefined') {
-	// 		return localStorage.getItem('gameID') || null
-	// 	}
-	// })
-	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
-		if (typeof window !== 'undefined'){
-			const localstorageObj =  localStorage.getItem('auxiliaryObj')
-			return JSON.parse(localstorageObj!)
-		}
-	})
-
 	const [dataFetch, setDataFetch] = useState<VideoObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
 	const searchConfig = createAuxiliaryConfig('post', 'videos', auxiliaryObj.gameID)
 

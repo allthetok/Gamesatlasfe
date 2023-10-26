@@ -3,19 +3,19 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
-import { Description } from './Description'
-import { Search } from './Search'
-import { NavGame } from './NavGame'
+import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { ArtworkObj, GameContextObj, LocalStorageObj } from '../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { ArtworkObj, GameContextObj, LocalStorageObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
-import './Artworks.css'
-import './GameDtl.css'
 import axios from 'axios'
 import { Loading } from './Loading'
-import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { Description } from './Description'
+import { Search } from './Search'
+import { NavGame } from './NavGame'
+import './Artworks.css'
+import './GameDtl.css'
 
 
 const Artworks = () => {

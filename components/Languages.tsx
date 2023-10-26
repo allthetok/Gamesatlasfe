@@ -7,12 +7,12 @@ import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable } from '../helpers/fetypes'
+import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable, LocalStorageObj } from '../helpers/fetypes'
 import { Languages } from '../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
 import axios from 'axios'
 import { Loading } from './Loading'
-import { createAuxiliaryConfig } from '../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
 
 
 type LanguageProps = {
@@ -92,15 +92,10 @@ const TableRows = ( { response }: LanguageProps) => {
 const Languages = () => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
-	const [auxiliaryObj, setAuxiliaryObj]: any = useState(() => {
-		if (typeof window !== 'undefined'){
-			const localstorageObj =  localStorage.getItem('auxiliaryObj')
-			return JSON.parse(localstorageObj!)
-		}
-	})
 	const [dataFetch, setDataFetch] = useState<LanguageObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
 	const searchConfig = createAuxiliaryConfig('post', 'language', auxiliaryObj.gameID)
 	const getGameDtl = useCallback(async () => {
