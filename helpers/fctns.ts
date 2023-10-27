@@ -52,29 +52,15 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameid: number)
 	}
 }
 
-// const retrieveLocalStorageObj = (): LocalStorageObj => {
-// 	if (typeof window !== 'undefined'){
-// 		const localstorageObj =  JSON.parse(localStorage.getItem('auxiliaryObj')!)
-// 		// console.log(JSON.parse(localstorageObj!))
-// 		// return JSON.parse(localstorageObj!)
-// 		return localstorageObj
-// 	}
-// 	else {
-// 		return {
-// 			gameID: 0,
-// 			title: 'None',
-// 			involved_companies: '',
-// 			summary: '',
-// 			story: '',
-// 			releaseDate: ''
-// 		}
-// 	}
-// }
-
 const retrieveLocalStorageObj = (gameDtl: boolean): LocalStorageObj => typeof window !== 'undefined' && !gameDtl ? JSON.parse(localStorage.getItem('auxiliaryObj')!) : { gameID: 0, title: '', involved_companies: '', summary: '', story: '', releaseDate: '' }
 
 const retrieveSearchTerm = (): string => typeof window !== 'undefined' ? localStorage.getItem('searchterm') || '' : ''
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm }
+const splitRouteQuery = (inputStr: string, separator: string) => {
+	const result = inputStr.substring(inputStr.lastIndexOf(separator)+1)
+	return result !== inputStr ? result : ''
+}
+
+export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery }
 
 

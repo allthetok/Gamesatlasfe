@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
 import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
@@ -14,16 +15,20 @@ import { NavGame } from './NavGame'
 import { Overview } from './Overview'
 import './GameDtl.css'
 
-
+const splitRouteQuery = (inputStr: string, separator: string) => {
+	const result = inputStr.substring(inputStr.lastIndexOf(separator)+1)
+	return result !== inputStr ? result : ''
+}
 const GameDtl = () => {
 	// const response: GameDetailObj = useContext(GameContext)
 	//const { dataFetch, error, loading }: GameContextObj = useGameContext()
-
 	const [dataFetch, setDataFetch] = useState<GameObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	const [searchTerm, setSearchTerm] = useState<string>(retrieveSearchTerm())
+	// const [searchTerm, setSearchTerm] = useState<string>(retrieveSearchTerm())
+	console.log(useRouter().asPath)
+	const [searchTerm, setSearchTerm] = useState<string>(splitRouteQuery(useRouter().asPath, '?').replace('search=',''))
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(true))
 
 	const searchConfig = createGameDtlConfig('post', 'overview', searchTerm!)
@@ -56,6 +61,7 @@ const GameDtl = () => {
 	useEffect(() => {
 		getGameDtl()
 	}, [getGameDtl])
+
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
@@ -110,7 +116,6 @@ const GameDtl = () => {
 	}
 
 	const getWebsites = (categoriesArr: Categories[], specified: string): React.JSX.Element => {
-		console.log(categoriesArr)
 		return specified === 'External' ?
 			(
 				<>

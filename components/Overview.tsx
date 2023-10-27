@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
@@ -61,7 +62,7 @@ const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatin
 							<dt>Localizations</dt>
 							<dd>
 								{dataFetch?.game_localizations.map((indLocal: any) => (
-									<p>{indLocal.name} ({indLocal.region})</p>
+									<p key={indLocal.region}>{indLocal.name} ({indLocal.region})</p>
 								))}
 							</dd>
 						</dl>
