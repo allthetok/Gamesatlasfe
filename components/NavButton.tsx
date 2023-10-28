@@ -7,13 +7,16 @@ import './GameDtl.css'
 
 type NavButtonProps = {
 	link: string,
-	formatName: string
+	formatName: string,
+	gameID: number
 }
-const NavButton = ({ link, formatName }: NavButtonProps) => {
+const NavButton = ({ link, formatName, gameID }: NavButtonProps) => {
 	const currentPath = usePathname()
 	return (
 		<Box sx={currentPath === link ? BoxActiveSx : BoxSx}>
-			<Link href={link}>
+			{/* <Link href={`${link}/id=${gameID}`}> */}
+			{/* <Link href={link}> */}
+			<Link href={`${link}?id=${gameID}`}>
 				<Button sx={currentPath === link ? ButtonActiveSx : ButtonSx}>
 					{formatName}
 				</Button>

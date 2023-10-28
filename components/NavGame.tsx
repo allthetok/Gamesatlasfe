@@ -7,10 +7,11 @@ import { useGameContext } from '@/app/gamecontext'
 import './GameDtl.css'
 
 type NavGameProps = {
-	title: string
+	title: string,
+	gameID: number
 }
 
-const NavGame = ({ title }: NavGameProps) => {
+const NavGame = ({ title, gameID }: NavGameProps) => {
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	return (
@@ -40,7 +41,7 @@ const NavGame = ({ title }: NavGameProps) => {
 							</div>
 						</div>
 					</div>
-					<NavButtonList />
+					<NavButtonList gameID={gameID} />
 				</div>
 				: <></>}
 		</>

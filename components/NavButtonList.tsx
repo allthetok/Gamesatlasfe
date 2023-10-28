@@ -5,12 +5,16 @@ import { ButtonField } from '../helpers/fetypes'
 import './GameDtl.css'
 import Link from 'next/link'
 
-const NavButtonList = () => {
+type NavButtonListProps = {
+	gameID: number
+}
+
+const NavButtonList = ({ gameID }: NavButtonListProps) => {
 	return (
 		<ul className='nav-tabs mb'>
 			{buttonArray.map((el: ButtonField) => (
 				<li className='nav-tabs-li' key={el.link}>
-					<NavButton link={el.link} formatName={el.formatName} />
+					<NavButton link={el.link} formatName={el.formatName} gameID={gameID} />
 				</li>
 			))}
 		</ul>

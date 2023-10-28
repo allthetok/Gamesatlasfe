@@ -165,7 +165,7 @@ const GameDtl = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} />
+						<NavGame title={auxiliaryObj.title} gameID={dataFetch.id} />
 						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
 						<Description auxiliaryObj={auxiliaryObj} />
 					</div>

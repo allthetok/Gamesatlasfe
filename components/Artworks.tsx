@@ -3,7 +3,8 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
-import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { useRouter } from 'next/router'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
 import { ArtworkObj, GameContextObj, LocalStorageObj } from '../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -22,13 +23,30 @@ const Artworks = () => {
 
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
+	console.log(useRouter().asPath)
+	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
+
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	const [dataFetch, setDataFetch] = useState<ArtworkObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	const searchConfig = createAuxiliaryConfig('post', 'artwork', auxiliaryObj.gameID)
+	// const searchConfig = createAuxiliaryConfig('post', 'artwork', auxiliaryObj.gameID)
+	// const getGameDtl = useCallback(async () => {
+	// 	await axios(searchConfig)
+	// 		.then((response) => {
+	// 			setDataFetch(response.data)
+	// 			setLoading(false)
+	// 		})
+	// 		.catch((err) => {
+	// 			setError(err)
+	// 			console.error(err)
+
+	// 		})
+	// }, [auxiliaryObj.gameID])
+
+	const searchConfig = createAuxiliaryConfig('post', 'artwork', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
@@ -40,7 +58,7 @@ const Artworks = () => {
 				console.error(err)
 
 			})
-	}, [auxiliaryObj.gameID])
+	}, [gameID])
 
 	useEffect(() => {
 		getGameDtl()
@@ -51,7 +69,7 @@ const Artworks = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} />
+						<NavGame title={auxiliaryObj.title} gameID={gameID} />
 						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 							{dataFetch?.artworks.map((el: string) => (
 								<img key={el} className='image-carousel' src={el} alt='Artwork' />
