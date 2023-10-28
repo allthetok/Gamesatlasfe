@@ -3,10 +3,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
 import { Categories } from '../../backendga/helpers/betypes'
 import { GameDetailObj, GameContextObj, WebsiteObj, LocalStorageObj } from '../helpers/fetypes'
-import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { useGameContext } from '@/app/gamecontext'
 import { Loading } from './Loading'
@@ -63,8 +64,28 @@ const Websites = () => {
 	const [loading, setLoading] = useState(true)
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
-	const searchConfig = createAuxiliaryConfig('post', 'websites', auxiliaryObj.gameID)
+	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
 
+
+
+	// const searchConfig = createAuxiliaryConfig('post', 'websites', auxiliaryObj.gameID)
+	// const getGameDtl = useCallback(async () => {
+	// 	await axios(searchConfig)
+	// 		.then((response) => {
+	// 			setDataFetch(response.data)
+	// 			setLoading(false)
+	// 		})
+	// 		.catch((err) => {
+	// 			setError(err)
+	// 			console.error(err)
+
+	// 		})
+	// }, [auxiliaryObj.gameID])
+
+	// useEffect(() => {
+	// 	getGameDtl()
+	// }, [getGameDtl])
+	const searchConfig = createAuxiliaryConfig('post', 'websites', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
@@ -76,7 +97,7 @@ const Websites = () => {
 				console.error(err)
 
 			})
-	}, [auxiliaryObj.gameID])
+	}, [gameID])
 
 	useEffect(() => {
 		getGameDtl()
@@ -88,7 +109,7 @@ const Websites = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} />
+						<NavGame title={auxiliaryObj.title} gameID={gameID} />
 						<div>
 							<TableContainer component={Paper}>
 								<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>

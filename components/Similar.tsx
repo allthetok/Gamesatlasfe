@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import React, { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
 import { Explore } from '../../backendga/helpers/betypes'
 import { GameContextObj, LocalStorageObj } from '../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
@@ -23,7 +24,28 @@ const Similar = () => {
 	const [loading, setLoading] = useState(true)
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
-	const searchConfig = createAuxiliaryConfig('post', 'similargames', auxiliaryObj.gameID)
+	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
+
+
+	const searchConfig = createAuxiliaryConfig('post', 'similargames', gameID)
+
+	// const getGameDtl = useCallback(async () => {
+	// 	await axios(searchConfig)
+	// 		.then((response) => {
+	// 			setDataFetch(response.data.similar_games)
+	// 			console.log(response.data)
+	// 			setLoading(false)
+	// 		})
+	// 		.catch((err) => {
+	// 			setError(err)
+	// 			console.error(err)
+
+	// 		})
+	// }, [auxiliaryObj.gameID])
+
+	// useEffect(() => {
+	// 	getGameDtl()
+	// }, [getGameDtl])
 
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
@@ -37,7 +59,7 @@ const Similar = () => {
 				console.error(err)
 
 			})
-	}, [auxiliaryObj.gameID])
+	}, [gameID])
 
 	useEffect(() => {
 		getGameDtl()
@@ -49,7 +71,7 @@ const Similar = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title}/>
+						<NavGame title={auxiliaryObj.title} gameID={gameID}/>
 						<div>
 							<div className='similar-grid-wrapper'>
 								{dataFetch.map((item: Explore) => (

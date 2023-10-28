@@ -2,8 +2,9 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
 import { GameContextObj, LocalStorageObj, ScreenshotsObj } from '../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -24,9 +25,28 @@ const Screenshots = () => {
 	const [loading, setLoading] = useState(false)
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
+	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
 
-	const searchConfig = createAuxiliaryConfig('post', 'screenshots', auxiliaryObj.gameID)
 
+
+	// const searchConfig = createAuxiliaryConfig('post', 'screenshots', auxiliaryObj.gameID)
+	// const getGameDtl = useCallback(async () => {
+	// 	await axios(searchConfig)
+	// 		.then((response) => {
+	// 			setDataFetch(response.data)
+	// 			setLoading(false)
+	// 		})
+	// 		.catch((err) => {
+	// 			setError(err)
+	// 			console.error(err)
+
+	// 		})
+	// }, [auxiliaryObj.gameID])
+
+	// useEffect(() => {
+	// 	getGameDtl()
+	// }, [getGameDtl])
+	const searchConfig = createAuxiliaryConfig('post', 'screenshots', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
@@ -38,7 +58,7 @@ const Screenshots = () => {
 				console.error(err)
 
 			})
-	}, [auxiliaryObj.gameID])
+	}, [gameID])
 
 	useEffect(() => {
 		getGameDtl()
@@ -49,7 +69,7 @@ const Screenshots = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} />
+						<NavGame title={auxiliaryObj.title} gameID={gameID} />
 						<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 							{dataFetch?.screenshots.map((el: string) => (
 								<img key={el} className='image-carousel' src={el} alt='In-Game Screenshot' />

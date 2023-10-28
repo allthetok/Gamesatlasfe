@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
@@ -12,7 +13,7 @@ import { Languages } from '../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
 import axios from 'axios'
 import { Loading } from './Loading'
-import { createAuxiliaryConfig, retrieveLocalStorageObj } from '../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
 
 
 type LanguageProps = {
@@ -96,8 +97,28 @@ const Languages = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
+	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
 
-	const searchConfig = createAuxiliaryConfig('post', 'language', auxiliaryObj.gameID)
+
+	// const searchConfig = createAuxiliaryConfig('post', 'language', auxiliaryObj.gameID)
+	// const getGameDtl = useCallback(async () => {
+	// 	await axios(searchConfig)
+	// 		.then((response) => {
+	// 			setDataFetch(response.data)
+	// 			setLoading(false)
+	// 		})
+	// 		.catch((err) => {
+	// 			setError(err)
+	// 			console.error(err)
+
+	// 		})
+	// }, [auxiliaryObj.gameID])
+
+	// useEffect(() => {
+	// 	getGameDtl()
+	// }, [getGameDtl])
+
+	const searchConfig = createAuxiliaryConfig('post', 'language', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
@@ -109,11 +130,13 @@ const Languages = () => {
 				console.error(err)
 
 			})
-	}, [auxiliaryObj.gameID])
+	}, [gameID])
 
 	useEffect(() => {
 		getGameDtl()
 	}, [getGameDtl])
+
+
 
 	return (
 		<div>
@@ -121,7 +144,7 @@ const Languages = () => {
 				<div>
 					<Search />
 					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} />
+						<NavGame title={auxiliaryObj.title} gameID={gameID} />
 						<div>
 							<TableContainer component={Paper}>
 								<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>

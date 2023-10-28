@@ -27,7 +27,7 @@ const GameDtl = () => {
 	const [loading, setLoading] = useState(true)
 
 	// const [searchTerm, setSearchTerm] = useState<string>(retrieveSearchTerm())
-	console.log(useRouter().asPath)
+	// console.log(useRouter().asPath)
 	const [searchTerm, setSearchTerm] = useState<string>(splitRouteQuery(useRouter().asPath, '?').replace('search=',''))
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(true))
 

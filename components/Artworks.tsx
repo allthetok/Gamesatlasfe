@@ -23,7 +23,6 @@ const Artworks = () => {
 
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
-	console.log(useRouter().asPath)
 	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
 
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
@@ -31,6 +30,8 @@ const Artworks = () => {
 	const [dataFetch, setDataFetch] = useState<ArtworkObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
+
+	console.log(gameID)
 
 	// const searchConfig = createAuxiliaryConfig('post', 'artwork', auxiliaryObj.gameID)
 	// const getGameDtl = useCallback(async () => {
