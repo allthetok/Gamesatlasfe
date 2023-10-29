@@ -5,7 +5,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
-import { ArtworkObj, GameContextObj, LocalStorageObj } from '../helpers/fetypes'
+import { ArtworkObj, GameContextObj, AuxiliaryObj, LocalStorageObj } from '../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -23,35 +23,28 @@ const Artworks = () => {
 
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
-	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
-
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
-	const [dataFetch, setDataFetch] = useState<ArtworkObj>()
+	const [dataFetch, setDataFetch] = useState<ArtworkObj & AuxiliaryObj>()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
+	const [navProps, setNavProps] = useState<AuxiliaryObj>()
 
-	console.log(gameID)
 
-	// const searchConfig = createAuxiliaryConfig('post', 'artwork', auxiliaryObj.gameID)
-	// const getGameDtl = useCallback(async () => {
-	// 	await axios(searchConfig)
-	// 		.then((response) => {
-	// 			setDataFetch(response.data)
-	// 			setLoading(false)
-	// 		})
-	// 		.catch((err) => {
-	// 			setError(err)
-	// 			console.error(err)
-
-	// 		})
-	// }, [auxiliaryObj.gameID])
+	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
 	const searchConfig = createAuxiliaryConfig('post', 'artwork', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
 				setDataFetch(response.data)
+				setNavProps({
+					title: response.data.title,
+					involved_companies: response.data.involved_companies,
+					summary: response.data.summary,
+					story: response.data.story,
+					releaseDate: response.data.releaseDate
+				})
 				setLoading(false)
 			})
 			.catch((err) => {

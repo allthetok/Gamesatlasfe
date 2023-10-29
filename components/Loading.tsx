@@ -15,7 +15,7 @@ const Loading = ({ auxiliaryObj }: LoadingProps) => {
 		<div>
 			<Search />
 			<div className='header-wrapper'>
-				<NavGame title={auxiliaryObj.title} />
+				<NavGame title={auxiliaryObj.title} gameID={auxiliaryObj.gameID}/>
 				<div className='loading'>
 					<ReactLoading
 						type={'spinningBubbles'}

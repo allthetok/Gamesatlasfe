@@ -35,8 +35,7 @@ const VideoList = () => {
 	const [loading, setLoading] = useState(true)
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
-	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
-
+	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
 	const searchConfig = createAuxiliaryConfig('post', 'videos', gameID)
 	const getGameDtl = useCallback(async () => {

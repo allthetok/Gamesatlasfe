@@ -97,26 +97,8 @@ const Languages = () => {
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
-	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
 
-
-	// const searchConfig = createAuxiliaryConfig('post', 'language', auxiliaryObj.gameID)
-	// const getGameDtl = useCallback(async () => {
-	// 	await axios(searchConfig)
-	// 		.then((response) => {
-	// 			setDataFetch(response.data)
-	// 			setLoading(false)
-	// 		})
-	// 		.catch((err) => {
-	// 			setError(err)
-	// 			console.error(err)
-
-	// 		})
-	// }, [auxiliaryObj.gameID])
-
-	// useEffect(() => {
-	// 	getGameDtl()
-	// }, [getGameDtl])
+	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
 	const searchConfig = createAuxiliaryConfig('post', 'language', gameID)
 	const getGameDtl = useCallback(async () => {
@@ -135,7 +117,6 @@ const Languages = () => {
 	useEffect(() => {
 		getGameDtl()
 	}, [getGameDtl])
-
 
 
 	return (

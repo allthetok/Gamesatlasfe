@@ -15,60 +15,22 @@ import { Search } from './Search'
 import { NavGame } from './NavGame'
 import { Overview } from './Overview'
 import './GameDtl.css'
+import { OverviewServer } from './OverviewServer'
 
-const splitRouteQuery = (inputStr: string, separator: string) => {
-	const result = inputStr.substring(inputStr.lastIndexOf(separator)+1)
-	return result !== inputStr ? result : ''
+type GameServerProps = {
+	dataFetch: GameObj
 }
-const GameDtl = () => {
-	// const response: GameDetailObj = useContext(GameContext)
-	//const { dataFetch, error, loading }: GameContextObj = useGameContext()
-	const [dataFetch, setDataFetch] = useState<GameObj>()
-	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(true)
-	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(true))
-	const [navProps, setNavProps] = useState<AuxiliaryObj>()
 
-	const searchTerm = splitRouteQuery(useRouter().asPath, '?').replace('search=','')
+const GameServer = ({ dataFetch }: GameServerProps) => {
 
-	const searchConfig = createGameDtlConfig('post', 'overview', searchTerm!)
-
-	const getGameDtl = useCallback(async () => {
-		await axios(searchConfig)
-			.then((response) => {
-				setDataFetch(response.data)
-				// setNavProps({
-				// 	title: response.data.title,
-				// 	involved_companies: response.data.involved_companies,
-				// 	summary: response.data.summary,
-				// 	story: response.data.story,
-				// 	releaseDate: response.data.releaseDate
-				// })
-				localStorage.removeItem('auxiliaryObj')
-				localStorage.removeItem('gameID')
-				const dataFetchAuxiliary: LocalStorageObj = {
-					gameID: response.data.id!.toString(),
-					title: response.data.title,
-					involved_companies: response.data.involved_companies.map((company: Companies) => company.name).join(', '),
-					summary: response.data.summary,
-					story: response.data.story,
-					releaseDate: response.data.releaseDate
-				}
-				setAuxiliaryObj(dataFetchAuxiliary)
-				localStorage.setItem('auxiliaryObj', JSON.stringify(dataFetchAuxiliary))
-				setLoading(false)
-			})
-			.catch((err) => {
-				setError(err)
-				console.error(err)
-
-			})
-	}, [searchTerm])
-
-	useEffect(() => {
-		getGameDtl()
-	}, [getGameDtl])
-
+	const auxiliaryObj: LocalStorageObj = {
+		gameID: dataFetch.id,
+		title: dataFetch.title,
+		involved_companies: dataFetch.involved_companies.map((company: Companies) => company.name).join(', '),
+		summary: dataFetch.summary,
+		story: dataFetch.story,
+		releaseDate: dataFetch.releaseDate
+	}
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
@@ -158,29 +120,14 @@ const GameDtl = () => {
 
 	return (
 		<div>
-			{loading ?
-				<ReactLoading
-					type={'spinningBubbles'}
-					color={'#ddd'}
-					height={150}
-					width={150}
-				/>
-				:
-				<></>
-			}
-			{!loading && !error && dataFetch ?
-				<div>
-					<Search />
-					<div className='header-wrapper'>
-						<NavGame title={dataFetch.title} gameID={dataFetch.id} />
-						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
-						<Description auxiliaryObj={auxiliaryObj} />
-					</div>
-				</div>
-				: <></>
-			}
+			<Search />
+			<div className='header-wrapper'>
+				<NavGame title={dataFetch.title} gameID={dataFetch.id} />
+				<OverviewServer dataFetch={dataFetch} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
+				<Description auxiliaryObj={auxiliaryObj} />
+			</div>
 		</div>
 	)
 }
 
-export default GameDtl
+export default GameServer

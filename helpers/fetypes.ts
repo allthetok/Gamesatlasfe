@@ -93,13 +93,22 @@ type WebsiteObj = {
 	websites: Categories[],
 }
 
+type AuxiliaryObj = {
+	// gameID: number,
+	title: string,
+	involved_companies: string,
+	summary: string,
+	story: string,
+	releaseDate: string
+}
+
 type LocalStorageObj = {
 	gameID: number,
 	title: string,
 	involved_companies: string,
 	summary: string,
 	story: string,
-	releaseDate: string
+	releaseDate: string | Date
 }
 
 type GameContextObj = {
@@ -126,4 +135,4 @@ type GenericStringObj = {
 }
 
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, LocalStorageObj, MultiObj, GenericStringObj }
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj }

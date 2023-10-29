@@ -25,27 +25,8 @@ const Screenshots = () => {
 	const [loading, setLoading] = useState(false)
 	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
 
-	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
+	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
-
-
-	// const searchConfig = createAuxiliaryConfig('post', 'screenshots', auxiliaryObj.gameID)
-	// const getGameDtl = useCallback(async () => {
-	// 	await axios(searchConfig)
-	// 		.then((response) => {
-	// 			setDataFetch(response.data)
-	// 			setLoading(false)
-	// 		})
-	// 		.catch((err) => {
-	// 			setError(err)
-	// 			console.error(err)
-
-	// 		})
-	// }, [auxiliaryObj.gameID])
-
-	// useEffect(() => {
-	// 	getGameDtl()
-	// }, [getGameDtl])
 	const searchConfig = createAuxiliaryConfig('post', 'screenshots', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)

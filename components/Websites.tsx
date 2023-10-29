@@ -66,25 +66,6 @@ const Websites = () => {
 
 	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
 
-
-
-	// const searchConfig = createAuxiliaryConfig('post', 'websites', auxiliaryObj.gameID)
-	// const getGameDtl = useCallback(async () => {
-	// 	await axios(searchConfig)
-	// 		.then((response) => {
-	// 			setDataFetch(response.data)
-	// 			setLoading(false)
-	// 		})
-	// 		.catch((err) => {
-	// 			setError(err)
-	// 			console.error(err)
-
-	// 		})
-	// }, [auxiliaryObj.gameID])
-
-	// useEffect(() => {
-	// 	getGameDtl()
-	// }, [getGameDtl])
 	const searchConfig = createAuxiliaryConfig('post', 'websites', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
