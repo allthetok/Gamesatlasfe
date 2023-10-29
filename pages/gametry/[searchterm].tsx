@@ -3,9 +3,12 @@ import React from 'react'
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next/types'
 import { GameObj } from '../../../backendga/helpers/betypes'
-import { Inter } from 'next/font/google'
+import { createGameDtlConfig } from '../../helpers/fctns'
+import { SimpleSearchConfig } from '../../helpers/fetypes'
 import GameDtlServer from '../../components/GameDtlServer'
+import { Inter } from 'next/font/google'
 import '../../src/app/globals.css'
+
 const inter = Inter({ subsets: ['latin'] })
 
 const Game = (props: { dataFetch: GameObj }) => {
@@ -16,29 +19,22 @@ const Game = (props: { dataFetch: GameObj }) => {
 	)
 }
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-	console.log(context.params)
-	const searchConfig = {
-		method: 'post',
-		url: 'http://localhost:3001/api/overview',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data: {
-			'searchterm': `${context.params!.query}`
-		}
-	}
-	console.log(searchConfig)
-	const res: GameObj = await axios(searchConfig)
+const getGameDtl = async (searchConfig: SimpleSearchConfig) => {
+	const resultGameObj: GameObj = await axios(searchConfig)
 		.then((response) => {
 			return response.data
 		})
 		.catch((err) => {
 			console.error(err)
 		})
+	return resultGameObj
+}
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+	const gameSearchConfig = createGameDtlConfig('post', 'overview', context.params!.searchterm!)
 	return {
 		props: {
-			dataFetch: res
+			dataFetch: await getGameDtl(gameSearchConfig)
 		}
 	}
 }

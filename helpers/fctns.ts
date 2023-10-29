@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { LocalStorageObj } from './fetypes'
+import { LocalStorageObj, SimpleSearchConfig } from './fetypes'
 
 const ratingFloatToStar = (rating: number) : number => rating / 20
 
@@ -26,7 +26,7 @@ const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: stri
 	}
 }
 
-const createGameDtlConfig = (method: string, endpoint: string, searchTerm: string) => {
+const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchTerm: string) => {
 	return {
 		method: method,
 		url: `http://localhost:3001/api/${endpoint}`,
@@ -35,6 +35,30 @@ const createGameDtlConfig = (method: string, endpoint: string, searchTerm: strin
 		},
 		data: {
 			'searchterm': searchTerm
+		}
+	}
+}
+
+const createGameDtlConfig = (method: string, endpoint: string, searchTerm: string | string[]): SimpleSearchConfig => {
+	if (typeof searchTerm !== 'string') {
+		searchTerm = searchTerm.join('')
+	}
+	const searchterm = (searchTerm: string | string[]) => {
+		if (typeof searchTerm !== 'string') {
+			return searchTerm.join('')
+		}
+		else {
+			return searchTerm
+		}
+	}
+	return {
+		method: method,
+		url: `http://localhost:3001/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'searchterm': searchterm(searchTerm)
 		}
 	}
 }
