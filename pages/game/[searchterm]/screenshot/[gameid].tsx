@@ -2,42 +2,42 @@
 import React from 'react'
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next/types'
-import { ArtworksObj, GlobalAuxiliaryObj } from '../../../../../backendga/helpers/betypes'
+import { GlobalAuxiliaryObj, ScreenshotObj } from '../../../../../backendga/helpers/betypes'
 import { createAuxiliaryConfig } from '../../../../helpers/fctns'
 import { NestedSearchConfig } from '../../../../helpers/fetypes'
-import Artworks from '../../../../components/Server/Artworks'
+import Screenshots from '../../../../components/Server/Screenshots'
 import { Inter } from 'next/font/google'
 import '../../../../src/app/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Artwork = (props: { dataFetch: ArtworksObj & GlobalAuxiliaryObj, gameID: number }) => {
+const Screenshot = (props: { dataFetch: ScreenshotObj & GlobalAuxiliaryObj, gameID: number }) => {
 	return (
 		<main className={inter.className}>
-			<Artworks dataFetch={props.dataFetch} gameID={props.gameID}/>
+			<Screenshots dataFetch={props.dataFetch} gameID={props.gameID}/>
 		</main>
 	)
 }
 
-const getArtworkDtl = async (searchConfig: NestedSearchConfig) => {
-	const resultArtObj: ArtworksObj & GlobalAuxiliaryObj = await axios(searchConfig)
+const getScreenshotDtl = async (searchConfig: NestedSearchConfig) => {
+	const resultScreenshotObj: ScreenshotObj & GlobalAuxiliaryObj = await axios(searchConfig)
 		.then((response) => {
 			return response.data
 		})
 		.catch((err) => {
 			console.error(err)
 		})
-	return resultArtObj
+	return resultScreenshotObj
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-	const artworkSearchConfig = createAuxiliaryConfig('post', 'artwork', context.params!.gameid!)
+	const screenshotSearchConfig = createAuxiliaryConfig('post', 'screenshots', context.params!.gameid!)
 	return {
 		props: {
-			dataFetch: await getArtworkDtl(artworkSearchConfig),
-			gameID: artworkSearchConfig.data.gameid
+			dataFetch: await getScreenshotDtl(screenshotSearchConfig),
+			gameID: screenshotSearchConfig.data.gameid
 		}
 	}
 }
 
-export default Artwork
+export default Screenshot

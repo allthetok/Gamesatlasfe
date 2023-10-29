@@ -2,42 +2,42 @@
 import React from 'react'
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next/types'
-import { ArtworksObj, GlobalAuxiliaryObj } from '../../../../../backendga/helpers/betypes'
+import { VideosObj, GlobalAuxiliaryObj } from '../../../../../backendga/helpers/betypes'
 import { createAuxiliaryConfig } from '../../../../helpers/fctns'
 import { NestedSearchConfig } from '../../../../helpers/fetypes'
-import Artworks from '../../../../components/Server/Artworks'
+import VideoList from '../../../../components/Server/VideoList'
 import { Inter } from 'next/font/google'
 import '../../../../src/app/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Artwork = (props: { dataFetch: ArtworksObj & GlobalAuxiliaryObj, gameID: number }) => {
+const Videos = (props: { dataFetch: VideosObj & GlobalAuxiliaryObj, gameID: number }) => {
 	return (
 		<main className={inter.className}>
-			<Artworks dataFetch={props.dataFetch} gameID={props.gameID}/>
+			<VideoList dataFetch={props.dataFetch} gameID={props.gameID}/>
 		</main>
 	)
 }
 
-const getArtworkDtl = async (searchConfig: NestedSearchConfig) => {
-	const resultArtObj: ArtworksObj & GlobalAuxiliaryObj = await axios(searchConfig)
+const getVideoDtl = async (searchConfig: NestedSearchConfig) => {
+	const resultVideoObj: VideosObj & GlobalAuxiliaryObj = await axios(searchConfig)
 		.then((response) => {
 			return response.data
 		})
 		.catch((err) => {
 			console.error(err)
 		})
-	return resultArtObj
+	return resultVideoObj
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-	const artworkSearchConfig = createAuxiliaryConfig('post', 'artwork', context.params!.gameid!)
+	const videoSearchConfig = createAuxiliaryConfig('post', 'videos', context.params!.gameid!)
 	return {
 		props: {
-			dataFetch: await getArtworkDtl(artworkSearchConfig),
-			gameID: artworkSearchConfig.data.gameid
+			dataFetch: await getVideoDtl(videoSearchConfig),
+			gameID: videoSearchConfig.data.gameid
 		}
 	}
 }
 
-export default Artwork
+export default Videos

@@ -2,42 +2,42 @@
 import React from 'react'
 import axios from 'axios'
 import { GetServerSidePropsContext } from 'next/types'
-import { ArtworksObj, GlobalAuxiliaryObj } from '../../../../../backendga/helpers/betypes'
+import { ArtworksObj, GlobalAuxiliaryObj, WebsitesObj } from '../../../../../backendga/helpers/betypes'
 import { createAuxiliaryConfig } from '../../../../helpers/fctns'
 import { NestedSearchConfig } from '../../../../helpers/fetypes'
-import Artworks from '../../../../components/Server/Artworks'
+import Websites from '../../../../components/Server/Websites'
 import { Inter } from 'next/font/google'
 import '../../../../src/app/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Artwork = (props: { dataFetch: ArtworksObj & GlobalAuxiliaryObj, gameID: number }) => {
+const Website = (props: { dataFetch: WebsitesObj & GlobalAuxiliaryObj, gameID: number }) => {
 	return (
 		<main className={inter.className}>
-			<Artworks dataFetch={props.dataFetch} gameID={props.gameID}/>
+			<Websites dataFetch={props.dataFetch} gameID={props.gameID}/>
 		</main>
 	)
 }
 
-const getArtworkDtl = async (searchConfig: NestedSearchConfig) => {
-	const resultArtObj: ArtworksObj & GlobalAuxiliaryObj = await axios(searchConfig)
+const getWebsiteDtl = async (searchConfig: NestedSearchConfig) => {
+	const resultWebsiteObj: WebsitesObj & GlobalAuxiliaryObj = await axios(searchConfig)
 		.then((response) => {
 			return response.data
 		})
 		.catch((err) => {
 			console.error(err)
 		})
-	return resultArtObj
+	return resultWebsiteObj
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-	const artworkSearchConfig = createAuxiliaryConfig('post', 'artwork', context.params!.gameid!)
+	const websiteSearchConfig = createAuxiliaryConfig('post', 'websites', context.params!.gameid!)
 	return {
 		props: {
-			dataFetch: await getArtworkDtl(artworkSearchConfig),
-			gameID: artworkSearchConfig.data.gameid
+			dataFetch: await getWebsiteDtl(websiteSearchConfig),
+			gameID: websiteSearchConfig.data.gameid
 		}
 	}
 }
 
-export default Artwork
+export default Website

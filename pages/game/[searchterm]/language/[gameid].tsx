@@ -20,14 +20,14 @@ const Language = (props: { dataFetch: LanguageObj & GlobalAuxiliaryObj, gameID: 
 }
 
 const getLanguageDtl = async (searchConfig: NestedSearchConfig) => {
-	const resultArtObj: LanguageObj & GlobalAuxiliaryObj = await axios(searchConfig)
+	const resultLanguageObj: LanguageObj & GlobalAuxiliaryObj = await axios(searchConfig)
 		.then((response) => {
 			return response.data
 		})
 		.catch((err) => {
 			console.error(err)
 		})
-	return resultArtObj
+	return resultLanguageObj
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
