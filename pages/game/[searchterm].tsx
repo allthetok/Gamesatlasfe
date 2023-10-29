@@ -5,7 +5,7 @@ import { GetServerSidePropsContext } from 'next/types'
 import { GameObj } from '../../../backendga/helpers/betypes'
 import { createGameDtlConfig } from '../../helpers/fctns'
 import { SimpleSearchConfig } from '../../helpers/fetypes'
-import GameDtlServer from '../../components/GameDtlServer'
+import GameDtl from '../../components/Server/GameDtl'
 import { Inter } from 'next/font/google'
 import '../../src/app/globals.css'
 
@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 const Game = (props: { dataFetch: GameObj }) => {
 	return (
 		<main className={inter.className}>
-			<GameDtlServer dataFetch={props.dataFetch}/>
+			<GameDtl dataFetch={props.dataFetch}/>
 		</main>
 	)
 }

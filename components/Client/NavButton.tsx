@@ -2,7 +2,7 @@ import React from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { Box, Button } from '@mui/material'
-import { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx } from '../sxstyling/styles'
+import { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx } from '../../sxstyling/styles'
 import './GameDtl.css'
 
 type NavButtonProps = {

@@ -2,13 +2,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import { Companies, Explore, Platforms } from '../../backendga/helpers/betypes'
-import { GenericStringObj } from '../helpers/fetypes'
-import { formattedDateLong } from '../helpers/fctns'
+import { Companies, Explore, Platforms } from '../../../backendga/helpers/betypes'
+import { GenericStringObj } from '../../helpers/fetypes'
+import { formattedDateLong } from '../../helpers/fctns'
 import { TableRow, TableCell, TableContainer, Paper, Table, TableHead, TableBody, SvgIcon } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { ESRB, PEGI, placeholderImages } from '../assets/ratingsvglinks'
-import { TableFavoriteIconSx } from '../sxstyling/styles'
+import { ESRB, PEGI, placeholderImages } from '../../assets/ratingsvglinks'
+import { TableFavoriteIconSx } from '../../sxstyling/styles'
 import './IndGameTable.css'
 
 type IndGameTableProps = {

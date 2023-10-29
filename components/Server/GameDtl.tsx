@@ -5,17 +5,16 @@ import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
-import { AgeRatings, Categories, Companies, GameObj, GlobalAuxiliaryObj, Platforms } from '../../backendga/helpers/betypes'
+import { AgeRatings, Categories, Companies, GameObj, GlobalAuxiliaryObj, Platforms } from '../../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
-import { AuxiliaryObj, GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../helpers/fetypes'
-import { createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm } from '../helpers/fctns'
-import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../assets/ratingsvglinks'
-import { Description } from './Description'
-import { Search } from './Search'
-import { NavGame } from './NavGame'
+import { AuxiliaryObj, GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../../helpers/fetypes'
+import { createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm } from '../../helpers/fctns'
+import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../../assets/ratingsvglinks'
+import { Description } from '../Client/Description'
+import { Search } from '../Client/Search'
+import { NavGame } from '../Client/NavGame'
 import { Overview } from './Overview'
 import './GameDtl.css'
-import { OverviewServer } from './OverviewServer'
 
 type GameServerProps = {
 	dataFetch: GameObj
@@ -123,7 +122,7 @@ const GameServer = ({ dataFetch }: GameServerProps) => {
 			<Search />
 			<div className='header-wrapper'>
 				<NavGame title={dataFetch.title} gameID={dataFetch.id} />
-				<OverviewServer dataFetch={dataFetch} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
+				<Overview dataFetch={dataFetch} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
 				<Description auxiliaryObj={auxiliaryObj} />
 			</div>
 		</div>

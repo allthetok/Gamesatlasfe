@@ -4,16 +4,15 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
-import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../backendga/helpers/betypes'
-import { GenericStringObj, OverviewObj, GameContextObj } from '../helpers/fetypes'
-import { ratingFloatToStar, formattedDateLong } from '../helpers/fctns'
+import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../../backendga/helpers/betypes'
+import { GenericStringObj, OverviewObj, GameContextObj } from '../../helpers/fetypes'
+import { ratingFloatToStar, formattedDateLong } from '../../helpers/fctns'
 import { useGameContext } from '@/app/gamecontext'
 import { Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
 import './GameDtl.css'
 
-type OverViewProps = {
-	// dataFetch: OverviewObj,
+type OverviewProps = {
 	dataFetch: GameObj,
 	loading: boolean,
 	error: null,
@@ -24,7 +23,7 @@ type OverViewProps = {
 	getWebsites: (categoriesArr: Categories[], specified: string) => React.JSX.Element,
 }
 
-const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatings, getGenericArr, getStringArr, getWebsites }: OverViewProps) => {
+const Overview = ({ dataFetch, loading, error, getPlatformCompanies, getAgeRatings, getGenericArr, getStringArr, getWebsites }: OverviewProps) => {
 	//const response: GameDetailObj = useContext(GameContext)
 	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 

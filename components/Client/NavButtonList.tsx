@@ -1,9 +1,8 @@
 import React from 'react'
 import { NavButton } from './NavButton'
-import { buttonArray } from '../helpers/button'
-import { ButtonField } from '../helpers/fetypes'
+import { buttonArray } from '../../helpers/button'
+import { ButtonField } from '../../helpers/fetypes'
 import './GameDtl.css'
-import Link from 'next/link'
 
 type NavButtonListProps = {
 	gameID: number

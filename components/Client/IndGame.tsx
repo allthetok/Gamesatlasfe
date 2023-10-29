@@ -4,13 +4,13 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
-import { formattedYear } from '../helpers/fctns'
-import { AgeRatings, Companies, Platforms } from '../../backendga/helpers/betypes'
-import { GenericStringObj } from '../helpers/fetypes'
+import { formattedYear } from '../../helpers/fctns'
+import { AgeRatings, Companies, Platforms } from '../../../backendga/helpers/betypes'
+import { GenericStringObj } from '../../helpers/fetypes'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { SvgIcon } from '@mui/material'
-import { ESRB, PEGI, placeholderImages } from '../assets/ratingsvglinks'
-import { IconSx } from '../sxstyling/styles'
+import { ESRB, PEGI, placeholderImages } from '../../assets/ratingsvglinks'
+import { IconSx } from '../../sxstyling/styles'
 import './IndGame.css'
 
 type IndGameProps = {

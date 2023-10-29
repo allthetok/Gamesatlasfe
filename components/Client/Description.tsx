@@ -1,6 +1,6 @@
 import React from 'react'
-import { formattedDateLong } from '../helpers/fctns'
-import { GameContextObj, LocalStorageObj } from '../helpers/fetypes'
+import { formattedDateLong } from '../../helpers/fctns'
+import { GameContextObj, LocalStorageObj } from '../../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 
 type DescriptionProps = {

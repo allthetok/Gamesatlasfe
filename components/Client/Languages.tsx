@@ -8,12 +8,12 @@ import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable, LocalStorageObj } from '../helpers/fetypes'
-import { Languages } from '../../backendga/helpers/betypes'
+import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable, LocalStorageObj } from '../../helpers/fetypes'
+import { Languages } from '../../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
 import axios from 'axios'
 import { Loading } from './Loading'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
 
 
 type LanguageProps = {
