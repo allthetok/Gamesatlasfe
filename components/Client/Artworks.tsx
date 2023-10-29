@@ -3,14 +3,14 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
-import { ArtworkObj, GameContextObj, AuxiliaryObj, LocalStorageObj } from '../helpers/fetypes'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery , createDeprecatedNestedConfig } from '../../helpers/fctns'
+import { ArtworkObj, GameContextObj, AuxiliaryObj, LocalStorageObj } from '../../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useGameContext } from '@/app/gamecontext'
-import axios from 'axios'
 import { Loading } from './Loading'
 import { Description } from './Description'
 import { Search } from './Search'
@@ -33,7 +33,7 @@ const Artworks = () => {
 
 	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
-	const searchConfig = createAuxiliaryConfig('post', 'artwork', gameID)
+	const searchConfig = createDeprecatedNestedConfig('post', 'artwork', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

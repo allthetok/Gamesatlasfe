@@ -53,9 +53,6 @@ const createDeprecatedNestedConfig = (method: string, endpoint: string, gameid: 
 }
 
 const createGameDtlConfig = (method: string, endpoint: string, searchTerm: string | string[]): SimpleSearchConfig => {
-	// if (typeof searchTerm !== 'string') {
-	// 	searchTerm = searchTerm.join('')
-	// }
 	const searchterm = (searchTerm: string | string[]) => {
 		if (typeof searchTerm !== 'string') {
 			return searchTerm.join('')
@@ -106,6 +103,10 @@ const splitRouteQuery = (inputStr: string, separator: string) => {
 	return result !== inputStr ? result : ''
 }
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery }
+
+const searchtermToString = (searchterm: string | string[]) => typeof searchterm !== 'string' ? searchterm.join('') : searchterm
+
+
+export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, searchtermToString }
 
 

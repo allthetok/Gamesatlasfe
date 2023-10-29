@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 const Game = (props: { dataFetch: GameObj }) => {
 	return (
 		<main className={inter.className}>
-			<GameDtl dataFetch={props.dataFetch}/>
+			<GameDtl dataFetch={props.dataFetch} />
 		</main>
 	)
 }

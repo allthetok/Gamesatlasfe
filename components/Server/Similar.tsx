@@ -3,12 +3,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, splitRouteQuery } from '../../helpers/fctns'
 import { Companies, Explore, GlobalAuxiliaryObj, SimilarGamesObj } from '../../../backendga/helpers/betypes'
 import { GameContextObj, LocalStorageObj } from '../../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
 import { IndGame } from '../Client/IndGame'
-import { NavGame } from '../Client/NavGame'
+import { NavGame } from '../Server/NavGame'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'
 import '../Client/IndGameList.css'
@@ -34,7 +34,7 @@ const Similar = ({ dataFetch, gameID }: SimilarProps) => {
 		<div>
 			<Search />
 			<div className='header-wrapper'>
-				<NavGame title={auxiliaryObj.title} gameID={gameID}/>
+				<NavGame title={auxiliaryObj.title} gameID={gameID} searchterm={searchtermToString(useRouter().query.searchterm!)}/>
 				<div>
 					<div className='similar-grid-wrapper'>
 						{dataFetch.similar_games.map((item: Explore) => (

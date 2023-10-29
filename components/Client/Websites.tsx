@@ -3,22 +3,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import axios from 'axios'
-import { Categories } from '../../backendga/helpers/betypes'
-import { GameDetailObj, GameContextObj, WebsiteObj, LocalStorageObj } from '../helpers/fetypes'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
+import { useRouter } from 'next/router'
+import { Categories } from '../../../backendga/helpers/betypes'
+import { GameDetailObj, GameContextObj, WebsiteObj, LocalStorageObj } from '../../helpers/fetypes'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { useGameContext } from '@/app/gamecontext'
 import { Loading } from './Loading'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
 import { Search } from './Search'
-import { WebsiteCategories } from '../assets/ratingsvglinks'
+import { WebsiteCategories } from '../../assets/ratingsvglinks'
 import './GameDtl.css'
-
-
-
+import { createDeprecatedNestedConfig } from '../../helpers/fctns'
 
 type WebsiteProps = {
 	response: WebsiteObj
@@ -43,8 +41,8 @@ const TableRows = ( { response }: WebsiteProps) => {
 			{response.websites.map((item: Categories) => (
 				<TableRow key={item.category} sx={{ textAlign: 'center' }}>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
-						{`${WebsiteCategories.filter((field) => field.source === item.category)[0].category}`}
-						<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === item.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === item.category)[0].src}`} />
+						{`${WebsiteCategories.filter((field: any) => field.source === item.category)[0].category}`}
+						<img className='logo pad-left' alt={`${WebsiteCategories.filter((field: any) => field.source === item.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === item.category)[0].src}`} />
 					</TableCell>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
 						<a href={item.url} target='_blank' rel='noreferrer'>{item.url}</a>
@@ -66,7 +64,7 @@ const Websites = () => {
 
 	const [gameID, setGameID] = useState<number>(parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=','')))
 
-	const searchConfig = createAuxiliaryConfig('post', 'websites', gameID)
+	const searchConfig = createDeprecatedNestedConfig('post', 'websites', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

@@ -4,9 +4,9 @@
 // import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 // import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { useRouter } from 'next/router'
+import { createAuxiliaryConfig, createDeprecatedNestedConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
 import { Videos } from '../../../backendga/helpers/betypes'
 import { GameContextObj, LocalStorageObj, VideoObj } from '../../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
@@ -37,7 +37,7 @@ const VideoList = () => {
 
 	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
-	const searchConfig = createAuxiliaryConfig('post', 'videos', gameID)
+	const searchConfig = createDeprecatedNestedConfig('post', 'videos', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

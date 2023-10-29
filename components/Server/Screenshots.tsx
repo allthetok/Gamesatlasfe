@@ -5,7 +5,7 @@
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, splitRouteQuery } from '../../helpers/fctns'
 import { GameContextObj, AuxiliaryObj, LocalStorageObj, ScreenshotsObj } from '../../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -13,7 +13,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useGameContext } from '@/app/gamecontext'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'
-import { NavGame } from '../Client/NavGame'
+import { NavGame } from '../Server/NavGame'
 import './../Client/Artworks.css'
 import './GameDtl.css'
 import { Companies, GlobalAuxiliaryObj } from '../../../backendga/helpers/betypes'
@@ -38,7 +38,7 @@ const Screenshots = ({ dataFetch, gameID }: ScreenshotsProps) => {
 		<div>
 			<Search />
 			<div className='header-wrapper'>
-				<NavGame title={dataFetch.title} gameID={gameID} />
+				<NavGame title={dataFetch.title} gameID={gameID} searchterm={searchtermToString(useRouter().query.searchterm!)}/>
 				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
 					{dataFetch?.screenshots.map((el: string) => (
 						<img key={el} className='image-carousel' src={el} alt='Artwork' />

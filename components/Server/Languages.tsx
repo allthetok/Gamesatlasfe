@@ -5,15 +5,14 @@
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { NavGame } from '../Client/NavGame'
-import { Description } from '../Client/Description'
-import { Search } from '../Client/Search'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable, LocalStorageObj } from '../../helpers/fetypes'
 import { Companies, GlobalAuxiliaryObj, Languages } from '../../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
-import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, splitRouteQuery } from '../../helpers/fctns'
+import { NavGame } from '../Server/NavGame'
+import { Description } from '../Client/Description'
+import { Search } from '../Client/Search'
 
 
 type LanguageProps = {
@@ -107,7 +106,7 @@ const Languages = ({ dataFetch, gameID }: LanguageProps) => {
 			<div>
 				<Search />
 				<div className='header-wrapper'>
-					<NavGame title={dataFetch.title} gameID={gameID} />
+					<NavGame title={dataFetch.title} gameID={gameID} searchterm={searchtermToString(useRouter().query.searchterm!)}/>
 					<div>
 						<TableContainer component={Paper}>
 							<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>

@@ -8,11 +8,11 @@ import ReactLoading from 'react-loading'
 import { AgeRatings, Categories, Companies, GameObj, GlobalAuxiliaryObj, Platforms } from '../../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
 import { AuxiliaryObj, GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../../helpers/fetypes'
-import { createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm } from '../../helpers/fctns'
+import { createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm, searchtermToString } from '../../helpers/fctns'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../../assets/ratingsvglinks'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'
-import { NavGame } from '../Client/NavGame'
+import { NavGame } from '../Server/NavGame'
 import { Overview } from './Overview'
 import './GameDtl.css'
 
@@ -121,7 +121,7 @@ const GameDtl = ({ dataFetch }: GameDtlProps) => {
 		<div>
 			<Search />
 			<div className='header-wrapper'>
-				<NavGame title={dataFetch.title} gameID={dataFetch.id} />
+				<NavGame title={dataFetch.title} gameID={dataFetch.id} searchterm={searchtermToString(useRouter().query.searchterm!)}/>
 				<Overview dataFetch={dataFetch} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
 				<Description auxiliaryObj={auxiliaryObj} />
 			</div>

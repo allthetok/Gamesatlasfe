@@ -8,12 +8,12 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { Categories, Companies, GlobalAuxiliaryObj } from '../../../backendga/helpers/betypes'
 import { GameDetailObj, GameContextObj, WebsiteObj, LocalStorageObj } from '../../helpers/fetypes'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, splitRouteQuery } from '../../helpers/fctns'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { useGameContext } from '@/app/gamecontext'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'
-import { NavGame } from '../Client/NavGame'
+import { NavGame } from '../Server/NavGame'
 import { WebsiteCategories } from '../../assets/ratingsvglinks'
 import './GameDtl.css'
 
@@ -70,7 +70,7 @@ const Websites = ({ dataFetch, gameID }: WebsiteProps) => {
 		<div>
 			<Search />
 			<div className='header-wrapper'>
-				<NavGame title={auxiliaryObj.title} gameID={gameID} />
+				<NavGame title={auxiliaryObj.title} gameID={gameID} searchterm={searchtermToString(useRouter().query.searchterm!)}/>
 				<div>
 					<TableContainer component={Paper}>
 						<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>

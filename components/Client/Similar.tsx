@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import React, { useCallback, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { useRouter } from 'next/router'
+import { createAuxiliaryConfig, createDeprecatedNestedConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
 import { Explore } from '../../../backendga/helpers/betypes'
 import { GameContextObj, LocalStorageObj } from '../../helpers/fetypes'
 import { useGameContext } from '@/app/gamecontext'
@@ -26,7 +26,7 @@ const Similar = () => {
 
 	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
-	const searchConfig = createAuxiliaryConfig('post', 'similargames', gameID)
+	const searchConfig = createDeprecatedNestedConfig('post', 'similargames', gameID)
 
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)

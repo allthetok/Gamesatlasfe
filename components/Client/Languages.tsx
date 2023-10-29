@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
 import { useRouter } from 'next/router'
 import { NavGame } from './NavGame'
 import { Description } from './Description'
@@ -11,9 +12,8 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable, LocalStorageObj } from '../../helpers/fetypes'
 import { Languages } from '../../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
-import axios from 'axios'
 import { Loading } from './Loading'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { createAuxiliaryConfig, createDeprecatedNestedConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
 
 
 type LanguageProps = {
@@ -100,7 +100,7 @@ const Languages = () => {
 
 	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
-	const searchConfig = createAuxiliaryConfig('post', 'language', gameID.toString())
+	const searchConfig = createDeprecatedNestedConfig('post', 'language', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

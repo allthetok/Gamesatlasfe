@@ -2,9 +2,9 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { useRouter } from 'next/router'
+import { createAuxiliaryConfig, createDeprecatedNestedConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
 import { GameContextObj, LocalStorageObj, ScreenshotsObj } from '../../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -27,7 +27,7 @@ const Screenshots = () => {
 
 	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
 
-	const searchConfig = createAuxiliaryConfig('post', 'screenshots', gameID)
+	const searchConfig = createDeprecatedNestedConfig('post', 'screenshots', gameID)
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {

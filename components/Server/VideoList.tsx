@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 // import Youtube, { YouTubeProps } from 'react-youtube'
@@ -6,13 +7,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
+import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, splitRouteQuery } from '../../helpers/fctns'
 import { Companies, GlobalAuxiliaryObj, Videos } from '../../../backendga/helpers/betypes'
 import { GameContextObj, LocalStorageObj, VideoObj } from '../../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import { useGameContext } from '@/app/gamecontext'
 import { Video } from './Video'
-import { NavGame } from '../Client/NavGame'
+import { NavGame } from '../Server/NavGame'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'
 import '../Client/Artworks.css'
@@ -37,7 +38,7 @@ const VideoList = ({ dataFetch, gameID }: VideoListProps) => {
 		<div>
 			<Search />
 			<div className='header-wrapper'>
-				<NavGame title={dataFetch.title} gameID={gameID} />
+				<NavGame title={dataFetch.title} gameID={gameID} searchterm={searchtermToString(useRouter().query.searchterm!)}/>
 				<Carousel autoPlay={false}>
 					{dataFetch?.videos.map((el: Videos) => (
 						<Video videoId={el.ytlink} name={el.name} />

@@ -4,6 +4,7 @@
 // import { TextField } from '@mui/material'
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { AppBar, Box, Toolbar, IconButton } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
@@ -19,7 +20,7 @@ import './Search.css'
 
 const Search = () => {
 	const { gameSearch, setGameSearch } = useSearchContext()
-
+	const router = useRouter()
 
 	// const [textInput, setTextInput] = useState('')
 	// //const [searchTerm, setSearchTerm] = useState('')
@@ -29,13 +30,12 @@ const Search = () => {
 	// // }
 	const handleChange= (e: React.ChangeEvent<HTMLInputElement>) => {
 		setGameSearch(e.target.value)
-		console.log(gameSearch)
 	}
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		localStorage.setItem('searchterm', gameSearch)
-		console.log('submitted' + gameSearch)
+		router.push(`/game/${gameSearch}`)
 	}
 
 	const handleClear = (e: React.MouseEvent<HTMLElement>) => {
@@ -83,7 +83,8 @@ const Search = () => {
 							}
 							<IconButton type='submit' size='medium' onClick={() => localStorage.setItem('searchterm', gameSearch)}>
 								{gameSearch !== '' ?
-									<Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+									// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+									<Link href={gameSearch !== '' ? `/game/${gameSearch}`: ''}>
 										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
 									</Link>
 									:

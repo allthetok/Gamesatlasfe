@@ -31,5 +31,36 @@ const buttonArray: ButtonField[] = [
 	},
 ]
 
+const ssrButtonArray: ButtonField[] = [
+	{
+		link: '/game',
+		formatName: 'Overview'
+	},
+	{
+		link: '/artwork',
+		formatName: 'Artworks'
+	},
+	{
+		link: '/screenshot',
+		formatName: 'Screenshots'
+	},
+	{
+		link: '/similargame',
+		formatName: 'Similar Games'
+	},
+	{
+		link: '/video',
+		formatName: 'Videos'
+	},
+	{
+		link: '/website',
+		formatName: 'Community Websites'
+	},
+	{
+		link: '/language',
+		formatName: 'Language Details'
+	},
+]
 
-export { buttonArray }
+
+export { buttonArray, ssrButtonArray }

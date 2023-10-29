@@ -5,11 +5,11 @@ import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
-import { AgeRatings, Categories, Companies, GameObj, GlobalAuxiliaryObj, Platforms } from '../../backendga/helpers/betypes'
+import { AgeRatings, Categories, Companies, GameObj, GlobalAuxiliaryObj, Platforms } from '../../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
-import { AuxiliaryObj, GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../helpers/fetypes'
-import { createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm } from '../helpers/fctns'
-import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../assets/ratingsvglinks'
+import { AuxiliaryObj, GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../../helpers/fetypes'
+import { createDeprecatedGameDtlConfig, createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm } from '../../helpers/fctns'
+import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../../assets/ratingsvglinks'
 import { Description } from './Description'
 import { Search } from './Search'
 import { NavGame } from './NavGame'
@@ -31,7 +31,7 @@ const GameDtl = () => {
 
 	const searchTerm = splitRouteQuery(useRouter().asPath, '?').replace('search=','')
 
-	const searchConfig = createGameDtlConfig('post', 'overview', searchTerm!)
+	const searchConfig = createDeprecatedGameDtlConfig('post', 'overview', searchTerm!)
 
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)

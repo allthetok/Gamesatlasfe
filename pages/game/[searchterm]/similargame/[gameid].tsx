@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
 import axios from 'axios'
+import { createAuxiliaryConfig } from '../../../../helpers/fctns'
 import { GetServerSidePropsContext } from 'next/types'
 import { SimilarGamesObj, GlobalAuxiliaryObj } from '../../../../../backendga/helpers/betypes'
-import { createAuxiliaryConfig } from '../../../../helpers/fctns'
 import { NestedSearchConfig } from '../../../../helpers/fetypes'
 import Similar from '../../../../components/Server/Similar'
 import { Inter } from 'next/font/google'
