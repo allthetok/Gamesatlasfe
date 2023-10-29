@@ -143,5 +143,14 @@ interface SimpleSearchConfig {
 	}
 }
 
+interface NestedSearchConfig {
+	method: string,
+	url: string,
+	headers: object,
+	data: {
+		gameid: number
+	}
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig }
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, NestedSearchConfig }

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Websites } from '../../components/Websites'
+import { Websites } from '../../components/Client/Websites'
 import { ContextDtl } from '../../src/app/gamecontext'
 import { ContextSear } from '@/app/searchcontext'
 import '../../src/app/globals.css'

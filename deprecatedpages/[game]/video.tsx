@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { VideoList } from '../../components/VideoList'
+import { VideoList } from '../../components/Client/VideoList'
 import { ContextDtl } from '../../src/app/gamecontext'
 import { ContextSear } from '@/app/searchcontext'
 import '../../src/app/globals.css'

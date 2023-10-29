@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Similar } from '../../components/Similar'
+import { Similar } from '../../components/Client/Similar'
 import { ContextDtl } from '../../src/app/gamecontext'
 import { ContextSear } from '@/app/searchcontext'
 import '../../src/app/globals.css'

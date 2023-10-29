@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { LocalStorageObj, SimpleSearchConfig } from './fetypes'
+import { LocalStorageObj, NestedSearchConfig, SimpleSearchConfig } from './fetypes'
 
 const ratingFloatToStar = (rating: number) : number => rating / 20
 
@@ -39,10 +39,23 @@ const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchT
 	}
 }
 
-const createGameDtlConfig = (method: string, endpoint: string, searchTerm: string | string[]): SimpleSearchConfig => {
-	if (typeof searchTerm !== 'string') {
-		searchTerm = searchTerm.join('')
+const createDeprecatedNestedConfig = (method: string, endpoint: string, gameid: number) => {
+	return {
+		method: method,
+		url: `http://localhost:3001/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'gameid': gameid
+		}
 	}
+}
+
+const createGameDtlConfig = (method: string, endpoint: string, searchTerm: string | string[]): SimpleSearchConfig => {
+	// if (typeof searchTerm !== 'string') {
+	// 	searchTerm = searchTerm.join('')
+	// }
 	const searchterm = (searchTerm: string | string[]) => {
 		if (typeof searchTerm !== 'string') {
 			return searchTerm.join('')
@@ -63,7 +76,15 @@ const createGameDtlConfig = (method: string, endpoint: string, searchTerm: strin
 	}
 }
 
-const createAuxiliaryConfig = (method: string, endpoint: string, gameid: number) => {
+const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string | string[]): NestedSearchConfig => {
+	const gameid = (gameID: string | string[]) => {
+		if (typeof gameID !== 'string') {
+			return Number(gameID.join(''))
+		}
+		else {
+			return Number(gameID)
+		}
+	}
 	return {
 		method: method,
 		url: `http://localhost:3001/api/${endpoint}`,
@@ -71,7 +92,7 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameid: number)
 			'Content-Type': 'application/json'
 		},
 		data: {
-			'gameid': gameid
+			'gameid': gameid(gameID)
 		}
 	}
 }

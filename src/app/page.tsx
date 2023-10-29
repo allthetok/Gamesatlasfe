@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense } from 'react'
-import { Search } from '../../components/Search'
+import { Search } from '../../components/Client/Search'
 import { ContextSear } from '../../src/app/searchcontext'
 import { Inter } from 'next/font/google'
 import './globals.css'

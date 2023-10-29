@@ -1,23 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { NavGame } from './NavGame'
-import { Description } from './Description'
-import { Search } from './Search'
+import { NavGame } from '../Client/NavGame'
+import { Description } from '../Client/Description'
+import { Search } from '../Client/Search'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { GameContextObj, GameDetailObj, LanguageObj, LanguageTable, LocalStorageObj } from '../../helpers/fetypes'
-import { Languages } from '../../../backendga/helpers/betypes'
+import { Companies, GlobalAuxiliaryObj, Languages } from '../../../backendga/helpers/betypes'
 import { useGameContext } from '@/app/gamecontext'
 import axios from 'axios'
-import { Loading } from './Loading'
 import { createAuxiliaryConfig, retrieveLocalStorageObj, splitRouteQuery } from '../../helpers/fctns'
 
 
 type LanguageProps = {
-	response: LanguageObj
+	dataFetch: LanguageObj & GlobalAuxiliaryObj,
+	gameID: number
 }
 
 const createLanguageTable = (language_supports: Languages[]) => {
@@ -58,8 +59,8 @@ const populateArrSupportTypes = (arrSupportTypes: string[]) => {
 	return formattedArr
 }
 
-const TableCells = ({ response }: LanguageProps) => {
-	const supportTypes = Array.from(new Set(response.language_supports.map((item: any) => item.language_support_type)))
+const TableCells = ({ language_supports }: LanguageObj) => {
+	const supportTypes = Array.from(new Set(language_supports.map((item: any) => item.language_support_type)))
 	return (
 		<TableRow>
 			{supportTypes.map((item: any) => (
@@ -71,8 +72,8 @@ const TableCells = ({ response }: LanguageProps) => {
 	)
 }
 
-const TableRows = ( { response }: LanguageProps) => {
-	const formattedLanguageTable: LanguageTable[] = createLanguageTable(response.language_supports)
+const TableRows = ({ language_supports }: LanguageObj) => {
+	const formattedLanguageTable: LanguageTable[] = createLanguageTable(language_supports)
 	return (
 		<>
 			{formattedLanguageTable.map((item: LanguageTable) => (
@@ -90,62 +91,40 @@ const TableRows = ( { response }: LanguageProps) => {
 	)
 }
 
-const Languages = () => {
-	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
+const Languages = ({ dataFetch, gameID }: LanguageProps) => {
 
-	const [dataFetch, setDataFetch] = useState<LanguageObj>()
-	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(true)
-	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
-
-	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
-
-	const searchConfig = createAuxiliaryConfig('post', 'language', gameID.toString())
-	const getGameDtl = useCallback(async () => {
-		await axios(searchConfig)
-			.then((response) => {
-				setDataFetch(response.data)
-				setLoading(false)
-			})
-			.catch((err) => {
-				setError(err)
-				console.error(err)
-
-			})
-	}, [gameID])
-
-	useEffect(() => {
-		getGameDtl()
-	}, [getGameDtl])
-
+	const auxiliaryObj: LocalStorageObj = {
+		gameID: gameID,
+		title: dataFetch.title,
+		involved_companies: dataFetch.involved_companies.map((company: Companies) => company.name).join(', '),
+		summary: dataFetch.summary,
+		story: dataFetch.story,
+		releaseDate: dataFetch.releaseDate
+	}
 
 	return (
 		<div>
-			{!loading && !error && dataFetch ?
-				<div>
-					<Search />
-					<div className='header-wrapper'>
-						<NavGame title={auxiliaryObj.title} gameID={gameID} />
-						<div>
-							<TableContainer component={Paper}>
-								<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
-									<TableHead>
-										<TableCells response={dataFetch!}/>
-									</TableHead>
-									<TableBody>
-										<TableRows response={dataFetch!} />
-									</TableBody>
-								</Table>
-							</TableContainer>
-						</div>
-						<Description auxiliaryObj={auxiliaryObj} />
+			<div>
+				<Search />
+				<div className='header-wrapper'>
+					<NavGame title={dataFetch.title} gameID={gameID} />
+					<div>
+						<TableContainer component={Paper}>
+							<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
+								<TableHead>
+									<TableCells language_supports={dataFetch!.language_supports}/>
+								</TableHead>
+								<TableBody>
+									<TableRows language_supports={dataFetch!.language_supports} />
+								</TableBody>
+							</Table>
+						</TableContainer>
 					</div>
+					<Description auxiliaryObj={auxiliaryObj} />
 				</div>
-				:
-				<Loading auxiliaryObj={auxiliaryObj}/>
-			}
+			</div>
 		</div>
 	)
 }
 
-export { Languages }
+export default Languages

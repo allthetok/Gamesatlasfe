@@ -16,11 +16,11 @@ import { NavGame } from '../Client/NavGame'
 import { Overview } from './Overview'
 import './GameDtl.css'
 
-type GameServerProps = {
+type GameDtlProps = {
 	dataFetch: GameObj
 }
 
-const GameServer = ({ dataFetch }: GameServerProps) => {
+const GameDtl = ({ dataFetch }: GameDtlProps) => {
 
 	const auxiliaryObj: LocalStorageObj = {
 		gameID: dataFetch.id,
@@ -129,4 +129,4 @@ const GameServer = ({ dataFetch }: GameServerProps) => {
 	)
 }
 
-export default GameServer
+export default GameDtl
