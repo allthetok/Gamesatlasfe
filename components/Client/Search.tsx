@@ -19,15 +19,10 @@ import './Search.css'
 // }
 
 const Search = () => {
-	const { gameSearch, setGameSearch } = useSearchContext()
+	// const { gameSearch, setGameSearch } = useSearchContext()
+	const [gameSearch, setGameSearch] = useState('')
 	const router = useRouter()
 
-	// const [textInput, setTextInput] = useState('')
-	// //const [searchTerm, setSearchTerm] = useState('')
-
-	// // const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-	// // 	setTextInput(e.currentTarget.value)
-	// // }
 	const handleChange= (e: React.ChangeEvent<HTMLInputElement>) => {
 		setGameSearch(e.target.value)
 	}
