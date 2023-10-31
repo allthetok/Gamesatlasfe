@@ -9,6 +9,7 @@ import { AppBar, Box, Toolbar, IconButton } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import { useSearchContext } from '@/app/searchcontext'
+import { SuggestionList } from './SuggestionList'
 import './Search.css'
 
 
@@ -90,6 +91,7 @@ const Search = () => {
 					</div>
 				</Toolbar>
 			</AppBar>
+			<SuggestionList searchterm={gameSearch} />
 		</Box>
 	)
 }

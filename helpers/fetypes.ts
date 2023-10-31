@@ -152,5 +152,17 @@ interface NestedSearchConfig {
 	}
 }
 
+interface SearchResultsObj {
+	id: number,
+	category: number,
+	cover: string,
+	releaseDate: string,
+	likes: number,
+	involved_companies: Companies[],
+	title: string,
+	platforms: Platforms[],
+	rating: number
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, NestedSearchConfig }
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, NestedSearchConfig, SearchResultsObj }

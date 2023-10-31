@@ -17,7 +17,7 @@ const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: stri
 		data: {
 			'sortBy': sortBy,
 			'sortDirection': sortDirection,
-			'externalFilter': 'total_rating_count > 5',
+			'externalFilter': 'total_rating_count > 5 & category=(0,1,2,4,5,8,9)',
 			'nullable': 'age_ratings, follows, involved_companies, involved_companies.developer',
 			'platformFamily': platform,
 			'limit': parseInt(limit),

@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense } from 'react'
-import { IndGameList } from '../components/IndGameList'
+import { IndGameList } from '../components/Client/IndGameList'
 import { Inter } from 'next/font/google'
 import '../src/app/globals.css'
 

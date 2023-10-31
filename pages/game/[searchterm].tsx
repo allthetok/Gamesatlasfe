@@ -32,7 +32,7 @@ const getGameDtl = async (searchConfig: SimpleSearchConfig) => {
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
 	const gameSearchConfig = createGameDtlConfig('post', 'overview', context.params!.searchterm!)
-	console.log(gameSearchConfig.data.searchterm)
+	// console.log(gameSearchConfig.data.searchterm)
 	return {
 		props: {
 			dataFetch: await getGameDtl(gameSearchConfig)
