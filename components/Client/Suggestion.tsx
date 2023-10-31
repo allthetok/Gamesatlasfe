@@ -1,17 +1,24 @@
 import React from 'react'
+import { Companies, Platforms } from '../../../backendga/helpers/betypes'
 import './Suggestion.css'
 
+type SuggestionProps = {
+	id: number,
+	cover: string,
+	platforms: Platforms[],
+	rating: number,
+	releaseDate: string,
+	likes: number,
+	title: string,
+	category: number,
+	companies: Companies[]
+}
 
-const Suggestion = () => {
+const Suggestion = ({ id, cover, platforms, rating, releaseDate, likes, title, category, companies }: SuggestionProps ) => {
 	return (
-		<div className='search-suggest'>
-			<span className='ind-suggest'>
-					Hello
-			</span>
-			<span className='ind-suggest'>
-					Hello 2
-			</span>
-		</div>
+		<span className='ind-suggest'>
+			{title}
+		</span>
 	)
 }
 
