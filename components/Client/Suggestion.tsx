@@ -3,8 +3,8 @@ import React from 'react'
 import { formattedYear } from '../../helpers/fctns'
 import { Companies, Platforms } from '../../../backendga/helpers/betypes'
 import { placeholderImages } from '../../assets/ratingsvglinks'
-
 import './Suggestion.css'
+import Link from 'next/link'
 
 type SuggestionProps = {
 	id: number,
@@ -12,37 +12,42 @@ type SuggestionProps = {
 	platforms: Platforms[],
 	rating: number,
 	releaseDate: string,
-	likes: number,
 	title: string,
-	category: number,
+	category: string,
 	companies: Companies[]
 }
 
-const Suggestion = ({ id, cover, platforms, rating, releaseDate, likes, title, category, companies }: SuggestionProps ) => {
+const Suggestion = ({ id, cover, platforms, rating, releaseDate, title, category, companies }: SuggestionProps ) => {
 	return (
-		<div className='ind-suggest'>
-			<div className='cover-wrap'>
-				<img className='cover-logo' alt={`${title} cover`} src={cover}/>
-				<p className='title-text'>{title}</p>
-			</div>
-			{companies.map((val: Companies) => (
-				<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name} </a>
-			))}
-			<a className='tag-link-category'>{category}</a>
-			<div className='suggest-platforms'>
-				{platforms.slice(0,3).map((val: Platforms) => (
-					<img key={val.id} className='suggest-platform' alt={`${val.name} Logo`} src={val.url !== '' ? val.url : placeholderImages.NoLogo} />
+		<Link href={`/game/${title}`} className='no-text-dec'>
+			<div className='ind-suggest'>
+				<div className='cover-wrap'>
+					<img className='cover-logo' alt={`${title} cover`} src={cover}/>
+					<p className='title-text'>{title}</p>
+				</div>
+				{companies.map((val: Companies) => (
+					// <a key={val.name} className='tag-link-dev' href={val.officialSite} target='_blank'> {val.name} </a>
+					<p key={val.name} className='tag-link-dev'> {val.name} </p>
+
 				))}
+				{/* <a className='tag-link-category'>{category}</a> */}
+				<p className='tag-link-category'>{category}</p>
+				<div className='suggest-platforms'>
+					{platforms.map((val: Platforms) => (
+						<img key={val.id} className='suggest-platform' alt={`${val.name} Logo`} src={val.url !== '' ? val.url : placeholderImages.NoLogo} />
+					))}
+				</div>
+				<div className='suggest-formatted'>
+					<span className='suggest-rating'>
+						{rating ? Math.round(rating) : 'N/A'}
+					</span>
+					<span className='suggest-release'>
+						{formattedYear(releaseDate)}
+					</span>
+				</div>
 			</div>
-			<div className='suggest-formatted'>
-				<span className='suggest-rating'>
-					{rating ? Math.round(rating) : 'N/A'}
-				</span>
-				<span className='suggest-release'>
-					{formattedYear(releaseDate)}
-				</span>
-			</div>
-		</div>
+		</Link>
+
 	)
 }
 
