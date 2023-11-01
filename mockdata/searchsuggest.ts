@@ -1,44 +1,14 @@
 const suggest = [
 	{
 		'id': 1942,
-		'category': 0,
+		'category': 'Main Game',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1wyy.jpg',
 		'releaseDate': '2015-05-19T00:00:00.000Z',
 		'likes': 1542,
 		'involved_companies': [
 			{
-				'name': 'WB Games',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl4uw.jpg',
-				'officialSite': ''
-			},
-			{
-				'name': 'Bandai Namco Entertainment',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl7dx.jpg',
-				'officialSite': ''
-			},
-			{
-				'name': 'cdp.pl',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2dm.jpg',
-				'officialSite': ''
-			},
-			{
-				'name': 'Spike ChunSoft',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/wxqcayiyeexjodlrnz2o.jpg',
-				'officialSite': ''
-			},
-			{
 				'name': 'CD Projekt RED',
 				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2dk.jpg',
-				'officialSite': ''
-			},
-			{
-				'name': 'D3T Limited',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/gwy6dwd3rp0ckgj4vqpx.jpg',
-				'officialSite': ''
-			},
-			{
-				'name': 'Saber Interactive',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl4vz.jpg',
 				'officialSite': ''
 			}
 		],
@@ -87,11 +57,11 @@ const suggest = [
 				'platform_family': 2
 			}
 		],
-		'rating': 93.05905136220505
+		'rating': 93.05873945285882
 	},
 	{
 		'id': 13166,
-		'category': 2,
+		'category': 'Expansion',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2lgo.jpg',
 		'releaseDate': '2016-05-30T00:00:00.000Z',
 		'likes': 148,
@@ -151,7 +121,7 @@ const suggest = [
 	},
 	{
 		'id': 12503,
-		'category': 2,
+		'category': 'Expansion',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1t7q.jpg',
 		'releaseDate': '2015-10-12T00:00:00.000Z',
 		'likes': 183,
@@ -211,7 +181,7 @@ const suggest = [
 	},
 	{
 		'id': 170450,
-		'category': 1,
+		'category': 'DLC',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5mwa.jpg',
 		'releaseDate': '2015-06-09T00:00:00.000Z',
 		'likes': 2,
@@ -249,7 +219,7 @@ const suggest = [
 	},
 	{
 		'id': 170449,
-		'category': 1,
+		'category': 'DLC',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5osm.jpg',
 		'releaseDate': '2015-06-30T00:00:00.000Z',
 		'likes': 2,
@@ -287,7 +257,7 @@ const suggest = [
 	},
 	{
 		'id': 170451,
-		'category': 1,
+		'category': 'DLC',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5mwb.jpg',
 		'releaseDate': '2015-05-26T00:00:00.000Z',
 		'likes': 2,
@@ -325,7 +295,7 @@ const suggest = [
 	},
 	{
 		'id': 226413,
-		'category': 1,
+		'category': 'DLC',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5ssi.jpg',
 		'releaseDate': '2015-06-16T00:00:00.000Z',
 		'likes': 1,
@@ -363,7 +333,7 @@ const suggest = [
 	},
 	{
 		'id': 157580,
-		'category': 1,
+		'category': 'DLC',
 		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5mw9.jpg',
 		'releaseDate': '2015-06-23T00:00:00.000Z',
 		'likes': 2,

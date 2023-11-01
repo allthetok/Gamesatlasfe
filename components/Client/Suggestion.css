@@ -1,26 +1,53 @@
+:root {
+	--card-bg: #202020;
+	--card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	--card-radius: 0.375rem;
+	--card-color: #ffffffeb;
+	--text-color: #ddd;
+	--card-padding: 0.5rem 1.25rem 1.25rem 1.25rem;
+	--font-bold: 700;
+	--badge-color: #9ae6b4;
+	--badge-bg: #9ae6b429;
+	--release-color: #addfef;
+	/* --release-color: #99c3e6; */
+	--release-bg: #99c3e629;
+	--likes-color: #e69ab4;
+	--likes-bg: #e69ab429;
+	--hover-color: #67c1f5;
+	--bg-color-alt: #1b1e22;
+	--input-color: #121212;
+}
+
 .ind-suggest {
 	width: 100%;
-	max-width: 334px;
-	background: rgba(255, 255, 255, 0.18);
+	/* max-width: 334px; */
+	max-width: 534px;
+	background: rgba(255, 255, 255, 0.18); 
 	/* background-color: #1f2328; */
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	border-radius: 60px;
 	padding: 0rem 0.5rem;
 	margin-bottom: 0.25rem;
 	/* height: 64px; */
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0.5rem;
+	margin-left: 12.5rem;
+	height: 55px;
 }
 
 .tag-link-company {
 	display: inline-block;
     cursor: pointer;
 	color: var(--text-color);
-    /* background: #273b4b; */
-	/* background: var(--input-color); */
 	background: #383838;
     padding: 0 10px;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 30px;
     border-radius: 6px;
 	overflow: hidden;
@@ -28,4 +55,147 @@
     text-overflow: ellipsis;
 	margin-top: 0rem;
 	margin-bottom: 0.125rem;
+}
+
+.suggest-rating {
+	display: inline-block;
+	white-space: nowrap;
+	vertical-align: middle;
+	padding-inline-start: 0.5rem;
+	padding-inline-end: 0.5rem;
+	text-transform: uppercase;
+	font-weight: var(--font-bold);
+	color: var(--badge-color);
+	background: var(--badge-bg);
+	box-shadow: var(--badge-shadow);
+	font-size: 0.9375rem;
+	border-radius: 4px;
+	margin-left: auto;
+	margin-right: 8.48px;
+}
+
+.suggest-release {
+	display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-padding-start: 0.5rem;
+    padding-inline-start: 0.5rem;
+    -webkit-padding-end: 0.5rem;
+    padding-inline-end: 0.5rem;
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    color: var(--release-color);
+    background: var(--release-bg);
+    box-shadow: var(--badge-shadow);
+    font-size: 0.9375rem;
+    border-radius: 4px;
+}
+
+.suggest-platforms {
+	display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.125rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.suggest-platform {
+	width: 1rem;
+	height: 1rem;
+	border: 2px solid #87ceeb;
+	border-radius: 10% / 50%;
+}
+
+.cover-logo {
+	width: 1.875rem;
+    height: 2.5rem;
+    border: 2px solid #87ceeb;
+    border-radius: 10% / 50%;
+    margin-top: 0.2rem;
+    margin-right: 0.5rem;
+}
+
+.cover-wrap {
+	/* display: flex;
+	color: var(--text-color);
+	padding: 0 10px; */
+	display: flex;
+    color: var(--text-color);
+    /* background: #273b4b; */
+    /* background: var(--input-color); */
+    /* background: #383838; */
+    padding: 0 10px;
+    font-size: 0.9375rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 0rem;
+    margin-bottom: 0.125rem;
+    text-decoration: none;
+    vertical-align: center;
+}
+
+.title-genre-stack {
+	display: flex;
+	flex-direction: column;
+}
+
+.title-text {
+	font-weight: 700;
+	width: 250px;
+	max-width: 250px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.tag-link-category {
+	display: inline-block;
+	color: var(--text-color);
+	background: #383838;
+    padding: 0 5px;
+    font-size: 0.625rem;
+    line-height: 30px;
+    border-radius: 6px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	margin-top: 0rem;
+	margin-bottom: 0.125rem;
+	text-decoration: none;
+	/* display: flex; */
+	justify-content: center;
+	max-width: 60px;
+	overflow: hidden;
+	/* margin-top: -1rem; */
+	text-align: center;
+}
+
+.tag-link-company {
+	display: inline-block;
+    cursor: pointer;
+	color: var(--text-color);
+	background: #383838;
+    padding: 0 5px;
+    font-size: 0.625rem;
+    line-height: 30px;
+    border-radius: 6px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	margin-top: 0rem;
+	margin-bottom: 0.125rem;
+	text-decoration: none;
+	justify-content: center;
+	max-width: 60px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.suggest-formatted {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
 }

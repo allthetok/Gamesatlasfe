@@ -154,7 +154,7 @@ interface NestedSearchConfig {
 
 interface SearchResultsObj {
 	id: number,
-	category: number,
+	category: string,
 	cover: string,
 	releaseDate: string,
 	likes: number,
