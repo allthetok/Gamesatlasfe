@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
@@ -11,6 +12,8 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import { useSearchContext } from '@/app/searchcontext'
 import { SuggestionList } from './SuggestionList'
 import './Search.css'
+import { Navbar } from './Navbar'
+import './Navbar.css'
 
 
 // type SearchProps = {
@@ -39,14 +42,102 @@ const Search = () => {
 	}
 
 	return (
-		<Box sx={{ flexGrow: 1, minWidth: '100%' }}>
-			<AppBar position="static" sx={{ backgroundColor: '#1f2328', boxShadow: 'none' }}>
-				<Toolbar>
-					<Box sx={{ flexGrow: 0.5 }}/>
+		<>
+			{/* <Navbar /> */}
+			<Box sx={{ flexGrow: 1, minWidth: '100%' }}>
+				<AppBar position="static" sx={{ backgroundColor: '#1f2328', boxShadow: 'none', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+					{/* <Toolbar sx={{ backgroundColor: '#1f2328', boxShadow: 'none', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}> */}
+					{/* <Box sx={{ flexGrow: 0.5 }}/> */}
+					<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
 					<div className='search-wrap'>
 						<form className='search-bar' onSubmit={handleSubmit}>
 							<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
-							{/* <TextField variant='standard' type='search' value={textInput} onChange={handleChange} required placeholder='Search...'
+							{gameSearch !== '' ?
+								<IconButton onClick={handleClear} size='medium'>
+									<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+								</IconButton>
+								: <></>
+							}
+							<IconButton type='submit' size='medium' onClick={handleClear}>
+								{gameSearch !== '' ?
+									// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+									<Link href={`/game/${gameSearch}`}>
+										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+									</Link>
+									:
+									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+								}
+							</IconButton>
+						</form>
+					</div>
+					{/* </Toolbar> */}
+				</AppBar>
+				<SuggestionList onClick={handleClear} searchterm={gameSearch} />
+			</Box>
+		</>
+	)
+
+	// <Box sx={{ flexGrow: 1, minWidth: '100%' }}>
+	// 		<AppBar position="static" sx={{ backgroundColor: '#1f2328', boxShadow: 'none' }}>
+	// 			<Toolbar>
+	// 				<Box sx={{ flexGrow: 0.5 }}/>
+	// 				<div className='search-wrap'>
+	// 					<form className='search-bar' onSubmit={handleSubmit}>
+	// 						<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
+	// 						{/* <TextField variant='standard' type='search' value={textInput} onChange={handleChange} required placeholder='Search...'
+	// 							sx={{
+	// 								background: 'transparent',
+	// 								textAlign: 'center',
+	// 								flex: 1,
+	// 								border: 0,
+	// 								outline: 'none',
+	// 								padding: '1rem 0.75rem',
+	// 								alignItems: 'center',
+	// 								fontSize: '20px',
+	// 								color: '#d6ecff',
+	// 								input: {
+	// 									color: '#d6ecff',
+	// 									textAlign: 'center',
+	// 									fontSize: '20px',
+	// 									flex: 1,
+	// 									// padding: '1rem 0.75rem',
+	// 									'&::placeholder': {
+	// 										color: '#d6ecff'
+	// 									},
+	// 								}
+	// 							}}
+	// 							InputProps={{
+	// 								disableUnderline: true
+	// 							}} /> */}
+	// 						{gameSearch !== '' ?
+	// 							<IconButton onClick={handleClear} size='medium'>
+	// 								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+	// 							</IconButton>
+	// 							: <></>
+	// 						}
+	// 						<IconButton type='submit' size='medium' onClick={handleClear}>
+	// 							{gameSearch !== '' ?
+	// 								// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+	// 								<Link href={`/game/${gameSearch}`}>
+	// 									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+	// 								</Link>
+	// 								:
+	// 								<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+	// 							}
+	// 						</IconButton>
+	// 					</form>
+	// 				</div>
+	// 			</Toolbar>
+	// 		</AppBar>
+	// 		<SuggestionList onClick={handleClear} searchterm={gameSearch} />
+	// 	</Box>
+}
+
+
+
+export { Search }
+
+{/* <TextField variant='standard' type='search' value={textInput} onChange={handleChange} required placeholder='Search...'
 								sx={{
 									background: 'transparent',
 									textAlign: 'center',
@@ -71,29 +162,3 @@ const Search = () => {
 								InputProps={{
 									disableUnderline: true
 								}} /> */}
-							{gameSearch !== '' ?
-								<IconButton onClick={handleClear} size='medium'>
-									<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
-								</IconButton>
-								: <></>
-							}
-							<IconButton type='submit' size='medium' onClick={handleClear}>
-								{gameSearch !== '' ?
-									// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
-									<Link href={`/game/${gameSearch}`}>
-										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
-									</Link>
-									:
-									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
-								}
-							</IconButton>
-						</form>
-					</div>
-				</Toolbar>
-			</AppBar>
-			<SuggestionList onClick={handleClear} searchterm={gameSearch} />
-		</Box>
-	)
-}
-
-export { Search }

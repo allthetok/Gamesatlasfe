@@ -1,0 +1,27 @@
+:root {
+	--nav-bg: #1f2328;
+	--text-color: #ddd;
+}
+
+.logo-img {
+	width: 90px;
+	aspect-ratio: 500 / 359;
+	/* margin-top: 0.3125rem;
+	margin-left: 0.3125rem; */
+	padding-top: 0.3125rem;
+	margin-left: 0;
+}
+
+.nav-wrapper {
+	background: var(--nav-bg);
+	color: var(--text-color);
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	vertical-align: top;
+	align-items: center;
+	justify-content: space-between;
+	font-weight: 700;
+	font-size: 1.25rem;
+}
