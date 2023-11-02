@@ -77,10 +77,10 @@ const Search = () => {
 								</IconButton>
 								: <></>
 							}
-							<IconButton type='submit' size='medium' onClick={() => localStorage.setItem('searchterm', gameSearch)}>
+							<IconButton type='submit' size='medium' onClick={handleClear}>
 								{gameSearch !== '' ?
 									// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
-									<Link href={gameSearch !== '' ? `/game/${gameSearch}`: ''}>
+									<Link href={`/game/${gameSearch}`}>
 										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
 									</Link>
 									:
@@ -91,7 +91,7 @@ const Search = () => {
 					</div>
 				</Toolbar>
 			</AppBar>
-			<SuggestionList searchterm={gameSearch} />
+			<SuggestionList onClick={handleClear} searchterm={gameSearch} />
 		</Box>
 	)
 }

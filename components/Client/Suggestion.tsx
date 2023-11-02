@@ -7,6 +7,7 @@ import { placeholderImages } from '../../assets/ratingsvglinks'
 import './Suggestion.css'
 
 type SuggestionProps = {
+	onClick: (e: React.MouseEvent<HTMLElement>) => void,
 	id: number,
 	cover: string,
 	platforms: Platforms[],
@@ -17,9 +18,9 @@ type SuggestionProps = {
 	companies: Companies[]
 }
 
-const Suggestion = ({ id, cover, platforms, rating, releaseDate, title, category, companies }: SuggestionProps ) => {
+const Suggestion = ({ onClick, id, cover, platforms, rating, releaseDate, title, category, companies }: SuggestionProps ) => {
 	return (
-		<Link href={`/game/${title}`} className='no-text-dec'>
+		<Link href={`/game/${title}`} className='no-text-dec' onClick={onClick}>
 			<div className='ind-suggest'>
 				<div className='cover-wrap'>
 					<img className='cover-logo' alt={`${title} cover`} src={cover}/>

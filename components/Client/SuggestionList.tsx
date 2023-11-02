@@ -7,10 +7,11 @@ import { Suggestion } from './Suggestion'
 import './SuggestionList.css'
 
 type SuggestionListProps = {
+	onClick: (e: React.MouseEvent<HTMLElement>) => void,
 	searchterm: string
 }
 
-const SuggestionList = ({ searchterm }: SuggestionListProps) => {
+const SuggestionList = ({ searchterm, onClick }: SuggestionListProps) => {
 	const [searchDataFetch, setSearchDataFetch] = useState<SearchResultsObj[]>([])
 	const termSearchConfig = createGameDtlConfig('post', 'search', searchterm!)
 
@@ -45,7 +46,7 @@ const SuggestionList = ({ searchterm }: SuggestionListProps) => {
 			{searchDataFetch.length !== 0 ?
 				<div className='search-suggest'>
 					{searchDataFetch.map((item: SearchResultsObj) => (
-						<Suggestion key={item.id} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} releaseDate={item.releaseDate} title={item.title} category={item.category} companies={item.involved_companies} />
+						<Suggestion onClick={onClick} key={item.id} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} releaseDate={item.releaseDate} title={item.title} category={item.category} companies={item.involved_companies} />
 					))}
 				</div>
 				: <></>

@@ -48,11 +48,11 @@ const GameDtl = ({ dataFetch }: GameDtlProps) => {
 		return (
 			<>
 				<div className='platforms'>
-					<img className='logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === ratingsObj.ESRB)[0].src} />
+					<img className='logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === ratingsObj.ESRB).length !== 0 ? ESRB.filter((rating) => rating.IGDBRating === ratingsObj.ESRB)[0].src : ESRB.filter((rating) => rating.IGDBRating === 7)[0].src} />
 					<p className='ptext'>ESRB Rating</p>
 				</div>
 				<div className='platforms'>
-					<img className='logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === ratingsObj.PEGI)[0].src} />
+					<img className='logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === ratingsObj.PEGI).length !== 0 ? PEGI.filter((rating) => rating.IGDBRating === ratingsObj.PEGI)[0].src : PEGI.filter((rating) => rating.IGDBRating === 7)[0].src}/>
 					<p className='ptext'>PEGI Rating</p>
 				</div>
 			</>
