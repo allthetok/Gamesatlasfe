@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { createGameDtlConfig } from '../../helpers/fctns'
 import { SimpleSearchConfig, SearchResultsObj } from '../../helpers/fetypes'
-import { suggest } from '../../mockdata/searchsuggest'
 import { Suggestion } from './Suggestion'
 import './SuggestionList.css'
 
@@ -23,7 +22,7 @@ const SuggestionList = ({ searchterm }: SuggestionListProps) => {
 					return
 				}
 				else {
-					response.data.sort((a: any, b: any) => (a.likes < b.likes) ? 1 : -1)
+					response.data.sort((a: SearchResultsObj, b: SearchResultsObj) => (a.likes < b.likes) ? 1 : -1)
 					setSearchDataFetch(response.data)
 				}
 			})
@@ -51,11 +50,6 @@ const SuggestionList = ({ searchterm }: SuggestionListProps) => {
 				</div>
 				: <></>
 			}
-			{/* <div className='search-suggest'>
-				{suggest.map((item: any) => (
-					<Suggestion key={item.id} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} category={item.category} companies={item.involved_companies} />
-				))}
-			</div> */}
 		</>
 	)
 }

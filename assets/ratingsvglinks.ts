@@ -62,7 +62,8 @@ const WebsiteCategories = [
 
 const placeholderImages = {
 	'NoLogo': 'https://w7.pngwing.com/pngs/937/386/png-transparent-registered-trademark-symbol-copyright-copyright-game-text-trademark-thumbnail.png',
-	'LinkButtons': 'https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'
+	'LinkButtons': 'https://www.mobygames.com/static/img/icon-link-external.c0245369.svg',
+	'NoArtworkScreenshotImage': 'https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
 }
 
 export { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages }
