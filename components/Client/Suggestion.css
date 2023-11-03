@@ -43,7 +43,9 @@
     justify-content: space-between;
     flex-direction: row;
     gap: 0.5rem;
-	margin-left: 0rem;
+	margin-top: -0.2rem;
+	margin-left: 6.5rem;
+	/* margin-left: 20.5rem; */
 	height: 55px;
 }
 

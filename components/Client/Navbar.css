@@ -4,12 +4,13 @@
 }
 
 .logo-img {
-	width: 90px;
+	width: 80px;
 	aspect-ratio: 500 / 359;
 	/* margin-top: 0.3125rem;
 	margin-left: 0.3125rem; */
-	padding-top: 0.3125rem;
-	margin-left: 0;
+	/* padding-top: 0.3125rem;
+	margin-left: 0; */
+	/* padding-top: 0.3125rem; */
 }
 
 .nav-wrapper {

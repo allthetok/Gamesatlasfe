@@ -6,14 +6,15 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { AppBar, Box, Toolbar, IconButton } from '@mui/material'
+import { AppBar, Box, Toolbar, IconButton, autocompleteClasses, SvgIcon } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
+import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import { useSearchContext } from '@/app/searchcontext'
 import { SuggestionList } from './SuggestionList'
 import './Search.css'
 import { Navbar } from './Navbar'
-import './Navbar.css'
+// import './Navbar.css'
 
 
 // type SearchProps = {
@@ -42,39 +43,76 @@ const Search = () => {
 	}
 
 	return (
-		<>
-			{/* <Navbar /> */}
-			<Box sx={{ flexGrow: 1, minWidth: '100%' }}>
-				<AppBar position="static" sx={{ backgroundColor: '#1f2328', boxShadow: 'none', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-					{/* <Toolbar sx={{ backgroundColor: '#1f2328', boxShadow: 'none', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}> */}
-					{/* <Box sx={{ flexGrow: 0.5 }}/> */}
-					<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
-					<div className='search-wrap'>
-						<form className='search-bar' onSubmit={handleSubmit}>
-							<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
-							{gameSearch !== '' ?
-								<IconButton onClick={handleClear} size='medium'>
-									<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
-								</IconButton>
-								: <></>
-							}
-							<IconButton type='submit' size='medium' onClick={handleClear}>
-								{gameSearch !== '' ?
-									// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
-									<Link href={`/game/${gameSearch}`}>
-										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
-									</Link>
-									:
-									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
-								}
+		// <>
+		// 	<AppBar position='static' sx={{ backgroundColor: '#1f2328' }}>
+		// 		<Toolbar sx={{ justifyContent: 'center' }}>
+		// 			<Box sx={{ marginRight: 'auto' }}>
+		// 				<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
+		// 			</Box>
+		// 			<div className='search-wrap'>
+		// 				<form className='search-bar' onSubmit={handleSubmit}>
+		// 					<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
+		// 					{gameSearch !== '' ?
+		// 						<IconButton onClick={handleClear} size='medium'>
+		// 							<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+		// 						</IconButton>
+		// 						: <></>
+		// 					}
+		// 					<IconButton type='submit' size='medium' onClick={handleClear}>
+		// 						{gameSearch !== '' ?
+		// 							// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+		// 							<Link href={`/game/${gameSearch}`}>
+		// 								<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+		// 							</Link>
+		// 							:
+		// 							<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+		// 						}
+		// 					</IconButton>
+		// 				</form>
+		// 			</div>
+		// 			<Box sx={{ flexGrow: 0.5 }}/>
+		// 			<div>
+		// 					User Profile
+		// 			</div>
+		// 		</Toolbar>
+		// 	</AppBar>
+		// 	<SuggestionList onClick={handleClear} searchterm={gameSearch} />
+		// </>
+		<Box sx={{ flexGrow: 1 }}>
+			{/* <AppBar position='static' sx={{ backgroundColor: '#1f2328', boxShadow: 'none', alignItems: 'center', justifyContent: 'flex-start', flexDirection: 'row', display: 'flex' }}> */}
+			<AppBar position='relative' sx={{ backgroundColor: '#1f2328', boxShadow: 'none', justifyContent: 'flex-start', width: 'auto', height: '65px', paddingTop: '0.625rem', flexDirection: 'row', display: 'flex'  }} >
+				{/* <Toolbar> */}
+				<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
+				<div className='search-wrap'>
+					<form className='search-bar' onSubmit={handleSubmit}>
+						<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
+						{gameSearch !== '' ?
+							<IconButton onClick={handleClear} size='medium'>
+								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
 							</IconButton>
-						</form>
-					</div>
-					{/* </Toolbar> */}
-				</AppBar>
-				<SuggestionList onClick={handleClear} searchterm={gameSearch} />
-			</Box>
-		</>
+							: <></>
+						}
+						<IconButton type='submit' size='medium' onClick={handleClear}>
+							{gameSearch !== '' ?
+								// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+								<Link href={`/game/${gameSearch}`}>
+									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+								</Link>
+								:
+								<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+							}
+						</IconButton>
+					</form>
+				</div>
+				<div>
+					<IconButton sx={{ color: 'white', paddingTop: '0.25rem', paddingBottom: '0', paddingRight: '0.5rem' }} >
+						<AccountBoxIcon sx={{ fontSize: '70px' }} />
+					</IconButton>
+				</div>
+				{/* </Toolbar> */}
+			</AppBar>
+		</Box>
+
 	)
 
 	// <Box sx={{ flexGrow: 1, minWidth: '100%' }}>
@@ -131,6 +169,78 @@ const Search = () => {
 	// 		</AppBar>
 	// 		<SuggestionList onClick={handleClear} searchterm={gameSearch} />
 	// 	</Box>
+
+
+
+	//Example:
+	// <Box sx={{ flexGrow: 1 }}>
+	// 			<AppBar position="static">
+	// 				<Toolbar>
+	// 					<IconButton
+	// 						size="large"
+	// 						edge="start"
+	// 						color="inherit"
+	// 						aria-label="open drawer"
+	// 						sx={{ mr: 2 }}
+	// 						onClick={handleHomeClick}
+	// 					>
+	// 						<HomeIcon />
+	// 						{/* <MenuIcon /> */}
+	// 					</IconButton>
+	// 					<Typography
+	// 						variant="h6"
+	// 						noWrap
+	// 						component="div"
+	// 						sx={{ display: { xs: 'none', sm: 'block' } }}
+	// 					>
+	// 						<a className='homeText' onClick={handleHomeClick}>PodFinder</a>
+	// 					</Typography>
+	// 					<div className='searchWrap'>
+	// 						<form className='searchBar' onSubmit={handleSubmit}>
+	// 							<input type='text' ref={textInput} required placeholder='Search...' />
+	// 							<button className='searchBtn'>
+	// 								<span>Search</span>
+	// 							</button>
+	// 						</form>
+	// 					</div>
+	// 					<Box sx={{ flexGrow: 1 }} />
+	// 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+	// 						<IconButton
+	// 							size="large"
+	// 							edge="end"
+	// 							aria-label="account of current user"
+	// 							color="inherit"
+	// 							onClick={handleDiscoverClick}
+	// 						>
+	// 							<SignalCellularAltIcon />
+	// 						</IconButton>
+	// 					</Box>
+	// 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+	// 						<IconButton
+	// 							size="large"
+	// 							edge="end"
+	// 							aria-label="account of current user"
+	// 							color="inherit"
+	// 							onClick={handleLikeClick}
+	// 						>
+	// 							<FavoriteIcon />
+	// 						</IconButton>
+	// 					</Box>
+	// 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+	// 						<IconButton
+	// 							size="large"
+	// 							edge="end"
+	// 							aria-label="account of current user"
+	// 							color="inherit"
+	// 							onClick={handleProfileClick}
+	// 						>
+	// 							<PersonIcon />
+	// 						</IconButton>
+	// 					</Box>
+	// 					<LogoutDialog handleUserLogout={handleUserLogout}/>
+	// 				</Toolbar>
+	// 			</AppBar>
+	// 		</Box>
 }
 
 
