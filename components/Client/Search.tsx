@@ -43,47 +43,89 @@ const Search = () => {
 	}
 
 	return (
-		// <>
-		// 	<AppBar position='static' sx={{ backgroundColor: '#1f2328' }}>
-		// 		<Toolbar sx={{ justifyContent: 'center' }}>
-		// 			<Box sx={{ marginRight: 'auto' }}>
-		// 				<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
-		// 			</Box>
-		// 			<div className='search-wrap'>
-		// 				<form className='search-bar' onSubmit={handleSubmit}>
-		// 					<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
-		// 					{gameSearch !== '' ?
-		// 						<IconButton onClick={handleClear} size='medium'>
-		// 							<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
-		// 						</IconButton>
-		// 						: <></>
-		// 					}
-		// 					<IconButton type='submit' size='medium' onClick={handleClear}>
-		// 						{gameSearch !== '' ?
-		// 							// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
-		// 							<Link href={`/game/${gameSearch}`}>
-		// 								<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
-		// 							</Link>
-		// 							:
-		// 							<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
-		// 						}
-		// 					</IconButton>
-		// 				</form>
-		// 			</div>
-		// 			<Box sx={{ flexGrow: 0.5 }}/>
-		// 			<div>
-		// 					User Profile
-		// 			</div>
-		// 		</Toolbar>
-		// 	</AppBar>
-		// 	<SuggestionList onClick={handleClear} searchterm={gameSearch} />
-		// </>
-		<Box sx={{ flexGrow: 1 }}>
-			{/* <AppBar position='static' sx={{ backgroundColor: '#1f2328', boxShadow: 'none', alignItems: 'center', justifyContent: 'flex-start', flexDirection: 'row', display: 'flex' }}> */}
-			<AppBar position='relative' sx={{ backgroundColor: '#1f2328', boxShadow: 'none', justifyContent: 'flex-start', width: 'auto', height: '65px', paddingTop: '0.625rem', flexDirection: 'row', display: 'flex'  }} >
-				{/* <Toolbar> */}
-				<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
-				<div className='search-wrap'>
+	// <>
+	// 	<AppBar position='static' sx={{ backgroundColor: '#1f2328' }}>
+	// 		<Toolbar sx={{ justifyContent: 'center' }}>
+	// 			<Box sx={{ marginRight: 'auto' }}>
+	// 				<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
+	// 			</Box>
+	// 			<div className='search-wrap'>
+	// 				<form className='search-bar' onSubmit={handleSubmit}>
+	// 					<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
+	// 					{gameSearch !== '' ?
+	// 						<IconButton onClick={handleClear} size='medium'>
+	// 							<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+	// 						</IconButton>
+	// 						: <></>
+	// 					}
+	// 					<IconButton type='submit' size='medium' onClick={handleClear}>
+	// 						{gameSearch !== '' ?
+	// 							// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+	// 							<Link href={`/game/${gameSearch}`}>
+	// 								<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+	// 							</Link>
+	// 							:
+	// 							<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+	// 						}
+	// 					</IconButton>
+	// 				</form>
+	// 			</div>
+	// 			<Box sx={{ flexGrow: 0.5 }}/>
+	// 			<div>
+	// 					User Profile
+	// 			</div>
+	// 		</Toolbar>
+	// 	</AppBar>
+	// 	<SuggestionList onClick={handleClear} searchterm={gameSearch} />
+	// </>
+
+
+	// <Box sx={{ flexGrow: 1 }}>
+	// 	{/* <AppBar position='static' sx={{ backgroundColor: '#1f2328', boxShadow: 'none', alignItems: 'center', justifyContent: 'flex-start', flexDirection: 'row', display: 'flex' }}> */}
+	// 	<AppBar position='relative' sx={{ backgroundColor: '#1f2328', boxShadow: 'none', justifyContent: 'flex-start', width: 'auto', height: '65px', paddingTop: '0.625rem', flexDirection: 'row', display: 'flex'  }} >
+	// 		{/* <Toolbar> */}
+	// 		<img className='logo-img' src='/logo-highres-circle.png' alt='Logo' />
+	// 		<div className='explore'>
+	// 			Explore
+	// 		</div>
+	// 		<div className='search-wrap'>
+	// 			<form className='search-bar' onSubmit={handleSubmit}>
+	// 				<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
+	// 				{gameSearch !== '' ?
+	// 					<IconButton onClick={handleClear} size='medium'>
+	// 						<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+	// 					</IconButton>
+	// 					: <></>
+	// 				}
+	// 				<IconButton type='submit' size='medium' onClick={handleClear}>
+	// 					{gameSearch !== '' ?
+	// 						// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
+	// 						<Link href={`/game/${gameSearch}`}>
+	// 							<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+	// 						</Link>
+	// 						:
+	// 						<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+	// 					}
+	// 				</IconButton>
+	// 			</form>
+	// 		</div>
+	// 		<div>
+	// 			<IconButton sx={{ color: '#ddd', paddingRight: '0.5rem', paddingTop: '0px', paddingLeft: '0px', paddingBottom: '0px' }} >
+	// 				<AccountBoxIcon sx={{ fontSize: '55px' }} />
+	// 			</IconButton>
+	// 		</div>
+	// 		{/* </Toolbar> */}
+	// 	</AppBar>
+	// </Box>
+	<header>
+		<nav>
+			<ul className='nav-menu'>
+				<li className='nav-logo'>
+					<a href='/'>
+						<img className='nav-img' src='logo-highres-circle.png' alt='GamesAtlas Logo' />
+					</a>
+				</li>
+				<li className='nav-search'>
 					<form className='search-bar' onSubmit={handleSubmit}>
 						<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
 						{gameSearch !== '' ?
@@ -94,7 +136,6 @@ const Search = () => {
 						}
 						<IconButton type='submit' size='medium' onClick={handleClear}>
 							{gameSearch !== '' ?
-								// <Link href={gameSearch !== '' ? `/game/?search=${gameSearch}` : ''}>
 								<Link href={`/game/${gameSearch}`}>
 									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
 								</Link>
@@ -103,15 +144,52 @@ const Search = () => {
 							}
 						</IconButton>
 					</form>
-				</div>
-				<div>
-					<IconButton sx={{ color: 'white', paddingTop: '0.25rem', paddingBottom: '0', paddingRight: '0.5rem' }} >
-						<AccountBoxIcon sx={{ fontSize: '70px' }} />
-					</IconButton>
-				</div>
-				{/* </Toolbar> */}
-			</AppBar>
-		</Box>
+				</li>
+				<li className='nav-links'>
+					<ul className='link-grp'>
+						<li className='nav-link'>
+							<div className='link-text'>
+								<a href='/'>
+									Explore
+								</a>
+							</div>
+						</li>
+						<li className='nav-link'>
+							<div className='link-text'>
+								<a href='/'>
+									Advanced Search
+								</a>
+							</div>
+						</li>
+						<li className='nav-link'>
+							<div className='link-text'>
+								<a href='/'>
+									Recommendations
+								</a>
+							</div>
+						</li>
+						<li className='nav-link'>
+							<div className='link-text'>
+								<a href='/'>
+									<b>Favorites</b>
+								</a>
+							</div>
+						</li>
+						<li className='nav-link'>
+							<div className='link-text'>
+								<a href='/'>
+									<IconButton sx={{ color: '#ddd', paddingRight: '0.5rem', paddingTop: '0px', paddingLeft: '0px', paddingBottom: '0px' }} >
+										<AccountBoxIcon sx={{ fontSize: '55px' }} />
+									</IconButton>
+									Profile
+								</a>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
 	)
 
