@@ -149,43 +149,45 @@ const Search = () => {
 					<ul className='link-grp'>
 						<li className='nav-link'>
 							<div className='link-text'>
-								<a href='/'>
+								<a className='link-a' href='/'>
 									Explore
 								</a>
 							</div>
 						</li>
 						<li className='nav-link'>
 							<div className='link-text'>
-								<a href='/'>
+								<a className='link-a' href='/'>
 									Advanced Search
 								</a>
 							</div>
 						</li>
 						<li className='nav-link'>
 							<div className='link-text'>
-								<a href='/'>
+								<a className='link-a' href='/'>
 									Recommendations
 								</a>
 							</div>
 						</li>
 						<li className='nav-link'>
 							<div className='link-text'>
-								<a href='/'>
-									<b>Favorites</b>
-								</a>
-							</div>
-						</li>
-						<li className='nav-link'>
-							<div className='link-text'>
-								<a href='/'>
-									<IconButton sx={{ color: '#ddd', paddingRight: '0.5rem', paddingTop: '0px', paddingLeft: '0px', paddingBottom: '0px' }} >
-										<AccountBoxIcon sx={{ fontSize: '55px' }} />
-									</IconButton>
-									Profile
+								<a className='link-a' href='/'>
+									Favorites
 								</a>
 							</div>
 						</li>
 					</ul>
+				</li>
+				<li className='nav-profile'>
+					<div className='link-icon-text'>
+						<a className='link-a-icon' href='/'>
+							<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+								<AccountBoxIcon sx={{ fontSize: '55px' }} />
+							</IconButton>
+							<p>
+								Profile
+							</p>
+						</a>
+					</div>
 				</li>
 			</ul>
 		</nav>

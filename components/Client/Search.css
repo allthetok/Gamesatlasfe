@@ -1,5 +1,6 @@
 :root {
 	--nav-bg: #1f2328;
+	--hover-bg: #282d33;
 	--text-color: #ddd;
 	--spacing: 1rem;
     --spacing-sm: .75rem;
@@ -14,6 +15,9 @@
     --size-lg: 992px;
     --size-xl: 1200px;
     --size-xxl: 1400px;
+	--link-color: #daddeb;
+	--primary-color: #9fc1ea;
+	--hover-color: #ddd;
 }
 
 .search-container {
@@ -102,15 +106,12 @@
   }
 
   .nav-menu {
-	grid-template-areas: 'logo search links';
-	grid-template-columns: auto 1fr auto;
-	display: grid;
-	grid-template-rows: auto;
-	background-color: var(--nav-bg);
+	display: flex;
+	flex-direction: row;
 	list-style: none;
-	margin-bottom: 0;
-	padding: 0;
+	align-items: center;
 	margin-top: 0;
+	padding: 0;
   }
 
   .nav-menu li {
@@ -121,9 +122,7 @@
 	padding-top: var(--spacing-xxs);
 	padding-bottom: var(--spacing-xxs);
 	padding-left: 0!important;
-	padding-right: var(--spacing-xs);
-	grid-area: logo;
-	text-align: left;
+	padding-right: var(--spacing);
   }
 
   .nav-img {
@@ -132,27 +131,26 @@
   }
 
   .nav-search {
-	grid-area: search;
-	max-width: 450px;
-	padding: 0 var(--spacing-sm);
-	margin-top: var(--spacing-xs);
+	width: 416px;
   }
 
   .nav-links {
-	grid-area: links;
+	margin-left: 7.5%;
   }
 
   .link-grp {
 	display: flex;
 	list-style: none;
 	padding: 0;
-	height: 100%;
+	/* height: 100%; */
+	height: 75px;
 	justify-content: space-between;
   }
 
   .nav-link {
 	padding: var(--spacing-xxs) var(--spacing-xs);
 	position: relative;
+	border: 1px solid var(--nav-bg);
   }
 
   .link-text {
@@ -164,16 +162,69 @@
 	cursor: pointer;
 	font-weight: 700;
 	line-height: 22.5px;
-	font-size: 15px;
+	letter-spacing: 0em;
+	text-transform: none;
+	font-family: 'Roboto','Helvetica','Arial',sans-serif;
+	font-size: 20px;
   }
 
-  a {
+.link-a  {
 	text-decoration: none;
-	color: var(--text-color);
-	font-weight: bolder;
+	color: var(--primary-color);
+  } 
+
+  .nav-link:hover {
+	background-color: var(--hover-bg);
+	border-bottom: 1px solid var(--text-color);
+	cursor: pointer;
+	.link-a {
+		color: var(--hover-color);
+	}
   }
 
   header {
 	margin: 0;
 	background-color: var(--nav-bg);
+  }
+
+  .nav-profile {
+	margin-left: auto;
+	display: flex;
+	list-style: none;
+	padding: 0;
+	height: 75px;
+  }
+
+  .link-a-icon {
+	text-decoration: none;
+	color: var(--primary-color);
+	display: flex;
+  }
+
+  .css-b1zumk-MuiButtonBase-root-MuiIconButton-root {
+	padding: 0;
+  }
+
+  .link-icon-text {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 700;
+	line-height: 22.5px;
+	letter-spacing: 0em;
+	text-transform: none;
+	font-family: 'Roboto','Helvetica','Arial',sans-serif;
+	font-size: 20px;
+  }
+
+  .link-icon-text:hover {
+	background-color: var(--hover-bg);
+	border-bottom: 1px solid var(--text-color);
+	cursor: pointer;
+	.link-a-icon {
+		color: var(--hover-color);
+	}
   }
