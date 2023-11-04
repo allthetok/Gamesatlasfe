@@ -2,8 +2,10 @@
 	/* position: fixed; */
 	position: absolute;
     align-items: center;
-    width: 100%;
+    width: 634px;
     height: auto;
+	margin-left: 20%;
+	margin-top: -23px;
     z-index:99;
 	display: flex;
 	vertical-align: top;

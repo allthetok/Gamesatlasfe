@@ -6,10 +6,12 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { AppBar, Box, Toolbar, IconButton, autocompleteClasses, SvgIcon } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
+import LoginIcon from '@mui/icons-material/Login'
 import { useSearchContext } from '@/app/searchcontext'
 import { SuggestionList } from './SuggestionList'
 import './Search.css'
@@ -117,81 +119,127 @@ const Search = () => {
 	// 		{/* </Toolbar> */}
 	// 	</AppBar>
 	// </Box>
-	<header>
-		<nav>
-			<ul className='nav-menu'>
-				<li className='nav-logo'>
-					<a href='/'>
-						<img className='nav-img' src='logo-highres-circle.png' alt='GamesAtlas Logo' />
-					</a>
-				</li>
-				<li className='nav-search'>
-					<form className='search-bar' onSubmit={handleSubmit}>
-						<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
-						{gameSearch !== '' ?
-							<IconButton onClick={handleClear} size='medium'>
-								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
-							</IconButton>
-							: <></>
-						}
-						<IconButton type='submit' size='medium' onClick={handleClear}>
+	<div>
+		<header>
+			<nav>
+				<ul className='nav-menu'>
+					<li className='nav-logo'>
+						<a href='/'>
+							{/* <img className='nav-img' src='logo-highres-circle.png' alt='GamesAtlas Logo' /> */}
+							<Image src='/logo-highres-circle.png' width={90.41} height={65} alt='GamesAtlas Logo' />
+						</a>
+					</li>
+					<li className='nav-search'>
+						<form className='search-bar' onSubmit={handleSubmit}>
+							<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search...' />
 							{gameSearch !== '' ?
-								<Link href={`/game/${gameSearch}`}>
-									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
-								</Link>
-								:
-								<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+								<IconButton onClick={handleClear} size='medium'>
+									<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+								</IconButton>
+								: <></>
 							}
-						</IconButton>
-					</form>
-				</li>
-				<li className='nav-links'>
-					<ul className='link-grp'>
-						<li className='nav-link'>
-							<Link href='/explore' className='link-a'>
-								<div className='link-text'>
-										Explore
-								</div>
-							</Link>
-						</li>
-						<li className='nav-link'>
-							<Link href='/advsearch' className='link-a'>
-								<div className='link-text'>
-										Advanced Search
-								</div>
-							</Link>
-						</li>
-						<li className='nav-link'>
-							<Link href='/recommend' className='link-a'>
-								<div className='link-text'>
-										Recommendations
-								</div>
-							</Link>
-						</li>
-						<li className='nav-link'>
-							<Link href='/likes' className='link-a'>
-								<div className='link-text'>
-										My List
-								</div>
-							</Link>
-						</li>
-					</ul>
-				</li>
-				<li className='nav-profile'>
-					<Link href='/profile' className='link-a-icon'>
-						<div className='link-icon-text'>
-							<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-								<AccountBoxIcon sx={{ fontSize: '55px' }} />
+							<IconButton type='submit' size='medium' onClick={handleClear}>
+								{gameSearch !== '' ?
+									<Link href={`/game/${gameSearch}`}>
+										<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+									</Link>
+									:
+									<SearchRoundedIcon fontSize='large' htmlColor='#d6ecff'/>
+								}
 							</IconButton>
-							<p>
-								Profile
-							</p>
-						</div>
-					</Link>
-				</li>
-			</ul>
-		</nav>
-	</header>
+						</form>
+					</li>
+					<li className='nav-links'>
+						<ul className='link-grp'>
+							<li className='nav-link'>
+								<Link href='/explore' className='link-a'>
+									<div className='link-text'>
+											Explore
+									</div>
+								</Link>
+							</li>
+							<li className='nav-link'>
+								<Link href='/advsearch' className='link-a'>
+									<div className='link-text'>
+											Advanced Search
+									</div>
+								</Link>
+							</li>
+							<li className='nav-link'>
+								<Link href='/recommend' className='link-a'>
+									<div className='link-text'>
+											Recommendations
+									</div>
+								</Link>
+							</li>
+							<li className='nav-link'>
+								<Link href='/likes' className='link-a'>
+									<div className='link-text'>
+											My List
+									</div>
+								</Link>
+							</li>
+						</ul>
+					</li>
+					{/* <li className='nav-profile'>
+						<Link href='/profile' className='link-a-icon'>
+							<div className='link-icon-text'>
+								<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+									<AccountBoxIcon sx={{ fontSize: '55px' }} />
+								</IconButton>
+								<p>
+									Profile
+								</p>
+							</div>
+						</Link>
+					</li>
+
+					<li className='nav-auth'>
+						<Link href='/profile' className='link-a-icon'>
+							<div className='link-text'>
+								<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+									<LoginIcon sx={{ fontSize: '55px' }} />
+								</IconButton>
+								<p>
+									Login
+								</p>
+							</div>
+						</Link>
+					</li> */}
+
+					<li className='nav-userlinks'>
+						<ul className='link-grp'>
+							<li className='nav-profile'>
+								<Link href='/profile' className='link-a-icon'>
+									<div className='link-icon-text'>
+										<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+											<AccountBoxIcon sx={{ fontSize: '55px' }} />
+										</IconButton>
+										<p>
+											Profile
+										</p>
+									</div>
+								</Link>
+							</li>
+							<li className='nav-profile'>
+								<div className='link-a-icon'>
+									<div className='link-icon-text'>
+										<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+											<LoginIcon sx={{ fontSize: '55px' }} />
+										</IconButton>
+										<p>
+											Login
+										</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<SuggestionList onClick={handleClear} searchterm={gameSearch} />
+		</div>
 
 	)
 
