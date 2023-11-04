@@ -208,12 +208,12 @@ const Search = () => {
 					</li> */}
 
 					<li className='nav-userlinks'>
-						<ul className='link-grp'>
+						<ul className='link-grp-user'>
 							<li className='nav-profile'>
 								<Link href='/profile' className='link-a-icon'>
 									<div className='link-icon-text'>
 										<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-											<AccountBoxIcon sx={{ fontSize: '55px' }} />
+											<AccountBoxIcon sx={{ fontSize: '25px' }} />
 										</IconButton>
 										<p>
 											Profile
@@ -225,7 +225,7 @@ const Search = () => {
 								<div className='link-a-icon'>
 									<div className='link-icon-text'>
 										<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-											<LoginIcon sx={{ fontSize: '55px' }} />
+											<LoginIcon sx={{ fontSize: '25px' }} />
 										</IconButton>
 										<p>
 											Login
