@@ -148,46 +148,46 @@ const Search = () => {
 				<li className='nav-links'>
 					<ul className='link-grp'>
 						<li className='nav-link'>
-							<div className='link-text'>
-								<a className='link-a' href='/'>
-									Explore
-								</a>
-							</div>
+							<Link href='/explore' className='link-a'>
+								<div className='link-text'>
+										Explore
+								</div>
+							</Link>
 						</li>
 						<li className='nav-link'>
-							<div className='link-text'>
-								<a className='link-a' href='/'>
-									Advanced Search
-								</a>
-							</div>
+							<Link href='/advsearch' className='link-a'>
+								<div className='link-text'>
+										Advanced Search
+								</div>
+							</Link>
 						</li>
 						<li className='nav-link'>
-							<div className='link-text'>
-								<a className='link-a' href='/'>
-									Recommendations
-								</a>
-							</div>
+							<Link href='/recommend' className='link-a'>
+								<div className='link-text'>
+										Recommendations
+								</div>
+							</Link>
 						</li>
 						<li className='nav-link'>
-							<div className='link-text'>
-								<a className='link-a' href='/'>
-									Favorites
-								</a>
-							</div>
+							<Link href='/likes' className='link-a'>
+								<div className='link-text'>
+										My List
+								</div>
+							</Link>
 						</li>
 					</ul>
 				</li>
 				<li className='nav-profile'>
-					<div className='link-icon-text'>
-						<a className='link-a-icon' href='/'>
+					<Link href='/profile' className='link-a-icon'>
+						<div className='link-icon-text'>
 							<IconButton sx={{ color: '#ddd', padding: 'none' }}>
 								<AccountBoxIcon sx={{ fontSize: '55px' }} />
 							</IconButton>
 							<p>
 								Profile
 							</p>
-						</a>
-					</div>
+						</div>
+					</Link>
 				</li>
 			</ul>
 		</nav>

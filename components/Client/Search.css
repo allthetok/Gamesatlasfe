@@ -185,6 +185,7 @@
   header {
 	margin: 0;
 	background-color: var(--nav-bg);
+	/* display: flex; */
   }
 
   .nav-profile {
@@ -227,4 +228,8 @@
 	.link-a-icon {
 		color: var(--hover-color);
 	}
+  }
+
+  .user-auth {
+	margin-left: auto;
   }
