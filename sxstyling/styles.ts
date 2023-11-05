@@ -31,6 +31,39 @@ const ButtonActiveSx = {
 	textTransform: 'none'
 }
 
+const ButtonAdvSx = {
+	'&:hover': {
+		// borderBottom: '1px solid #394960',
+		color: 'var(--body-color)'
+	},
+	'&:active': {
+		color: 'var(--body-color)',
+	},
+	position: 'relative',
+	display: 'block',
+	padding: 'var(--spacing-xxs)',
+	fontWeight: '700',
+	fontSize: '1.25rem',
+	marginBottom: '-1px',
+	color: 'var(--primary-color)',
+	letterSpacing: '0em',
+	lineHeight: '2',
+	textTransform: 'none',
+}
+
+const ButtonAdvActiveSx = {
+	position: 'relative',
+	display: 'block',
+	padding: 'var(--spacing-xxs)',
+	fontWeight: '700',
+	fontSize: '1.25rem',
+	marginBottom: '-1px',
+	color: 'var(--body-color)',
+	letterSpacing: '0em',
+	lineHeight: '2',
+	textTransform: 'none'
+}
+
 const BoxSx = {
 	'&:hover': {
 		'background': 'var(--body-bg-color-dark)',
@@ -39,6 +72,18 @@ const BoxSx = {
 }
 
 const BoxActiveSx = {
+	'background': 'var(--body-bg-color-dark)',
+	'borderBottom': '1px solid transparent'
+}
+
+const BoxAdvSx = {
+	'&:hover': {
+		'background': 'var(--body-bg-color-dark)',
+		'borderBottom': '1px solid transparent'
+	}
+}
+
+const BoxAdvActiveSx = {
 	'background': 'var(--body-bg-color-dark)',
 	'borderBottom': '1px solid transparent'
 }
@@ -87,4 +132,4 @@ const AscDescSx = (selected: string, button: string) => {
 
 
 
-export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, IconSx, TableFavoriteIconSx, ListTblToggleSx, AscDescSx }
+export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, IconSx, TableFavoriteIconSx, ListTblToggleSx, AscDescSx, ButtonAdvSx, ButtonAdvActiveSx, BoxAdvSx, BoxAdvActiveSx }

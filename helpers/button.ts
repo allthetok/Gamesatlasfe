@@ -62,5 +62,28 @@ const ssrButtonArray: ButtonField[] = [
 	},
 ]
 
+const searchButtonArray = [
+	'Platforms',
+	'Release Date',
+	'Genres',
+	'Themes',
+	'Modes',
+	'Companies',
+	'Keywords'
+]
 
-export { buttonArray, ssrButtonArray }
+const platformButtonArray = [
+	'Mac',
+	'PC (Microsoft Windows)',
+	'Linux',
+	'Xbox Series X|S',
+	'PlayStation 5',
+	'Xbox One',
+	'PlayStation 4',
+	'Nintendo Switch',
+	'PlayStation 3',
+	'Xbox 360'
+]
+
+
+export { buttonArray, ssrButtonArray, searchButtonArray, platformButtonArray }
