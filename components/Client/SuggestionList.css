@@ -4,8 +4,8 @@
     align-items: center;
     width: 634px;
     height: auto;
-	margin-left: 20%;
-	margin-top: -30px;
+	margin-left: 27.5%;
+	margin-top: -20px;
     z-index:99;
 	display: flex;
 	vertical-align: top;
@@ -14,20 +14,26 @@
 	flex-direction: column;
 }
 
-
-@media (max-width: 2250px) and (min-width: 1620px) {
+@media (max-width: 2600px) and (min-width: 2250px) {
 	.search-suggest {
-		margin-left: 12.5%;
+		margin-left: 20%;
 	}
 }
 
-@media (max-width: 1615px) and (min-width: 1300px) {
+@media (max-width: 2249px) and (min-width: 1650px) {
+	.search-suggest {
+		margin-left: 10%;
+	}
+}
+
+
+@media (max-width: 1649px) and (min-width: 1250px) {
 	.search-suggest {
 		margin-left: 0%;
 	}
 }
 
-@media (max-width: 1295px) and (min-width: 1150px) {
+@media (max-width: 1299px) and (min-width: 1150px) {
 	.search-suggest {
 		margin-left: 20%;
 		margin-top: -13.75%;
