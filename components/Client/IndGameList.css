@@ -19,13 +19,16 @@
     justify-content: space-between;
     flex-direction: row;
     gap: 0.5rem;
+	margin-top: -15px;
+	/* margin-left: 15px; */
 }
 
 .drop-wrap {
 	text-align: center;
     display: flex;
 	box-sizing: border-box;
-	margin-left: -10rem;
+	/* margin-left: -10rem; */
+	margin-left: -15rem;
 	/* display: flex;
 	justify-content: center;
 	align-items: center;
@@ -41,6 +44,7 @@
 
 .ascdesc-wrap {
 	float: right;
+	margin-left: 2.5%;
 }
 
 .inline {

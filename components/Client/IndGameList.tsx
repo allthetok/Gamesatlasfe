@@ -16,6 +16,7 @@ import { MyTextField, StyledComponents } from '../../sxstyling/styledmui'
 import { theme } from '../../sxstyling/theme'
 import { IndGameTable } from './IndGameTable'
 import './IndGameList.css'
+import { Search } from './Search'
 
 const IndGameList = () => {
 	const [multiResp, setMultiResp] = useState<Explore[]>([])
@@ -67,20 +68,19 @@ const IndGameList = () => {
 	}
 
 	return (
-		<div>
+		<><Search /><div className='explore-wrap'>
 			{loading ?
 				<ReactLoading type={'spinningBubbles'} color={'#ddd'} height={150} width={150} />
-				: <></>
-			}
+				: <></>}
 			{!loading && !error && multiResp ?
 				<div>
 					<div className='filter-wrap'>
-						<div>
+						<div className='ascdesc-wrap'>
 							<Button sx={AscDescSx(sortDirection, 'ascbtn')} onClick={() => setSortDirection('asc')} variant={sortDirection === 'asc' ? 'contained' : 'outlined'}>
-									Ascending
+								Ascending
 							</Button>
 							<Button sx={AscDescSx(sortDirection, 'descbtn')} onClick={() => setSortDirection('desc')} variant={sortDirection === 'desc' ? 'contained' : 'outlined'}>
-									Descending
+								Descending
 							</Button>
 						</div>
 						<div className='drop-wrap'>
@@ -92,8 +92,7 @@ const IndGameList = () => {
 									options={sortOptions}
 									value={sortBy}
 									onChange={onSortChange}
-									sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) =>  <TextField {...params} label="Sort By" />}
-								/>
+									sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Sort By" />} />
 							</ThemeProvider>
 							<ThemeProvider theme={theme}>
 								<Autocomplete
@@ -103,8 +102,7 @@ const IndGameList = () => {
 									options={platformOptions}
 									value={platform}
 									onChange={onPlatformChange}
-									sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) =>  <TextField {...params} label="Platform" />}
-								/>
+									sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Platform" />} />
 							</ThemeProvider>
 							<ThemeProvider theme={theme}>
 								<Autocomplete
@@ -114,35 +112,32 @@ const IndGameList = () => {
 									options={numOptions}
 									value={limit}
 									onChange={onLimitChange}
-									sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) =>  <TextField {...params} label="Limit" />}
-								/>
+									sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Limit" />} />
 							</ThemeProvider>
 						</div>
 						<div className='button-wrap'>
 							<Button sx={ListTblToggleSx(viewToggle, 'listbtn')} onClick={() => setViewToggle('list')} variant={viewToggle === 'list' ? 'contained' : 'outlined'}>
 								<SvgIcon sx={IconSx} fontSize='large' htmlColor='#ddd'>
-									<GridViewIcon/>
+									<GridViewIcon />
 								</SvgIcon>
 							</Button>
 							<Button sx={ListTblToggleSx(viewToggle, 'tblbtn')} onClick={() => setViewToggle('table')} variant={viewToggle === 'table' ? 'contained' : 'outlined'}>
 								<SvgIcon sx={IconSx} fontSize='large' htmlColor='#ddd'>
-									<TableRowsIcon/>
+									<TableRowsIcon />
 								</SvgIcon>
 							</Button>
 						</div>
 					</div>
-					{ viewToggle === 'list' ?
+					{viewToggle === 'list' ?
 						<div className='grid-wrapper'>
 							{multiResp.map((item: Explore) => (
 								<IndGame key={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
 							))}
 						</div>
-						: <IndGameTable multiResp={multiResp}/>
-					}
+						: <IndGameTable multiResp={multiResp} />}
 				</div>
-				: <></>
-			}
-		</div>
+				: <></>}
+		</div></>
 	)
 }
 
