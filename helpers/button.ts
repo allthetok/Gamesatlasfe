@@ -65,11 +65,11 @@ const ssrButtonArray: ButtonField[] = [
 const searchButtonArray = [
 	'Platforms',
 	'Release Date',
+	'Rating',
 	'Genres',
 	'Themes',
 	'Modes',
 	'Companies',
-	'Keywords'
 ]
 
 const platformButtonArray = [
@@ -85,5 +85,35 @@ const platformButtonArray = [
 	'Xbox 360'
 ]
 
+const genresButtonArray = [
+	'Fighting',
+	'Shooter',
+	'Music',
+	'Platform',
+	'Puzzle',
+	'Racing',
+	'Real Time Strategy (RTS)',
+	'Role-playing (RPG)',
+	'Simulator',
+	'Point-and-click',
+	'Sport',
+	'Strategy',
+	'Turn-based strategy (TBS)',
+	'Tactical',
+	'Quiz/Trivia',
+	'Hack and slash/Beat em up',
+	'Pinball',
+	'Adventure',
+	'Arcade',
+	'Visual Novel',
+	'Indie',
+	'Card & Board Game',
+	'MOBA',
+]
 
-export { buttonArray, ssrButtonArray, searchButtonArray, platformButtonArray }
+const yearMarks = [ { value: 1973,label: '1973' }, { value: 1978,label: '1978' },{ value: 1983,label: '1983' },{ value: 1988,label: '1988' },{ value: 1993,label: '1993' },{ value: 1998,label: '1998' },{ value: 2003,label: '2003' },{ value: 2008,label: '2008' },{ value: 2013,label: '2013' },{ value: 2018,label: '2018' },{ value: 2023,label: '2023' },]
+
+const ratingMarks = [{ value: 0, label: '0' }, { value: 5, label: '5' }, { value: 10, label: '10' }, { value: 15, label: '15' }, { value: 20, label: '20' }, { value: 25, label: '25' }, { value: 30, label: '30' }, { value: 35, label: '35' }, { value: 40, label: '40' }, { value: 45, label: '45' }, { value: 50, label: '50' }, { value: 55, label: '55' }, { value: 60, label: '60' }, { value: 65, label: '5' }, { value: 70, label: '70' }, { value: 75, label: '75' }, { value: 80, label: '80' }, { value: 85, label: '85' }, { value: 90, label: '90' }, { value: 95, label: '95' }, { value: 100, label: '100' }]
+
+
+export { buttonArray, ssrButtonArray, searchButtonArray, platformButtonArray, genresButtonArray, yearMarks, ratingMarks }

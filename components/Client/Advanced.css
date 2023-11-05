@@ -57,4 +57,61 @@
 	border: none;
 	margin: 0;
 	flex-grow: 0;
+	display: flex;
+	justify-content: center;
+	border: 1px solid var(--body-bg-color);
+}
+
+.adv-nav-tabs-li:hover {
+	cursor: pointer;
+	background-color: var(--body-bg-color-dark);
+	/* color: var(--body-color); */
+	color: white;
+}
+
+.adv-nav-tabs-genre {
+	/* display: grid;
+	grid-template-columns: repeat(8, auto);
+	list-style: none;
+	padding: 0;
+	margin-top: 0;
+	border: 1px solid var(--border-color);
+	align-items: center;
+	width: auto; */
+
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	border: 1px solid var(--border-color);
+	width: auto;
+	justify-content: center;
+	align-items: center;
+	float: right;
+}
+
+.genre-rows {
+	display: flex;
+	flex-direction: column;
+}
+
+.MuiSlider-colorPrimary	{
+	color: var(--primary-color);
+	/* color: #ddd; */
+}
+
+.MuiSlider-marked {
+	background-color: var(--body-bg-color);
+}
+
+.MuiSlider-valueLabelOpen {
+	background-color: var(--body-bg-color);
+	color: var(--text-color);
+}
+
+.MuiSlider-markLabel {
+	color: var(--text-color);
+	font-size: 1.125rem;
 }
