@@ -188,6 +188,21 @@ const Advanced = () => {
 			return (
 				<div>
 					<div className='search-company-wrap'>
+						{companyList.length !== 0 ?
+							<div className='company-selected'>
+								<ul className='company-selected-buttons'>
+									{companyList.map((company: string) => (
+										<li className='tag-link-company' key={company}>
+											{company}
+											<IconButton onClick={() => handleRemove(company)} size='medium'>
+												<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+											</IconButton>
+										</li>
+									))}
+								</ul>
+							</div>
+							: <></>
+						}
 						<form className='search-company-bar'>
 							<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
 							{companySearch !== '' ?
@@ -197,20 +212,8 @@ const Advanced = () => {
 								: <></>
 							}
 						</form>
-						<div className='company-selected'>
-							<ul className='company-selected-buttons'>
-								{companyList.map((company: string) => (
-									<li className='tag-link-company' key={company}>
-										{company}
-										<IconButton onClick={() => handleRemove(company)} size='medium'>
-											<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
-										</IconButton>
-									</li>
-								))}
-							</ul>
-						</div>
+						<AdvCSearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
 					</div>
-					<AdvCSearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
 				</div>
 			)
 		default:
