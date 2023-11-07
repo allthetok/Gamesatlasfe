@@ -1,10 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import Link from 'next/link'
-import { formattedYear } from '../../helpers/fctns'
-import { Companies, Platforms } from '../../../backendga/helpers/betypes'
 import { placeholderImages } from '../../assets/ratingsvglinks'
-// import './Suggestion.css'
 import './AdvCSearch.css'
 
 type AdvCSearchProps = {

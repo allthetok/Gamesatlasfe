@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks, themesButtonArray, gameModesButtonArray, categoriesButtonArray } from '../../helpers/button'
 import { Box, Button, IconButton, Slider } from '@mui/material'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
+import ClearIcon from '@mui/icons-material/Clear'
 import { Search } from './Search'
+import { AdvCSearchList } from './AdvCSearchList'
 import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
 import './Advanced.css'
-import { AdvCSearchList } from './AdvCSearchList'
 
 
 const Advanced = () => {
@@ -38,6 +39,11 @@ const Advanced = () => {
 	// }
 	const handleClear = () => {
 		setCompanySearch('')
+	}
+
+	const handleRemove = (companyInList: string) => {
+		const currentCompanies = [...companyList].filter((indCompany: string) => indCompany !== companyInList)
+		setCompanyList(currentCompanies)
 	}
 
 	const handleCompanyAdd = (companySuggest: string) => {
@@ -181,15 +187,29 @@ const Advanced = () => {
 		case 'Companies':
 			return (
 				<div>
-					<form className='search-bar'>
-						<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
-						{companySearch !== '' ?
-							<IconButton onClick={handleClear} size='medium'>
-								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
-							</IconButton>
-							: <></>
-						}
-					</form>
+					<div className='search-company-wrap'>
+						<form className='search-company-bar'>
+							<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
+							{companySearch !== '' ?
+								<IconButton onClick={handleClear} size='medium'>
+									<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+								</IconButton>
+								: <></>
+							}
+						</form>
+						<div className='company-selected'>
+							<ul className='company-selected-buttons'>
+								{companyList.map((company: string) => (
+									<li className='tag-link-company' key={company}>
+										{company}
+										<IconButton onClick={() => handleRemove(company)} size='medium'>
+											<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+										</IconButton>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
 					<AdvCSearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
 				</div>
 			)

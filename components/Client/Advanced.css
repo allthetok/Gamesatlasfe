@@ -119,6 +119,60 @@
 	flex-direction: column;
 }
 
+.search-company-bar {
+	width: 100%;
+	max-width: 700px;
+	background: rgba(255, 255, 255, 0.18);
+	/* background-color: #1f2328; */
+	display: flex;
+	align-items: center;
+	border-radius: 60px;
+	padding: 0rem 0.5rem;
+	/* height: 64px; */
+}
+
+.search-company-wrap {
+	display: flex;
+	flex-direction: row;
+	/* width: 550px; */
+}
+
+.company-selected-buttons {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	flex-wrap: nowrap;
+}
+
+.ind-company-selected {
+	border: 1px solid white;
+}
+
+.tag-link-company {
+	display: inline-block;
+    cursor: pointer;
+	color: var(--text-color);
+    /* background: #273b4b; */
+	/* background: var(--input-color); */
+	background: #383838;
+    padding-left: 10px;
+    font-size: 15px;
+    line-height: 30px;
+    border-radius: 6px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	margin-top: 0rem;
+	margin-bottom: 0.125rem;
+	text-decoration: none;
+}
+
+.tag-link-company:hover {
+	color: var(--hover-color);
+	background: #273b4b;
+}
+
 .MuiSlider-colorPrimary	{
 	color: var(--primary-color);
 	/* color: #ddd; */

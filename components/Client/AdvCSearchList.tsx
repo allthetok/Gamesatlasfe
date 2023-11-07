@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { createGameDtlConfig, createInnerSearchConfig } from '../../helpers/fctns'
+import { createInnerSearchConfig } from '../../helpers/fctns'
 import { SimpleSearchConfig, SearchResultsObj, SimpleNullableSearchConfig } from '../../helpers/fetypes'
 import { Companies } from '../../../backendga/helpers/betypes'
 import { AdvCSearch } from './AdvCSearch'
 import './AdvCSearchList.css'
 
 type AdvCSearchListProps = {
-	// onClick: (e: React.MouseEvent<HTMLElement>) => void,
 	searchterm: string,
 	handleCompanyAdd: (companySuggest: string) => void,
 }
