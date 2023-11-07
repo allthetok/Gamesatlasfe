@@ -259,7 +259,6 @@ button {
 .link-external {
 	display: inline-block;
 	content: "";
-	/* mask-image: 'https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'; */
 	width: 10px;
 	height: 12px;
 	margin: 0 3px 0 5px;

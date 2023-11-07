@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks, themesButtonArray, gameModesButtonArray, categoriesButtonArray } from '../../helpers/button'
+import { Box, Button, IconButton, Slider } from '@mui/material'
+import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import { Search } from './Search'
-import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks } from '../../helpers/button'
-import { Box, Button, Slider } from '@mui/material'
 import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
 import './Advanced.css'
+import { AdvCSearchList } from './AdvCSearchList'
 
 
 const Advanced = () => {
@@ -13,6 +15,11 @@ const Advanced = () => {
 	const [rating, setRating] = useState<number[]>([0,100])
 	const [platforms, setPlatforms] = useState<string[]>([])
 	const [genres, setGenres] = useState<string[]>([])
+	const [themes, setThemes] = useState<string[]>([])
+	const [gameModes, setGameModes] = useState<string[]>([])
+	const [categories, setCategories] = useState<string[]>([])
+	const [companySearch, setCompanySearch] = useState('')
+	const [companyList, setCompanyList] = useState<string[]>([])
 
 	const handleDateChange = (e: Event, newDate: number | number[]) => {
 		setDateYear(newDate as number[])
@@ -22,17 +29,24 @@ const Advanced = () => {
 		setRating(newRating as number[])
 	}
 
-	const addPlatform = (e: Event, platform: string) => {
-		const currentPlatforms = [...platforms]
-		currentPlatforms.push(platform)
-		setPlatforms(currentPlatforms)
+	const handleChange= (e: React.ChangeEvent<HTMLInputElement>) => {
+		setCompanySearch(e.target.value)
 	}
 
-	const addGenre = (genre: string) => {
-		const currentGenres = [...genres]
-		currentGenres.push(genre)
-		setGenres(currentGenres)
+	// const handleClear = (e: React.MouseEvent<HTMLElement>) => {
+	// 	setCompanySearch('')
+	// }
+	const handleClear = () => {
+		setCompanySearch('')
 	}
+
+	const handleCompanyAdd = (companySuggest: string) => {
+		const currentCompanies = [...companyList]
+		currentCompanies.push(companySuggest)
+		setCompanyList(currentCompanies)
+		handleClear()
+	}
+
 
 	const SwitchRender = (currentTab: string) => {
 		switch(currentTab) {
@@ -40,7 +54,7 @@ const Advanced = () => {
 			return (
 				<ul className='adv-nav-tabs'>
 					{platformButtonArray.map((platform: string) => (
-						<li className='adv-nav-tabs-li' key={platform}>
+						<li className={platforms.includes(platform) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={platform}>
 							<Box sx={platforms.includes(platform) ? BoxActiveSx : BoxSx}>
 								<Button sx={platforms.includes(platform) ? ButtonActiveSx : ButtonSx} onClick={() => {
 									const currentPlatforms = [...platforms]
@@ -94,67 +108,89 @@ const Advanced = () => {
 			)
 		case 'Genres':
 			return (
-				<div className='genre-rows'>
-					{/* <ul className='adv-nav-tabs-genre'>
-						{genresButtonArray.map((genre: string) => (
-							<li className='adv-nav-tabs-li' key={genre}>
-								<Box sx={genres.includes(genre) ? BoxActiveSx : BoxSx}>
-									<Button sx={genres.includes(genre) ? ButtonActiveSx : ButtonSx} onClick={() => {
-										const currentGenres = [...genres]
-										currentGenres.push(genre)
-										setGenres(currentGenres)
-									}}>
-										{genre}
-									</Button>
-								</Box>
-							</li>
-						))}
-					</ul> */}
-					<ul className='adv-nav-tabs-genre'>
-						{genresButtonArray.slice(0,10).map((genre: string) => (
-							<li className='adv-nav-tabs-li' key={genre}>
-								<Box sx={genres.includes(genre) ? BoxActiveSx : BoxSx}>
-									<Button sx={genres.includes(genre) ? ButtonActiveSx : ButtonSx} onClick={() => {
-										const currentGenres = [...genres]
-										currentGenres.push(genre)
-										setGenres(currentGenres)
-									}}>
-										{genre}
-									</Button>
-								</Box>
-							</li>
-						))}
-					</ul>
-					<ul className='adv-nav-tabs-genre'>
-						{genresButtonArray.slice(10,20).map((genre: string) => (
-							<li className='adv-nav-tabs-li' key={genre}>
-								<Box sx={genres.includes(genre) ? BoxActiveSx : BoxSx}>
-									<Button sx={genres.includes(genre) ? ButtonActiveSx : ButtonSx} onClick={() => {
-										const currentGenres = [...genres]
-										currentGenres.push(genre)
-										setGenres(currentGenres)
-									}}>
-										{genre}
-									</Button>
-								</Box>
-							</li>
-						))}
-					</ul>
-					<ul className='adv-nav-tabs-genre'>
-						{genresButtonArray.slice(20,genresButtonArray.length).map((genre: string) => (
-							<li className='adv-nav-tabs-li' key={genre}>
-								<Box sx={genres.includes(genre) ? BoxActiveSx : BoxSx}>
-									<Button sx={genres.includes(genre) ? ButtonActiveSx : ButtonSx} onClick={() => {
-										const currentGenres = [...genres]
-										currentGenres.push(genre)
-										setGenres(currentGenres)
-									}}>
-										{genre}
-									</Button>
-								</Box>
-							</li>
-						))}
-					</ul>
+				<ul className='adv-nav-tabs-grid'>
+					{genresButtonArray.map((genre: string) => (
+						<li className={genres.includes(genre) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={genre}>
+							<Box sx={genres.includes(genre) ? BoxActiveSx : BoxSx}>
+								<Button sx={genres.includes(genre) ? ButtonActiveSx : ButtonSx} onClick={() => {
+									const currentGenres = [...genres]
+									currentGenres.push(genre)
+									setGenres(currentGenres)
+								}}>
+									{genre}
+								</Button>
+							</Box>
+						</li>
+					))}
+				</ul>
+			)
+		case 'Themes':
+			return (
+				<ul className='adv-nav-tabs-grid'>
+					{themesButtonArray.map((theme: string) => (
+						<li className={themes.includes(theme) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={theme}>
+							<Box sx={themes.includes(theme) ? BoxActiveSx : BoxSx}>
+								<Button sx={themes.includes(theme) ? ButtonActiveSx : ButtonSx} onClick={() => {
+									const currentThemes = [...themes]
+									currentThemes.push(theme)
+									setThemes(currentThemes)
+								}}>
+									{theme}
+								</Button>
+							</Box>
+						</li>
+					))}
+				</ul>
+			)
+		case 'Game Modes':
+			return (
+				<ul className='adv-nav-tabs'>
+					{gameModesButtonArray.map((mode: string) => (
+						<li className={gameModes.includes(mode) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={mode}>
+							<Box sx={gameModes.includes(mode) ? BoxActiveSx : BoxSx}>
+								<Button sx={gameModes.includes(mode) ? ButtonActiveSx : ButtonSx} onClick={() => {
+									const currentGameModes = [...gameModes]
+									currentGameModes.push(mode)
+									setGameModes(currentGameModes)
+								}}>
+									{mode}
+								</Button>
+							</Box>
+						</li>
+					))}
+				</ul>
+			)
+		case 'Category':
+			return (
+				<ul className='adv-nav-tabs'>
+					{categoriesButtonArray.map((category: string) => (
+						<li className={categories.includes(category) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={category}>
+							<Box sx={categories.includes(category) ? BoxActiveSx : BoxSx}>
+								<Button sx={categories.includes(category) ? ButtonActiveSx : ButtonSx} onClick={() => {
+									const currentCategories = [...categories]
+									currentCategories.push(category)
+									setCategories(currentCategories)
+								}}>
+									{category}
+								</Button>
+							</Box>
+						</li>
+					))}
+				</ul>
+			)
+		case 'Companies':
+			return (
+				<div>
+					<form className='search-bar'>
+						<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
+						{companySearch !== '' ?
+							<IconButton onClick={handleClear} size='medium'>
+								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+							</IconButton>
+							: <></>
+						}
+					</form>
+					<AdvCSearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
 				</div>
 			)
 		default:

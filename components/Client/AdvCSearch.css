@@ -1,0 +1,102 @@
+:root {
+	--card-bg: #202020;
+	--card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	--card-radius: 0.375rem;
+	--card-color: #ffffffeb;
+	--text-color: #ddd;
+	--card-padding: 0.5rem 1.25rem 1.25rem 1.25rem;
+	--font-bold: 700;
+	--badge-color: #9ae6b4;
+	--badge-bg: #9ae6b429;
+	--release-color: #addfef;
+	--release-bg: #99c3e629;
+	--likes-color: #e69ab4;
+	--likes-bg: #e69ab429;
+	--hover-color: #67c1f5;
+	--bg-color-alt: #1b1e22;
+	--tag-color: #383838;
+	--bg-color: #121212;
+	--hover-bg-color: #1f2328;
+}
+
+.ind-company-suggest {
+	width: 100%;
+	background: var(--bg-color);
+	align-items: center;
+	justify-content: center;
+	border-radius: 60px;
+	padding: 0rem 0.5rem;
+	margin-bottom: 0rem;
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0.5rem;
+	height: 55px;
+	border: 1px solid var(--bg-color);
+}
+
+.visit { 
+	color: var(--primary-color);
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+}
+
+.link-external {
+	display: inline-block;
+	content: "";
+	width: 10px;
+	height: 12px;
+	margin: 0 3px 0 5px;
+	background-color: var(--icon-color);
+}
+
+.company-logo-wrap {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+    color: var(--text-color);
+	margin-left: 0rem;
+    padding: 0 10px;
+    font-size: 1rem;
+	gap: 0rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 0rem;
+    margin-bottom: 0.125rem;
+    text-decoration: none;
+    vertical-align: center;
+}
+
+.comp-logo {
+	width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid #87ceeb;
+    border-radius: 10% / 50%;
+    margin-top: 0.2rem;
+    margin-right: 0.5rem;
+}
+
+.company-text {
+	font-weight: 700;
+	width: 250px;
+	max-width: 250px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+
+.ind-company-suggest:hover {
+	background: var(--hover-bg-color);
+	border: 1px solid white; 
+	cursor: pointer;
+	.company-text {
+		color: var(--hover-color);
+	}
+}
+

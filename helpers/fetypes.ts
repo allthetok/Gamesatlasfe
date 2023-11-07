@@ -143,6 +143,16 @@ interface SimpleSearchConfig {
 	}
 }
 
+interface SimpleNullableSearchConfig {
+	method: string,
+	url: string,
+	headers: object,
+	data: {
+		searchterm: string,
+		nullable: string
+	}
+}
+
 interface NestedSearchConfig {
 	method: string,
 	url: string,
@@ -165,4 +175,4 @@ interface SearchResultsObj {
 }
 
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, NestedSearchConfig, SearchResultsObj }
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj }

@@ -1,0 +1,13 @@
+.company-suggest {
+	position: absolute;
+    align-items: center;
+    width: 323px;
+    height: auto;
+    z-index:99;
+	display: flex;
+	vertical-align: top;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 0.25rem;
+}

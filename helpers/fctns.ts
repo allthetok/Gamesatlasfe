@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { LocalStorageObj, NestedSearchConfig, SimpleSearchConfig } from './fetypes'
+import { LocalStorageObj, NestedSearchConfig, SimpleNullableSearchConfig, SimpleSearchConfig } from './fetypes'
 
 const ratingFloatToStar = (rating: number) : number => rating / 20
 
@@ -73,6 +73,28 @@ const createGameDtlConfig = (method: string, endpoint: string, searchTerm: strin
 	}
 }
 
+const createInnerSearchConfig = (method: string, endpoint: string, searchTerm: string | string[], nullable: string): SimpleNullableSearchConfig => {
+	const searchterm = (searchTerm: string | string[]) => {
+		if (typeof searchTerm !== 'string') {
+			return searchTerm.join('')
+		}
+		else {
+			return searchTerm
+		}
+	}
+	return {
+		method: method,
+		url: `http://localhost:3001/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'searchterm': searchterm(searchTerm),
+			'nullable': nullable
+		}
+	}
+}
+
 const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string | string[]): NestedSearchConfig => {
 	const gameid = (gameID: string | string[]) => {
 		if (typeof gameID !== 'string') {
@@ -107,6 +129,6 @@ const splitRouteQuery = (inputStr: string, separator: string) => {
 const searchtermToString = (searchterm: string | string[]) => typeof searchterm !== 'string' ? searchterm.join('') : searchterm
 
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, searchtermToString }
+export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString }
 
 
