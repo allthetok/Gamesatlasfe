@@ -1,29 +1,28 @@
-import React, { useCallback, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks, themesButtonArray, gameModesButtonArray, categoriesButtonArray } from '../../helpers/button'
+import { AdvFilterContextObj } from '../../helpers/fetypes'
+import { useAdvFilterContext } from '@/app/advfiltercontext'
 import { Box, Button, IconButton, Slider } from '@mui/material'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import ClearIcon from '@mui/icons-material/Clear'
-import { Search } from './Search'
 import { CompanySearchList } from './CompanySearchList'
 import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
 import './Advanced.css'
-import { AdvFilterParent } from '@/app/advfiltercontext'
-import { AdvFilter } from './AdvFilter'
 
-
-const Advanced = () => {
+const AdvFilter = () => {
 	const [searchTab, setSearchTab] = useState(searchButtonArray[0])
-
-	const [dateYear, setDateYear] = useState<number[]>([1972,2023])
-	const [rating, setRating] = useState<number[]>([0,100])
-	const [platforms, setPlatforms] = useState<string[]>([])
-	const [genres, setGenres] = useState<string[]>([])
-	const [themes, setThemes] = useState<string[]>([])
-	const [gameModes, setGameModes] = useState<string[]>([])
-	const [categories, setCategories] = useState<string[]>([])
 	const [companySearch, setCompanySearch] = useState('')
-	const [companyList, setCompanyList] = useState<string[]>([])
+
+	const {
+		dateYear, setDateYear,
+		rating, setRating,
+		platforms, setPlatforms,
+		genres, setGenres,
+		themes, setThemes,
+		gameModes, setGameModes,
+		categories, setCategories,
+		companyList, setCompanyList
+	}: AdvFilterContextObj = useAdvFilterContext()
 
 	const handleDateChange = (e: Event, newDate: number | number[]) => {
 		setDateYear(newDate as number[])
@@ -52,7 +51,6 @@ const Advanced = () => {
 		setCompanyList(currentCompanies)
 		handleClear()
 	}
-
 
 	const SwitchRender = (currentTab: string) => {
 		switch(currentTab) {
@@ -226,13 +224,21 @@ const Advanced = () => {
 	}
 
 	return (
-		<>
-			<Search/>
-			<AdvFilterParent>
-				<AdvFilter />
-			</AdvFilterParent>
-		</>
+		<div className='adv-wrapper'>
+			<ul className='adv-nav-tabs'>
+				{searchButtonArray.map((el: string) => (
+					<li className='adv-nav-tabs-li' key={el}>
+						<Box sx={el === searchTab ? BoxAdvActiveSx : BoxAdvSx} onClick={() => setSearchTab(el)}>
+							<Button sx={el === searchTab ? ButtonAdvActiveSx : ButtonAdvSx}>
+								{el}
+							</Button>
+						</Box>
+					</li>
+				))}
+			</ul>
+			{SwitchRender(searchTab)}
+		</div>
 	)
 }
 
-export { Advanced }
+export { AdvFilter }

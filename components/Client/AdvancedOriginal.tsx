@@ -8,8 +8,6 @@ import { Search } from './Search'
 import { CompanySearchList } from './CompanySearchList'
 import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
 import './Advanced.css'
-import { AdvFilterParent } from '@/app/advfiltercontext'
-import { AdvFilter } from './AdvFilter'
 
 
 const Advanced = () => {
@@ -228,9 +226,20 @@ const Advanced = () => {
 	return (
 		<>
 			<Search/>
-			<AdvFilterParent>
-				<AdvFilter />
-			</AdvFilterParent>
+			<div className='adv-wrapper'>
+				<ul className='adv-nav-tabs'>
+					{searchButtonArray.map((el: string) => (
+						<li className='adv-nav-tabs-li' key={el}>
+							<Box sx={el === searchTab ? BoxAdvActiveSx : BoxAdvSx} onClick={() => setSearchTab(el)}>
+								<Button sx={el === searchTab ? ButtonAdvActiveSx : ButtonAdvSx}>
+									{el}
+								</Button>
+							</Box>
+						</li>
+					))}
+				</ul>
+				{SwitchRender(searchTab)}
+			</div>
 		</>
 	)
 }

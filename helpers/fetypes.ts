@@ -183,5 +183,16 @@ interface FilterContextObj {
 	viewToggle: string, setViewToggle: (viewToggle: string) => void,
 }
 
+interface AdvFilterContextObj {
+	dateYear: number[], setDateYear: (dateYear: number[]) => void,
+	rating: number[], setRating: (rating: number[]) => void,
+	platforms: string[], setPlatforms: (platforms: string[]) => void,
+	genres: string[], setGenres: (genres: string[]) => void,
+	themes: string[], setThemes: (themes: string[]) => void,
+	gameModes: string[], setGameModes: (gameModes: string[]) => void,
+	categories: string[], setCategories: (categories: string[]) => void,
+	companyList: string[], setCompanyList: (companyList: string[]) => void
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj, FilterContextObj }
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj }

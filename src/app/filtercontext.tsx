@@ -18,6 +18,7 @@ const FilterParent = ({ children }: any) => {
 	const [limit, setLimit] = useState('25')
 	const [genre, setGenre] = useState('')
 	const [viewToggle, setViewToggle] = useState('list')
+
 	return (
 		<FilterContext.Provider value={{
 			sortBy, setSortBy,

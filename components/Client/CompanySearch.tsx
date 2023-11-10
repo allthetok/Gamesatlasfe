@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { placeholderImages } from '../../assets/ratingsvglinks'
-import './AdvCSearch.css'
+import './CompanySearch.css'
 
-type AdvCSearchProps = {
+type CompanySearchProps = {
 	name: string,
 	url: string,
 	officialSite: string,
 	handleCompanyAdd: (companySuggest: string) => void,
 }
 
-const AdvCSearch = ({ name, url, officialSite, handleCompanyAdd }: AdvCSearchProps ) => {
+const CompanySearch = ({ name, url, officialSite, handleCompanyAdd }: CompanySearchProps ) => {
 	return (
 		<div className='ind-company-suggest' onClick={() => handleCompanyAdd(name)}>
 			<div className='company-logo-wrap'>
@@ -25,4 +25,4 @@ const AdvCSearch = ({ name, url, officialSite, handleCompanyAdd }: AdvCSearchPro
 	)
 }
 
-export { AdvCSearch }
+export { CompanySearch }

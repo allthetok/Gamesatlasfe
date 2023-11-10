@@ -4,15 +4,15 @@ import axios from 'axios'
 import { createInnerSearchConfig } from '../../helpers/fctns'
 import { SimpleSearchConfig, SearchResultsObj, SimpleNullableSearchConfig } from '../../helpers/fetypes'
 import { Companies } from '../../../backendga/helpers/betypes'
-import { AdvCSearch } from './AdvCSearch'
-import './AdvCSearchList.css'
+import { CompanySearch } from './CompanySearch'
+import './CompanySearchList.css'
 
-type AdvCSearchListProps = {
+type CompanySearchListProps = {
 	searchterm: string,
 	handleCompanyAdd: (companySuggest: string) => void,
 }
 
-const AdvCSearchList = ({ searchterm, handleCompanyAdd }: AdvCSearchListProps) => {
+const CompanySearchList = ({ searchterm, handleCompanyAdd }: CompanySearchListProps) => {
 	const [searchDataFetch, setSearchDataFetch] = useState<Companies[]>([])
 	const termSearchConfig = createInnerSearchConfig('post', 'companysearch', searchterm!, 'name, logo')
 
@@ -46,7 +46,7 @@ const AdvCSearchList = ({ searchterm, handleCompanyAdd }: AdvCSearchListProps) =
 			{searchDataFetch.length !== 0 ?
 				<div className='company-suggest'>
 					{searchDataFetch.map((item: Companies) => (
-						<AdvCSearch key={item.name} name={item.name} url={item.url} officialSite={item.officialSite} handleCompanyAdd={handleCompanyAdd} />
+						<CompanySearch key={item.name} name={item.name} url={item.url} officialSite={item.officialSite} handleCompanyAdd={handleCompanyAdd} />
 					))}
 				</div>
 				: <></>
@@ -55,4 +55,4 @@ const AdvCSearchList = ({ searchterm, handleCompanyAdd }: AdvCSearchListProps) =
 	)
 }
 
-export { AdvCSearchList }
+export { CompanySearchList }
