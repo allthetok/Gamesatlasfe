@@ -10,30 +10,27 @@ import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
+import { Search } from './Search'
 import { IndGame } from './IndGame'
 import { IconSx, ListTblToggleSx, AscDescSx } from '../../sxstyling/styles'
 import { MyTextField, StyledComponents } from '../../sxstyling/styledmui'
 import { theme } from '../../sxstyling/theme'
 import { IndGameTable } from './IndGameTable'
 import './IndGameList.css'
-import { Search } from './Search'
 
 const IndGameList = () => {
 	const [multiResp, setMultiResp] = useState<Explore[]>([])
-
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-	const [sortBy, setSortBy] = useState('IGDB Rating')
-	const [sortDirection, setSortDirection] = useState('desc')
-	const [platform, setPlatform] = useState('')
-	const [limit, setLimit] = useState('25')
-	const [genre, setGenre] = useState('')
-	const [viewToggle, setViewToggle] = useState('list')
-
-	const numOptions = ['10', '25', '50', '100']
-	const platformOptions = ['PC', 'Playstation', 'Xbox', 'Nintendo', 'Linux', '']
-	const sortOptions = ['IGDB Rating', 'Relevance', 'Title', 'Release Date']
+	const {
+		sortBy, setSortBy,
+		sortDirection, setSortDirection,
+		platform, setPlatform,
+		limit, setLimit,
+		genre, setGenre,
+		viewToggle, setViewToggle
+	}: FilterContextObj = useFilterContext()
 
 	const getMultiResp = useCallback(async () => {
 		const searchConfig = createExploreAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
@@ -53,19 +50,6 @@ const IndGameList = () => {
 	useEffect(() => {
 		getMultiResp()
 	}, [getMultiResp])
-
-	const onLimitChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
-		e.preventDefault()
-		setLimit(value!)
-	}
-	const onPlatformChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
-		e.preventDefault()
-		setPlatform(value!)
-	}
-	const onSortChange = (e: SyntheticEvent<Element, Event>, value: string | null): void => {
-		e.preventDefault()
-		setSortBy(value!)
-	}
 
 	return (
 		<><Search /><div className='explore-wrap'>

@@ -174,5 +174,14 @@ interface SearchResultsObj {
 	rating: number
 }
 
+interface FilterContextObj {
+	sortBy: string, setSortBy: (sortBy: string) => void,
+	sortDirection: string, setSortDirection: (sortDirection: string) => void,
+	platform: string, setPlatform: (platform: string) => void,
+	limit: string, setLimit: (limit: string) => void,
+	genre: string, setGenre: (genre: string) => void,
+	viewToggle: string, setViewToggle: (viewToggle: string) => void,
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj }
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj, FilterContextObj }

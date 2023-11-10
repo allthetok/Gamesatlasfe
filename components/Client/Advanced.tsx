@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
+import axios from 'axios'
 import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks, themesButtonArray, gameModesButtonArray, categoriesButtonArray } from '../../helpers/button'
 import { Box, Button, IconButton, Slider } from '@mui/material'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
@@ -12,7 +13,7 @@ import './Advanced.css'
 const Advanced = () => {
 	const [searchTab, setSearchTab] = useState(searchButtonArray[0])
 
-	const [dateYear, setDateYear] = useState<number[]>([2022,2023])
+	const [dateYear, setDateYear] = useState<number[]>([1972,2023])
 	const [rating, setRating] = useState<number[]>([0,100])
 	const [platforms, setPlatforms] = useState<string[]>([])
 	const [genres, setGenres] = useState<string[]>([])
@@ -21,6 +22,10 @@ const Advanced = () => {
 	const [categories, setCategories] = useState<string[]>([])
 	const [companySearch, setCompanySearch] = useState('')
 	const [companyList, setCompanyList] = useState<string[]>([])
+
+	const getMultiResp = useCallback(async () => {
+		
+	})
 
 	const handleDateChange = (e: Event, newDate: number | number[]) => {
 		setDateYear(newDate as number[])
@@ -34,9 +39,6 @@ const Advanced = () => {
 		setCompanySearch(e.target.value)
 	}
 
-	// const handleClear = (e: React.MouseEvent<HTMLElement>) => {
-	// 	setCompanySearch('')
-	// }
 	const handleClear = () => {
 		setCompanySearch('')
 	}
