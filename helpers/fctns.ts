@@ -26,6 +26,32 @@ const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: stri
 	}
 }
 
+const createAdvancedAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, limit: string, platforms: string[], genres: string[], themes: string[], gameModes: string[], categories: string[], rating: number[], releaseDate: number[], companies: string[]) => {
+	return {
+		method: method,
+		url: `http://localhost:3001/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'sortBy': sortBy,
+			'sortDirection': sortDirection,
+			'externalFilter': '',
+			'nullable': 'age_ratings, follows, involved_companies, game_modes, category, total_rating',
+			'limit': parseInt(limit),
+			'platforms': platforms,
+			'genres': genres,
+			'themes': themes,
+			'gameModes': gameModes,
+			'categories': categories,
+			'rating': rating,
+			'releaseDate': releaseDate,
+			'companies': companies
+		}
+	}
+}
+
+
 const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchTerm: string) => {
 	return {
 		method: method,
@@ -129,6 +155,6 @@ const splitRouteQuery = (inputStr: string, separator: string) => {
 const searchtermToString = (searchterm: string | string[]) => typeof searchterm !== 'string' ? searchterm.join('') : searchterm
 
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString }
+export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString }
 
 

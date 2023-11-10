@@ -3,10 +3,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
+import { usePathname } from 'next/navigation'
 import ReactLoading from 'react-loading'
 import { useFilterContext } from '@/app/filtercontext'
-import { FilterContextObj } from '../../helpers/fetypes'
-import { createExploreAxiosConfig } from '../../helpers/fctns'
+import { useAdvFilterContext } from '@/app/advfiltercontext'
+import { AdvFilterContextObj, FilterContextObj } from '../../helpers/fetypes'
+import { createExploreAxiosConfig, createAdvancedAxiosConfig } from '../../helpers/fctns'
 import { Explore } from '../../../backendga/helpers/betypes'
 import { IndGame } from './IndGame'
 import { IndGameTable } from './IndGameTable'
@@ -27,8 +29,28 @@ const IndGameList = () => {
 		viewToggle
 	}: FilterContextObj = useFilterContext()
 
+	const {
+		dateYear,
+		rating,
+		platforms,
+		genres,
+		themes,
+		gameModes,
+		categories,
+		companyList
+	}: AdvFilterContextObj = useAdvFilterContext()
+
+	const path = usePathname()
+
 	const getMultiResp = useCallback(async () => {
-		const searchConfig = createExploreAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
+		let searchConfig: any
+		if (path === '/advsearch') {
+			searchConfig = createAdvancedAxiosConfig('post', 'advsearch', sortBy, sortDirection, limit, platforms, genres, themes, gameModes, categories, rating, dateYear, companyList)
+		}
+		else {
+			console.log('inside else statement')
+			searchConfig = createExploreAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
+		}
 		setLoading(true)
 		await axios(searchConfig)
 			.then((response) => {
@@ -40,7 +62,7 @@ const IndGameList = () => {
 				setError(err)
 				console.error(err)
 			})
-	}, [sortBy, sortDirection, platform, limit, genre])
+	}, [sortBy, sortDirection, platform, limit, genre, dateYear, rating, platforms, genres, themes, gameModes, categories, companyList])
 
 	useEffect(() => {
 		getMultiResp()
