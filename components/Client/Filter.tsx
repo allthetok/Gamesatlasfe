@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { SyntheticEvent } from 'react'
+import { usePathname } from 'next/navigation'
 import { FilterContextObj } from '../../helpers/fetypes'
 import { useFilterContext } from '@/app/filtercontext'
 import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
@@ -20,6 +21,8 @@ const Filter = () => {
 		genre, setGenre,
 		viewToggle, setViewToggle
 	}: FilterContextObj = useFilterContext()
+
+	const path = usePathname()
 
 	const numOptions = ['10', '25', '50', '100']
 	const platformOptions = ['PC', 'Playstation', 'Xbox', 'Nintendo', 'Linux', '']
@@ -59,16 +62,19 @@ const Filter = () => {
 						onChange={onSortChange}
 						sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Sort By" />} />
 				</ThemeProvider>
-				<ThemeProvider theme={theme}>
-					<Autocomplete
-						className='auto-comp'
-						disablePortal
-						id='combo-box'
-						options={platformOptions}
-						value={platform}
-						onChange={onPlatformChange}
-						sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Platform" />} />
-				</ThemeProvider>
+				{ path === '/explore' ? (
+					<ThemeProvider theme={theme}>
+						<Autocomplete
+							className='auto-comp'
+							disablePortal
+							id='combo-box'
+							options={platformOptions}
+							value={platform}
+							onChange={onPlatformChange}
+							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Platform" />} />
+					</ThemeProvider>
+				)
+					: <></>}
 				<ThemeProvider theme={theme}>
 					<Autocomplete
 						className='auto-comp'

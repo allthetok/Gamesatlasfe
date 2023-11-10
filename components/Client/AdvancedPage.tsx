@@ -8,8 +8,7 @@ import { IndGameList } from './IndGameList'
 import './Advanced.css'
 import './IndGameList.css'
 
-const Advanced = () => {
-
+const AdvancedPage = () => {
 	return (
 		<>
 			<Search/>
@@ -28,4 +27,4 @@ const Advanced = () => {
 	)
 }
 
-export { Advanced }
+export { AdvancedPage }

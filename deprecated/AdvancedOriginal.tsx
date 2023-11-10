@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react'
 import axios from 'axios'
-import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks, themesButtonArray, gameModesButtonArray, categoriesButtonArray } from '../../helpers/button'
+import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks, themesButtonArray, gameModesButtonArray, categoriesButtonArray } from '../helpers/button'
 import { Box, Button, IconButton, Slider } from '@mui/material'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import ClearIcon from '@mui/icons-material/Clear'
-import { Search } from './Search'
-import { CompanySearchList } from './CompanySearchList'
-import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
+import { Search } from '../components/Client/Search'
+import { CompanySearchList } from '../components/Client/CompanySearchList'
+import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../sxstyling/styles'
 import './Advanced.css'
 
 

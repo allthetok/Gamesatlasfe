@@ -176,6 +176,18 @@
 	background: #273b4b;
 }
 
+.current-filter-wrap {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.editable-wrap {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+}
+
 .MuiSlider-colorPrimary	{
 	color: var(--primary-color);
 	/* color: #ddd; */

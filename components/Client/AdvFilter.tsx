@@ -184,34 +184,46 @@ const AdvFilter = () => {
 			)
 		case 'Companies':
 			return (
+				// <div>
+				// 	<div className='search-company-wrap'>
+				// 		{companyList.length !== 0 ?
+				// 			<div className='company-selected'>
+				// 				<ul className='company-selected-buttons'>
+				// 					{companyList.map((company: string) => (
+				// 						<li className='tag-link-company' key={company}>
+				// 							{company}
+				// 							<IconButton onClick={() => handleRemove(company)} size='medium'>
+				// 								<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+				// 							</IconButton>
+				// 						</li>
+				// 					))}
+				// 				</ul>
+				// 			</div>
+				// 			: <></>
+				// 		}
+				// 		<form className='search-company-bar'>
+				// 			<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
+				// 			{companySearch !== '' ?
+				// 				<IconButton onClick={handleClear} size='medium'>
+				// 					<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+				// 				</IconButton>
+				// 				: <></>
+				// 			}
+				// 		</form>
+				// 		<CompanySearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
+				// 	</div>
+				// </div>
 				<div>
-					<div className='search-company-wrap'>
-						{companyList.length !== 0 ?
-							<div className='company-selected'>
-								<ul className='company-selected-buttons'>
-									{companyList.map((company: string) => (
-										<li className='tag-link-company' key={company}>
-											{company}
-											<IconButton onClick={() => handleRemove(company)} size='medium'>
-												<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
-											</IconButton>
-										</li>
-									))}
-								</ul>
-							</div>
+					<form className='search-company-bar'>
+						<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
+						{companySearch !== '' ?
+							<IconButton onClick={handleClear} size='medium'>
+								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+							</IconButton>
 							: <></>
 						}
-						<form className='search-company-bar'>
-							<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
-							{companySearch !== '' ?
-								<IconButton onClick={handleClear} size='medium'>
-									<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
-								</IconButton>
-								: <></>
-							}
-						</form>
-						<CompanySearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
-					</div>
+					</form>
+					<CompanySearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
 				</div>
 			)
 		default:
@@ -236,7 +248,131 @@ const AdvFilter = () => {
 					</li>
 				))}
 			</ul>
-			{SwitchRender(searchTab)}
+			<div>
+				<div className='search-company-wrap'>
+					<div className='current-filter-wrap'>
+						<div className='editable-wrap'>
+							{platforms.length !== 0 ?
+								<div className='company-selected'>
+									<ul className='company-selected-buttons'>
+										{platforms.map((company: string) => (
+											<li className='tag-link-company' key={company}>
+												{company}
+												<IconButton onClick={() => handleRemove(company)} size='medium'>
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+												</IconButton>
+											</li>
+										))}
+									</ul>
+								</div>
+								: <></>
+							}
+							{genres.length !== 0 ?
+								<div className='company-selected'>
+									<ul className='company-selected-buttons'>
+										{genres.map((company: string) => (
+											<li className='tag-link-company' key={company}>
+												{company}
+												<IconButton onClick={() => handleRemove(company)} size='medium'>
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+												</IconButton>
+											</li>
+										))}
+									</ul>
+								</div>
+								: <></>
+							}
+							{themes.length !== 0 ?
+								<div className='company-selected'>
+									<ul className='company-selected-buttons'>
+										{themes.map((company: string) => (
+											<li className='tag-link-company' key={company}>
+												{company}
+												<IconButton onClick={() => handleRemove(company)} size='medium'>
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+												</IconButton>
+											</li>
+										))}
+									</ul>
+								</div>
+								: <></>
+							}
+							{gameModes.length !== 0 ?
+								<div className='company-selected'>
+									<ul className='company-selected-buttons'>
+										{gameModes.map((company: string) => (
+											<li className='tag-link-company' key={company}>
+												{company}
+												<IconButton onClick={() => handleRemove(company)} size='medium'>
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+												</IconButton>
+											</li>
+										))}
+									</ul>
+								</div>
+								: <></>
+							}
+							{categories.length !== 0 ?
+								<div className='company-selected'>
+									<ul className='company-selected-buttons'>
+										{categories.map((company: string) => (
+											<li className='tag-link-company' key={company}>
+												{company}
+												<IconButton onClick={() => handleRemove(company)} size='medium'>
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+												</IconButton>
+											</li>
+										))}
+									</ul>
+								</div>
+								: <></>
+							}
+							{companyList.length !== 0 ?
+								<div className='company-selected'>
+									<ul className='company-selected-buttons'>
+										{companyList.map((company: string) => (
+											<li className='tag-link-company' key={company}>
+												{company}
+												<IconButton onClick={() => handleRemove(company)} size='medium'>
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+												</IconButton>
+											</li>
+										))}
+									</ul>
+								</div>
+								: <></>
+							}
+						</div>
+						<div className='editable-wrap'>
+							<div className='company-selected'>
+								<ul className='company-selected-buttons'>
+									{dateYear.map((date: number) => (
+										<li className='tag-link-company' key={date}>
+											{date}
+											<IconButton onClick={() => handleRemove('')} size='medium'>
+												<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+											</IconButton>
+										</li>
+									))}
+								</ul>
+							</div>
+							<div className='company-selected'>
+								<ul className='company-selected-buttons'>
+									{rating.map((range: number) => (
+										<li className='tag-link-company' key={range}>
+											{range}
+											<IconButton onClick={() => handleRemove('')} size='medium'>
+												<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+											</IconButton>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					</div>
+					{SwitchRender(searchTab)}
+				</div>
+			</div>
 		</div>
 	)
 }

@@ -1,6 +1,6 @@
 'use client'
 import React, { Suspense } from 'react'
-import { Advanced } from '../components/Client/Advanced'
+import { AdvancedPage } from '../components/Client/AdvancedPage'
 import { Inter } from 'next/font/google'
 import '../src/app/globals.css'
 
@@ -10,7 +10,7 @@ export default function Game() {
 	return (
 		<main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<Advanced />
+				<AdvancedPage />
 			</Suspense>
 		</main>
 	)
