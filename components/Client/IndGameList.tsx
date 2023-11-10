@@ -1,22 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { useState, useEffect, useCallback, SyntheticEvent } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
+import { useFilterContext } from '@/app/filtercontext'
+import { FilterContextObj } from '../../helpers/fetypes'
 import { createExploreAxiosConfig } from '../../helpers/fctns'
 import { Explore } from '../../../backendga/helpers/betypes'
-import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
-import { ThemeProvider } from '@mui/material/styles'
-import GridViewIcon from '@mui/icons-material/GridView'
-import TableRowsIcon from '@mui/icons-material/TableRows'
-import { Search } from './Search'
 import { IndGame } from './IndGame'
-import { IconSx, ListTblToggleSx, AscDescSx } from '../../sxstyling/styles'
-import { MyTextField, StyledComponents } from '../../sxstyling/styledmui'
-import { theme } from '../../sxstyling/theme'
 import { IndGameTable } from './IndGameTable'
 import './IndGameList.css'
+
 
 const IndGameList = () => {
 	const [multiResp, setMultiResp] = useState<Explore[]>([])
@@ -24,12 +19,12 @@ const IndGameList = () => {
 	const [loading, setLoading] = useState(true)
 
 	const {
-		sortBy, setSortBy,
-		sortDirection, setSortDirection,
-		platform, setPlatform,
-		limit, setLimit,
-		genre, setGenre,
-		viewToggle, setViewToggle
+		sortBy,
+		sortDirection,
+		platform,
+		limit,
+		genre,
+		viewToggle
 	}: FilterContextObj = useFilterContext()
 
 	const getMultiResp = useCallback(async () => {
@@ -52,66 +47,12 @@ const IndGameList = () => {
 	}, [getMultiResp])
 
 	return (
-		<><Search /><div className='explore-wrap'>
+		<>
 			{loading ?
 				<ReactLoading type={'spinningBubbles'} color={'#ddd'} height={150} width={150} />
 				: <></>}
 			{!loading && !error && multiResp ?
 				<div>
-					<div className='filter-wrap'>
-						<div className='ascdesc-wrap'>
-							<Button sx={AscDescSx(sortDirection, 'ascbtn')} onClick={() => setSortDirection('asc')} variant={sortDirection === 'asc' ? 'contained' : 'outlined'}>
-								Ascending
-							</Button>
-							<Button sx={AscDescSx(sortDirection, 'descbtn')} onClick={() => setSortDirection('desc')} variant={sortDirection === 'desc' ? 'contained' : 'outlined'}>
-								Descending
-							</Button>
-						</div>
-						<div className='drop-wrap'>
-							<ThemeProvider theme={theme}>
-								<Autocomplete
-									className='auto-comp'
-									disablePortal
-									id='combo-box'
-									options={sortOptions}
-									value={sortBy}
-									onChange={onSortChange}
-									sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Sort By" />} />
-							</ThemeProvider>
-							<ThemeProvider theme={theme}>
-								<Autocomplete
-									className='auto-comp'
-									disablePortal
-									id='combo-box'
-									options={platformOptions}
-									value={platform}
-									onChange={onPlatformChange}
-									sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Platform" />} />
-							</ThemeProvider>
-							<ThemeProvider theme={theme}>
-								<Autocomplete
-									className='auto-comp'
-									disablePortal
-									id='combo-box'
-									options={numOptions}
-									value={limit}
-									onChange={onLimitChange}
-									sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Limit" />} />
-							</ThemeProvider>
-						</div>
-						<div className='button-wrap'>
-							<Button sx={ListTblToggleSx(viewToggle, 'listbtn')} onClick={() => setViewToggle('list')} variant={viewToggle === 'list' ? 'contained' : 'outlined'}>
-								<SvgIcon sx={IconSx} fontSize='large' htmlColor='#ddd'>
-									<GridViewIcon />
-								</SvgIcon>
-							</Button>
-							<Button sx={ListTblToggleSx(viewToggle, 'tblbtn')} onClick={() => setViewToggle('table')} variant={viewToggle === 'table' ? 'contained' : 'outlined'}>
-								<SvgIcon sx={IconSx} fontSize='large' htmlColor='#ddd'>
-									<TableRowsIcon />
-								</SvgIcon>
-							</Button>
-						</div>
-					</div>
 					{viewToggle === 'list' ?
 						<div className='grid-wrapper'>
 							{multiResp.map((item: Explore) => (
@@ -121,7 +62,7 @@ const IndGameList = () => {
 						: <IndGameTable multiResp={multiResp} />}
 				</div>
 				: <></>}
-		</div></>
+		</>
 	)
 }
 
