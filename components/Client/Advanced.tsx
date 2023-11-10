@@ -4,7 +4,9 @@ import { FilterParent } from '@/app/filtercontext'
 import { Search } from './Search'
 import { Filter } from './Filter'
 import { AdvFilter } from './AdvFilter'
+import { IndGameList } from './IndGameList'
 import './Advanced.css'
+import './IndGameList.css'
 
 const Advanced = () => {
 
@@ -17,6 +19,7 @@ const Advanced = () => {
 					<div className='explore-wrap'>
 						<div>
 							<Filter />
+							<IndGameList />
 						</div>
 					</div>
 				</FilterParent>

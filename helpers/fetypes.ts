@@ -194,5 +194,40 @@ interface AdvFilterContextObj {
 	companyList: string[], setCompanyList: (companyList: string[]) => void
 }
 
+interface ExploreConfigData {
+	sortBy: string,
+	sortDirection: string,
+	externalFilter: string,
+	nullable: string,
+	platformFamily: string,
+	limit: number,
+	genres: string
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj }
+interface AdvancedConfigData {
+	sortBy: string,
+	sortDirection: string,
+	externalFilter: string,
+	nullable: string,
+	limit: number,
+	platforms: string[],
+	genres: string[],
+	themes: string[],
+	gameModes: string[],
+	categories: string[],
+	rating: number[],
+	releaseDate: number[],
+	companies: string[]
+}
+
+interface AxiosConfigIndGameList {
+	method: string,
+	url: string,
+	headers: {
+		'Content-Type': string
+	},
+	data: ExploreConfigData | AdvancedConfigData
+}
+
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList }

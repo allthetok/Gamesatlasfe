@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
@@ -7,7 +8,7 @@ import { usePathname } from 'next/navigation'
 import ReactLoading from 'react-loading'
 import { useFilterContext } from '@/app/filtercontext'
 import { useAdvFilterContext } from '@/app/advfiltercontext'
-import { AdvFilterContextObj, FilterContextObj } from '../../helpers/fetypes'
+import { AdvFilterContextObj, AxiosConfigIndGameList, FilterContextObj } from '../../helpers/fetypes'
 import { createExploreAxiosConfig, createAdvancedAxiosConfig } from '../../helpers/fctns'
 import { Explore } from '../../../backendga/helpers/betypes'
 import { IndGame } from './IndGame'
@@ -43,19 +44,12 @@ const IndGameList = () => {
 	const path = usePathname()
 
 	const getMultiResp = useCallback(async () => {
-		let searchConfig: any
-		if (path === '/advsearch') {
-			searchConfig = createAdvancedAxiosConfig('post', 'advsearch', sortBy, sortDirection, limit, platforms, genres, themes, gameModes, categories, rating, dateYear, companyList)
-		}
-		else {
-			console.log('inside else statement')
-			searchConfig = createExploreAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
-		}
+		const searchConfig: AxiosConfigIndGameList = path === '/advsearch' ? createAdvancedAxiosConfig('post', 'advsearch', sortBy, sortDirection, limit, platforms, genres, themes, gameModes, categories, rating, dateYear, companyList) : createExploreAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
 		setLoading(true)
 		await axios(searchConfig)
 			.then((response) => {
 				setMultiResp(response.data)
-				console.log(response.data)
+				// console.log(response.data)
 				setLoading(false)
 			})
 			.catch((err) => {
