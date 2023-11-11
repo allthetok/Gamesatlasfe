@@ -31,6 +31,7 @@ const GameDtl = ({ dataFetch }: GameDtlProps) => {
 		releaseDate: dataFetch.releaseDate
 	}
 
+
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
 			<>

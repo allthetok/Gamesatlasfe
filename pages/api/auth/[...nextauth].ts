@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import type { NextAuthOptions } from 'next-auth'
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -37,3 +37,9 @@ export const options: NextAuthOptions = {
 		})
 	]
 }
+
+export default NextAuth(options)
+
+// const handler = NextAuth(options)
+
+// export { handler as GET, handler as POST }

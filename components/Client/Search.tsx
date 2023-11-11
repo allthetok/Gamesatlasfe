@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { useSession, signIn, signOut } from 'next-auth/react'
 import { AppBar, Box, Toolbar, IconButton, autocompleteClasses, SvgIcon } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
@@ -29,7 +30,10 @@ const Search = () => {
 	const router = useRouter()
 	const currentPath = usePathname()
 
-	console.log(currentPath)
+
+	const { data: session } = useSession()
+	console.log(session)
+	// console.log(currentPath)
 
 	const handleChange= (e: React.ChangeEvent<HTMLInputElement>) => {
 		setGameSearch(e.target.value)
@@ -115,14 +119,12 @@ const Search = () => {
 											<IconButton sx={{ color: '#ddd', padding: 'none' }}>
 												<AccountBoxIcon sx={{ fontSize: '25px' }} />
 											</IconButton>
-											<p>
-											Profile
-											</p>
+											<p>Profile</p>
 										</div>
 									</Link>
 								</li>
 								<li className='nav-profile'>
-									<div className='link-a-icon'>
+									{/* <div className='link-a-icon'>
 										<div className='link-icon-text'>
 											<IconButton sx={{ color: '#ddd', padding: 'none' }}>
 												<LoginIcon sx={{ fontSize: '25px' }} />
@@ -131,7 +133,15 @@ const Search = () => {
 											Login
 											</p>
 										</div>
-									</div>
+									</div> */}
+									<Link href='/api/auth/signIn' className='link-a-icon'>
+										<div className={currentPath === '/api/auth/signIn' ? 'link-icon-text-active': 'link-icon-text'}>
+											<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+												<LoginIcon sx={{ fontSize: '25px' }} />
+											</IconButton>
+											<p>Login</p>
+										</div>
+									</Link>
 								</li>
 							</ul>
 						</li>
