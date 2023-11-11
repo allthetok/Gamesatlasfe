@@ -35,11 +35,16 @@ export const options: NextAuthOptions = {
 				}
 			}
 		})
-	]
+	],
+	callbacks: {
+		session: ({ session, token }) => ({
+			...session,
+			user: {
+				...session.user,
+				id: token.sub,
+			},
+		}),
+	},
 }
 
 export default NextAuth(options)
-
-// const handler = NextAuth(options)
-
-// export { handler as GET, handler as POST }

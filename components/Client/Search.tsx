@@ -124,24 +124,25 @@ const Search = () => {
 									</Link>
 								</li>
 								<li className='nav-profile'>
-									{/* <div className='link-a-icon'>
-										<div className='link-icon-text'>
-											<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-												<LoginIcon sx={{ fontSize: '25px' }} />
-											</IconButton>
-											<p>
-											Login
-											</p>
+									{session ?
+										<div onClick={() => signOut()} className='link-a-icon'>
+											<div className={currentPath === '/api/auth/' ? 'link-icon-text-active': 'link-icon-text'}>
+												<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+													<LoginIcon sx={{ fontSize: '25px' }} />
+												</IconButton>
+												<p>Logout</p>
+											</div>
 										</div>
-									</div> */}
-									<Link href='/api/auth/signIn' className='link-a-icon'>
-										<div className={currentPath === '/api/auth/signIn' ? 'link-icon-text-active': 'link-icon-text'}>
-											<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-												<LoginIcon sx={{ fontSize: '25px' }} />
-											</IconButton>
-											<p>Login</p>
+										:
+										<div onClick={() => signIn()} className='link-a-icon'>
+											<div className={currentPath === '/api/auth/' ? 'link-icon-text-active': 'link-icon-text'}>
+												<IconButton sx={{ color: '#ddd', padding: 'none' }}>
+													<LoginIcon sx={{ fontSize: '25px' }} />
+												</IconButton>
+												<p>Login</p>
+											</div>
 										</div>
-									</Link>
+									}
 								</li>
 							</ul>
 						</li>
