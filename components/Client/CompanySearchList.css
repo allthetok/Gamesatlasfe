@@ -1,7 +1,7 @@
 .company-suggest {
-	/* position: absolute; */
+	position: absolute;
     align-items: center;
-    width: 80%;
+    width: 323px;
     height: auto;
     z-index:99;
 	display: flex;

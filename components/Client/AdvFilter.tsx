@@ -9,7 +9,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import DateRangeIcon from '@mui/icons-material/DateRange'
 import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500'
 import { CompanySearchList } from './CompanySearchList'
-import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
+import { BoxActiveSx, BoxAdvActiveSx, BoxAdvNoBorderSx, BoxNoBorderSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
 import './Advanced.css'
 
 const AdvFilter = () => {
@@ -41,11 +41,6 @@ const AdvFilter = () => {
 
 	const handleClear = () => {
 		setCompanySearch('')
-	}
-
-	const handleRemove = (companyInList: string) => {
-		const currentCompanies = [...companyList].filter((indCompany: string) => indCompany !== companyInList)
-		setCompanyList(currentCompanies)
 	}
 
 	const handleRemoveSpecific = (indFilter: string, specified: string): void => {
@@ -94,7 +89,7 @@ const AdvFilter = () => {
 				<ul className='adv-nav-tabs'>
 					{platformButtonArray.map((platform: string) => (
 						<li className={platforms.includes(platform) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={platform}>
-							<Box sx={platforms.includes(platform) ? BoxActiveSx : BoxSx}>
+							<Box sx={platforms.includes(platform) ? BoxActiveSx : BoxNoBorderSx}>
 								<Button sx={platforms.includes(platform) ? ButtonActiveSx : ButtonSx} onClick={() => {
 									const currentPlatforms = [...platforms]
 									currentPlatforms.push(platform)
@@ -150,7 +145,7 @@ const AdvFilter = () => {
 				<ul className='adv-nav-tabs-grid'>
 					{genresButtonArray.map((genre: string) => (
 						<li className={genres.includes(genre) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={genre}>
-							<Box sx={genres.includes(genre) ? BoxActiveSx : BoxSx}>
+							<Box sx={genres.includes(genre) ? BoxActiveSx : BoxNoBorderSx}>
 								<Button sx={genres.includes(genre) ? ButtonActiveSx : ButtonSx} onClick={() => {
 									const currentGenres = [...genres]
 									currentGenres.push(genre)
@@ -168,7 +163,7 @@ const AdvFilter = () => {
 				<ul className='adv-nav-tabs-grid'>
 					{themesButtonArray.map((theme: string) => (
 						<li className={themes.includes(theme) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={theme}>
-							<Box sx={themes.includes(theme) ? BoxActiveSx : BoxSx}>
+							<Box sx={themes.includes(theme) ? BoxActiveSx : BoxNoBorderSx}>
 								<Button sx={themes.includes(theme) ? ButtonActiveSx : ButtonSx} onClick={() => {
 									const currentThemes = [...themes]
 									currentThemes.push(theme)
@@ -186,7 +181,7 @@ const AdvFilter = () => {
 				<ul className='adv-nav-tabs'>
 					{gameModesButtonArray.map((mode: string) => (
 						<li className={gameModes.includes(mode) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={mode}>
-							<Box sx={gameModes.includes(mode) ? BoxActiveSx : BoxSx}>
+							<Box sx={gameModes.includes(mode) ? BoxActiveSx : BoxNoBorderSx}>
 								<Button sx={gameModes.includes(mode) ? ButtonActiveSx : ButtonSx} onClick={() => {
 									const currentGameModes = [...gameModes]
 									currentGameModes.push(mode)
@@ -204,7 +199,7 @@ const AdvFilter = () => {
 				<ul className='adv-nav-tabs'>
 					{categoriesButtonArray.map((category: string) => (
 						<li className={categories.includes(category) ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={category}>
-							<Box sx={categories.includes(category) ? BoxActiveSx : BoxSx}>
+							<Box sx={categories.includes(category) ? BoxActiveSx : BoxNoBorderSx}>
 								<Button sx={categories.includes(category) ? ButtonActiveSx : ButtonSx} onClick={() => {
 									const currentCategories = [...categories]
 									currentCategories.push(category)
@@ -219,35 +214,6 @@ const AdvFilter = () => {
 			)
 		case 'Companies':
 			return (
-				// <div>
-				// 	<div className='search-company-wrap'>
-				// 		{companyList.length !== 0 ?
-				// 			<div className='company-selected'>
-				// 				<ul className='company-selected-buttons'>
-				// 					{companyList.map((company: string) => (
-				// 						<li className='tag-link-company' key={company}>
-				// 							{company}
-				// 							<IconButton onClick={() => handleRemove(company)} size='medium'>
-				// 								<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
-				// 							</IconButton>
-				// 						</li>
-				// 					))}
-				// 				</ul>
-				// 			</div>
-				// 			: <></>
-				// 		}
-				// 		<form className='search-company-bar'>
-				// 			<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
-				// 			{companySearch !== '' ?
-				// 				<IconButton onClick={handleClear} size='medium'>
-				// 					<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
-				// 				</IconButton>
-				// 				: <></>
-				// 			}
-				// 		</form>
-				// 		<CompanySearchList searchterm={companySearch} handleCompanyAdd={handleCompanyAdd} />
-				// 	</div>
-				// </div>
 				<div>
 					<form className='search-company-bar'>
 						<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
@@ -275,7 +241,7 @@ const AdvFilter = () => {
 			<ul className='adv-nav-tabs'>
 				{searchButtonArray.map((el: string) => (
 					<li className='adv-nav-tabs-li' key={el}>
-						<Box sx={el === searchTab ? BoxAdvActiveSx : BoxAdvSx} onClick={() => setSearchTab(el)}>
+						<Box sx={el === searchTab ? BoxAdvActiveSx : BoxAdvNoBorderSx} onClick={() => setSearchTab(el)}>
 							<Button sx={el === searchTab ? ButtonAdvActiveSx : ButtonAdvSx}>
 								{el}
 							</Button>
@@ -284,17 +250,18 @@ const AdvFilter = () => {
 				))}
 			</ul>
 			<div>
-				<div className='search-company-wrap'>
+				<div className='filter-select-wrap'>
 					{SwitchRender(searchTab)}
 					<div className='current-filter-wrap'>
 						<div className='editable-wrap'>
+							<></>
 							{platforms.length !== 0 ?
-								<div className='company-selected'>
-									<ul className='company-selected-buttons'>
-										{platforms.map((company: string) => (
-											<li className='tag-link-company' key={company}>
-												{company}
-												<IconButton onClick={() => handleRemoveSpecific(company, 'platforms',)} size='medium'>
+								<div>
+									<ul className='filter-selected-buttons'>
+										{platforms.map((platform: string, index: number) => (
+											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(platform, 'platforms',)}>
+												{platform}
+												<IconButton size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -304,12 +271,12 @@ const AdvFilter = () => {
 								: <></>
 							}
 							{genres.length !== 0 ?
-								<div className='company-selected'>
-									<ul className='company-selected-buttons'>
-										{genres.map((company: string) => (
-											<li className='tag-link-company' key={company}>
-												{company}
-												<IconButton onClick={() => handleRemoveSpecific(company, 'genres')} size='medium'>
+								<div>
+									<ul className='filter-selected-buttons'>
+										{genres.map((genre: string, index: number) => (
+											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(genre, 'genres')}>
+												{genre}
+												<IconButton size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -319,12 +286,12 @@ const AdvFilter = () => {
 								: <></>
 							}
 							{themes.length !== 0 ?
-								<div className='company-selected'>
-									<ul className='company-selected-buttons'>
-										{themes.map((company: string) => (
-											<li className='tag-link-company' key={company}>
-												{company}
-												<IconButton onClick={() => handleRemoveSpecific(company, 'themes')} size='medium'>
+								<div>
+									<ul className='filter-selected-buttons'>
+										{themes.map((theme: string, index: number) => (
+											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(theme, 'themes')}>
+												{theme}
+												<IconButton size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -334,12 +301,12 @@ const AdvFilter = () => {
 								: <></>
 							}
 							{gameModes.length !== 0 ?
-								<div className='company-selected'>
-									<ul className='company-selected-buttons'>
-										{gameModes.map((company: string) => (
-											<li className='tag-link-company' key={company}>
-												{company}
-												<IconButton onClick={() => handleRemoveSpecific(company, 'gameModes')} size='medium'>
+								<div>
+									<ul className='filter-selected-buttons'>
+										{gameModes.map((gameMode: string, index: number) => (
+											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(gameMode, 'gameModes')}>
+												{gameMode}
+												<IconButton size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -349,12 +316,12 @@ const AdvFilter = () => {
 								: <></>
 							}
 							{categories.length !== 0 ?
-								<div className='company-selected'>
-									<ul className='company-selected-buttons'>
-										{categories.map((company: string) => (
-											<li className='tag-link-company' key={company}>
-												{company}
-												<IconButton onClick={() => handleRemoveSpecific(company, 'categories')} size='medium'>
+								<div>
+									<ul className='filter-selected-buttons'>
+										{categories.map((category: string, index: number) => (
+											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(category, 'categories')}>
+												{category}
+												<IconButton size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -364,12 +331,12 @@ const AdvFilter = () => {
 								: <></>
 							}
 							{companyList.length !== 0 ?
-								<div className='company-selected'>
-									<ul className='company-selected-buttons'>
-										{companyList.map((company: string) => (
-											<li className='tag-link-company' key={company}>
+								<div>
+									<ul className='filter-selected-buttons'>
+										{companyList.map((company: string, index: number) => (
+											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(company, 'companyList')}>
 												{company}
-												<IconButton onClick={() => handleRemoveSpecific(company, 'companyList')} size='medium'>
+												<IconButton size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -380,15 +347,15 @@ const AdvFilter = () => {
 							}
 						</div>
 						<div className='editable-wrap'>
-							<div className='company-selected'>
-								<ul className='company-selected-buttons'>
-									<li className='tag-link-company' key='releaseDate' onClick={() => setSearchTab('Release Date')}>
+							<div>
+								<ul className='filter-selected-buttons'>
+									<li className='tag-link-filter' key='releaseDate' onClick={() => setSearchTab('Release Date')}>
 										{dateYear[0]} - {dateYear[1]}
 										<IconButton size='medium'>
 											<DateRangeIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 										</IconButton>
 									</li>
-									<li className='tag-link-company' key='releaseDate' onClick={() => setSearchTab('Rating')}>
+									<li className='tag-link-filter' key='rating' onClick={() => setSearchTab('Rating')}>
 										{rating[0]} - {rating[1]}
 										<IconButton size='medium'>
 											<StarBorderPurple500Icon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
@@ -398,7 +365,6 @@ const AdvFilter = () => {
 							</div>
 						</div>
 					</div>
-					{/* {SwitchRender(searchTab)} */}
 				</div>
 			</div>
 		</div>

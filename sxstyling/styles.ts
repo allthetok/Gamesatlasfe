@@ -88,6 +88,18 @@ const BoxAdvActiveSx = {
 	'borderBottom': '1px solid transparent'
 }
 
+const BoxNoBorderSx = {
+	'&:hover': {
+		'background': 'var(--body-bg-color-dark)',
+	}
+}
+
+const BoxAdvNoBorderSx = {
+	'&:hover': {
+		'background': 'var(--body-bg-color-dark)',
+	}
+}
+
 const IconSx = {
 	height: '40px',
 	width: '40px',
@@ -132,4 +144,4 @@ const AscDescSx = (selected: string, button: string) => {
 
 
 
-export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, IconSx, TableFavoriteIconSx, ListTblToggleSx, AscDescSx, ButtonAdvSx, ButtonAdvActiveSx, BoxAdvSx, BoxAdvActiveSx }
+export { ButtonSx, BoxSx, ButtonActiveSx, BoxActiveSx, IconSx, TableFavoriteIconSx, ListTblToggleSx, AscDescSx, ButtonAdvSx, ButtonAdvActiveSx, BoxAdvSx, BoxAdvActiveSx, BoxNoBorderSx, BoxAdvNoBorderSx }

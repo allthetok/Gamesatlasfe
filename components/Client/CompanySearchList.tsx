@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { createInnerSearchConfig } from '../../helpers/fctns'
-import { SimpleSearchConfig, SearchResultsObj, SimpleNullableSearchConfig } from '../../helpers/fetypes'
+import { SimpleNullableSearchConfig } from '../../helpers/fetypes'
 import { Companies } from '../../../backendga/helpers/betypes'
 import { CompanySearch } from './CompanySearch'
 import './CompanySearchList.css'
