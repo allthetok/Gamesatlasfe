@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import React, { useState } from 'react'
 import { yearMarks, platformButtonArray, searchButtonArray, genresButtonArray, ratingMarks, themesButtonArray, gameModesButtonArray, categoriesButtonArray } from '../../helpers/button'
 import { AdvFilterContextObj } from '../../helpers/fetypes'
@@ -6,7 +7,6 @@ import { Box, Button, IconButton, Slider } from '@mui/material'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import ClearIcon from '@mui/icons-material/Clear'
 import DateRangeIcon from '@mui/icons-material/DateRange'
-import StarBorderIcon from '@mui/icons-material/StarBorder'
 import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500'
 import { CompanySearchList } from './CompanySearchList'
 import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
@@ -46,6 +46,38 @@ const AdvFilter = () => {
 	const handleRemove = (companyInList: string) => {
 		const currentCompanies = [...companyList].filter((indCompany: string) => indCompany !== companyInList)
 		setCompanyList(currentCompanies)
+	}
+
+	const handleRemoveSpecific = (indFilter: string, specified: string): void => {
+		console.log('filter clicked')
+		switch (specified) {
+		case 'platforms':
+			const currentPlatforms = [...platforms].filter((platform: string) => platform !== indFilter)
+			setPlatforms(currentPlatforms)
+			break
+		case 'genres':
+			const currentGenres = [...genres].filter((genre: string) => genre !== indFilter)
+			setThemes(currentGenres)
+			break
+		case 'themes':
+			const currentThemes = [...themes].filter((theme: string) => theme !== indFilter)
+			setThemes(currentThemes)
+			break
+		case 'gameModes':
+			const currentGameModes = [...gameModes].filter((gameMode: string) => gameMode !== indFilter)
+			setGameModes(currentGameModes)
+			break
+		case 'categories':
+			const currentCategories = [...categories].filter((category: string) => category !== indFilter)
+			setCategories(currentCategories)
+			break
+		case 'companyList':
+			const currentCompanyList = [...companyList].filter((company: string) => company !== indFilter)
+			setCompanyList(currentCompanyList)
+			break
+		default:
+			return
+		}
 	}
 
 	const handleCompanyAdd = (companySuggest: string) => {
@@ -262,7 +294,7 @@ const AdvFilter = () => {
 										{platforms.map((company: string) => (
 											<li className='tag-link-company' key={company}>
 												{company}
-												<IconButton onClick={() => handleRemove(company)} size='medium'>
+												<IconButton onClick={() => handleRemoveSpecific(company, 'platforms',)} size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -277,7 +309,7 @@ const AdvFilter = () => {
 										{genres.map((company: string) => (
 											<li className='tag-link-company' key={company}>
 												{company}
-												<IconButton onClick={() => handleRemove(company)} size='medium'>
+												<IconButton onClick={() => handleRemoveSpecific(company, 'genres')} size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -292,7 +324,7 @@ const AdvFilter = () => {
 										{themes.map((company: string) => (
 											<li className='tag-link-company' key={company}>
 												{company}
-												<IconButton onClick={() => handleRemove(company)} size='medium'>
+												<IconButton onClick={() => handleRemoveSpecific(company, 'themes')} size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -307,7 +339,7 @@ const AdvFilter = () => {
 										{gameModes.map((company: string) => (
 											<li className='tag-link-company' key={company}>
 												{company}
-												<IconButton onClick={() => handleRemove(company)} size='medium'>
+												<IconButton onClick={() => handleRemoveSpecific(company, 'gameModes')} size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -322,7 +354,7 @@ const AdvFilter = () => {
 										{categories.map((company: string) => (
 											<li className='tag-link-company' key={company}>
 												{company}
-												<IconButton onClick={() => handleRemove(company)} size='medium'>
+												<IconButton onClick={() => handleRemoveSpecific(company, 'categories')} size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -337,7 +369,7 @@ const AdvFilter = () => {
 										{companyList.map((company: string) => (
 											<li className='tag-link-company' key={company}>
 												{company}
-												<IconButton onClick={() => handleRemove(company)} size='medium'>
+												<IconButton onClick={() => handleRemoveSpecific(company, 'companyList')} size='medium'>
 													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 												</IconButton>
 											</li>
@@ -348,41 +380,17 @@ const AdvFilter = () => {
 							}
 						</div>
 						<div className='editable-wrap'>
-							{/* <div className='company-selected'>
-								<ul className='company-selected-buttons'>
-									{dateYear.map((date: number) => (
-										<li className='tag-link-company' key={date}>
-											{date}
-											<IconButton onClick={() => handleRemove('')} size='medium'>
-												<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
-											</IconButton>
-										</li>
-									))}
-								</ul>
-							</div>
 							<div className='company-selected'>
 								<ul className='company-selected-buttons'>
-									{rating.map((range: number) => (
-										<li className='tag-link-company' key={range}>
-											{range}
-											<IconButton onClick={() => handleRemove('')} size='medium'>
-												<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
-											</IconButton>
-										</li>
-									))}
-								</ul>
-							</div> */}
-							<div className='company-selected'>
-								<ul className='company-selected-buttons'>
-									<li className='tag-link-company' key='releaseDate'>
+									<li className='tag-link-company' key='releaseDate' onClick={() => setSearchTab('Release Date')}>
 										{dateYear[0]} - {dateYear[1]}
-										<IconButton onClick={() => {null}} size='medium'>
+										<IconButton size='medium'>
 											<DateRangeIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 										</IconButton>
 									</li>
-									<li className='tag-link-company' key='releaseDate'>
+									<li className='tag-link-company' key='releaseDate' onClick={() => setSearchTab('Rating')}>
 										{rating[0]} - {rating[1]}
-										<IconButton onClick={() => {null}} size='medium'>
+										<IconButton size='medium'>
 											<StarBorderPurple500Icon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
 										</IconButton>
 									</li>
