@@ -5,6 +5,9 @@ import { useAdvFilterContext } from '@/app/advfiltercontext'
 import { Box, Button, IconButton, Slider } from '@mui/material'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import ClearIcon from '@mui/icons-material/Clear'
+import DateRangeIcon from '@mui/icons-material/DateRange'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
+import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500'
 import { CompanySearchList } from './CompanySearchList'
 import { BoxActiveSx, BoxAdvActiveSx, BoxAdvSx, BoxSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
 import './Advanced.css'
@@ -250,6 +253,7 @@ const AdvFilter = () => {
 			</ul>
 			<div>
 				<div className='search-company-wrap'>
+					{SwitchRender(searchTab)}
 					<div className='current-filter-wrap'>
 						<div className='editable-wrap'>
 							{platforms.length !== 0 ?
@@ -344,7 +348,7 @@ const AdvFilter = () => {
 							}
 						</div>
 						<div className='editable-wrap'>
-							<div className='company-selected'>
+							{/* <div className='company-selected'>
 								<ul className='company-selected-buttons'>
 									{dateYear.map((date: number) => (
 										<li className='tag-link-company' key={date}>
@@ -367,10 +371,26 @@ const AdvFilter = () => {
 										</li>
 									))}
 								</ul>
+							</div> */}
+							<div className='company-selected'>
+								<ul className='company-selected-buttons'>
+									<li className='tag-link-company' key='releaseDate'>
+										{dateYear[0]} - {dateYear[1]}
+										<IconButton onClick={() => {null}} size='medium'>
+											<DateRangeIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+										</IconButton>
+									</li>
+									<li className='tag-link-company' key='releaseDate'>
+										{rating[0]} - {rating[1]}
+										<IconButton onClick={() => {null}} size='medium'>
+											<StarBorderPurple500Icon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+										</IconButton>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					{SwitchRender(searchTab)}
+					{/* {SwitchRender(searchTab)} */}
 				</div>
 			</div>
 		</div>
