@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import axios from 'axios'
 
 export const options: NextAuthOptions = {
 	providers: [
@@ -25,14 +27,49 @@ export const options: NextAuthOptions = {
 			},
 			async authorize(credentials) {
 				//retrieve credentials from database configuration/providers/credentials
-				const user = { id: '42', name: 'Allen', password: 'tempuser' }
+				// const user = { id: '42', name: 'Allen', password: 'tempuser' }
+				const userConfig = {
+					method: 'post',
+					url: 'http://localhost:5000/api/login',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						'username': credentials?.username,
+						'password': credentials?.password
+					}
+				}
 
-				if (credentials?.username === user.name && credentials?.password === user.password) {
-					return user
-				}
-				else {
-					return null
-				}
+				const userObj = await axios(userConfig)
+					.then((response: any) => {
+						if (response.status === 200) {
+							return {
+								id: response.data.id,
+								username: response.data.username,
+							}
+						}
+						else {
+							return {
+								id: 0,
+								username: 'None'
+							}
+						}
+					})
+					.catch((err: any) => {
+						console.log(err)
+						return {
+							id: 0,
+							username: 'None'
+						}
+					})
+				return { id: userObj.id, name: userObj.username }
+
+				// if (credentials?.username === user.name && credentials?.password === user.password) {
+				// 	return user
+				// }
+				// else {
+				// 	return null
+				// }
 			}
 		})
 	],
