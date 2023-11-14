@@ -3,6 +3,7 @@ import Image from 'next/image'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
 import SvgIcon from '@mui/icons-material/ArrowForward'
+import Link from 'next/link'
 
 const Login = () => {
 	return (
@@ -68,6 +69,18 @@ const Login = () => {
 										<ArrowForwardIcon />
 									</SvgIcon>
 								</button>
+							</div>
+							<div className='alt-actions'>
+								<span className='link-to-alt first-child'>
+									<Link href='/forgotpass'>
+										Forgot Password
+									</Link>
+								</span>
+								<span className='link-to-alt'>
+									<Link href='/signup'>
+										Create Account
+									</Link>
+								</span>
 							</div>
 						</div>
 					</form>

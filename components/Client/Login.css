@@ -1,5 +1,6 @@
 .background-image {
-	background: url(../../public/k6ef81ik42571.png)
+	/* background: url(../../public/k6ef81ik42571.png) */
+	background: url(../../public/background-login.png)
 }
 
 .background {
@@ -40,8 +41,11 @@
     flex-grow: 1; */
 	grid-template-columns: repeat(12, 1fr);
     column-gap: 24px;
-    width: 1920px;
-    margin: 0px auto;
+    /* width: 1920px; */
+	width: 624px;
+	/* margin-top: 250px; */
+    /* margin: 0px auto; */
+	margin: 200px auto;
 }
 
 .form-div {
@@ -248,10 +252,11 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin: 80px 0px 24px;
+	align-items: center;
+	margin: 80px 240px 24px;
 	background: rgb(11, 196, 226);
 	color: rgb(10, 10, 10);
-	display: block;
+	/* display: block; */
     height: 72px;
     border-radius: 27px;
     padding: 0px;
@@ -264,6 +269,7 @@
 }
 
 .enter-wrap button {
+	cursor: pointer;
 }
 
 .enter-btn-wrap {
@@ -273,8 +279,40 @@
 	/* flex-direction: column;
 	align-items: center;
 	flex: 1 1 auto; */
-	margin-top: 25%;
-	margin-left: 25%;
+	position: relative;
+	/* justify-content: center; */
+	/* margin-top: 25%;
+	margin-left: 25%; */
 	border: none;
 	background: transparent;
+}
+
+.alt-actions {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 0%;
+	justify-content: end;
+}
+
+.link-to-alt {
+	font-size: 10.24px;
+	font-weight: 800;
+    line-height: 100%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: inherit;
+    color: rgb(0, 0, 0);
+}
+
+.link-to-alt a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: rgb(74,74,74);
+}
+
+.first-child {
+	margin-bottom: 8px;
 }
