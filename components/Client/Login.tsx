@@ -46,19 +46,19 @@ const Login = () => {
 											<Image src='/icons8-apple-50.png' width={18} height={18} alt='Apple Logo'/>
 										</div>
 									</button>
-									<button className='microsoft'>
+									<button className='discord'>
 										<div className='logo-btn-wrap'>
-											<Image src='/icons8-microsoft-48.png' width={18} height={18} alt='Microsoft Logo'/>
+											<Image src='/icons8-discord-24.png' width={18} height={18} alt='Discord Logo'/>
 										</div>
 									</button>
 									<button className='github'>
 										<div className='logo-btn-wrap'>
-											<Image src='/icons8-github-30.png' width={18} height={18} alt='Microsoft Logo'/>
+											<Image src='/icons8-github-30.png' width={18} height={18} alt='Github Logo'/>
 										</div>
 									</button>
 									<button className='reddit'>
 										<div className='logo-btn-wrap'>
-											<Image src='/icons8-reddit-48.png' width={18} height={18} alt='Microsoft Logo'/>
+											<Image src='/icons8-reddit-48.png' width={18} height={18} alt='Reddit Logo'/>
 										</div>
 									</button>
 								</div>

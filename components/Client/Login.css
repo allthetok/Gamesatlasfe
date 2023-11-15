@@ -228,6 +228,17 @@
 	cursor: pointer;
 }
 
+.discord {
+	/* background: rgba(125, 119, 122, 0.8); */
+	background: rgba(83,83,83,0.65);
+	display: block;
+	color: black;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer
+}
+
 .github {
 	background: rgba(158,0,255, 0.61);
 	display: block;
