@@ -1,11 +1,51 @@
-import React from 'react'
-import Image from 'next/image'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import './Login.css'
-import SvgIcon from '@mui/icons-material/ArrowForward'
+'use client'
+import React, { useState } from 'react'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import SvgIcon from '@mui/icons-material/ArrowForward'
+import './Login.css'
 
 const Login = () => {
+	const router = useRouter()
+	const [error, setError] = useState<string | null>(null)
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault()
+		const data = new FormData(e.currentTarget)
+		const signInResponse = await signIn('credentials', {
+			email: data.get('email'),
+			password: data.get('password'),
+			redirect: false,
+		})
+
+		if (signInResponse && !signInResponse.error) {
+			router.push('/')
+		}
+		else {
+			console.log('Error :', signInResponse)
+			setError('Email or password incorrect')
+		}
+	}
+
+	const handleGoogle = () => {
+		signIn('google')
+	}
+	const handleSpotify = () => {
+		signIn('spotify')
+	}
+	const handleDiscord = () => {
+		signIn('discord')
+	}
+	const handleGithub = () => {
+		signIn('github')
+	}
+	const handleTwitch = () => {
+		signIn('twitch')
+	}
+
 	return (
 		<div className='login-wrap'>
 			<div className='background-image background'></div>
@@ -16,16 +56,23 @@ const Login = () => {
 			</header>
 			<div className='form-wrapper'>
 				<div className='form-div'>
-					<form>
+					<form onSubmit={handleSubmit}>
 						<div className='form-inner'>
 							<h5 className='login-title'>Log in</h5>
+							{error ? (
+								<div className='error-credentials'>
+									<span>Error: {error}</span>
+								</div>
+							)
+								: <></>
+							}
 							<div className='form-fill'>
 								<div></div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='username' id='user' type='text' />
-										<label>Username</label>
-										<span>Username</span>
+										<input name='email' id='email' type='text' />
+										<label>Email</label>
+										<span>Email</span>
 									</div>
 								</div>
 								<div className='field-area'>
@@ -36,35 +83,35 @@ const Login = () => {
 									</div>
 								</div>
 								<div className='altauth-area'>
-									<button className='google'>
+									<button className='google' onClick={handleGoogle}>
 										<div className='logo-btn-wrap'>
 											<Image src='/icons8-google-48.png' width={18} height={18} alt='Google Logo'/>
 										</div>
 									</button>
-									<button className='apple'>
+									<button className='spotify' onClick={handleSpotify}>
 										<div className='logo-btn-wrap'>
-											<Image src='/icons8-apple-50.png' width={18} height={18} alt='Apple Logo'/>
+											<Image src='/icons8-spotify-30.png' width={18} height={18} alt='Spotify Logo'/>
 										</div>
 									</button>
-									<button className='discord'>
+									<button className='discord' onClick={handleDiscord}>
 										<div className='logo-btn-wrap'>
 											<Image src='/icons8-discord-24.png' width={18} height={18} alt='Discord Logo'/>
 										</div>
 									</button>
-									<button className='github'>
+									<button className='github' onClick={handleGithub}>
 										<div className='logo-btn-wrap'>
 											<Image src='/icons8-github-30.png' width={18} height={18} alt='Github Logo'/>
 										</div>
 									</button>
-									<button className='reddit'>
+									<button className='twitch' onClick={handleTwitch}>
 										<div className='logo-btn-wrap'>
-											<Image src='/icons8-reddit-48.png' width={18} height={18} alt='Reddit Logo'/>
+											<Image src='/icons8-twitch-50.png' width={18} height={18} alt='Twitch Logo'/>
 										</div>
 									</button>
 								</div>
 							</div>
 							<div className='enter-wrap'>
-								<button className='enter-btn-wrap'>
+								<button className='enter-btn-wrap' onClick={handleSubmit}>
 									<SvgIcon fontSize='large'>
 										<ArrowForwardIcon />
 									</SvgIcon>

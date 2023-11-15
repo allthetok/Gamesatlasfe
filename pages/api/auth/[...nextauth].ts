@@ -2,31 +2,46 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import AppleProvider from 'next-auth/providers/apple'
+import SpotifyProvider from 'next-auth/providers/spotify'
 import DiscordProvider from 'next-auth/providers/discord'
 import GithubProvider from 'next-auth/providers/github'
-import RedditProvider from 'next-auth/providers/reddit'
+import TwitchProvider from 'next-auth/providers/twitch'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
 
 export const options: NextAuthOptions = {
 	providers: [
+		GoogleProvider({
+			clientId: process.env.GOOGLE_CLIENT_ID as string,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+		}),
+		SpotifyProvider({
+			clientId: process.env.SPOTIFY_CLIENT_ID as string,
+			clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string
+		}),
+		DiscordProvider({
+			clientId: process.env.DISCORD_CLIENT_ID as string,
+			clientSecret: process.env.DISCORD_CLIENT_SECRET as string
+		}),
 		GithubProvider({
-			clientId: process.env.GITHUB_CLIENT_ID!,
-			clientSecret: process.env.GITHUB_CLIENT_SECRET!
+			clientId: process.env.GITHUB_CLIENT_ID as string,
+			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+		}),
+		TwitchProvider({
+			clientId: process.env.TWITCH_CLIENT_ID as string,
+			clientSecret: process.env.TWITCH_CLIENT_SECRET as string
 		}),
 		CredentialsProvider({
 			name: 'Credentials',
 			credentials: {
-				username: {
-					label: 'Username:',
-					type: 'text',
-					placeholder: 'Enter Username'
+				email: {
+					label: 'Email:',
+					type: 'email',
+					placeholder: 'example@example.com'
 				},
 				password: {
 					label: 'Password:',
-					type: 'password',
-					placeholder: 'Enter Password'
+					type: 'password'
 				}
 			},
 			async authorize(credentials) {
@@ -39,7 +54,7 @@ export const options: NextAuthOptions = {
 						'Content-Type': 'application/json'
 					},
 					data: {
-						'username': credentials?.username,
+						'email': credentials?.email,
 						'password': credentials?.password
 					}
 				}
@@ -49,24 +64,18 @@ export const options: NextAuthOptions = {
 						if (response.status === 200) {
 							return {
 								id: response.data.id,
-								username: response.data.username,
+								email: response.data.email
 							}
 						}
 						else {
-							return {
-								id: 0,
-								username: 'None'
-							}
+							return null
 						}
 					})
 					.catch((err: any) => {
 						console.log(err)
-						return {
-							id: 0,
-							username: 'None'
-						}
+						return null
 					})
-				return { id: userObj.id, name: userObj.username }
+				return userObj
 
 				// if (credentials?.username === user.name && credentials?.password === user.password) {
 				// 	return user
@@ -77,6 +86,9 @@ export const options: NextAuthOptions = {
 			}
 		})
 	],
+	pages: {
+		signIn: '/signin'
+	},
 	callbacks: {
 		session: ({ session, token }) => ({
 			...session,

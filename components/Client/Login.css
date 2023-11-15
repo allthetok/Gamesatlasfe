@@ -191,6 +191,22 @@
 	background: rgb(247, 247, 247);
 }
 
+.altauth-area .github:hover {
+	background: rgb(247, 247, 247);
+}
+
+.altauth-area .spotify:hover {
+	background: rgb(49, 185, 97);
+}
+
+.altauth-area .discord:hover {
+	background: rgba(27, 27, 34, 0.8);
+}
+
+.altauth-area .twitch:hover {
+	background: rgb(121, 38, 245);;
+}
+
 .logo-btn-wrap {
 	display: flex;
 	align-items: center;
@@ -200,6 +216,16 @@
 
 .google {
 	background: rgb(255,255,255);
+	display: block;
+	color: black;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.spotify {
+	background: rgba(30, 215, 96, 1);
 	display: block;
 	color: black;
 	border: 2px solid rgba(0, 0, 0, 0.05);
@@ -230,7 +256,8 @@
 
 .discord {
 	/* background: rgba(125, 119, 122, 0.8); */
-	background: rgba(83,83,83,0.65);
+	/* background: rgba(83,83,83,0.65); */
+	background: rgba(9, 10, 17, 0.8);
 	display: block;
 	color: black;
 	border: 2px solid rgba(0, 0, 0, 0.05);
@@ -240,7 +267,8 @@
 }
 
 .github {
-	background: rgba(158,0,255, 0.61);
+	/* background: rgba(158,0,255, 0.61); */
+	background: rgb(255,255,255);
 	display: block;
 	color: black;
 	border: 2px solid rgba(0, 0, 0, 0.05);
@@ -251,6 +279,18 @@
 
 .reddit {
 	background: rgba(255,131,0, 1);
+	display: block;
+	color: black;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.twitch {
+	/* background: rgba(158,0,255, 0.61); */
+	/* background: rgb(255,255,255); */
+	background: rgb(145 70 255);
 	display: block;
 	color: black;
 	border: 2px solid rgba(0, 0, 0, 0.05);
@@ -271,16 +311,21 @@
     height: 72px;
     border-radius: 27px;
     padding: 0px;
-    border: none;
+    /* border: none; */
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
     width: 72px;
+	border: 2px solid transparent;
 	/* margin-left: 50%; */
 }
 
 .enter-wrap button {
 	cursor: pointer;
+}
+
+.enter-wrap:hover {
+	border: 2px solid rgb(10, 10, 10);
 }
 
 .enter-btn-wrap {
@@ -326,4 +371,25 @@
 
 .first-child {
 	margin-bottom: 8px;
+}
+
+.error-credentials {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+	flex-wrap: nowrap;
+}
+
+.error-credentials span {
+	background: #FF9494;
+	font-weight: 700;
+	font-size: 16px;
+	border-radius: 4px;
+	max-width: 400px;
+	line-height: 19.2px;
+	/* height: 25px; */
+	text-align: center;
+	vertical-align: center;
+	padding: 5px;
 }
