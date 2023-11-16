@@ -10,6 +10,9 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
 
 export const options: NextAuthOptions = {
+	// session: {
+	// 	strategy: 'jwt'
+	// },
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -45,8 +48,6 @@ export const options: NextAuthOptions = {
 				}
 			},
 			async authorize(credentials) {
-				//retrieve credentials from database configuration/providers/credentials
-				// const user = { id: '42', name: 'Allen', password: 'tempuser' }
 				const userConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/login',
@@ -64,7 +65,8 @@ export const options: NextAuthOptions = {
 						if (response.status === 200) {
 							return {
 								id: response.data.id,
-								email: response.data.email
+								email: response.data.email,
+								username: response.data.username
 							}
 						}
 						else {
@@ -75,14 +77,8 @@ export const options: NextAuthOptions = {
 						console.log(err)
 						return null
 					})
+				console.log(userObj)
 				return userObj
-
-				// if (credentials?.username === user.name && credentials?.password === user.password) {
-				// 	return user
-				// }
-				// else {
-				// 	return null
-				// }
 			}
 		})
 	],
@@ -95,6 +91,8 @@ export const options: NextAuthOptions = {
 			user: {
 				...session.user,
 				id: token.sub,
+				name: token.name,
+				token: token
 			},
 		}),
 	},

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -12,13 +12,38 @@ const Login = () => {
 	const router = useRouter()
 	const [error, setError] = useState<string | null>(null)
 
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	// const session = useSession()
+	// if (session) {
+	// 	router.push('/')
+	// }
+	// const handleSubmit = async (e: any) => {
+	// 	e.preventDefault()
+	// 	const data = new FormData(e.currentTarget)
+	// 	console.log(data)
+	// 	const signInResponse = await signIn('credentials', {
+	// 		email: data.get('email'),
+	// 		password: data.get('password'),
+	// 		redirect: false,
+	// 	})
+
+	// 	if (signInResponse && !signInResponse.error) {
+	// 		router.push('/')
+	// 	}
+	// 	else {
+	// 		console.log('Error :', signInResponse)
+	// 		setError('Email or password incorrect')
+	// 	}
+	// }
+
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
-		const data = new FormData(e.currentTarget)
 		const signInResponse = await signIn('credentials', {
-			email: data.get('email'),
-			password: data.get('password'),
-			redirect: false,
+			email: email,
+			password: password,
+			redirect: false
 		})
 
 		if (signInResponse && !signInResponse.error) {
@@ -31,19 +56,27 @@ const Login = () => {
 	}
 
 	const handleGoogle = () => {
-		signIn('google')
+		signIn('google', { callbackUrl: '/' })
 	}
 	const handleSpotify = () => {
-		signIn('spotify')
+		signIn('spotify', { callbackUrl: '/' })
 	}
 	const handleDiscord = () => {
-		signIn('discord')
+		signIn('discord', { callbackUrl: '/' })
 	}
 	const handleGithub = () => {
-		signIn('github')
+		signIn('github', { callbackUrl: '/' })
 	}
 	const handleTwitch = () => {
-		signIn('twitch')
+		signIn('twitch', { callbackUrl: '/' })
+	}
+
+	const handleEmailChange = (e: any) => {
+		setEmail(e.currentTarget.value)
+	}
+
+	const handlePasswordChange = (e: any) => {
+		setPassword(e.currentTarget.value)
 	}
 
 	return (
@@ -56,8 +89,8 @@ const Login = () => {
 			</header>
 			<div className='form-wrapper'>
 				<div className='form-div'>
-					<form onSubmit={handleSubmit}>
-						<div className='form-inner'>
+					<div className='form-inner'>
+						<form onSubmit={handleSubmit}>
 							<h5 className='login-title'>Log in</h5>
 							{error ? (
 								<div className='error-credentials'>
@@ -70,14 +103,14 @@ const Login = () => {
 								<div></div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='email' id='email' type='text' />
+										<input name='email' id='email' type='text' value={email} onChange={handleEmailChange} />
 										<label>Email</label>
 										<span>Email</span>
 									</div>
 								</div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='password' id='pass' type='password' autoComplete='off'/>
+										<input name='password' id='pass' type='password' autoComplete='off' value={password} onChange={handlePasswordChange}/>
 										<label>Password</label>
 										<span>Password</span>
 									</div>
@@ -110,8 +143,8 @@ const Login = () => {
 									</button>
 								</div>
 							</div>
-							<div className='enter-wrap'>
-								<button className='enter-btn-wrap' onClick={handleSubmit}>
+							{/* <div className='enter-wrap'>
+								<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
 									<SvgIcon fontSize='large'>
 										<ArrowForwardIcon />
 									</SvgIcon>
@@ -128,9 +161,29 @@ const Login = () => {
 										Create Account
 									</Link>
 								</span>
-							</div>
+							</div> */}
+						</form>
+						<div className='enter-wrap'>
+							<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
+								<SvgIcon fontSize='large'>
+									<ArrowForwardIcon />
+								</SvgIcon>
+							</button>
 						</div>
-					</form>
+						<div className='alt-actions'>
+							<span className='link-to-alt first-child'>
+								<Link href='/forgotpass'>
+										Forgot Password
+								</Link>
+							</span>
+							<span className='link-to-alt'>
+								<Link href='/signup'>
+										Create Account
+								</Link>
+							</span>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

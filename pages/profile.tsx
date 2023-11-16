@@ -3,23 +3,23 @@
 import React, { Suspense } from 'react'
 import { Inter } from 'next/font/google'
 import '../src/app/globals.css'
-import { getServerSession } from 'next-auth'
-import { options } from './api/auth/[...nextauth]'
+import { useSession } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default async function Profile() {
-	const session = await getServerSession()
+const Profile =  () => {
+	const { data: session } = useSession()
 	console.log(session)
 	return (
 		<main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
 				<div>
-					{session?.user?.email}
+					{/* {session?.user?.email} */}
+					hello
 				</div>
 			</Suspense>
 		</main>
 	)
 }
 
-
+export default Profile
