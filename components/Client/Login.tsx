@@ -115,54 +115,35 @@ const Login = () => {
 										<span>Password</span>
 									</div>
 								</div>
-								<div className='altauth-area'>
-									<button className='google' onClick={handleGoogle}>
-										<div className='logo-btn-wrap'>
-											<Image src='/icons8-google-48.png' width={18} height={18} alt='Google Logo'/>
-										</div>
-									</button>
-									<button className='spotify' onClick={handleSpotify}>
-										<div className='logo-btn-wrap'>
-											<Image src='/icons8-spotify-30.png' width={18} height={18} alt='Spotify Logo'/>
-										</div>
-									</button>
-									<button className='discord' onClick={handleDiscord}>
-										<div className='logo-btn-wrap'>
-											<Image src='/icons8-discord-24.png' width={18} height={18} alt='Discord Logo'/>
-										</div>
-									</button>
-									<button className='github' onClick={handleGithub}>
-										<div className='logo-btn-wrap'>
-											<Image src='/icons8-github-30.png' width={18} height={18} alt='Github Logo'/>
-										</div>
-									</button>
-									<button className='twitch' onClick={handleTwitch}>
-										<div className='logo-btn-wrap'>
-											<Image src='/icons8-twitch-50.png' width={18} height={18} alt='Twitch Logo'/>
-										</div>
-									</button>
-								</div>
 							</div>
-							{/* <div className='enter-wrap'>
-								<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
-									<SvgIcon fontSize='large'>
-										<ArrowForwardIcon />
-									</SvgIcon>
-								</button>
-							</div>
-							<div className='alt-actions'>
-								<span className='link-to-alt first-child'>
-									<Link href='/forgotpass'>
-										Forgot Password
-									</Link>
-								</span>
-								<span className='link-to-alt'>
-									<Link href='/signup'>
-										Create Account
-									</Link>
-								</span>
-							</div> */}
 						</form>
+						<div className='altauth-area'>
+							<button className='google' onClick={handleGoogle}>
+								<div className='logo-btn-wrap'>
+									<Image src='/icons8-google-48.png' width={18} height={18} alt='Google Logo'/>
+								</div>
+							</button>
+							<button className='spotify' onClick={handleSpotify}>
+								<div className='logo-btn-wrap'>
+									<Image src='/icons8-spotify-30.png' width={18} height={18} alt='Spotify Logo'/>
+								</div>
+							</button>
+							<button className='discord' onClick={handleDiscord}>
+								<div className='logo-btn-wrap'>
+									<Image src='/icons8-discord-24.png' width={18} height={18} alt='Discord Logo'/>
+								</div>
+							</button>
+							<button className='github' onClick={handleGithub}>
+								<div className='logo-btn-wrap'>
+									<Image src='/icons8-github-30.png' width={18} height={18} alt='Github Logo'/>
+								</div>
+							</button>
+							<button className='twitch' onClick={handleTwitch}>
+								<div className='logo-btn-wrap'>
+									<Image src='/icons8-twitch-50.png' width={18} height={18} alt='Twitch Logo'/>
+								</div>
+							</button>
+						</div>
 						<div className='enter-wrap'>
 							<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
 								<SvgIcon fontSize='large'>

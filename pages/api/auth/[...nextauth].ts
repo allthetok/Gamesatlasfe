@@ -10,9 +10,6 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
 
 export const options: NextAuthOptions = {
-	// session: {
-	// 	strategy: 'jwt'
-	// },
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
