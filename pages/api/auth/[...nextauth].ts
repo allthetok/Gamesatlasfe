@@ -14,8 +14,49 @@ export const options: NextAuthOptions = {
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
-		}),
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+			profile: async function(profile) {
+				const oauthProviderConfig = {
+					method: 'post',
+					url: 'http://localhost:5000/api/loginOAuthUser',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						'email': profile.email,
+						'emailverified': profile.email_verified,
+						'username': profile.name,
+						'image': profile.picture,
+						'externalId': profile.sub
+					}
+				}
+				const internalUser = await axios(oauthProviderConfig)
+				.then((response: any) => {
+					if (response.status === 200) {
+						return {
+							id: response.data.id,
+							email: response.data.email,
+							username: response.data.username
+						}
+					}
+					else {
+						return null
+					}
+				})
+				.catch((err: any) => {
+					console.log(err)
+					return null
+				})
+				return {
+					email: profile.email,
+					name: profile.name,
+					image: profile.picture,
+					id: internalUser?.id,
+					externalId: profile.sub
+				}
+			}
+		}
+		),
 		SpotifyProvider({
 			clientId: process.env.SPOTIFY_CLIENT_ID as string,
 			clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string
@@ -27,12 +68,51 @@ export const options: NextAuthOptions = {
 		GithubProvider({
 			clientId: process.env.GITHUB_CLIENT_ID as string,
 			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+			profile: async function(profile) {
+				const oauthProviderConfig = {
+					method: 'post',
+					url: 'http://localhost:5000/api/loginOAuthUser',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						'email': profile.email,
+						'emailverified': false,
+						'username': profile.name,
+						'image': profile.avatar_url,
+						'externalId': profile.id
+					}
+				}
+				const internalUser = await axios(oauthProviderConfig)
+				.then((response: any) => {
+					if (response.status === 200) {
+						return {
+							id: response.data.id,
+							email: response.data.email,
+							username: response.data.username
+						}
+					}
+					else {
+						return null
+					}
+				})
+				.catch((err: any) => {
+					console.log(err)
+					return null
+				})
+				return {
+					email: profile.email,
+					name: profile.name,
+					image: profile.avatar_url,
+					id: internalUser?.id,
+					externalId: profile.id
+				}
+			}
 		}),
 		TwitchProvider({
 			clientId: process.env.TWITCH_CLIENT_ID as string,
 			clientSecret: process.env.TWITCH_CLIENT_SECRET as string
-		}
-		),
+		}),
 		CredentialsProvider({
 			name: 'Credentials',
 			credentials: {
@@ -90,71 +170,18 @@ export const options: NextAuthOptions = {
 		updateAge: 60 * 60
 	},
 	callbacks: {
-		// jwt: async ({ token, user, account }) => {
-		// 	return {
-		// 		...token,
-		// 		provider: account?.provider
-		// 	}
-		// },
-		session: async function({ session, token }) {
-			let oAuthUserObj = null
-			console.log(token)
-
-			if (token.picture) {
-				console.log('entered if statement')
-				const oauthProviderConfig = {
-					method: 'post',
-					url: 'http://localhost:5000/api/loginOAuthUser',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						'email': session.user?.email,
-						'emailverified': false,
-						'username': session.user?.name,
-						'image': session.user?.image,
-						'externalId': token.sub
-					}
-				}
-
-				oAuthUserObj = await axios(oauthProviderConfig)
-					.then((response: any) => {
-						if (response.status === 200) {
-							return {
-								id: response.data.id,
-								email: response.data.email,
-								username: response.data.username
-							}
-						}
-						else {
-							return null
-						}
-					})
-					.catch((err: any) => {
-						console.log(err)
-						return null
-					})
-					return {
-						...session,
-						user: {
-							...session.user,
-							id: oAuthUserObj!.id,
-							externalId: token.sub,
-							token: {
-								exp: token.exp,
-								iat: token.iat,
-								jti: token.jti,
-								provider: 'nothere'
-							}
-						}
-					}
+		jwt: async ({ token, user }) => {
+			return {
+				...token,
+				...user
 			}
-			// if (oAuthUserObj !== null) {
-			// }
+		},
+		session: async function({ session, token }) {
 			return { ...session,
 				user: {
 					...session.user,
 					id: token.sub,
+					externalId: token.externalId ? token.externalId : null,
 					name: token.name,
 					token: {
 						exp: token.exp,
