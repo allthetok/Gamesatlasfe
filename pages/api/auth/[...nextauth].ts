@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import NextAuth, { NextAuthOptions } from 'next-auth'
@@ -30,7 +31,8 @@ export const options: NextAuthOptions = {
 		TwitchProvider({
 			clientId: process.env.TWITCH_CLIENT_ID as string,
 			clientSecret: process.env.TWITCH_CLIENT_SECRET as string
-		}),
+		}
+		),
 		CredentialsProvider({
 			name: 'Credentials',
 			credentials: {
@@ -44,7 +46,8 @@ export const options: NextAuthOptions = {
 					type: 'password'
 				}
 			},
-			async authorize(credentials) {
+			// async authorize(credentials) {
+			authorize: async (credentials) => {
 				const userConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/login',
@@ -74,7 +77,6 @@ export const options: NextAuthOptions = {
 						console.log(err)
 						return null
 					})
-				console.log(userObj)
 				return userObj
 			}
 		})
@@ -82,17 +84,88 @@ export const options: NextAuthOptions = {
 	pages: {
 		signIn: '/signin'
 	},
-	callbacks: {
-		session: ({ session, token }) => ({
-			...session,
-			user: {
-				...session.user,
-				id: token.sub,
-				name: token.name,
-				token: token
-			},
-		}),
+	session: {
+		strategy: 'jwt',
+		maxAge: 24 * 60 * 60,
+		updateAge: 60 * 60
 	},
+	callbacks: {
+		// jwt: async ({ token, user, account }) => {
+		// 	return {
+		// 		...token,
+		// 		provider: account?.provider
+		// 	}
+		// },
+		session: async function({ session, token }) {
+			let oAuthUserObj = null
+			console.log(token)
+
+			if (token.picture) {
+				console.log('entered if statement')
+				const oauthProviderConfig = {
+					method: 'post',
+					url: 'http://localhost:5000/api/loginOAuthUser',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						'email': session.user?.email,
+						'emailverified': false,
+						'username': session.user?.name,
+						'image': session.user?.image,
+						'externalId': token.sub
+					}
+				}
+
+				oAuthUserObj = await axios(oauthProviderConfig)
+					.then((response: any) => {
+						if (response.status === 200) {
+							return {
+								id: response.data.id,
+								email: response.data.email,
+								username: response.data.username
+							}
+						}
+						else {
+							return null
+						}
+					})
+					.catch((err: any) => {
+						console.log(err)
+						return null
+					})
+					return {
+						...session,
+						user: {
+							...session.user,
+							id: oAuthUserObj!.id,
+							externalId: token.sub,
+							token: {
+								exp: token.exp,
+								iat: token.iat,
+								jti: token.jti,
+								provider: 'nothere'
+							}
+						}
+					}
+			}
+			// if (oAuthUserObj !== null) {
+			// }
+			return { ...session,
+				user: {
+					...session.user,
+					id: token.sub,
+					name: token.name,
+					token: {
+						exp: token.exp,
+						iat: token.iat,
+						jti: token.jti
+					}
+				},
+			}
+		},
+	},
+	// events: {}
 }
 
 export default NextAuth(options)
