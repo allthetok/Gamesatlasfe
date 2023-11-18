@@ -101,7 +101,7 @@ export const options: NextAuthOptions = {
 				return {
 					email: profile.email,
 					name: profile.display_name,
-					image: profile.images.length !== 0 ? profile.images[0] : '',
+					image: profile.images.length !== 0 ? profile.images[0].url : '',
 					id: internalUser?.id,
 					externalId: profile.id,
 					provider: internalUser?.provider
@@ -112,8 +112,8 @@ export const options: NextAuthOptions = {
 		DiscordProvider({
 			clientId: process.env.DISCORD_CLIENT_ID as string,
 			clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
-			//broken at the moment, fix discord provider and compose up, delete volume now that email is not unique
 			profile: async function(profile) {
+				console.log(profile)
 				const oauthProviderConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/loginOAuthUser',
@@ -124,7 +124,7 @@ export const options: NextAuthOptions = {
 						'email': profile.email,
 						'emailverified': profile.verified,
 						'username': profile.global_name,
-						'image': '',
+						'image': `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
 						'externalId': profile.id,
 						'provider': 'Discord'
 					}
@@ -150,7 +150,7 @@ export const options: NextAuthOptions = {
 				return {
 					email: profile.email,
 					name: profile.global_name,
-					image: '',
+					image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
 					id: internalUser?.id,
 					externalId: profile.id,
 					provider: internalUser?.provider
@@ -218,7 +218,7 @@ export const options: NextAuthOptions = {
 					data: {
 						'email': profile.email,
 						'emailverified': false,
-						'username': profile.preferred_name,
+						'username': profile.preferred_username,
 						'image': profile.picture,
 						'externalId': profile.sub,
 						'provider': 'Twitch'
@@ -244,7 +244,7 @@ export const options: NextAuthOptions = {
 				})
 				return {
 					email: profile.email,
-					name: profile.preferred_name,
+					name: profile.preferred_username,
 					image: profile.picture,
 					id: internalUser?.id,
 					externalId: profile.sub,
