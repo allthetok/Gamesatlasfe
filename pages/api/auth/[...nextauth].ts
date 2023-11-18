@@ -27,7 +27,8 @@ export const options: NextAuthOptions = {
 						'emailverified': profile.email_verified,
 						'username': profile.name,
 						'image': profile.picture,
-						'externalId': profile.sub
+						'externalId': profile.sub,
+						'provider': 'Google'
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
@@ -36,7 +37,8 @@ export const options: NextAuthOptions = {
 						return {
 							id: response.data.id,
 							email: response.data.email,
-							username: response.data.username
+							username: response.data.username,
+							provider: response.data.provider
 						}
 					}
 					else {
@@ -52,7 +54,8 @@ export const options: NextAuthOptions = {
 					name: profile.name,
 					image: profile.picture,
 					id: internalUser?.id,
-					externalId: profile.sub
+					externalId: profile.sub,
+					provider: internalUser?.provider
 				}
 			}
 		}
@@ -72,8 +75,9 @@ export const options: NextAuthOptions = {
 						'email': profile.email,
 						'emailverified': false,
 						'username': profile.display_name,
-						'image': profile.images.length !== 0 ? profile.images[0] : '',
-						'externalId': profile.id
+						'image': profile.images.length !== 0 ? profile.images[0].url : '',
+						'externalId': profile.id,
+						'provider': 'Spotify'
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
@@ -82,7 +86,8 @@ export const options: NextAuthOptions = {
 						return {
 							id: response.data.id,
 							email: response.data.email,
-							username: response.data.username
+							username: response.data.username,
+							provider: response.data.provider
 						}
 					}
 					else {
@@ -98,7 +103,8 @@ export const options: NextAuthOptions = {
 					name: profile.display_name,
 					image: profile.images.length !== 0 ? profile.images[0] : '',
 					id: internalUser?.id,
-					externalId: profile.id
+					externalId: profile.id,
+					provider: internalUser?.provider
 				}
 			}
 		}
@@ -119,7 +125,8 @@ export const options: NextAuthOptions = {
 						'emailverified': profile.verified,
 						'username': profile.global_name,
 						'image': '',
-						'externalId': profile.id
+						'externalId': profile.id,
+						'provider': 'Discord'
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
@@ -128,7 +135,8 @@ export const options: NextAuthOptions = {
 						return {
 							id: response.data.id,
 							email: response.data.email,
-							username: response.data.username
+							username: response.data.username,
+							provider: response.data.provider
 						}
 					}
 					else {
@@ -144,7 +152,8 @@ export const options: NextAuthOptions = {
 					name: profile.global_name,
 					image: '',
 					id: internalUser?.id,
-					externalId: profile.id
+					externalId: profile.id,
+					provider: internalUser?.provider
 				}
 			}
 		}),
@@ -163,7 +172,8 @@ export const options: NextAuthOptions = {
 						'emailverified': false,
 						'username': profile.name,
 						'image': profile.avatar_url,
-						'externalId': profile.id
+						'externalId': profile.id,
+						'provider': 'Github'
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
@@ -172,7 +182,8 @@ export const options: NextAuthOptions = {
 						return {
 							id: response.data.id,
 							email: response.data.email,
-							username: response.data.username
+							username: response.data.username,
+							provider: response.data.provider
 						}
 					}
 					else {
@@ -188,7 +199,8 @@ export const options: NextAuthOptions = {
 					name: profile.name,
 					image: profile.avatar_url,
 					id: internalUser?.id,
-					externalId: profile.id
+					externalId: profile.id,
+					provider: internalUser?.provider
 				}
 			}
 		}),
@@ -208,7 +220,8 @@ export const options: NextAuthOptions = {
 						'emailverified': false,
 						'username': profile.preferred_name,
 						'image': profile.picture,
-						'externalId': profile.sub
+						'externalId': profile.sub,
+						'provider': 'Twitch'
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
@@ -217,7 +230,8 @@ export const options: NextAuthOptions = {
 						return {
 							id: response.data.id,
 							email: response.data.email,
-							username: response.data.username
+							username: response.data.username,
+							provider: response.data.provider
 						}
 					}
 					else {
@@ -233,7 +247,8 @@ export const options: NextAuthOptions = {
 					name: profile.preferred_name,
 					image: profile.picture,
 					id: internalUser?.id,
-					externalId: profile.sub
+					externalId: profile.sub,
+					provider: internalUser?.provider
 				}
 			}
 		}),
@@ -260,7 +275,8 @@ export const options: NextAuthOptions = {
 					},
 					data: {
 						'email': credentials?.email,
-						'password': credentials?.password
+						'password': credentials?.password,
+						'provider': 'GamesAtlas'
 					}
 				}
 
@@ -270,7 +286,8 @@ export const options: NextAuthOptions = {
 							return {
 								id: response.data.id,
 								email: response.data.email,
-								username: response.data.username
+								username: response.data.username,
+								provider: response.data.provider
 							}
 						}
 						else {
@@ -307,6 +324,7 @@ export const options: NextAuthOptions = {
 					id: token.sub,
 					externalId: token.externalId ? token.externalId : null,
 					name: token.name,
+					provider: token.provider ? token.provider : null,
 					token: {
 						exp: token.exp,
 						iat: token.iat,
