@@ -102,7 +102,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 	height: auto;
 }
 
@@ -121,11 +121,12 @@
 
 .game-preferences-table-wrapper {
 	/* margin-top: -30px; */
+	margin-top: 0px;
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
 	justify-content: center;
-	width: auto;
+	width: 1050px;
 	background-color: #1b1e22;
 	border-radius: 15px;
 	border: 1px solid white;
@@ -174,4 +175,12 @@
 	align-items: center;
 	width: auto;
 	/* border: 1px solid var(--body-bg-color); */
+}
+
+.table-heading-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid white;
+	padding-bottom: 5px;
 }
