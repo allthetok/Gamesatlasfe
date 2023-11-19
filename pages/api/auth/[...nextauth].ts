@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import NextAuth, { NextAuthOptions } from 'next-auth'
@@ -32,23 +31,23 @@ export const options: NextAuthOptions = {
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
-				.then((response: any) => {
-					if (response.status === 200) {
-						return {
-							id: response.data.id,
-							email: response.data.email,
-							username: response.data.username,
-							provider: response.data.provider
+					.then((response: any) => {
+						if (response.status === 200) {
+							return {
+								id: response.data.id,
+								email: response.data.email,
+								username: response.data.username,
+								provider: response.data.provider
+							}
 						}
-					}
-					else {
+						else {
+							return null
+						}
+					})
+					.catch((err: any) => {
+						console.log(err)
 						return null
-					}
-				})
-				.catch((err: any) => {
-					console.log(err)
-					return null
-				})
+					})
 				return {
 					email: profile.email,
 					name: profile.name,
@@ -64,7 +63,6 @@ export const options: NextAuthOptions = {
 			clientId: process.env.SPOTIFY_CLIENT_ID as string,
 			clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				console.log(profile)
 				const oauthProviderConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/loginOAuthUser',
@@ -81,23 +79,23 @@ export const options: NextAuthOptions = {
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
-				.then((response: any) => {
-					if (response.status === 200) {
-						return {
-							id: response.data.id,
-							email: response.data.email,
-							username: response.data.username,
-							provider: response.data.provider
+					.then((response: any) => {
+						if (response.status === 200) {
+							return {
+								id: response.data.id,
+								email: response.data.email,
+								username: response.data.username,
+								provider: response.data.provider
+							}
 						}
-					}
-					else {
+						else {
+							return null
+						}
+					})
+					.catch((err: any) => {
+						console.log(err)
 						return null
-					}
-				})
-				.catch((err: any) => {
-					console.log(err)
-					return null
-				})
+					})
 				return {
 					email: profile.email,
 					name: profile.display_name,
@@ -113,7 +111,6 @@ export const options: NextAuthOptions = {
 			clientId: process.env.DISCORD_CLIENT_ID as string,
 			clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				console.log(profile)
 				const oauthProviderConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/loginOAuthUser',
@@ -130,23 +127,23 @@ export const options: NextAuthOptions = {
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
-				.then((response: any) => {
-					if (response.status === 200) {
-						return {
-							id: response.data.id,
-							email: response.data.email,
-							username: response.data.username,
-							provider: response.data.provider
+					.then((response: any) => {
+						if (response.status === 200) {
+							return {
+								id: response.data.id,
+								email: response.data.email,
+								username: response.data.username,
+								provider: response.data.provider
+							}
 						}
-					}
-					else {
+						else {
+							return null
+						}
+					})
+					.catch((err: any) => {
+						console.log(err)
 						return null
-					}
-				})
-				.catch((err: any) => {
-					console.log(err)
-					return null
-				})
+					})
 				return {
 					email: profile.email,
 					name: profile.global_name,
@@ -177,23 +174,23 @@ export const options: NextAuthOptions = {
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
-				.then((response: any) => {
-					if (response.status === 200) {
-						return {
-							id: response.data.id,
-							email: response.data.email,
-							username: response.data.username,
-							provider: response.data.provider
+					.then((response: any) => {
+						if (response.status === 200) {
+							return {
+								id: response.data.id,
+								email: response.data.email,
+								username: response.data.username,
+								provider: response.data.provider
+							}
 						}
-					}
-					else {
+						else {
+							return null
+						}
+					})
+					.catch((err: any) => {
+						console.log(err)
 						return null
-					}
-				})
-				.catch((err: any) => {
-					console.log(err)
-					return null
-				})
+					})
 				return {
 					email: profile.email,
 					name: profile.name,
@@ -208,7 +205,6 @@ export const options: NextAuthOptions = {
 			clientId: process.env.TWITCH_CLIENT_ID as string,
 			clientSecret: process.env.TWITCH_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				console.log(profile)
 				const oauthProviderConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/loginOAuthUser',
@@ -225,23 +221,23 @@ export const options: NextAuthOptions = {
 					}
 				}
 				const internalUser = await axios(oauthProviderConfig)
-				.then((response: any) => {
-					if (response.status === 200) {
-						return {
-							id: response.data.id,
-							email: response.data.email,
-							username: response.data.username,
-							provider: response.data.provider
+					.then((response: any) => {
+						if (response.status === 200) {
+							return {
+								id: response.data.id,
+								email: response.data.email,
+								username: response.data.username,
+								provider: response.data.provider
+							}
 						}
-					}
-					else {
+						else {
+							return null
+						}
+					})
+					.catch((err: any) => {
+						console.log(err)
 						return null
-					}
-				})
-				.catch((err: any) => {
-					console.log(err)
-					return null
-				})
+					})
 				return {
 					email: profile.email,
 					name: profile.preferred_username,
@@ -265,7 +261,6 @@ export const options: NextAuthOptions = {
 					type: 'password'
 				}
 			},
-			// async authorize(credentials) {
 			authorize: async (credentials) => {
 				const userConfig = {
 					method: 'post',

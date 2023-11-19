@@ -1,0 +1,93 @@
+:root {
+	--text-color: #ddd;
+	--primary-color: #9fc1ea;
+}
+
+.header-wrapper {
+	margin-top: -30px;
+	height: 275px;
+}
+
+.bg-wrapper {
+	position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 387px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.bg-intro {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    background: -o-linear-gradient(240deg, #222222 15%, #373737 70%, #3c4859 94%);
+    background: linear-gradient(-150deg, #222222 15%, #373737 70%, #3c4859 94%);
+}
+
+.intro-container {
+	display: flex;
+	padding-top: 65px;
+	align-items: center;
+	justify-content: center;
+}
+
+.intro-avatar {
+	flex: 0 0 11.25%;
+	text-align: center;
+	position: relative;
+}
+
+.intro-img {
+	cursor: pointer;
+	height: 140px;
+	width: 140px;
+	border: 5px solid var(--text-color);
+	border-radius: 15px;
+	vertical-align: middle;
+}
+
+.intro-name {
+	overflow: hidden;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.name-container {
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.name-container span {
+	color: var(--text-color);
+    font-size: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	font-weight: 700;
+}
+
+.id-container {
+    display: flex;
+	flex-direction: column;
+    align-items: center;
+    flex: 0 0 auto;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.id-container span {
+	color: var(--primary-color);
+	font-size: 12px;
+	font-weight: 200;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	margin-bottom: 2.5px;
+}
