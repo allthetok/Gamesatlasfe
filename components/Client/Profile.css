@@ -3,7 +3,7 @@
 	--primary-color: #9fc1ea;
 }
 
-.header-wrapper {
+.header-profile-wrapper {
 	margin-top: -30px;
 	height: 275px;
 }
@@ -80,6 +80,7 @@
     flex: 0 0 auto;
     justify-content: center;
     max-width: 100%;
+	line-height: 1.5;
 }
 
 .id-container span {
@@ -89,5 +90,18 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-	margin-bottom: 2.5px;
+}
+
+.account-details-wrapper {
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+}
+
+.account-table-wrapper {
+	margin-top: 8px;
+	/* color: var(--text-color);
+	background-color: black; */
 }

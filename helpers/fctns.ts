@@ -10,7 +10,7 @@ const formattedYear = (inpDate: string | Date) => inpDate !== 'N/A' ? new Date(i
 const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, platform: string, limit: string, genre: string) => {
 	return {
 		method: method,
-		url: `http://localhost:3001/api/${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -29,7 +29,7 @@ const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: stri
 const createAdvancedAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, limit: string, platforms: string[], genres: string[], themes: string[], gameModes: string[], categories: string[], rating: number[], releaseDate: number[], companies: string[]) => {
 	return {
 		method: method,
-		url: `http://localhost:3001/api/${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -55,7 +55,7 @@ const createAdvancedAxiosConfig = (method: string, endpoint: string, sortBy: str
 const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchTerm: string) => {
 	return {
 		method: method,
-		url: `http://localhost:3001/api/${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -68,7 +68,7 @@ const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchT
 const createDeprecatedNestedConfig = (method: string, endpoint: string, gameid: number) => {
 	return {
 		method: method,
-		url: `http://localhost:3001/api/${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -89,7 +89,7 @@ const createGameDtlConfig = (method: string, endpoint: string, searchTerm: strin
 	}
 	return {
 		method: method,
-		url: `http://localhost:3001/api/${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -110,7 +110,7 @@ const createInnerSearchConfig = (method: string, endpoint: string, searchTerm: s
 	}
 	return {
 		method: method,
-		url: `http://localhost:3001/api/${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -132,7 +132,7 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string 
 	}
 	return {
 		method: method,
-		url: `http://localhost:3001/api/${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
