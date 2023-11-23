@@ -37,7 +37,8 @@ export const options: NextAuthOptions = {
 								id: response.data.id,
 								email: response.data.email,
 								username: response.data.username,
-								provider: response.data.provider
+								provider: response.data.provider,
+								profileid: response.data.profileid
 							}
 						}
 						else {
@@ -54,7 +55,8 @@ export const options: NextAuthOptions = {
 					image: profile.picture,
 					id: internalUser?.id,
 					externalId: profile.sub,
-					provider: internalUser?.provider
+					provider: internalUser?.provider,
+					profileid: internalUser?.profileid
 				}
 			}
 		}
@@ -85,7 +87,8 @@ export const options: NextAuthOptions = {
 								id: response.data.id,
 								email: response.data.email,
 								username: response.data.username,
-								provider: response.data.provider
+								provider: response.data.provider,
+								profileid: response.data.profileid
 							}
 						}
 						else {
@@ -102,7 +105,8 @@ export const options: NextAuthOptions = {
 					image: profile.images.length !== 0 ? profile.images[0].url : '',
 					id: internalUser?.id,
 					externalId: profile.id,
-					provider: internalUser?.provider
+					provider: internalUser?.provider,
+					profileid: internalUser?.profileid
 				}
 			}
 		}
@@ -133,7 +137,8 @@ export const options: NextAuthOptions = {
 								id: response.data.id,
 								email: response.data.email,
 								username: response.data.username,
-								provider: response.data.provider
+								provider: response.data.provider,
+								profileid: response.data.profileid
 							}
 						}
 						else {
@@ -150,7 +155,8 @@ export const options: NextAuthOptions = {
 					image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
 					id: internalUser?.id,
 					externalId: profile.id,
-					provider: internalUser?.provider
+					provider: internalUser?.provider,
+					profileid: internalUser?.profileid
 				}
 			}
 		}),
@@ -180,7 +186,8 @@ export const options: NextAuthOptions = {
 								id: response.data.id,
 								email: response.data.email,
 								username: response.data.username,
-								provider: response.data.provider
+								provider: response.data.provider,
+								profileid: response.data.profileid
 							}
 						}
 						else {
@@ -197,7 +204,8 @@ export const options: NextAuthOptions = {
 					image: profile.avatar_url,
 					id: internalUser?.id,
 					externalId: profile.id,
-					provider: internalUser?.provider
+					provider: internalUser?.provider,
+					profileid: internalUser?.profileid
 				}
 			}
 		}),
@@ -227,7 +235,8 @@ export const options: NextAuthOptions = {
 								id: response.data.id,
 								email: response.data.email,
 								username: response.data.username,
-								provider: response.data.provider
+								provider: response.data.provider,
+								profileid: response.data.profileid
 							}
 						}
 						else {
@@ -244,7 +253,8 @@ export const options: NextAuthOptions = {
 					image: profile.picture,
 					id: internalUser?.id,
 					externalId: profile.sub,
-					provider: internalUser?.provider
+					provider: internalUser?.provider,
+					profileid: internalUser?.profileid
 				}
 			}
 		}),
@@ -282,7 +292,8 @@ export const options: NextAuthOptions = {
 								id: response.data.id,
 								email: response.data.email,
 								username: response.data.username,
-								provider: response.data.provider
+								provider: response.data.provider,
+								profileid: response.data.profileid
 							}
 						}
 						else {
@@ -320,6 +331,7 @@ export const options: NextAuthOptions = {
 					externalId: token.externalId ? token.externalId : null,
 					name: token.name,
 					provider: token.provider ? token.provider : null,
+					profileid: token.profileid ? token.profileid: null,
 					token: {
 						exp: token.exp,
 						iat: token.iat,
