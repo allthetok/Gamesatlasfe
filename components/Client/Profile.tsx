@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
@@ -27,6 +28,10 @@ const Profile = ({ userData }: ProfileProps) => {
 	const [loading, setLoading] = useState(true)
 
 	console.log(data)
+
+	const getUserProfile = async (profileid) => {
+
+	}
 
 	useEffect(() => {
 		if (data.status === 'authenticated') {
@@ -64,7 +69,7 @@ const Profile = ({ userData }: ProfileProps) => {
 					<div className='account-details-wrapper'>
 						<div className='account-table-wrapper'>
 							<Box sx={{ width: '500px' }}>
-								<Paper sx={{ width: '100%', mb: 2, color: '#ddd', backgroundColor: '#1b1e22'}}>
+								<Paper sx={{ width: '100%', mb: 2, color: '#ddd', backgroundColor: '#1b1e22' }}>
 									<div className='table-heading-flex'>
 										<Typography sx={{ flex: '1 1 100%',  fontWeight: '700' }} variant='h6' id='tableTitle' component='div'>
 										Account Info
