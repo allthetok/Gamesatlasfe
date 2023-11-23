@@ -215,7 +215,16 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={platformIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={platform}>
 																		<Box sx={platformIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={platformIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																			<Button sx={platformIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																				let currentPlatforms = [...platforms]
+																				if (platformIncludes) {
+																					currentPlatforms = currentPlatforms.filter((indPlatform: string) => indPlatform !== platform)
+																				}
+																				else {
+																					currentPlatforms.push(platform)
+																				}
+																				setPlatforms(currentPlatforms)
+																			}}>
 																				{platform}
 																			</Button>
 																		</Box>
@@ -235,7 +244,16 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={genreIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={genre}>
 																		<Box sx={genreIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={genreIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																			<Button sx={genreIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																				let currentGenres = [...genres]
+																				if (genreIncludes) {
+																					currentGenres = currentGenres.filter((indGenre: string) => indGenre !== genre)
+																				}
+																				else {
+																					currentGenres.push(genre)
+																				}
+																				setGenres(currentGenres)
+																			}}>
 																				{genre}
 																			</Button>
 																		</Box>
@@ -255,7 +273,16 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={themeIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={theme}>
 																		<Box sx={themeIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={themeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																			<Button sx={themeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																				let currentThemes = [...themes]
+																				if (themeIncludes) {
+																					currentThemes = currentThemes.filter((indTheme: string) => indTheme !== theme)
+																				}
+																				else {
+																					currentThemes.push(theme)
+																				}
+																				setThemes(currentThemes)
+																			}}>
 																				{theme}
 																			</Button>
 																		</Box>
@@ -275,7 +302,16 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={gameModeIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={mode}>
 																		<Box sx={gameModeIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={gameModeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																			<Button sx={gameModeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																				let currentGameModes = [...gameModes]
+																				if (gameModeIncludes) {
+																					currentGameModes = currentGameModes.filter((gameMode: string) => gameMode !== mode)
+																				}
+																				else {
+																					currentGameModes.push(mode)
+																				}
+																				setGameModes(currentGameModes)
+																			}}>
 																				{mode}
 																			</Button>
 																		</Box>
