@@ -4,6 +4,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import axios from 'axios'
+import ReactLoading from 'react-loading'
 import Image from 'next/image'
 import { Session } from 'next-auth'
 import { TableRows } from '@mui/icons-material'
@@ -26,16 +28,47 @@ const Profile = ({ userData }: ProfileProps) => {
 	const [editAcct, setEditAcct] = useState(false)
 	const [editGame, setEditGame] = useState(false)
 	const [loading, setLoading] = useState(true)
+	const [userPrefData, setUserPrefData] = useState(null)
+
+	const [platforms, setPlatforms] = useState<string[]>([])
+	const [genres, setGenres] = useState<string[]>([])
+	const [themes, setThemes] = useState<string[]>([])
+	const [gameModes, setGameModes] = useState<string[]>([])
 
 	console.log(data)
 
-	const getUserProfile = async (profileid) => {
-
+	const getUserProfile = async (userid: string, profileid: string) => {
+		const profileSearchConfig = {
+			method: 'post',
+			url: 'http://localhost:5000/api/profileDetails',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: {
+				'userid': Number(userid),
+				'profileid': Number(profileid)
+			}
+		}
+		await axios(profileSearchConfig)
+			.then((response: any) => {
+				const prefData = response.data
+				console.log(prefData)
+				setUserPrefData(prefData)
+				setPlatforms(prefData.platform)
+				setGenres(prefData.genres)
+				setThemes(prefData.themes)
+				setGameModes(prefData.gamemodes)
+			})
+			.catch((err: any) => {
+				console.log(err)
+			})
+		console.log(userPrefData)
 	}
 
 	useEffect(() => {
 		if (data.status === 'authenticated') {
 			setLoading(false)
+			getUserProfile(userData.data.user.id, userData.data.user.profileid)
 		}
 	}, [data])
 
@@ -77,8 +110,8 @@ const Profile = ({ userData }: ProfileProps) => {
 										{!editAcct ? <IconButton color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
 											<EditIcon/>
 										</IconButton>
-											: <Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
-												Save
+											: <Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
+												Save Changes
 											</Button>}
 									</div>
 									<TableContainer component={Paper}>
@@ -162,8 +195,8 @@ const Profile = ({ userData }: ProfileProps) => {
 										{!editGame ? <IconButton color='inherit' size='large' onClick={() => setEditGame(!editGame)}>
 											<EditIcon/>
 										</IconButton>
-											: <Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(!editGame)}>
-												Save
+											: <Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(!editGame)}>
+												Save Changes
 											</Button>}
 									</div>
 									<TableContainer component={Paper}>
@@ -177,15 +210,17 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', 'padding': '0' }} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
-															{platformButtonArray.map((platform: string) => (
-																<li className='adv-nav-tabs-li' key={platform}>
-																	<Box>
-																		<Button sx={ButtonSx}>
-																			{platform}
-																		</Button>
-																	</Box>
-																</li>
-															))}
+															{platformButtonArray.map((platform: string) => {
+																const platformIncludes = platforms.includes(platform)
+																return (
+																	<li className={platformIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={platform}>
+																		<Box sx={platformIncludes ? BoxActiveSx : BoxNoBorderSx}>
+																			<Button sx={platformIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																				{platform}
+																			</Button>
+																		</Box>
+																	</li>
+																)})}
 														</ul>
 													</TableCell>
 												</TableRow>
@@ -195,15 +230,17 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
-															{genresButtonArray.map((genre: string) => (
-																<li className='adv-nav-tabs-li' key={genre}>
-																	<Box>
-																		<Button sx={ButtonSx}>
-																			{genre}
-																		</Button>
-																	</Box>
-																</li>
-															))}
+															{genresButtonArray.map((genre: string) => {
+																const genreIncludes = genres.includes(genre)
+																return (
+																	<li className={genreIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={genre}>
+																		<Box sx={genreIncludes ? BoxActiveSx : BoxNoBorderSx}>
+																			<Button sx={genreIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																				{genre}
+																			</Button>
+																		</Box>
+																	</li>
+																)})}
 														</ul>
 													</TableCell>
 												</TableRow>
@@ -213,15 +250,17 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
-															{themesButtonArray.map((theme: string) => (
-																<li className='adv-nav-tabs-li' key={theme}>
-																	<Box>
-																		<Button sx={ButtonSx}>
-																			{theme}
-																		</Button>
-																	</Box>
-																</li>
-															))}
+															{themesButtonArray.map((theme: string) => {
+																const themeIncludes = themes.includes(theme)
+																return (
+																	<li className={themeIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={theme}>
+																		<Box sx={themeIncludes ? BoxActiveSx : BoxNoBorderSx}>
+																			<Button sx={themeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																				{theme}
+																			</Button>
+																		</Box>
+																	</li>
+																)})}
 														</ul>
 													</TableCell>
 												</TableRow>
@@ -231,15 +270,17 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
-															{gameModesButtonArray.map((mode: string) => (
-																<li className='adv-nav-tabs-li' key={mode}>
-																	<Box>
-																		<Button sx={ButtonSx}>
-																			{mode}
-																		</Button>
-																	</Box>
-																</li>
-															))}
+															{gameModesButtonArray.map((mode: string) => {
+																const gameModeIncludes = gameModes.includes(mode)
+																return (
+																	<li className={gameModeIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={mode}>
+																		<Box sx={gameModeIncludes ? BoxActiveSx : BoxNoBorderSx}>
+																			<Button sx={gameModeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame}>
+																				{mode}
+																			</Button>
+																		</Box>
+																	</li>
+																)})}
 														</ul>
 													</TableCell>
 												</TableRow>
@@ -251,7 +292,12 @@ const Profile = ({ userData }: ProfileProps) => {
 						</div>
 					</div>
 				</div>
-				: <></>
+				: <ReactLoading
+					type={'spinningBubbles'}
+					color={'#ddd'}
+					height={150}
+					width={150}
+				/>
 			}
 		</div>
 	)

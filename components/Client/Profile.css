@@ -166,6 +166,16 @@
 	color: white;
 }
 
+.adv-nav-tabs-li-active {
+	background-color: var(--body-bg-color-dark);
+	color: white;
+	border: none;
+	margin: 0;
+	flex-grow: 0;
+	display: flex;
+	justify-content: center;
+}
+
 .adv-nav-tabs-grid {
 	display: grid;
 	grid-template-columns: repeat(8, auto);
@@ -184,4 +194,9 @@
 	align-items: center;
 	border-bottom: 1px solid white;
 	padding-bottom: 5px;
+}
+
+.css-13j41ac-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+	color: var(--primary-color);
+	cursor: not-allowed;
 }
