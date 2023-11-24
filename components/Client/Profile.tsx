@@ -66,6 +66,7 @@ const Profile = ({ userData }: ProfileProps) => {
 	}
 
 	const updateUserGamePref = async (userid: string, profileid: string, platforms: string[], genres: string[], themes: string[], gameModes: string[]) => {
+		console.log('button clicked')
 		const profilePrefConfig = {
 			method: 'patch',
 			url: 'http://localhost:5000/api/profileDetails',
@@ -82,11 +83,37 @@ const Profile = ({ userData }: ProfileProps) => {
 			}
 		}
 		await axios(profilePrefConfig)
-			.then(async (response: any) => {
-				await getUserProfile(userid, profileid)
-				if (response.data.platform === userPrefData.platform && response.data.genres === userPrefData.genres && response.data.themes === userPrefData.themes && response.data.gamemodes === userPrefData.gamemodes) {
-					setEditGame(false)
-				}
+			.then((response: any) => {
+				setEditGame(false)
+				// let updatedData = {
+				// 	...userPrefData,
+				// }
+				// if (response.status === 200) {
+				// 	updatedData = {
+				// 		...updatedData,
+				// 		platforms: response.data.platform,
+				// 		genres: response.data.genres,
+				// 		themes: response.data.themes,
+				// 		gameModes: response.data.gamemodes
+				// 	}
+
+				// }
+				// else {
+				// 	setUserPrefData(updatedData)
+				// }
+				// setPlatforms(updatedData.platform)
+				// setGenres(updatedData.genres)
+				// setThemes(updatedData.themes)
+				// setGameModes(updatedData.gamemodes)
+
+
+				// await getUserProfile(userid, profileid)
+				// console.log(response.data)
+				// console.log(userPrefData)
+				// if (response.data.platform === userPrefData.platform && response.data.genres === userPrefData.genres && response.data.themes === userPrefData.themes && response.data.gamemodes === userPrefData.gamemodes) {
+				// 	console.log('passed condition')
+				// 	setEditGame(false)
+				// }
 			})
 			.catch((err: any) => {
 				console.log(err)
@@ -98,7 +125,7 @@ const Profile = ({ userData }: ProfileProps) => {
 			setLoading(false)
 			getUserProfile(userData.data.user.id, userData.data.user.profileid)
 		}
-	}, [data])
+	}, [data, editGame])
 
 	return (
 		<div>
@@ -239,7 +266,7 @@ const Profile = ({ userData }: ProfileProps) => {
 											</TableHead>
 											<TableBody>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', minWidth: '50px', fontWeight: '600' }} component='th' scope='row' padding='none'>
+													<TableCell sx={{ color: '#ddd', minWidth: '50px', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
 														Your Platform:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', 'padding': '0' }} component='td' align='right'>
@@ -270,7 +297,7 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+													<TableCell sx={{ color: '#ddd', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
 														Favorite Genres:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
@@ -280,18 +307,20 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={genreIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={genre}>
 																		<Box sx={genreIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={genreIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
-																				let currentGenres = [...genres]
-																				if (genreIncludes) {
-																					currentGenres = currentGenres.filter((indGenre: string) => indGenre !== genre)
-																				}
-																				else {
-																					currentGenres.push(genre)
-																				}
-																				setGenres(currentGenres)
-																			}}>
-																				{genre}
-																			</Button>
+																			<div className={editGame === false && genreIncludes === true ? 'active-btn-disabled' : ''}>
+																				<Button sx={genreIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																					let currentGenres = [...genres]
+																					if (genreIncludes) {
+																						currentGenres = currentGenres.filter((indGenre: string) => indGenre !== genre)
+																					}
+																					else {
+																						currentGenres.push(genre)
+																					}
+																					setGenres(currentGenres)
+																				}}>
+																					{genre}
+																				</Button>
+																			</div>
 																		</Box>
 																	</li>
 																)})}
@@ -299,7 +328,7 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+													<TableCell sx={{ color: '#ddd', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
 														Favorite Themes:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
@@ -309,18 +338,20 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={themeIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={theme}>
 																		<Box sx={themeIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={themeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
-																				let currentThemes = [...themes]
-																				if (themeIncludes) {
-																					currentThemes = currentThemes.filter((indTheme: string) => indTheme !== theme)
-																				}
-																				else {
-																					currentThemes.push(theme)
-																				}
-																				setThemes(currentThemes)
-																			}}>
-																				{theme}
-																			</Button>
+																			<div className={editGame === false && themeIncludes === true ? 'active-btn-disabled' : ''}>
+																				<Button sx={themeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																					let currentThemes = [...themes]
+																					if (themeIncludes) {
+																						currentThemes = currentThemes.filter((indTheme: string) => indTheme !== theme)
+																					}
+																					else {
+																						currentThemes.push(theme)
+																					}
+																					setThemes(currentThemes)
+																				}}>
+																					{theme}
+																				</Button>
+																			</div>
 																		</Box>
 																	</li>
 																)})}
@@ -328,7 +359,7 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+													<TableCell sx={{ color: '#ddd', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
 														Favorite Game Type
 													</TableCell>
 													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
@@ -338,18 +369,20 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={gameModeIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={mode}>
 																		<Box sx={gameModeIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={gameModeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
-																				let currentGameModes = [...gameModes]
-																				if (gameModeIncludes) {
-																					currentGameModes = currentGameModes.filter((gameMode: string) => gameMode !== mode)
-																				}
-																				else {
-																					currentGameModes.push(mode)
-																				}
-																				setGameModes(currentGameModes)
-																			}}>
-																				{mode}
-																			</Button>
+																			<div className={editGame === false && gameModeIncludes === true ? 'active-btn-disabled' : ''}>
+																				<Button sx={gameModeIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																					let currentGameModes = [...gameModes]
+																					if (gameModeIncludes) {
+																						currentGameModes = currentGameModes.filter((gameMode: string) => gameMode !== mode)
+																					}
+																					else {
+																						currentGameModes.push(mode)
+																					}
+																					setGameModes(currentGameModes)
+																				}}>
+																					{mode}
+																				</Button>
+																			</div>
 																		</Box>
 																	</li>
 																)})}
