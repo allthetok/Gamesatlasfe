@@ -196,7 +196,23 @@
 	padding-bottom: 5px;
 }
 
-.css-13j41ac-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+/* .css-13j41ac-MuiButtonBase-root-MuiButton-root.Mui-disabled {
 	color: var(--primary-color);
 	cursor: not-allowed;
+} */
+
+.btn-save-cancel-wrap {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+.MuiButton-root.Mui-disabled {
+	color: var(--primary-color);
+	cursor: crosshair;
+	pointer-events: all !important;
+}
+
+.active-btn-disabled .MuiButton-root.Mui-disabled {
+	color: #ddd !important;
 }

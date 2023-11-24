@@ -28,7 +28,7 @@ const Profile = ({ userData }: ProfileProps) => {
 	const [editAcct, setEditAcct] = useState(false)
 	const [editGame, setEditGame] = useState(false)
 	const [loading, setLoading] = useState(true)
-	const [userPrefData, setUserPrefData] = useState(null)
+	const [userPrefData, setUserPrefData] = useState<any>(null)
 
 	const [platforms, setPlatforms] = useState<string[]>([])
 	const [genres, setGenres] = useState<string[]>([])
@@ -63,6 +63,34 @@ const Profile = ({ userData }: ProfileProps) => {
 				console.log(err)
 			})
 		console.log(userPrefData)
+	}
+
+	const updateUserGamePref = async (userid: string, profileid: string, platforms: string[], genres: string[], themes: string[], gameModes: string[]) => {
+		const profilePrefConfig = {
+			method: 'patch',
+			url: 'http://localhost:5000/api/profileDetails',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: {
+				'userid': Number(userid),
+				'profileid': Number(profileid),
+				'platforms': platforms,
+				'genres': genres,
+				'themes': themes,
+				'gameModes': gameModes
+			}
+		}
+		await axios(profilePrefConfig)
+			.then(async (response: any) => {
+				await getUserProfile(userid, profileid)
+				if (response.data.platform === userPrefData.platform && response.data.genres === userPrefData.genres && response.data.themes === userPrefData.themes && response.data.gamemodes === userPrefData.gamemodes) {
+					setEditGame(false)
+				}
+			})
+			.catch((err: any) => {
+				console.log(err)
+			})
 	}
 
 	useEffect(() => {
@@ -195,9 +223,15 @@ const Profile = ({ userData }: ProfileProps) => {
 										{!editGame ? <IconButton color='inherit' size='large' onClick={() => setEditGame(!editGame)}>
 											<EditIcon/>
 										</IconButton>
-											: <Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(!editGame)}>
+											:
+											<div className='btn-save-cancel-wrap'>
+												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserGamePref(userData.data.user.id, userData.data.user.profileid, platforms, genres, themes, gameModes)}>
 												Save Changes
-											</Button>}
+												</Button>
+												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(false)}>
+												Cancel
+												</Button>
+											</div>}
 									</div>
 									<TableContainer component={Paper}>
 										<Table sx={{ minWidth: 850, color: '#ddd', backgroundColor: '#1b1e22' }} aria-label='Account Details table'>
@@ -215,18 +249,20 @@ const Profile = ({ userData }: ProfileProps) => {
 																return (
 																	<li className={platformIncludes ? 'adv-nav-tabs-li-active' : 'adv-nav-tabs-li'} key={platform}>
 																		<Box sx={platformIncludes ? BoxActiveSx : BoxNoBorderSx}>
-																			<Button sx={platformIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
-																				let currentPlatforms = [...platforms]
-																				if (platformIncludes) {
-																					currentPlatforms = currentPlatforms.filter((indPlatform: string) => indPlatform !== platform)
-																				}
-																				else {
-																					currentPlatforms.push(platform)
-																				}
-																				setPlatforms(currentPlatforms)
-																			}}>
-																				{platform}
-																			</Button>
+																			<div className={editGame === false && platformIncludes === true ? 'active-btn-disabled' : ''}>
+																				<Button sx={platformIncludes ? ButtonActiveSx : ButtonSx} disabled={!editGame} onClick={() => {
+																					let currentPlatforms = [...platforms]
+																					if (platformIncludes) {
+																						currentPlatforms = currentPlatforms.filter((indPlatform: string) => indPlatform !== platform)
+																					}
+																					else {
+																						currentPlatforms.push(platform)
+																					}
+																					setPlatforms(currentPlatforms)
+																				}}>
+																					{platform}
+																				</Button>
+																			</div>
 																		</Box>
 																	</li>
 																)})}
