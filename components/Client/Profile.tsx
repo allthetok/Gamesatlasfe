@@ -9,7 +9,7 @@ import ReactLoading from 'react-loading'
 import Image from 'next/image'
 import { Session } from 'next-auth'
 import { TableRows } from '@mui/icons-material'
-import { TableContainer, Paper, Table, TableHead, TableBody, TableRow, Box, Typography, TableCell, Button, IconButton } from '@mui/material'
+import { TableContainer, Paper, Table, TableHead, TableBody, TableRow, Box, Typography, TableCell, Button, IconButton, TextField } from '@mui/material'
 import { gameModesButtonArray, genresButtonArray, platformButtonArray, themesButtonArray } from '../../helpers/button'
 import { BoxActiveSx, BoxNoBorderSx, ButtonActiveSx, ButtonSx } from '../../sxstyling/styles'
 import EditIcon from '@mui/icons-material/Edit'
@@ -35,7 +35,8 @@ const Profile = ({ userData }: ProfileProps) => {
 	const [themes, setThemes] = useState<string[]>([])
 	const [gameModes, setGameModes] = useState<string[]>([])
 
-	console.log(data)
+	const [username, setUsername] = useState<string>('')
+	const [email, setEmail] = useState<string>('')
 
 	const getUserProfile = async (userid: string, profileid: string) => {
 		const profileSearchConfig = {
@@ -65,8 +66,30 @@ const Profile = ({ userData }: ProfileProps) => {
 		console.log(userPrefData)
 	}
 
+	const updateUserDetails = async (userid: string, profileid: string, username: string, email: string) => {
+		const userProfileConfig = {
+			method: 'patch',
+			url: 'http://localhost:5000/api/userDetails',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: {
+				'userid': Number(userid),
+				'profileid': Number(profileid),
+				'username': username,
+				'email': email
+			}
+		}
+		await axios(userProfileConfig)
+			.then((response: any) => {
+				setEditAcct(false)
+			})
+			.catch((err: any) => {
+				console.log(err)
+			})
+	}
+
 	const updateUserGamePref = async (userid: string, profileid: string, platforms: string[], genres: string[], themes: string[], gameModes: string[]) => {
-		console.log('button clicked')
 		const profilePrefConfig = {
 			method: 'patch',
 			url: 'http://localhost:5000/api/profileDetails',
@@ -85,35 +108,6 @@ const Profile = ({ userData }: ProfileProps) => {
 		await axios(profilePrefConfig)
 			.then((response: any) => {
 				setEditGame(false)
-				// let updatedData = {
-				// 	...userPrefData,
-				// }
-				// if (response.status === 200) {
-				// 	updatedData = {
-				// 		...updatedData,
-				// 		platforms: response.data.platform,
-				// 		genres: response.data.genres,
-				// 		themes: response.data.themes,
-				// 		gameModes: response.data.gamemodes
-				// 	}
-
-				// }
-				// else {
-				// 	setUserPrefData(updatedData)
-				// }
-				// setPlatforms(updatedData.platform)
-				// setGenres(updatedData.genres)
-				// setThemes(updatedData.themes)
-				// setGameModes(updatedData.gamemodes)
-
-
-				// await getUserProfile(userid, profileid)
-				// console.log(response.data)
-				// console.log(userPrefData)
-				// if (response.data.platform === userPrefData.platform && response.data.genres === userPrefData.genres && response.data.themes === userPrefData.themes && response.data.gamemodes === userPrefData.gamemodes) {
-				// 	console.log('passed condition')
-				// 	setEditGame(false)
-				// }
 			})
 			.catch((err: any) => {
 				console.log(err)
@@ -123,9 +117,11 @@ const Profile = ({ userData }: ProfileProps) => {
 	useEffect(() => {
 		if (data.status === 'authenticated') {
 			setLoading(false)
+			setUsername(userData.data.user.username)
+			setEmail(userData.data.user.email)
 			getUserProfile(userData.data.user.id, userData.data.user.profileid)
 		}
-	}, [data, editGame])
+	}, [data, editGame, editAcct])
 
 	return (
 		<div>
@@ -165,9 +161,16 @@ const Profile = ({ userData }: ProfileProps) => {
 										{!editAcct ? <IconButton color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
 											<EditIcon/>
 										</IconButton>
-											: <Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
-												Save Changes
-											</Button>}
+											:
+											<div className='btn-save-cancel-wrap'>
+												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
+													Save Changes
+												</Button>
+												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditAcct(false)}>
+													Cancel
+												</Button>
+											</div>}
+
 									</div>
 									<TableContainer component={Paper}>
 										<Table sx={{ minWidth: 350, color: '#ddd', backgroundColor: '#1b1e22' }} aria-label='Account Details table'>
@@ -179,7 +182,15 @@ const Profile = ({ userData }: ProfileProps) => {
 														Username:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
-														{userData.data.user.name}
+														{editAcct ? <TextField
+															sx={{ backgroundColor: 'white', borderRadius: '4px', fontSize: '1rem', border: 'none' }}
+															id="outlined-user-input"
+															label="Username"
+															defaultValue={userData.data.user.name}
+															variant='standard'
+														/>
+															:
+															<p>{userData.data.user.name} </p>}
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
@@ -187,7 +198,15 @@ const Profile = ({ userData }: ProfileProps) => {
 														Email:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
-														{userData.data.user.email}
+														{editAcct ? <TextField
+															sx={{ backgroundColor: 'white', borderRadius: '4px', fontSize: '1rem' }}
+															id="outlined-email-input"
+															label="Email"
+															defaultValue={userData.data.user.email}
+															variant='standard'
+														/>
+															:
+															<p>{userData.data.user.email} </p>}
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
@@ -252,10 +271,10 @@ const Profile = ({ userData }: ProfileProps) => {
 										</IconButton>
 											:
 											<div className='btn-save-cancel-wrap'>
-												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserGamePref(userData.data.user.id, userData.data.user.profileid, platforms, genres, themes, gameModes)}>
+												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserGamePref(userData.data.user.id, userData.data.user.profileid, platforms, genres, themes, gameModes)}>
 												Save Changes
 												</Button>
-												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '170px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(false)}>
+												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(false)}>
 												Cancel
 												</Button>
 											</div>}
