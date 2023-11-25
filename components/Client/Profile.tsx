@@ -245,14 +245,17 @@ const Profile = ({ userData }: ProfileProps) => {
 														{userData.data.user.id}
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
-														{userData.data.user.provider} ID:
-													</TableCell>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='td' align='right'>
-														{userData.data.user.externalId}
-													</TableCell>
-												</TableRow>
+												{userData.data.user.externalId !== null ?
+													<TableRow sx={{ backgroundColor: '#1b1e22' }}>
+														<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+															{userData.data.user.provider} ID:
+														</TableCell>
+														<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='td' align='right'>
+															{userData.data.user.externalId}
+														</TableCell>
+													</TableRow>
+													: <></>
+												}
 											</TableBody>
 										</Table>
 									</TableContainer>

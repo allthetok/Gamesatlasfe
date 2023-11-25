@@ -46,13 +46,15 @@ const Signup = () => {
 			console.log('Error on matching passwords')
 			setError('Passwords do not match')
 		}
+		else if (email === '' && username === '') {
+			console.log('Email and username are both empty')
+			setError('Must provide either an email or username')
+		}
 		else {
 			const signInResponse = await signIn('credentials', {
 				email: email,
 				password: password,
 				redirect: false,
-				// HERE WE CAN UPDATE AND PASS IN WHETHER WE ARE SIGNING IN OR SIGNING UP
-				// newUser: false
 			})
 
 			if (signInResponse && !signInResponse.error) {
@@ -93,7 +95,7 @@ const Signup = () => {
 				<div className='form-div'>
 					<div className='form-inner'>
 						<form onSubmit={handleSubmit}>
-							<h5 className='login-title'>Log in</h5>
+							<h5 className='login-title'>Signup to GamesAtlas</h5>
 							{error ? (
 								<div className='error-credentials'>
 									<span>Error: {error}</span>
@@ -105,28 +107,28 @@ const Signup = () => {
 								<div></div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='username' id='username' type='text' value={username} onChange={handleUsernameChange} />
-										<label>Username</label>
-										<span>Username</span>
-									</div>
-								</div>
-								<div className='field-area'>
-									<div className='field-input field field-wrapper'>
-										<input name='email' id='email' type='text' value={email} onChange={handleEmailChange} />
+										<input name='new-email'	id='new-email' type='email' autoComplete='new-password' value={email} onChange={handleEmailChange} />
 										<label>Email</label>
 										<span>Email</span>
 									</div>
 								</div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='password' id='pass' type='password' autoComplete='off' value={password} onChange={handlePasswordChange}/>
+										<input name='new-username' id='new-username' type='text' autoComplete='new-password' value={username} onChange={handleUsernameChange} />
+										<label>Username</label>
+										<span>Username</span>
+									</div>
+								</div>
+								<div className='field-area'>
+									<div className='field-input field field-wrapper'>
+										<input name='new-password' id='new-password' autoComplete='new-password' type='password' value={password} onChange={handlePasswordChange}/>
 										<label>Password</label>
 										<span>Password</span>
 									</div>
 								</div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='passwordver' id='passver' type='password' autoComplete='off' value={verPassword} onChange={handleVerPasswordChange}/>
+										<input name='new-passwordver' id='new-passwordver' type='password' autoComplete='off' value={verPassword} onChange={handleVerPasswordChange}/>
 										<label>Verify Password</label>
 										<span>Verify Password</span>
 									</div>
@@ -142,13 +144,8 @@ const Signup = () => {
 						</div>
 						<div className='alt-actions'>
 							<span className='link-to-alt first-child'>
-								<Link href='/forgotpass'>
-										Forgot Password
-								</Link>
-							</span>
-							<span className='link-to-alt'>
-								<Link href='/signup'>
-										Create Account
+								<Link href='/signin'>
+									Back to Login
 								</Link>
 							</span>
 						</div>
