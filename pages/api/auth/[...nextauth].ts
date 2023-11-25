@@ -305,11 +305,12 @@ export const options: NextAuthOptions = {
 						return null
 					})
 				return userObj
-			}
+			},
 		})
 	],
 	pages: {
-		signIn: '/signin'
+		signIn: '/signin',
+		newUser: '/signup'
 	},
 	session: {
 		strategy: 'jwt',
