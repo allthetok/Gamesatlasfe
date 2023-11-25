@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
+import axios from 'axios'
 
 const Signup = () => {
 	const router = useRouter()
@@ -17,40 +18,49 @@ const Signup = () => {
 	const [password, setPassword] = useState('')
 	const [verPassword, setVerPassword] = useState('')
 
-	// const session = useSession()
-	// if (session) {
-	// 	router.push('/')
-	// }
-	// const handleSubmit = async (e: any) => {
-	// 	e.preventDefault()
-	// 	const data = new FormData(e.currentTarget)
-	// 	console.log(data)
-	// 	const signInResponse = await signIn('credentials', {
-	// 		email: data.get('email'),
-	// 		password: data.get('password'),
-	// 		redirect: false,
-	// 	})
-
-	// 	if (signInResponse && !signInResponse.error) {
-	// 		router.push('/')
-	// 	}
-	// 	else {
-	// 		console.log('Error :', signInResponse)
-	// 		setError('Email or password incorrect')
-	// 	}
-	// }
-
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
 		if (password !== verPassword) {
-			console.log('Error on matching passwords')
 			setError('Passwords do not match')
 		}
 		else if (email === '' && username === '') {
-			console.log('Email and username are both empty')
 			setError('Must provide either an email or username')
 		}
 		else {
+			const resolveUserConfig = {
+				method: 'post',
+				url: 'http://localhost:5000/api/resolveUser',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				data: {
+					'email': email,
+					'provider': 'GamesAtlas'
+				}
+			}
+			const resolveUser = await axios(resolveUserConfig)
+				.then((response: any) => {
+					if (response.status === 200) {
+						return {
+							userExists: response.data.userExists
+						}
+					}
+					else {
+						return {
+							userExists: false
+						}
+					}
+				})
+				.catch((err: any) => {
+					console.log(err)
+					return {
+						userExists: false
+					}
+				})
+			if (resolveUser.userExists === true) {
+				setError(`A user with email: ${email} already exists`)
+				return
+			}
 			const signInResponse = await signIn('credentials', {
 				email: email,
 				password: password,
@@ -135,7 +145,7 @@ const Signup = () => {
 								</div>
 							</div>
 						</form>
-						<div className='enter-wrap'>
+						<div className={(email !== '' || username !== '') && password !== '' && verPassword !== '' ? 'enter-wrap' : 'enter-disabled-wrap'}>
 							<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
 								<SvgIcon fontSize='large'>
 									<ArrowForwardIcon />

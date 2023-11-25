@@ -320,6 +320,32 @@
 	/* margin-left: 50%; */
 }
 
+.enter-disabled-wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 80px 240px 24px;
+	background: rgb(220, 220, 220);
+	color: rgb(10, 10, 10);
+	/* display: block; */
+    height: 72px;
+    border-radius: 27px;
+    padding: 0px;
+    /* border: none; */
+    font-size: 20px;
+    font-weight: 700;
+    cursor: not-allowed;
+	pointer-events: all !important;
+    width: 72px;
+	border: 2px solid transparent;
+}
+
+.enter-disabled-wrap button{
+	cursor: not-allowed;
+	pointer-events: all !important;
+}
+
 .enter-wrap button {
 	cursor: pointer;
 }

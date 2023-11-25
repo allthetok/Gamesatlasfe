@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
+import axios from 'axios'
 
 const Login = () => {
 	const router = useRouter()
@@ -15,43 +16,58 @@ const Login = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	// const session = useSession()
-	// if (session) {
-	// 	router.push('/')
-	// }
-	// const handleSubmit = async (e: any) => {
-	// 	e.preventDefault()
-	// 	const data = new FormData(e.currentTarget)
-	// 	console.log(data)
-	// 	const signInResponse = await signIn('credentials', {
-	// 		email: data.get('email'),
-	// 		password: data.get('password'),
-	// 		redirect: false,
-	// 	})
-
-	// 	if (signInResponse && !signInResponse.error) {
-	// 		router.push('/')
-	// 	}
-	// 	else {
-	// 		console.log('Error :', signInResponse)
-	// 		setError('Email or password incorrect')
-	// 	}
-	// }
-
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
+		if (email === '' && password === '') {
+			setError('Must fill both email and password')
+			return
+		}
+		const resolveUserConfig = {
+			method: 'post',
+			url: 'http://localhost:5000/api/resolveUser',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: {
+				'email': email,
+				'provider': 'GamesAtlas'
+			}
+		}
+		const resolveUser = await axios(resolveUserConfig)
+			.then((response: any) => {
+				if (response.status === 200) {
+					return {
+						userExists: response.data.userExists
+					}
+				}
+				else {
+					return {
+						userExists: false
+					}
+				}
+			})
+			.catch((err: any) => {
+				console.log(err)
+				return {
+					userExists: false
+				}
+			})
+		if (resolveUser.userExists === false) {
+			setError(`A user with email: ${email} does not exist`)
+			return
+		}
+
 		const signInResponse = await signIn('credentials', {
 			email: email,
 			password: password,
 			redirect: false
 		})
-
 		if (signInResponse && !signInResponse.error) {
 			router.push('/')
 		}
 		else {
 			console.log('Error :', signInResponse)
-			setError('Email or password incorrect')
+			setError('Incorrect password')
 		}
 	}
 
@@ -103,14 +119,14 @@ const Login = () => {
 								<div></div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='email' id='email' type='text' value={email} onChange={handleEmailChange} />
+										<input name='existing-email' id='existing-email' type='text' autoComplete='new-password' value={email} onChange={handleEmailChange} />
 										<label>Email</label>
 										<span>Email</span>
 									</div>
 								</div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
-										<input name='password' id='pass' type='password' autoComplete='off' value={password} onChange={handlePasswordChange}/>
+										<input name='existing-password' id='existing-pass' type='password' autoComplete='new-password' value={password} onChange={handlePasswordChange}/>
 										<label>Password</label>
 										<span>Password</span>
 									</div>
@@ -144,7 +160,7 @@ const Login = () => {
 								</div>
 							</button>
 						</div>
-						<div className='enter-wrap'>
+						<div className={email !== '' && password!== '' ? 'enter-wrap' : 'enter-disabled-wrap'}>
 							<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
 								<SvgIcon fontSize='large'>
 									<ArrowForwardIcon />
