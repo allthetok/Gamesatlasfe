@@ -8,6 +8,7 @@ import GithubProvider from 'next-auth/providers/github'
 import TwitchProvider from 'next-auth/providers/twitch'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
+import { resolve } from 'path'
 
 export const options: NextAuthOptions = {
 	providers: [
@@ -272,38 +273,106 @@ export const options: NextAuthOptions = {
 				}
 			},
 			authorize: async (credentials) => {
-				const userConfig = {
+				let userObj: any
+				const resolveUserConfig = {
 					method: 'post',
-					url: 'http://localhost:5000/api/login',
+					url: 'http://localhost:5000/api/resolveUser',
 					headers: {
 						'Content-Type': 'application/json'
 					},
 					data: {
 						'email': credentials?.email,
-						'password': credentials?.password,
 						'provider': 'GamesAtlas'
 					}
 				}
-
-				const userObj = await axios(userConfig)
+				const resolveUser = await axios(resolveUserConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
 							return {
-								id: response.data.id,
-								email: response.data.email,
-								username: response.data.username,
-								provider: response.data.provider,
-								profileid: response.data.profileid
+								userExists: response.data.userExists
 							}
 						}
 						else {
-							return null
+							return {
+								userExists: false
+							}
 						}
 					})
 					.catch((err: any) => {
 						console.log(err)
-						return null
+						return {
+							userExists: false
+						}
 					})
+
+				if (resolveUser.userExists) {
+					const loginConfig = {
+						method: 'post',
+						url: 'http://localhost:5000/api/login',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						data: {
+							'email': credentials?.email,
+							'password': credentials?.password,
+							'provider': 'GamesAtlas'
+						}
+					}
+
+					userObj = await axios(loginConfig)
+						.then((response: any) => {
+							if (response.status === 200) {
+								return {
+									id: response.data.id,
+									email: response.data.email,
+									username: response.data.username,
+									provider: response.data.provider,
+									profileid: response.data.profileid
+								}
+							}
+							else {
+								return null
+							}
+						})
+						.catch((err: any) => {
+							console.log(err)
+							return null
+						})
+				}
+				else {
+					const signUpConfig = {
+						method: 'post',
+						url: 'http://localhost:5000/api/createUser',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						data: {
+							'email': credentials?.email,
+							'password': credentials?.password,
+							'provider': 'GamesAtlas'
+						}
+					}
+
+					userObj = await axios(signUpConfig)
+						.then((response: any) => {
+							if (response.status === 200) {
+								return {
+									id: response.data.id,
+									email: response.data.email,
+									username: response.data.username,
+									provider: response.data.provider,
+									profileid: response.data.profileid
+								}
+							}
+							else {
+								return null
+							}
+						})
+						.catch((err: any) => {
+							console.log(err)
+							return null
+						})
+				}
 				return userObj
 			},
 		})

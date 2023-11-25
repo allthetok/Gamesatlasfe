@@ -50,7 +50,9 @@ const Signup = () => {
 			const signInResponse = await signIn('credentials', {
 				email: email,
 				password: password,
-				redirect: false
+				redirect: false,
+				// HERE WE CAN UPDATE AND PASS IN WHETHER WE ARE SIGNING IN OR SIGNING UP
+				// newUser: false
 			})
 
 			if (signInResponse && !signInResponse.error) {
