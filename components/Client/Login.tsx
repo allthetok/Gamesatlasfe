@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import axios from 'axios'
 import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,7 +8,8 @@ import { useRouter } from 'next/router'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
-import axios from 'axios'
+import { CheckBox } from '@mui/icons-material'
+import { Checkbox, FormControlLabel } from '@mui/material'
 
 const Login = () => {
 	const router = useRouter()
@@ -15,6 +17,9 @@ const Login = () => {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [username, setUsername] = useState('')
+
+	const [loginMethod, setLoginMethod] = useState('email')
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
@@ -115,6 +120,20 @@ const Login = () => {
 							)
 								: <></>
 							}
+							<div className='login-method'>
+								<FormControlLabel
+									value='email'
+									control={<Checkbox checked={loginMethod === 'email'} onChange={() => setLoginMethod('email')}/>}
+									label='Email'
+									labelPlacement='start'
+								/>
+								<FormControlLabel
+									value='username'
+									control={<Checkbox checked={loginMethod === 'username'} onChange={() => setLoginMethod('username')}/>}
+									label='Username'
+									labelPlacement='start'
+								/>
+							</div>
 							<div className='form-fill'>
 								<div></div>
 								<div className='field-area'>
