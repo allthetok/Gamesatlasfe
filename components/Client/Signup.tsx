@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useState } from 'react'
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -23,8 +24,8 @@ const Signup = () => {
 		if (password !== verPassword) {
 			setError('Passwords do not match')
 		}
-		else if (email === '' && username === '') {
-			setError('Must provide either an email or username')
+		else if (email === '' || username === '') {
+			setError('Must provide an email and username')
 		}
 		else {
 			const resolveUserConfig = {
@@ -39,7 +40,7 @@ const Signup = () => {
 				}
 			}
 			const resolveUser = await axios(resolveUserConfig)
-				.then((response: any) => {
+				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
 						return {
 							userExists: response.data.userExists
@@ -51,7 +52,7 @@ const Signup = () => {
 						}
 					}
 				})
-				.catch((err: any) => {
+				.catch((err: AxiosError) => {
 					console.log(err)
 					return {
 						userExists: false
@@ -145,7 +146,7 @@ const Signup = () => {
 								</div>
 							</div>
 						</form>
-						<div className={(email !== '' || username !== '') && password !== '' && verPassword !== '' ? 'enter-wrap' : 'enter-disabled-wrap'}>
+						<div className={email !== '' && username !== '' && password !== '' && verPassword !== '' ? 'enter-wrap' : 'enter-disabled-wrap'}>
 							<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
 								<SvgIcon fontSize='large'>
 									<ArrowForwardIcon />

@@ -1,15 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useState } from 'react'
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { Checkbox, FormControlLabel } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
-import { CheckBox } from '@mui/icons-material'
-import { Checkbox, FormControlLabel } from '@mui/material'
 
 const Login = () => {
 	const router = useRouter()
@@ -23,56 +23,112 @@ const Login = () => {
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
-		if (email === '' && password === '') {
+
+		if (email === '' && password === '' && loginMethod === 'email') {
 			setError('Must fill both email and password')
 			return
 		}
-		const resolveUserConfig = {
-			method: 'post',
-			url: 'http://localhost:5000/api/resolveUser',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'email': email,
-				'provider': 'GamesAtlas'
+		else if (username === '' && password === '' && loginMethod === 'username') {
+			setError('Must fill both username and password')
+			return
+		}
+		if (loginMethod === 'username') {
+			const retrieveUserEmailConfig = {
+				method: 'post',
+				url: 'http://localhost:5000/api/usernameEmail',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				data: {
+					'username': username,
+					'provider': 'GamesAtlas'
+				}
+			}
+			const userEmail = await axios(retrieveUserEmailConfig)
+				.then((response: AxiosResponse) => {
+					if (response.status === 200) {
+						console.log(response)
+						return {
+							email: response.data.email
+						}
+					}
+					else {
+						return {
+							email: null
+						}
+					}
+				})
+				.catch((err: AxiosError) => {
+					console.log(err)
+					return {
+						email: null
+					}
+				})
+			if (userEmail.email === null) {
+				setError(`A user with name: ${username} does not exist`)
+				return
+			}
+			const signInResponse = await signIn('credentials', {
+				email: userEmail.email,
+				password: password,
+				redirect: false
+			})
+			if (signInResponse && !signInResponse.error) {
+				router.push('/')
+			}
+			else {
+				console.log('Error :', signInResponse)
+				setError('Incorrect password')
 			}
 		}
-		const resolveUser = await axios(resolveUserConfig)
-			.then((response: any) => {
-				if (response.status === 200) {
-					return {
-						userExists: response.data.userExists
-					}
+		else {
+			const resolveUserConfig = {
+				method: 'post',
+				url: 'http://localhost:5000/api/resolveUser',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				data: {
+					'email': email,
+					'provider': 'GamesAtlas'
 				}
-				else {
+			}
+			const resolveUser = await axios(resolveUserConfig)
+				.then((response: AxiosResponse) => {
+					if (response.status === 200) {
+						return {
+							userExists: response.data.userExists
+						}
+					}
+					else {
+						return {
+							userExists: false
+						}
+					}
+				})
+				.catch((err: AxiosError) => {
+					console.log(err)
 					return {
 						userExists: false
 					}
-				}
-			})
-			.catch((err: any) => {
-				console.log(err)
-				return {
-					userExists: false
-				}
-			})
-		if (resolveUser.userExists === false) {
-			setError(`A user with email: ${email} does not exist`)
-			return
-		}
+				})
+			if (resolveUser.userExists === false) {
+				setError(`A user with email: ${email} does not exist`)
+				return
+			}
 
-		const signInResponse = await signIn('credentials', {
-			email: email,
-			password: password,
-			redirect: false
-		})
-		if (signInResponse && !signInResponse.error) {
-			router.push('/')
-		}
-		else {
-			console.log('Error :', signInResponse)
-			setError('Incorrect password')
+			const signInResponse = await signIn('credentials', {
+				email: email,
+				password: password,
+				redirect: false
+			})
+			if (signInResponse && !signInResponse.error) {
+				router.push('/')
+			}
+			else {
+				console.log('Error :', signInResponse)
+				setError('Incorrect password')
+			}
 		}
 	}
 
@@ -94,6 +150,10 @@ const Login = () => {
 
 	const handleEmailChange = (e: any) => {
 		setEmail(e.currentTarget.value)
+	}
+
+	const handleUsernameChange = (e: any) => {
+		setUsername(e.currentTarget.value)
 	}
 
 	const handlePasswordChange = (e: any) => {
@@ -123,13 +183,19 @@ const Login = () => {
 							<div className='login-method'>
 								<FormControlLabel
 									value='email'
-									control={<Checkbox checked={loginMethod === 'email'} onChange={() => setLoginMethod('email')}/>}
+									control={<Checkbox checked={loginMethod === 'email'} onChange={() => {
+										setLoginMethod('email')
+										setUsername('')
+									}}/>}
 									label='Email'
 									labelPlacement='start'
 								/>
 								<FormControlLabel
 									value='username'
-									control={<Checkbox checked={loginMethod === 'username'} onChange={() => setLoginMethod('username')}/>}
+									control={<Checkbox checked={loginMethod === 'username'} onChange={() => {
+										setLoginMethod('username')
+										setEmail('')
+									}}/>}
 									label='Username'
 									labelPlacement='start'
 								/>
@@ -137,11 +203,20 @@ const Login = () => {
 							<div className='form-fill'>
 								<div></div>
 								<div className='field-area'>
-									<div className='field-input field field-wrapper'>
-										<input name='existing-email' id='existing-email' type='text' autoComplete='new-password' value={email} onChange={handleEmailChange} />
-										<label>Email</label>
-										<span>Email</span>
-									</div>
+									{
+										loginMethod === 'email' ?
+											<div className='field-input field field-wrapper'>
+												<input name='existing-email' id='existing-email' type='text' autoComplete='new-password' value={email} onChange={handleEmailChange} />
+												<label>Email</label>
+												<span>Email</span>
+											</div>
+											:
+											<div className='field-input field field-wrapper'>
+												<input name='existing-username' id='existing-username' type='text' autoComplete='new-password' value={username} onChange={handleUsernameChange} />
+												<label>Username</label>
+												<span>Username</span>
+											</div>
+									}
 								</div>
 								<div className='field-area'>
 									<div className='field-input field field-wrapper'>
@@ -179,7 +254,7 @@ const Login = () => {
 								</div>
 							</button>
 						</div>
-						<div className={email !== '' && password!== '' ? 'enter-wrap' : 'enter-disabled-wrap'}>
+						<div className={(loginMethod === 'email' && email !== '' && password!== '') || (loginMethod === 'username' && username !== '' && password!== '')  ? 'enter-wrap' : 'enter-disabled-wrap'}>
 							<button type='submit' className='enter-btn-wrap' onClick={handleSubmit}>
 								<SvgIcon fontSize='large'>
 									<ArrowForwardIcon />
