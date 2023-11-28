@@ -191,7 +191,7 @@ const Profile = ({ userData }: ProfileProps) => {
 							</div>
 							<div className='intro-name'>
 								<div className='name-container'>
-									<span>{userData.data.user.name}</span>
+									<span>{userData.data.user.provider !== 'GamesAtlas' ? userData.data.user.name : userData.data.user.username}</span>
 								</div>
 								<div className='id-container'>
 									<span>GamesAtlas ID: {userData.data.user.id}</span>

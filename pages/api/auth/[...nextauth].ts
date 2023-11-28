@@ -35,6 +35,7 @@ export const options: NextAuthOptions = {
 				const internalUser = await axios(oauthProviderConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
+							console.log(response.data)
 							return {
 								id: response.data.id,
 								email: response.data.email,
@@ -51,11 +52,14 @@ export const options: NextAuthOptions = {
 						console.log(err)
 						return null
 					})
+				console.log(internalUser!.id)
 				return {
+					// id: profile.id,
+					// internalId: internalUser?.id,
+					id: internalUser?.id,
 					email: profile.email,
 					name: profile.name,
 					image: profile.picture,
-					id: internalUser?.id,
 					externalId: profile.sub,
 					provider: internalUser?.provider,
 					profileid: internalUser?.profileid
@@ -398,6 +402,8 @@ export const options: NextAuthOptions = {
 			}
 		},
 		session: async function({ session, token }) {
+			console.log(token)
+			console.log(session)
 			return { ...session,
 				user: {
 					...session.user,
