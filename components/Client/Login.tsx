@@ -10,6 +10,7 @@ import { Checkbox, FormControlLabel } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
+import { regexValidEmail } from '../../helpers/fctns'
 
 const Login = () => {
 	const router = useRouter()
@@ -30,6 +31,10 @@ const Login = () => {
 		}
 		else if (username === '' && password === '' && loginMethod === 'username') {
 			setError('Must fill both username and password')
+			return
+		}
+		else if (loginMethod === 'email' && !regexValidEmail(email)) {
+			setError('Invalid email format')
 			return
 		}
 		if (loginMethod === 'username') {

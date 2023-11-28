@@ -16,6 +16,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import './Profile.css'
+import { regexValidEmail } from '../../helpers/fctns'
 
 
 type ProfileProps = {
@@ -116,11 +117,15 @@ const Profile = ({ userData }: ProfileProps) => {
 		else if (username !== currentUsername && (email === currentEmail || email === '') && username !== '') {
 			specField = 'username'
 		}
-		else if ((username === currentUsername || username === '') && email !== currentEmail && email !== '') {
+		else if ((username === currentUsername || username === '') && email !== currentEmail && email !== '' && regexValidEmail(email)) {
 			specField = 'email'
 		}
-		else if (username !== currentUsername && email !== currentEmail && username !== '' && email !== '') {
+		else if (username !== currentUsername && email !== currentEmail && username !== '' && email !== '' && regexValidEmail(email)) {
 			specField = 'both'
+		}
+		else {
+			setErrorAcct('Unable to edit user attributes')
+			return
 		}
 
 		if (specField !== '') {
@@ -146,6 +151,7 @@ const Profile = ({ userData }: ProfileProps) => {
 						setEditAcct(false)
 						setEmailInput('')
 						setUsernameInput('')
+						setErrorAcct('')
 					}
 				})
 				.catch((err: any) => {
@@ -209,7 +215,7 @@ const Profile = ({ userData }: ProfileProps) => {
 							</div>
 							<div className='intro-name'>
 								<div className='name-container'>
-									<span>{userData.data.user.provider !== 'GamesAtlas' ? userData.data.user.name : userData.data.user.username}</span>
+									<span>{userData.data.user.provider !== 'GamesAtlas' ? userData.data.user.name : username}</span>
 								</div>
 								<div className='id-container'>
 									<span>GamesAtlas ID: {userData.data.user.id}</span>

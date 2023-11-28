@@ -6,6 +6,7 @@ import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { regexValidEmail } from '../../helpers/fctns'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
@@ -26,6 +27,9 @@ const Signup = () => {
 		}
 		else if (email === '' || username === '') {
 			setError('Must provide an email and username')
+		}
+		else if (!regexValidEmail(email)) {
+			setError('Invalid email format')
 		}
 		else {
 			const resolveUserConfig = {
