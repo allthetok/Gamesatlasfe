@@ -16,7 +16,6 @@ export const options: NextAuthOptions = {
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				console.log(profile)
 				const oauthProviderConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/loginOAuthUser',
@@ -35,7 +34,6 @@ export const options: NextAuthOptions = {
 				const internalUser = await axios(oauthProviderConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
-							console.log(response.data)
 							return {
 								id: response.data.id,
 								email: response.data.email,
@@ -52,10 +50,7 @@ export const options: NextAuthOptions = {
 						console.log(err)
 						return null
 					})
-				console.log(internalUser!.id)
 				return {
-					// id: profile.id,
-					// internalId: internalUser?.id,
 					id: internalUser?.id,
 					email: profile.email,
 					name: profile.name,
@@ -272,6 +267,10 @@ export const options: NextAuthOptions = {
 					type: 'email',
 					placeholder: 'example@example.com'
 				},
+				username: {
+					label: 'Username:',
+					type: 'username',
+				},
 				password: {
 					label: 'Password:',
 					type: 'password'
@@ -327,7 +326,6 @@ export const options: NextAuthOptions = {
 					userObj = await axios(loginConfig)
 						.then((response: any) => {
 							if (response.status === 200) {
-								console.log(response.data)
 								return {
 									id: response.data.id,
 									email: response.data.email,
@@ -355,6 +353,7 @@ export const options: NextAuthOptions = {
 						},
 						data: {
 							'email': credentials?.email,
+							'username': credentials?.username,
 							'password': credentials?.password,
 							'provider': 'GamesAtlas'
 						}
@@ -402,8 +401,6 @@ export const options: NextAuthOptions = {
 			}
 		},
 		session: async function({ session, token }) {
-			console.log(token)
-			console.log(session)
 			return { ...session,
 				user: {
 					...session.user,

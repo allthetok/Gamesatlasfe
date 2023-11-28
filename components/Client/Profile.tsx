@@ -94,47 +94,65 @@ const Profile = ({ userData }: ProfileProps) => {
 			})
 	}
 
-	const updateUserDetails = async (userid: string, profileid: string, username: string, email: string) => {
+	const updateUserDetails = async (userid: string, profileid: string, username: string, email: string, currentUsername: string, currentEmail: string) => {
 		let specField = ''
-		if (email !== '' || username !== '') {
-			if (email !== '' && username === '') {
-				specField = 'email'
-			}
-			else if (email === '' && username !== '') {
-				specField = 'username'
-			}
-			else {
-				specField = 'both'
-			}
+
+		if (username === currentUsername && email === currentEmail) {
+			setErrorAcct('Cancel editing or edit atleast one of username/email')
+			return
 		}
-		const userProfileConfig = {
-			method: 'patch',
-			url: 'http://localhost:5000/api/userDetails',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'userid': Number(userid),
-				'profileid': Number(profileid),
-				'username': username,
-				'email': email,
-				'specField': specField,
-				'provider': 'GamesAtlas'
-			}
+		else if (username === '' && email === '') {
+			setErrorAcct('Cancel editing or edit atleast one of username/email')
+			return
+		}
+		else if (username === currentUsername && email === '') {
+			setErrorAcct('Cancel editing or edit atleast one of username/email')
+			return
+		}
+		else if (email === currentEmail && username === '') {
+			setErrorAcct('Cancel editing or edit atleast one of username/email')
+			return
+		}
+		else if (username !== currentUsername && (email === currentEmail || email === '') && username !== '') {
+			specField = 'username'
+		}
+		else if ((username === currentUsername || username === '') && email !== currentEmail && email !== '') {
+			specField = 'email'
+		}
+		else if (username !== currentUsername && email !== currentEmail && username !== '' && email !== '') {
+			specField = 'both'
 		}
 
-		await axios(userProfileConfig)
-			.then((response: any) => {
-				if (response.status === 200) {
-					setEditAcct(false)
-					setEmailInput('')
-					setUsernameInput('')
+		if (specField !== '') {
+			const userProfileConfig = {
+				method: 'patch',
+				url: 'http://localhost:5000/api/userDetails',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				data: {
+					'userid': Number(userid),
+					'profileid': Number(profileid),
+					'username': username,
+					'email': email,
+					'specField': specField,
+					'provider': 'GamesAtlas'
 				}
-			})
-			.catch((err: any) => {
-				setErrorAcct(err.response.data.error)
-				console.log(err)
-			})
+			}
+
+			await axios(userProfileConfig)
+				.then((response: any) => {
+					if (response.status === 200) {
+						setEditAcct(false)
+						setEmailInput('')
+						setUsernameInput('')
+					}
+				})
+				.catch((err: any) => {
+					setErrorAcct(err.response.data.error)
+					console.log(err)
+				})
+		}
 	}
 
 	const updateUserGamePref = async (userid: string, profileid: string, platforms: string[], genres: string[], themes: string[], gameModes: string[]) => {
@@ -217,7 +235,7 @@ const Profile = ({ userData }: ProfileProps) => {
 												</IconButton>
 													:
 													<div className='btn-save-cancel-wrap'>
-														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserDetails(userData.data.user.id, userData.data.user.profileid, usernameInput, emailInput)}>
+														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserDetails(userData.data.user.id, userData.data.user.profileid, usernameInput, emailInput, username, email)}>
 														Save Changes
 														</Button>
 														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => {

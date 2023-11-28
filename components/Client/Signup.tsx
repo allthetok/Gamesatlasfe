@@ -36,6 +36,7 @@ const Signup = () => {
 				},
 				data: {
 					'email': email,
+					'username': username,
 					'provider': 'GamesAtlas'
 				}
 			}
@@ -59,11 +60,12 @@ const Signup = () => {
 					}
 				})
 			if (resolveUser.userExists === true) {
-				setError(`A user with email: ${email} already exists`)
+				setError(`A user with email: ${email} or username: ${username} already exists`)
 				return
 			}
 			const signInResponse = await signIn('credentials', {
 				email: email,
+				username: username,
 				password: password,
 				redirect: false,
 			})
