@@ -35,10 +35,40 @@ const Profile = ({ userData }: ProfileProps) => {
 	const [themes, setThemes] = useState<string[]>([])
 	const [gameModes, setGameModes] = useState<string[]>([])
 
-	const [username, setUsername] = useState<string>('')
 	const [email, setEmail] = useState<string>('')
+	const [username, setUsername] = useState<string>('')
 
-	const getUserProfile = async (userid: string, profileid: string) => {
+	const [usernameInput, setUsernameInput] = useState<string>('')
+	const [emailInput, setEmailInput] = useState<string>('')
+
+	const [errorAcct, setErrorAcct] = useState('')
+
+	const getUserNameProfile = async (userid: string, profileid: string) => {
+		const nameSearchConfig = {
+			method: 'post',
+			url: 'http://localhost:5000/api/userDetails',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			data: {
+				'userid': Number(userid),
+				'profileid': Number(profileid),
+				'provider': userData.data.user.provider
+			}
+		}
+		await axios(nameSearchConfig)
+			.then((response: any) => {
+				setEmail(response.data.email)
+				setUsername(response.data.username)
+			})
+			.catch((err: any) => {
+				console.log(err)
+				setEmail(userData.data.user.email)
+				setUsername(userData.data.user.username)
+			})
+	}
+
+	const getUserPrefProfile = async (userid: string, profileid: string) => {
 		const profileSearchConfig = {
 			method: 'post',
 			url: 'http://localhost:5000/api/profileDetails',
@@ -53,7 +83,6 @@ const Profile = ({ userData }: ProfileProps) => {
 		await axios(profileSearchConfig)
 			.then((response: any) => {
 				const prefData = response.data
-				console.log(prefData)
 				setUserPrefData(prefData)
 				setPlatforms(prefData.platform)
 				setGenres(prefData.genres)
@@ -63,10 +92,21 @@ const Profile = ({ userData }: ProfileProps) => {
 			.catch((err: any) => {
 				console.log(err)
 			})
-		console.log(userPrefData)
 	}
 
 	const updateUserDetails = async (userid: string, profileid: string, username: string, email: string) => {
+		let specField = ''
+		if (email !== '' || username !== '') {
+			if (email !== '' && username === '') {
+				specField = 'email'
+			}
+			else if (email === '' && username !== '') {
+				specField = 'username'
+			}
+			else {
+				specField = 'both'
+			}
+		}
 		const userProfileConfig = {
 			method: 'patch',
 			url: 'http://localhost:5000/api/userDetails',
@@ -77,14 +117,22 @@ const Profile = ({ userData }: ProfileProps) => {
 				'userid': Number(userid),
 				'profileid': Number(profileid),
 				'username': username,
-				'email': email
+				'email': email,
+				'specField': specField,
+				'provider': 'GamesAtlas'
 			}
 		}
+
 		await axios(userProfileConfig)
 			.then((response: any) => {
-				setEditAcct(false)
+				if (response.status === 200) {
+					setEditAcct(false)
+					setEmailInput('')
+					setUsernameInput('')
+				}
 			})
 			.catch((err: any) => {
+				setErrorAcct(err.response.data.error)
 				console.log(err)
 			})
 	}
@@ -117,9 +165,8 @@ const Profile = ({ userData }: ProfileProps) => {
 	useEffect(() => {
 		if (data.status === 'authenticated') {
 			setLoading(false)
-			setUsername(userData.data.user.username)
-			setEmail(userData.data.user.email)
-			getUserProfile(userData.data.user.id, userData.data.user.profileid)
+			getUserNameProfile(userData.data.user.id, userData.data.user.profileid)
+			getUserPrefProfile(userData.data.user.id, userData.data.user.profileid)
 		}
 	}, [data, editGame, editAcct])
 
@@ -132,9 +179,15 @@ const Profile = ({ userData }: ProfileProps) => {
 							<div className='bg-intro'></div>
 						</div>
 						<div className='intro-container'>
-							{/* <div className='intro-wrapper'> */}
 							<div className='intro-avatar'>
 								<a><img className='intro-img' src={(userData?.data.user?.image !== undefined && userData?.data.user?.image !== null) ? userData.data.user.image : '/icons8-user-64.png'} alt='User Avatar'/></a>
+								{errorAcct !== '' ? (
+									<div className='error-credentials'>
+										<span>Error: {errorAcct}</span>
+									</div>
+								)
+									: <></>
+								}
 							</div>
 							<div className='intro-name'>
 								<div className='name-container'>
@@ -147,7 +200,6 @@ const Profile = ({ userData }: ProfileProps) => {
 									): <></>}
 								</div>
 							</div>
-							{/* </div> */}
 						</div>
 					</div>
 					<div className='account-details-wrapper'>
@@ -158,18 +210,26 @@ const Profile = ({ userData }: ProfileProps) => {
 										<Typography sx={{ flex: '1 1 100%',  fontWeight: '700' }} variant='h6' id='tableTitle' component='div'>
 										Account Info
 										</Typography>
-										{!editAcct ? <IconButton color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
-											<EditIcon/>
-										</IconButton>
-											:
-											<div className='btn-save-cancel-wrap'>
-												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
-													Save Changes
-												</Button>
-												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditAcct(false)}>
-													Cancel
-												</Button>
-											</div>}
+										{userData.data.user.provider === 'GamesAtlas' ?
+											<>
+												{!editAcct ? <IconButton color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
+													<EditIcon/>
+												</IconButton>
+													:
+													<div className='btn-save-cancel-wrap'>
+														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserDetails(userData.data.user.id, userData.data.user.profileid, usernameInput, emailInput)}>
+														Save Changes
+														</Button>
+														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => {
+															setEditAcct(false)
+															setUsernameInput('')
+															setEmailInput('')
+															setErrorAcct('')}}>
+														Cancel
+														</Button>
+													</div>}
+											</>
+											: <></>}
 
 									</div>
 									<TableContainer component={Paper}>
@@ -184,13 +244,14 @@ const Profile = ({ userData }: ProfileProps) => {
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
 														{editAcct ? <TextField
 															sx={{ backgroundColor: 'white', borderRadius: '4px', fontSize: '1rem', border: 'none' }}
-															id="outlined-user-input"
-															label="Username"
-															defaultValue={userData.data.user.name}
+															id='outlined-user-input'
+															label='Username'
+															value={usernameInput}
+															onChange={(e) => setUsernameInput(e.currentTarget.value)}
 															variant='standard'
 														/>
 															:
-															<p>{userData.data.user.name} </p>}
+															<p>{username}</p>}
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
@@ -198,15 +259,17 @@ const Profile = ({ userData }: ProfileProps) => {
 														Email:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
-														{editAcct ? <TextField
-															sx={{ backgroundColor: 'white', borderRadius: '4px', fontSize: '1rem' }}
-															id="outlined-email-input"
-															label="Email"
-															defaultValue={userData.data.user.email}
-															variant='standard'
-														/>
+														{editAcct ?
+															<TextField
+																sx={{ backgroundColor: 'white', borderRadius: '4px', fontSize: '1rem' }}
+																id='outlined-email-input'
+																label='Email'
+																value={emailInput}
+																onChange={(e) => setEmailInput(e.currentTarget.value)}
+																variant='standard'
+															/>
 															:
-															<p>{userData.data.user.email} </p>}
+															<p>{email}</p>}
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
@@ -215,9 +278,9 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
 														<IconButton color='inherit' size='small'>
-															{/* {userData.user.emailVerified ?
-															<CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>} */}
-															<CheckBoxOutlineBlankIcon/>
+															{(!userData.data.user.emailVerified && userData.data.user.provider === 'GamesAtlas') ?
+																<CheckBoxOutlineBlankIcon/> : <CheckBoxIcon/>}
+															{/* <CheckBoxOutlineBlankIcon/> */}
 														</IconButton>
 													</TableCell>
 												</TableRow>

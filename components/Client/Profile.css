@@ -212,3 +212,36 @@
 	color: #ddd !important;
 }
 
+/* .error-textfield-wrap {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	justify-content: flex-end;
+}
+
+.error-textfield-wrap p {
+	font-size: 0.8rem;
+	overflow: hidden;
+	justify-content: center;
+} */
+
+.error-credentials {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+	flex-wrap: nowrap;
+}
+
+.error-credentials span {
+	background: #FF9494;
+	font-weight: 700;
+	font-size: 16px;
+	border-radius: 4px;
+	max-width: 400px;
+	line-height: 19.2px;
+	/* height: 25px; */
+	text-align: center;
+	vertical-align: center;
+	padding: 5px;
+}

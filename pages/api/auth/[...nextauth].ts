@@ -16,6 +16,7 @@ export const options: NextAuthOptions = {
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
 			profile: async function(profile) {
+				console.log(profile)
 				const oauthProviderConfig = {
 					method: 'post',
 					url: 'http://localhost:5000/api/loginOAuthUser',
@@ -322,10 +323,12 @@ export const options: NextAuthOptions = {
 					userObj = await axios(loginConfig)
 						.then((response: any) => {
 							if (response.status === 200) {
+								console.log(response.data)
 								return {
 									id: response.data.id,
 									email: response.data.email,
 									username: response.data.username,
+									emailVerified: response.data.emailVerified,
 									provider: response.data.provider,
 									profileid: response.data.profileid
 								}
@@ -360,6 +363,7 @@ export const options: NextAuthOptions = {
 									id: response.data.id,
 									email: response.data.email,
 									username: response.data.username,
+									emailVerified: response.data.emailVerified,
 									provider: response.data.provider,
 									profileid: response.data.profileid
 								}
@@ -399,7 +403,8 @@ export const options: NextAuthOptions = {
 					...session.user,
 					id: token.sub,
 					externalId: token.externalId ? token.externalId : null,
-					name: token.name,
+					username: token.username ? token.username: null,
+					emailVerified: (token.emailVerified === true || token.emailVerified === false) ? token.emailVerified : false,
 					provider: token.provider ? token.provider : null,
 					profileid: token.profileid ? token.profileid: null,
 					token: {
