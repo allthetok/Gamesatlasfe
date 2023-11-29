@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { LocalStorageObj, NestedSearchConfig, SimpleNullableSearchConfig, SimpleSearchConfig } from './fetypes'
+import { LocalStorageObj, NestedSearchConfig, ProfilePrefSearchConfig, SimpleNullableSearchConfig, SimpleSearchConfig } from './fetypes'
 
 const ratingFloatToStar = (rating: number) : number => rating / 20
 
@@ -142,6 +142,26 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string 
 	}
 }
 
+const createUserPrefSearchConfig = (method: string, endpoint: string, platforms: string[], genres: string[], themes: string[], gameModes: string[], nullable: string, limit: number, sortBy: string, sortDirection: string): ProfilePrefSearchConfig => {
+	return {
+		method: method,
+		url: `http://localhost:5000/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'sortBy': sortBy,
+			'sortDirection': sortDirection,
+			'nullable': nullable,
+			'limit': limit,
+			'platforms': platforms,
+			'genres': genres,
+			'themes': themes,
+			'gameModes': gameModes,
+		}
+	}
+}
+
 const retrieveLocalStorageObj = (gameDtl: boolean): LocalStorageObj => typeof window !== 'undefined' && !gameDtl ? JSON.parse(localStorage.getItem('auxiliaryObj')!) : { gameID: 0, title: '', involved_companies: '', summary: '', story: '', releaseDate: '' }
 
 const retrieveSearchTerm = (): string => typeof window !== 'undefined' ? localStorage.getItem('searchterm') || '' : ''
@@ -159,6 +179,6 @@ const regexValidEmail = (email: string) => {
 }
 
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail }
+export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail }
 
 

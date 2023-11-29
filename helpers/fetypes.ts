@@ -162,6 +162,22 @@ interface NestedSearchConfig {
 	}
 }
 
+interface ProfilePrefSearchConfig {
+	method: string,
+	url: string,
+	headers: object,
+	data: {
+		sortBy: string,
+		sortDirection: string,
+		nullable: string,
+		limit: number,
+		platforms: string[],
+		genres: string[],
+		themes: string[],
+		gameModes: string[],
+	}
+}
+
 interface SearchResultsObj {
 	id: number,
 	category: string,
@@ -229,5 +245,10 @@ interface AxiosConfigIndGameList {
 	data: ExploreConfigData | AdvancedConfigData
 }
 
+interface PreferencesRecList {
+	name: string,
+	result: MultiObj[]
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList }
+
+export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, ProfilePrefSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList, PreferencesRecList }

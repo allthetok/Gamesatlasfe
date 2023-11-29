@@ -15,8 +15,8 @@ import { BoxActiveSx, BoxNoBorderSx, ButtonActiveSx, ButtonSx } from '../../sxst
 import EditIcon from '@mui/icons-material/Edit'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
-import './Profile.css'
 import { regexValidEmail } from '../../helpers/fctns'
+import './Profile.css'
 
 
 type ProfileProps = {
