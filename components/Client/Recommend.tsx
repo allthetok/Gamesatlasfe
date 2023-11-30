@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
-import { createUserPrefSearchConfig } from '../../helpers/fctns'
-import { PreferencesRecList, ProfilePrefSearchConfig } from '../../helpers/fetypes'
+import { createUserPrefSearchConfig, createUserRecommendConfig } from '../../helpers/fctns'
+import { PreferencesRecList, ProfilePrefSearchConfig, SimpleUserLikeConfig } from '../../helpers/fetypes'
 import { useSession } from 'next-auth/react'
 import ReactLoading from 'react-loading'
 import { IndGame } from './IndGame'
@@ -23,6 +23,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 	const [loading, setLoading] = useState(true)
 	const [userPrefData, setUserPrefData] = useState({ platform: [], genres: [], themes: [], gamemodes: [] })
 	const [userPrefRecList, setUserPrefRecList] = useState<PreferencesRecList[] | null>(null)
+	const [userSimilarRecList, setUserSimilarRecList] = useState()
 	const [error, setError] = useState('')
 	const [viewToggle, setViewToggle] = useState('table')
 
@@ -52,6 +53,19 @@ const Recommend = ({ userData }: RecommendProps) => {
 	}
 
 	const getRecommendationList = useCallback(async () => {
+		const userLikeConfig: SimpleUserLikeConfig = createUserRecommendConfig('post', 'recommendLikes', userData.data.user.id)
+		await axios(userLikeConfig)
+			.then((response) => {
+				console.log(response.data)
+				console.log(response.data[0].recommendobjarr.concat(response.data[1].recommendobjarr))
+				setUserSimilarRecList(response.data)
+				// setLoading(false)
+			})
+			.catch((err) => {
+				setError('Unable to retrieve recommendations based on your Profile Game Preferences')
+				console.error(err)
+			})
+
 		if (userPrefData.platform.length !== 0 || userPrefData.genres.length !== 0 || userPrefData.themes.length !== 0 || userPrefData.gamemodes.length !== 0) {
 			const userPrefSearchConfig: ProfilePrefSearchConfig = createUserPrefSearchConfig('post', 'recommendPrefs', userPrefData.platform, userPrefData.genres, userPrefData.themes, userPrefData.gamemodes, 'age_ratings, follows, involved_companies, game_modes, category, total_rating', 25, 'IGDB Rating', 'desc')
 			await axios(userPrefSearchConfig)
