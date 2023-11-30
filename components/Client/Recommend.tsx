@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 import { createUserPrefSearchConfig, createUserRecommendConfig } from '../../helpers/fctns'
-import { PreferencesRecList, ProfilePrefSearchConfig, SimpleUserLikeConfig } from '../../helpers/fetypes'
+import { MultiObj, PreferencesRecList, ProfilePrefSearchConfig, SimpleUserLikeConfig } from '../../helpers/fetypes'
 import { useSession } from 'next-auth/react'
 import ReactLoading from 'react-loading'
 import { IndGame } from './IndGame'
@@ -14,6 +14,7 @@ import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
 import './Recommend.css'
 import './IndGameList.css'
+import { Explore } from '../../../backendga/helpers/betypes'
 
 type RecommendProps = {
 	userData: any
@@ -23,7 +24,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 	const [loading, setLoading] = useState(true)
 	const [userPrefData, setUserPrefData] = useState({ platform: [], genres: [], themes: [], gamemodes: [] })
 	const [userPrefRecList, setUserPrefRecList] = useState<PreferencesRecList[] | null>(null)
-	const [userSimilarRecList, setUserSimilarRecList] = useState()
+	const [userSimilarRecList, setUserSimilarRecList] = useState<Explore[]>([])
 	const [error, setError] = useState('')
 	const [viewToggle, setViewToggle] = useState('table')
 
@@ -57,8 +58,15 @@ const Recommend = ({ userData }: RecommendProps) => {
 		await axios(userLikeConfig)
 			.then((response) => {
 				console.log(response.data)
-				console.log(response.data[0].recommendobjarr.concat(response.data[1].recommendobjarr))
-				setUserSimilarRecList(response.data)
+				const prefRecList = response.data.map((item: any) => item.recommendobjarr)
+				console.log(prefRecList)
+				let fullList: any[] = []
+				for (let i = 0; i < prefRecList.length; i++) {
+					fullList = fullList.concat(prefRecList[i])
+				}
+				console.log(fullList)
+				// setUserSimilarRecList(response.data)
+				setUserSimilarRecList(fullList)
 				// setLoading(false)
 			})
 			.catch((err) => {
@@ -107,6 +115,26 @@ const Recommend = ({ userData }: RecommendProps) => {
 						</SvgIcon>
 					</Button>
 				</div>
+			</div>
+			<div className='explore-wrap'>
+				<h3 className='title-recommend'>
+						Based on Games you Like
+				</h3>
+				{!loading && userSimilarRecList ?
+					<>
+						{viewToggle === 'list' ?
+							<div className='grid-wrapper'>
+								{userSimilarRecList.map((item: any) => (
+									<IndGame key={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
+								))}
+							</div>
+							: <IndGameTable multiResp={userSimilarRecList} />}
+					</>
+					: <ReactLoading
+						type={'spinningBubbles'}
+						color={'#ddd'}
+						height={150}
+						width={150}/>}
 			</div>
 			{!loading && userPrefRecList ?
 				<>
