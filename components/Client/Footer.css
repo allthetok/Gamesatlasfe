@@ -1,0 +1,17 @@
+.git-link {
+	text-decoration: none;
+	color: inherit;
+}
+
+.footer-background {
+	background: linear-gradient(105deg, rgba(39,38,43,1) 0%, rgba(66,66,66,1) 35%, rgba(45,56,59,1) 100%);
+	z-index: -1;
+    width: 100%;
+	height: 4.5%;
+	bottom: 0%;
+    display: block;
+    background-size: auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: fixed;
+}
