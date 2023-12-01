@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import { Companies, Explore, Platforms } from '../../../backendga/helpers/betypes'
-import { GenericStringObj } from '../../helpers/fetypes'
+import { GenericStringObj, MultiObj } from '../../helpers/fetypes'
 import { formattedDateLong } from '../../helpers/fctns'
 import { TableRow, TableCell, TableContainer, Paper, Table, TableHead, TableBody, SvgIcon } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'

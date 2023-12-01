@@ -15,7 +15,7 @@ import { BoxActiveSx, BoxNoBorderSx, ButtonActiveSx, ButtonSx } from '../../sxst
 import EditIcon from '@mui/icons-material/Edit'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
-import { regexValidEmail } from '../../helpers/fctns'
+import { createUserDetailsConfig, createUserProfileConfig, regexValidEmail } from '../../helpers/fctns'
 import './Profile.css'
 
 
@@ -29,7 +29,6 @@ const Profile = ({ userData }: ProfileProps) => {
 	const [editAcct, setEditAcct] = useState(false)
 	const [editGame, setEditGame] = useState(false)
 	const [loading, setLoading] = useState(true)
-	const [userPrefData, setUserPrefData] = useState<any>(null)
 
 	const [platforms, setPlatforms] = useState<string[]>([])
 	const [genres, setGenres] = useState<string[]>([])
@@ -44,19 +43,9 @@ const Profile = ({ userData }: ProfileProps) => {
 
 	const [errorAcct, setErrorAcct] = useState('')
 
-	const getUserNameProfile = async (userid: string, profileid: string) => {
-		const nameSearchConfig = {
-			method: 'post',
-			url: 'http://localhost:5000/api/userDetails',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'userid': Number(userid),
-				'profileid': Number(profileid),
-				'provider': userData.data.user.provider
-			}
-		}
+	const getUserNameProfile = async (userid: string, profileid: string, provider: string) => {
+		const nameSearchConfig = createUserDetailsConfig('post', 'userDetails', userid, profileid, provider)
+
 		await axios(nameSearchConfig)
 			.then((response: any) => {
 				setEmail(response.data.email)
@@ -70,21 +59,11 @@ const Profile = ({ userData }: ProfileProps) => {
 	}
 
 	const getUserPrefProfile = async (userid: string, profileid: string) => {
-		const profileSearchConfig = {
-			method: 'post',
-			url: 'http://localhost:5000/api/profileDetails',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'userid': Number(userid),
-				'profileid': Number(profileid)
-			}
-		}
+		const profileSearchConfig = createUserProfileConfig('post', 'profileDetails', userid, profileid)
+
 		await axios(profileSearchConfig)
 			.then((response: any) => {
 				const prefData = response.data
-				setUserPrefData(prefData)
 				setPlatforms(prefData.platform)
 				setGenres(prefData.genres)
 				setThemes(prefData.themes)
@@ -189,7 +168,7 @@ const Profile = ({ userData }: ProfileProps) => {
 	useEffect(() => {
 		if (data.status === 'authenticated') {
 			setLoading(false)
-			getUserNameProfile(userData.data.user.id, userData.data.user.profileid)
+			getUserNameProfile(userData.data.user.id, userData.data.user.profileid, userData.data.user.provider)
 			getUserPrefProfile(userData.data.user.id, userData.data.user.profileid)
 		}
 	}, [data, editGame, editAcct])

@@ -175,6 +175,35 @@ const createUserRecommendConfig = (method: string, endpoint: string, userid: str
 	}
 }
 
+const createUserDetailsConfig = (method: string, endpoint: string, userid: string, profileid: string, provider: string) => {
+	return {
+		method: method,
+		url: `http://localhost:5000/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'userid': Number(userid),
+			'profileid': Number(profileid),
+			'provider': provider
+		}
+	}
+}
+
+const createUserProfileConfig = (method: string, endpoint: string, userid: string, profileid: string) => {
+	return {
+		method: method,
+		url: `http://localhost:5000/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'userid': Number(userid),
+			'profileid': Number(profileid)
+		}
+	}
+}
+
 const retrieveLocalStorageObj = (gameDtl: boolean): LocalStorageObj => typeof window !== 'undefined' && !gameDtl ? JSON.parse(localStorage.getItem('auxiliaryObj')!) : { gameID: 0, title: '', involved_companies: '', summary: '', story: '', releaseDate: '' }
 
 const retrieveSearchTerm = (): string => typeof window !== 'undefined' ? localStorage.getItem('searchterm') || '' : ''
@@ -192,6 +221,6 @@ const regexValidEmail = (email: string) => {
 }
 
 
-export { ratingFloatToStar, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail }
+export { ratingFloatToStar, createUserDetailsConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail }
 
 

@@ -255,6 +255,10 @@ interface AxiosConfigIndGameList {
 }
 
 interface PreferencesRecList {
+	// platform: MultiObj[],
+	// genres: MultiObj[],
+	// themes: MultiObj[],
+	// gamemodes: MultiObj[]
 	name: string,
 	result: MultiObj[]
 }

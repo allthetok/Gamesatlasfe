@@ -17,7 +17,6 @@ const Game = (props: { dataFetch: GameObj }) => {
 		<><main className={inter.className}>
 			<GameDtl dataFetch={props.dataFetch} />
 		</main><Footer /></>
-
 	)
 }
 

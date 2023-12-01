@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import { createUserPrefSearchConfig, createUserRecommendConfig } from '../../helpers/fctns'
+import { createUserPrefSearchConfig, createUserProfileConfig, createUserRecommendConfig } from '../../helpers/fctns'
 import { MultiObj, PreferencesRecList, ProfilePrefSearchConfig, SimpleUserLikeConfig } from '../../helpers/fetypes'
 import { useSession } from 'next-auth/react'
 import ReactLoading from 'react-loading'
@@ -26,10 +26,10 @@ type RecommendProps = {
 
 const Recommend = ({ userData }: RecommendProps) => {
 	const [loading, setLoading] = useState(true)
-	const [userRecommendList, setUserRecommendList] = useState<PreferencesRecList[]>([])
+	const [userPrefList, setUserPrefList] = useState<PreferencesRecList[]>([])
 	const [userSimilarRecList, setUserSimilarRecList] = useState<Explore[]>([])
 	const [error, setError] = useState('')
-	const [viewToggle, setViewToggle] = useState('table')
+	const [viewToggle, setViewToggle] = useState('list')
 	const [limit, setLimit] = useState('10')
 
 	const data = useSession()
@@ -42,50 +42,52 @@ const Recommend = ({ userData }: RecommendProps) => {
 	}
 
 	const getUserPrefProfile = async (userid: string, profileid: string) => {
-		const profileSearchConfig = {
-			method: 'post',
-			url: 'http://localhost:5000/api/profileDetails',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'userid': Number(userid),
-				'profileid': Number(profileid)
-			}
-		}
+		const profileSearchConfig = createUserProfileConfig('post', 'profileDetails', userid, profileid)
+
 		await axios(profileSearchConfig)
-			.then((response: AxiosResponse) => {
-				const updatedPrefData = {
+			.then((response: any) => {
+				const prefArrayData = {
 					platform: response.data.platform,
 					genres: response.data.genres,
 					themes: response.data.themes,
 					gamemodes: response.data.gamemodes
 				}
-				getRecommendationList(userid, updatedPrefData)
+				getRecommendationList(userid, prefArrayData)
 			})
-			.catch((err: AxiosError) => {
+			.catch((err: any) => {
 				console.log(err)
 			})
 	}
 
-	const getRecommendationList = async (userid: string, updatedPrefData: any) => {
+	const getRecommendationList = async (userid: string, prefArrayData: any) => {
 		const userLikeConfig: SimpleUserLikeConfig = createUserRecommendConfig('post', 'recommendLikes', userid)
 		await axios(userLikeConfig)
-			.then((response) => {
+			.then((response: AxiosResponse) => {
 				const prefRecList = response.data.map((item: any) => item.recommendobjarr)
 				const prefRecListJoined = Array.prototype.concat(...prefRecList)
 				setUserSimilarRecList(prefRecListJoined)
 			})
-			.catch((err) => {
+			.catch((err: AxiosError) => {
 				setError('Unable to retrieve recommendations based on your Profile Game Preferences')
 				console.error(err)
 			})
-		if (updatedPrefData.platform.length !== 0 || updatedPrefData.genres.length !== 0 || updatedPrefData.themes.length !== 0 || updatedPrefData.gamemodes.length !== 0) {
-			const userPrefSearchConfig: ProfilePrefSearchConfig = createUserPrefSearchConfig('post', 'recommendPrefs', updatedPrefData.platform, updatedPrefData.genres, updatedPrefData.themes, updatedPrefData.gamemodes, 'age_ratings, follows, involved_companies, game_modes, category, total_rating', 25, 'IGDB Rating', 'desc')
+		if (prefArrayData.platform.length !== 0 || prefArrayData.genres.length !== 0 || prefArrayData.themes.length !== 0 || prefArrayData.gamemodes.length !== 0) {
+			const userPrefSearchConfig: ProfilePrefSearchConfig = createUserPrefSearchConfig('post', 'recommendPrefs', prefArrayData.platform, prefArrayData.genres, prefArrayData.themes, prefArrayData.gamemodes, 'age_ratings, follows, involved_companies, game_modes, category, total_rating', 25, 'IGDB Rating', 'desc')
 			await axios(userPrefSearchConfig)
 				.then((response) => {
 					console.log(response.data)
-					setUserRecommendList(response.data)
+					// const resultPrefList: PreferencesRecList = {
+					// 	platform: response.data.filter((multiq: any) => multiq.name === 'Platforms').length !== 0 ? response.data.filter((multiq: any) => multiq.name === 'Platforms')[0].result : [],
+					// 	genres: response.data.filter((multiq: any) => multiq.name === 'Genres').length !== 0 ? response.data.filter((multiq: any) => multiq.name === 'Genres')[0].result : [],
+					// 	themes: response.data.filter((multiq: any) => multiq.name === 'Themes').length !== 0 ? response.data.filter((multiq: any) => multiq.name === 'Themes')[0].result : [],
+					// 	gamemodes: response.data.filter((multiq: any) => multiq.name === 'Game Modes').length !== 0 ? response.data.filter((multiq: any) => multiq.name === 'Game Modes')[0].result : [],
+					// }
+					setUserPrefList(response.data)
+
+					// setUserPrefList({
+					// 	platform: response.data.filter((multiq: any) => multiq.name === 'Platforms').length !== 0 ? response.data.filter((multiq: any) => multiq.name === 'Platforms')[0].result : [],
+
+					// })
 					setLoading(false)
 				})
 				.catch((err) => {
@@ -134,7 +136,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 				<h3 className='title-recommend'>
 						Based on Games You Like
 				</h3>
-				{!loading && userSimilarRecList ?
+				{userSimilarRecList ?
 					<>
 						{viewToggle === 'list' ?
 							<div className='grid-wrapper'>
@@ -144,15 +146,11 @@ const Recommend = ({ userData }: RecommendProps) => {
 							</div>
 							: <IndGameTable multiResp={userSimilarRecList} />}
 					</>
-					: <ReactLoading
-						type={'spinningBubbles'}
-						color={'#ddd'}
-						height={150}
-						width={150}/>}
+					: <></>
 			</div>
-			{!loading && userRecommendList ?
+			{!loading && userPrefList ?
 				<>
-					{userRecommendList.map((item: any) => (
+					{userPrefList.map((item: any) => (
 						<div className='explore-wrap'>
 							<div>
 								<h3 className='title-recommend'>

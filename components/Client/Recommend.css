@@ -17,18 +17,12 @@ h2 {
 }
 
 .filter-recommend-wrap {
-    /* padding-bottom: 25px;
-    padding-top: 20px; */
-    /* text-align: center;
-    display: flex;
-	box-sizing: border-box; */
 	display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: row;
     gap: 0.5rem;
 	margin-top: -15px;
-	/* margin-left: 15px; */
 }
 
 @media (min-width: 1200px) {
