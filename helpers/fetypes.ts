@@ -259,5 +259,25 @@ interface PreferencesRecList {
 	result: MultiObj[]
 }
 
+type AgeRatingsInter = {
+	id: number,
+	category: number,
+	rating: number
+}
 
-export type { ButtonField, GameDetailObj, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, ProfilePrefSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList, PreferencesRecList, SimpleUserLikeConfig }
+interface Explore {
+	id: number | null,
+	age_ratings: any | AgeRatingsInter[] | AgeRatings
+	cover: string | null,
+	platforms: Platforms[],
+	rating: number,
+	ratingCount: number | null,
+	releaseDate: Date | string,
+	likes: number | null,
+	title: string,
+	genres: GenericStringObj[],
+	involved_companies: Companies[],
+}
+
+
+export type { ButtonField, GameDetailObj, Explore, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, ProfilePrefSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList, PreferencesRecList, SimpleUserLikeConfig }
