@@ -21,9 +21,9 @@ h2 {
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: row;
-    gap: 0.5rem;
-	margin-top: -15px;
 }
+
+
 
 @media (min-width: 1200px) {
 	h2 {
