@@ -9,17 +9,18 @@ import { GetServerSidePropsContext } from 'next/types'
 import { RecommendPage } from '../components/Client/RecommendPage'
 import { Inter } from 'next/font/google'
 import '../src/app/globals.css'
+import { Footer } from '../components/Client/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const Profile = () => {
 	const data = useSession()
 	return (
-		<main className={inter.className}>
+		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<RecommendPage userData={data}/>
+				<RecommendPage userData={data} />
 			</Suspense>
-		</main>
+		</main><Footer /></>
 	)
 }
 

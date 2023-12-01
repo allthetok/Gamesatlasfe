@@ -6,6 +6,7 @@ import { GameObj } from '../../../backendga/helpers/betypes'
 import { createGameDtlConfig } from '../../helpers/fctns'
 import { SimpleSearchConfig } from '../../helpers/fetypes'
 import GameDtl from '../../components/Server/GameDtl'
+import { Footer } from '../../components/Client/Footer'
 import { Inter } from 'next/font/google'
 import '../../src/app/globals.css'
 
@@ -13,9 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Game = (props: { dataFetch: GameObj }) => {
 	return (
-		<main className={inter.className}>
+		<><main className={inter.className}>
 			<GameDtl dataFetch={props.dataFetch} />
-		</main>
+		</main><Footer /></>
+
 	)
 }
 

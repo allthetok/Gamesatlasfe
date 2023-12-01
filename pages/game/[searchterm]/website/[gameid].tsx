@@ -8,14 +8,15 @@ import { NestedSearchConfig } from '../../../../helpers/fetypes'
 import Websites from '../../../../components/Server/Websites'
 import { Inter } from 'next/font/google'
 import '../../../../src/app/globals.css'
+import { Footer } from '../../../../components/Client/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const Website = (props: { dataFetch: WebsitesObj & GlobalAuxiliaryObj, gameID: number }) => {
 	return (
-		<main className={inter.className}>
-			<Websites dataFetch={props.dataFetch} gameID={props.gameID}/>
-		</main>
+		<><main className={inter.className}>
+			<Websites dataFetch={props.dataFetch} gameID={props.gameID} />
+		</main><Footer /></>
 	)
 }
 

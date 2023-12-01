@@ -8,12 +8,12 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Home = () => {
 	return (
-		<main className={inter.className}>
+		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<Search/>
-				<Footer />
+				<Search />
 			</Suspense>
-		</main>
+		</main><Footer /></>
+
 	)
 }
 

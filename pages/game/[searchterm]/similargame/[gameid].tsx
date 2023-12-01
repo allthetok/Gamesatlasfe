@@ -8,14 +8,15 @@ import { NestedSearchConfig } from '../../../../helpers/fetypes'
 import Similar from '../../../../components/Server/Similar'
 import { Inter } from 'next/font/google'
 import '../../../../src/app/globals.css'
+import { Footer } from '../../../../components/Client/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const SimilarGame = (props: { dataFetch: SimilarGamesObj & GlobalAuxiliaryObj, gameID: number }) => {
 	return (
-		<main className={inter.className}>
+		<><main className={inter.className}>
 			<Similar dataFetch={props.dataFetch} gameID={props.gameID} />
-		</main>
+		</main><Footer /></>
 	)
 }
 
