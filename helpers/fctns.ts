@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { LocalStorageObj, NestedSearchConfig, ProfilePrefSearchConfig, SimpleNullableSearchConfig, SimpleSearchConfig } from './fetypes'
@@ -267,9 +268,10 @@ const regexValidEmail = (email: string) => {
 
 const likeGame = async (userid: string, gameid: string, gameObj: any, similarObj: any | null ) => {
 	const userLikeConfig = createUserLikeConfig('post', 'userLike', userid, gameid, gameObj, similarObj)
+	let returnResult: any
 	await axios(userLikeConfig)
 		.then((response: AxiosResponse) => {
-			return response.status === 200 ? { gameid: gameid, status: 'like' } : { gameid: gameid, status: 'nlike' }
+			returnResult = response.status === 200 ? { gameid: gameid, status: 'like' } : { gameid: gameid, status: 'nlike' }
 		})
 		.catch((err: AxiosError) => {
 			console.log(err)
@@ -278,21 +280,24 @@ const likeGame = async (userid: string, gameid: string, gameObj: any, similarObj
 				status: 'nlike'
 			}
 		})
+	return returnResult
 }
 
 const deleteGame = async (userid: string, gameid: string) => {
 	const userDeleteConfig = createUserDeleteConfig('delete', 'userLike', userid, gameid)
+	let returnResult: any
 	await axios(userDeleteConfig)
 		.then((response: AxiosResponse) => {
-			return response.status === 200 ? { gameid: gameid, status: 'deleted' } : { gameid: gameid, status: 'fdeleted' }
+			returnResult = response.status === 200 ? { gameid: gameid, status: 'deleted' } : { gameid: gameid, status: 'fdeleted' }
 		})
 		.catch((err: AxiosError) => {
 			console.log(err)
-			return {
+			returnResult = {
 				gameid: gameid,
 				status: 'fdeleted'
 			}
 		})
+	return returnResult
 }
 
 
