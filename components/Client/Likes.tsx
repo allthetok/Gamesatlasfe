@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useLikes } from '../../hooks/useLikes'
 import { useSession } from 'next-auth/react'
-import './Recommend.css'
-import './IndGameList.css'
 import ReactLoading from 'react-loading'
 import { IndGame } from './IndGame'
 import { Button, SvgIcon } from '@mui/material'
@@ -10,6 +8,8 @@ import { ListTblToggleSx, IconSx } from '../../sxstyling/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
 import { IndGameTable } from './IndGameTable'
+import './Recommend.css'
+import './IndGameList.css'
 
 const Likes = () => {
 	const [viewToggle, setViewToggle] = useState('list')

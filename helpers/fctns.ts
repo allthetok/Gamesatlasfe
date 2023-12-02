@@ -230,8 +230,8 @@ const createUserLikeConfig = (method: string, endpoint: string, userid: string, 
 		data: {
 			'userid': Number(userid),
 			'gameid': Number(gameid),
-			'gameExploreFormat': gameObjExploreFormat,
-			'similarExploreFormat': similarObj
+			'game': gameObjExploreFormat,
+			'similargames': similarObj
 		}
 	}
 }
@@ -281,6 +281,7 @@ const regexValidEmail = (email: string) => {
 
 const likeGame = async (userid: string, gameid: string, gameObj: any, similarObj: any | null ) => {
 	const userLikeConfig = createUserLikeConfig('post', 'userLike', userid, gameid, gameObj, similarObj)
+	console.log(userLikeConfig)
 	let returnResult: any
 	await axios(userLikeConfig)
 		.then((response: AxiosResponse) => {

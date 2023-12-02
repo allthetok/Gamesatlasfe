@@ -3,6 +3,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useEffect, useCallback } from 'react'
+import { useLikes } from '../../hooks/useLikes'
+import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import { usePathname } from 'next/navigation'
 import ReactLoading from 'react-loading'
@@ -18,8 +20,13 @@ import './IndGameList.css'
 
 const IndGameList = () => {
 	const [multiResp, setMultiResp] = useState<Explore[]>([])
-	const [error, setError] = useState(null)
-	const [loading, setLoading] = useState(true)
+	const [errorIGDB, setErrorIGDB] = useState(null)
+	const [loadingIGDB, setLoadingIGDB] = useState(true)
+
+	const data = useSession()
+	const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
+
+	console.log(likeDataFetch)
 
 	const {
 		sortBy,
@@ -45,15 +52,14 @@ const IndGameList = () => {
 
 	const getMultiResp = useCallback(async () => {
 		const searchConfig: AxiosConfigIndGameList = path === '/advsearch' ? createAdvancedAxiosConfig('post', 'advsearch', sortBy, sortDirection, limit, platforms, genres, themes, gameModes, categories, rating, dateYear, companyList) : createExploreAxiosConfig('post', 'explore', sortBy, sortDirection, platform, limit, genre)
-		setLoading(true)
+		setLoadingIGDB(true)
 		await axios(searchConfig)
 			.then((response) => {
 				setMultiResp(response.data)
-				// console.log(response.data)
-				setLoading(false)
+				setLoadingIGDB(false)
 			})
 			.catch((err) => {
-				setError(err)
+				setErrorIGDB(err)
 				console.error(err)
 			})
 	}, [sortBy, sortDirection, platform, limit, genre, dateYear, rating, platforms, genres, themes, gameModes, categories, companyList])
@@ -64,15 +70,15 @@ const IndGameList = () => {
 
 	return (
 		<>
-			{loading ?
+			{loadingIGDB ?
 				<ReactLoading type={'spinningBubbles'} color={'#ddd'} height={150} width={150} />
 				: <></>}
-			{!loading && !error && multiResp ?
+			{!loadingIGDB && !errorIGDB && multiResp ?
 				<div>
 					{viewToggle === 'list' ?
 						<div className='grid-wrapper'>
 							{multiResp.map((item: Explore) => (
-								<IndGame key={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
+								<IndGame key={item.id} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={likeDataFetch.length !== 0 ? likeDataFetch.map((item: any) => item.gameobj).filter((game: any) => game.id === item.id).length !== 0 : false} />
 							))}
 						</div>
 						: <IndGameTable multiResp={multiResp} />}
