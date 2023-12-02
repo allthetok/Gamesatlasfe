@@ -39,7 +39,7 @@ const useSearch = ({ gameSearch	}: UseSearchProps) => {
 	}, [gameSearch])
 
 	useEffect(() => {
-		console.log('effect fired')
+		// console.log('effect fired')
 		getGameDtl()
 	}, [getGameDtl])
 
