@@ -3,7 +3,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import { createUserGenericConfig } from '../helpers/fctns'
 
 const useLikes = (userid: string | null | undefined) => {
-	const [likeDataFetch, setLikeDataFetch] = useState<any[]>([])
+	const [likeDataFetch, setLikeDataFetch] = useState<{likeid: number, gameobj: any}[]>([])
 	const [error, setError] = useState<string|null>(null)
 	const [loading, setLoading] = useState(true)
 
