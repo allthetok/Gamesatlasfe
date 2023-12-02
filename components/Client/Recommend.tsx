@@ -85,6 +85,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 				})
 		}
 		else {
+			console.log(userPrefList)
 			setLoading(false)
 		}
 	}
@@ -143,33 +144,39 @@ const Recommend = ({ userData }: RecommendProps) => {
 						height={150}
 						width={150}/>}
 			</div>
-			{!loading && userPrefList.length !== 0 ?
+			{!loading ?
 				<>
-					{userPrefList.map((item: any) => (
-						<div className='explore-wrap'>
-							<div>
-								<h3 className='title-recommend'>
-									Based on Your Profile&apos;s {item.name.replace('User ', '')}
-								</h3>
-								{viewToggle === 'list' ?
-									<div className='grid-wrapper'>
-										{item.result.map((item: any) => (
-											<IndGame key={item.index} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
-										))}
+					{userPrefList.length !== 0 ?
+						<>
+							{userPrefList.map((item: any) => (
+								<div className='explore-wrap'>
+									<div>
+										<h3 className='title-recommend'>
+										Based on Your Profile&apos;s {item.name.replace('User ', '')}
+										</h3>
+										{viewToggle === 'list' ?
+											<div className='grid-wrapper'>
+												{item.result.map((item: any) => (
+													<IndGame key={item.index} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
+												))}
+											</div>
+											: <IndGameTable multiResp={item.result} />}
 									</div>
-									: <IndGameTable multiResp={item.result} />}
-							</div>
-						</div>
-
-					))}
+								</div>
+							))}
+						</>
+						: <h3 className='title-recommend'>
+							For More Recommendations Edit Your Profile Game Info
+						</h3>
+					}
 				</>
-				: <ReactLoading
+				:
+				<ReactLoading
 					type={'spinningBubbles'}
 					color={'#ddd'}
 					height={150}
 					width={150}
-				/>
-			}
+				/>}
 		</div>
 	)
 }
