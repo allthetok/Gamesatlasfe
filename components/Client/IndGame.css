@@ -340,3 +340,7 @@
 	position: absolute;
 	z-index: 1;
 }
+
+.title-nostyle {
+	text-decoration: none;
+}

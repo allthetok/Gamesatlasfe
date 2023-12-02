@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
+import Link from 'next/link'
 import { Companies, Explore, Platforms } from '../../../backendga/helpers/betypes'
 import { GenericStringObj, MultiObj } from '../../helpers/fetypes'
 import { formattedDateLong } from '../../helpers/fctns'
@@ -55,7 +56,9 @@ const TableRows = ({ multiResp }: IndGameTableProps) => {
 			{multiResp!.map((game: Explore) => (
 				<TableRow key={game.id} sx={{ textAlign: 'center' }}>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
-						<p className='title-link'>{game.title}</p>
+						<Link href={`/game/${game.title}`} className='title-nostyle'>
+							<p className='title-link'>{game.title}</p>
+						</Link>
 					</TableCell>
 					<TableCell align='center' sx={{ color: '#ddd' }}>
 						<span className='avg-rating'>
