@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { LocalStorageObj, NestedSearchConfig, ProfilePrefSearchConfig, SimpleNullableSearchConfig, SimpleSearchConfig } from './fetypes'
 
 const ratingFloatToStar = (rating: number) : number => rating / 20
@@ -204,6 +205,50 @@ const createUserProfileConfig = (method: string, endpoint: string, userid: strin
 	}
 }
 
+const createUserLikeConfig = (method: string, endpoint: string, userid: string, gameid: string | number, gameObj: any, similarObj: any | null) => {
+	const gameObjExploreFormat = {
+		id: gameObj.id,
+		age_ratings: gameObj.age_ratings,
+		cover: gameObj.cover,
+		platforms: gameObj.platforms,
+		rating: gameObj.rating,
+		ratingCount: gameObj.ratingCount,
+		releaseDate: gameObj.releaseDate,
+		likes: gameObj.likes,
+		title: gameObj.title,
+		genres: gameObj.genres,
+		involved_companies: gameObj.involved_companies,
+	}
+
+	return {
+		method: method,
+		url: `http://localhost:5000/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'userid': Number(userid),
+			'gameid': Number(gameid),
+			'gameExploreFormat': gameObjExploreFormat,
+			'similarExploreFormat': similarObj
+		}
+	}
+}
+
+const createUserDeleteConfig = (method: string, endpoint: string, userid: string, gameid: string | number) => {
+	return {
+		method: method,
+		url: `http://localhost:5000/api/${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'userid': Number(userid),
+			'gameid': Number(gameid)
+		}
+	}
+}
+
 const retrieveLocalStorageObj = (gameDtl: boolean): LocalStorageObj => typeof window !== 'undefined' && !gameDtl ? JSON.parse(localStorage.getItem('auxiliaryObj')!) : { gameID: 0, title: '', involved_companies: '', summary: '', story: '', releaseDate: '' }
 
 const retrieveSearchTerm = (): string => typeof window !== 'undefined' ? localStorage.getItem('searchterm') || '' : ''
@@ -220,7 +265,37 @@ const regexValidEmail = (email: string) => {
 	return emailRegex.test(email)
 }
 
+const likeGame = async (userid: string, gameid: string, gameObj: any, similarObj: any | null ) => {
+	const userLikeConfig = createUserLikeConfig('post', 'userLike', userid, gameid, gameObj, similarObj)
+	await axios(userLikeConfig)
+		.then((response: AxiosResponse) => {
+			return response.status === 200 ? { gameid: gameid, status: 'like' } : { gameid: gameid, status: 'nlike' }
+		})
+		.catch((err: AxiosError) => {
+			console.log(err)
+			return {
+				gameid: gameid,
+				status: 'nlike'
+			}
+		})
+}
 
-export { ratingFloatToStar, createUserDetailsConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail }
+const deleteGame = async (userid: string, gameid: string) => {
+	const userDeleteConfig = createUserDeleteConfig('delete', 'userLike', userid, gameid)
+	await axios(userDeleteConfig)
+		.then((response: AxiosResponse) => {
+			return response.status === 200 ? { gameid: gameid, status: 'deleted' } : { gameid: gameid, status: 'fdeleted' }
+		})
+		.catch((err: AxiosError) => {
+			console.log(err)
+			return {
+				gameid: gameid,
+				status: 'fdeleted'
+			}
+		})
+}
+
+
+export { ratingFloatToStar, createUserDetailsConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail, likeGame, deleteGame }
 
 
