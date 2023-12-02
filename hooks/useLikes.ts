@@ -2,11 +2,7 @@ import { useState, useEffect } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { createUserGenericConfig } from '../helpers/fctns'
 
-type UseLikesProps = {
-	userid: string | null | undefined
-}
-
-const useLikes = ({ userid }: UseLikesProps) => {
+const useLikes = (userid: string | null | undefined) => {
 	const [likeDataFetch, setLikeDataFetch] = useState<any[]>([])
 	const [error, setError] = useState<string|null>(null)
 	const [loading, setLoading] = useState(true)
@@ -25,7 +21,6 @@ const useLikes = ({ userid }: UseLikesProps) => {
 	}
 
 	useEffect(() => {
-		console.log('effect fired')
 		if (userid !== undefined && userid !== null) {
 			getLikes(userid)
 		}
