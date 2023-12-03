@@ -78,7 +78,6 @@ const IndGame = ({ id, cover, platforms, rating, age_ratings, releaseDate, likes
 	}
 
 
-
 	return (
 		<div>
 			<div className='ind-wrapper'>
@@ -123,7 +122,7 @@ const IndGame = ({ id, cover, platforms, rating, age_ratings, releaseDate, likes
 							{genres.map((val: GenericStringObj) => (
 								<a key={val.id} className='tag-link-company'> {val.name}</a>
 							))}
-							{companies.map((val: Companies) => (
+							{companies?.map((val: Companies) => (
 								<a key={val.name} className='tag-link-company' href={val.officialSite} target='_blank'> {val.name} </a>
 							))}
 						</div>
