@@ -18,6 +18,7 @@ import { Explore } from '../../helpers/fetypes'
 import { theme } from '../../sxstyling/theme'
 import './Recommend.css'
 import './IndGameList.css'
+import { useLikes } from '../../hooks/useLikes'
 
 
 type RecommendProps = {
@@ -25,14 +26,15 @@ type RecommendProps = {
 }
 
 const Recommend = ({ userData }: RecommendProps) => {
-	const [error, setError] = useState('')
-	const [loading, setLoading] = useState(true)
+	const [errorIGDB, setErrorIGDB] = useState('')
+	const [loadingIGDB, setLoadingIGDB] = useState(true)
 	const [userPrefList, setUserPrefList] = useState<PreferencesRecList[]>([])
 	const [userSimilarRecList, setUserSimilarRecList] = useState<Explore[]>([])
 	const [viewToggle, setViewToggle] = useState('list')
 	const [limit, setLimit] = useState('10')
 
 	const data = useSession()
+	const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
 
 	const numOptions = ['7', '10', '25', '50']
 
@@ -64,29 +66,27 @@ const Recommend = ({ userData }: RecommendProps) => {
 		await axios(userLikeConfig)
 			.then((response: AxiosResponse) => {
 				const prefRecList = response.data.map((item: any) => item.recommendobjarr)
-				const prefRecListJoined = Array.prototype.concat(...prefRecList)
-				setUserSimilarRecList(prefRecListJoined.slice(0, Number(limit)))
+				const prefRecListJoined = Array.prototype.concat(...prefRecList).filter((item: any) => item !== null)
+				setUserSimilarRecList(prefRecListJoined.slice(0, Number(limit) > prefRecListJoined.length ? prefRecListJoined.length : Number(limit)))
 			})
 			.catch((err: AxiosError) => {
-				setError('Unable to retrieve recommendations based on your Profile Game Preferences')
+				setErrorIGDB('Unable to retrieve recommendations based on your Profile Game Preferences')
 				console.error(err)
 			})
 		if (prefArrayData.platform.length !== 0 || prefArrayData.genres.length !== 0 || prefArrayData.themes.length !== 0 || prefArrayData.gamemodes.length !== 0) {
 			const userPrefSearchConfig: ProfilePrefSearchConfig = createUserPrefSearchConfig('post', 'recommendPrefs', prefArrayData.platform, prefArrayData.genres, prefArrayData.themes, prefArrayData.gamemodes, 'age_ratings, follows, involved_companies, game_modes, category, total_rating', Number(limit), 'IGDB Rating', 'desc')
 			await axios(userPrefSearchConfig)
 				.then((response) => {
-					// console.log(response.data)
 					setUserPrefList(response.data)
-					setLoading(false)
+					setLoadingIGDB(false)
 				})
 				.catch((err) => {
-					setError('Unable to retrieve recommendations based on your Profile Game Preferences')
+					setErrorIGDB('Unable to retrieve recommendations based on your Profile Game Preferences')
 					console.error(err)
 				})
 		}
 		else {
-			console.log(userPrefList)
-			setLoading(false)
+			setLoadingIGDB(false)
 		}
 	}
 
@@ -128,12 +128,12 @@ const Recommend = ({ userData }: RecommendProps) => {
 				<h3 className='title-recommend'>
 						Based on Games You Like
 				</h3>
-				{!loading && userSimilarRecList.length !== 0 ?
+				{!loadingIGDB && !loading && userSimilarRecList.length !== 0 ?
 					<>
 						{viewToggle === 'list' ?
 							<div className='grid-wrapper'>
 								{userSimilarRecList.map((item: any) => (
-									<IndGame key={item.index} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
+									<IndGame key={item.index} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={likeDataFetch.length !== 0 ? likeDataFetch.map((item: any) => item.gameobj).filter((game: any) => game.id === item.id).length !== 0 : false} />
 								))}
 							</div>
 							: <IndGameTable multiResp={userSimilarRecList} />}
@@ -144,7 +144,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 						height={150}
 						width={150}/>}
 			</div>
-			{!loading ?
+			{!loadingIGDB && !loading ?
 				<>
 					{userPrefList.length !== 0 ?
 						<>
@@ -157,7 +157,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 										{viewToggle === 'list' ?
 											<div className='grid-wrapper'>
 												{item.result.map((item: any) => (
-													<IndGame key={item.index} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
+													<IndGame key={item.index} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={likeDataFetch.length !== 0 ? likeDataFetch.map((item: any) => item.gameobj).filter((game: any) => game.id === item.id).length !== 0 : false} />
 												))}
 											</div>
 											: <IndGameTable multiResp={item.result} />}
