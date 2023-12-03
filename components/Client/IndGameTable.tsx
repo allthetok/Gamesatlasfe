@@ -205,7 +205,14 @@ const TableRows = ({ multiResp }: IndGameTableProps) => {
 						<IndGameRow key={game.id} id={game.id} cover={game.cover} platforms={game.platforms} rating={game.rating} ratingCount={game.ratingCount} age_ratings={game.age_ratings} releaseDate={game.releaseDate} likes={game.likes} title={game.title} genres={game.genres} companies={game.involved_companies} liked={likeDataFetch.length !== 0 ? likeDataFetch.map((item: any) => item.gameobj).filter((resp: any) => resp.id === game.id).length !== 0 : false} />
 					))}
 				</>
-				: <ReactLoading type={'spinningBubbles'} color={'#ddd'} height={150} width={150} />
+				: <div className='load-wrapper'>
+					<ReactLoading
+						type={'spinningBubbles'}
+						color={'#ddd'}
+						height={200}
+						width={200}
+					/>
+				</div>
 			}
 		</>
 

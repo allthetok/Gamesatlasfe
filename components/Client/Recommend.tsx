@@ -6,6 +6,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import { createUserPrefSearchConfig, createUserProfileConfig, createUserRecommendConfig } from '../../helpers/fctns'
 import { MultiObj, PreferencesRecList, ProfilePrefSearchConfig, SimpleUserLikeConfig } from '../../helpers/fetypes'
 import { useSession } from 'next-auth/react'
+import { useLikes } from '../../hooks/useLikes'
 import ReactLoading from 'react-loading'
 import { IndGame } from './IndGame'
 import { IndGameTable } from './IndGameTable'
@@ -18,7 +19,6 @@ import { Explore } from '../../helpers/fetypes'
 import { theme } from '../../sxstyling/theme'
 import './Recommend.css'
 import './IndGameList.css'
-import { useLikes } from '../../hooks/useLikes'
 
 
 type RecommendProps = {
@@ -128,21 +128,32 @@ const Recommend = ({ userData }: RecommendProps) => {
 				<h3 className='title-recommend'>
 						Based on Games You Like
 				</h3>
-				{!loadingIGDB && !loading && userSimilarRecList.length !== 0 ?
+				{!loadingIGDB && !loading ?
 					<>
-						{viewToggle === 'list' ?
-							<div className='grid-wrapper'>
-								{userSimilarRecList.map((item: any) => (
-									<IndGame key={item.index} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={likeDataFetch.length !== 0 ? likeDataFetch.map((item: any) => item.gameobj).filter((game: any) => game.id === item.id).length !== 0 : false} />
-								))}
-							</div>
-							: <IndGameTable multiResp={userSimilarRecList} />}
+						{userSimilarRecList.length !== 0 ?
+							<>
+								{viewToggle === 'list' ?
+									<div className='grid-wrapper'>
+										{userSimilarRecList.map((item: any) => (
+											<IndGame key={item.index} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={likeDataFetch.length !== 0 ? likeDataFetch.map((item: any) => item.gameobj).filter((game: any) => game.id === item.id).length !== 0 : false} />
+										))}
+									</div>
+									: <IndGameTable multiResp={userSimilarRecList} />}
+							</>
+							: <h3 className='title-recommend'>
+						For Recommendations Fill Your List
+							</h3>
+						}
 					</>
-					: <ReactLoading
-						type={'spinningBubbles'}
-						color={'#ddd'}
-						height={150}
-						width={150}/>}
+					:
+					<div className='load-wrapper'>
+						<ReactLoading
+							type={'spinningBubbles'}
+							color={'#ddd'}
+							height={200}
+							width={200}
+						/>
+					</div>}
 			</div>
 			{!loadingIGDB && !loading ?
 				<>
@@ -171,12 +182,14 @@ const Recommend = ({ userData }: RecommendProps) => {
 					}
 				</>
 				:
-				<ReactLoading
-					type={'spinningBubbles'}
-					color={'#ddd'}
-					height={150}
-					width={150}
-				/>}
+				<div className='load-wrapper'>
+					<ReactLoading
+						type={'spinningBubbles'}
+						color={'#ddd'}
+						height={200}
+						width={200}
+					/>
+				</div>}
 		</div>
 	)
 }

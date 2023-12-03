@@ -177,3 +177,10 @@
 .title-nostyle {
 	text-decoration: none;
 }
+
+.load-wrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 10%;
+}

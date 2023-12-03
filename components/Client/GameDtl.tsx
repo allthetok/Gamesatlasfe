@@ -159,12 +159,9 @@ const GameDtl = () => {
 	return (
 		<div>
 			{loading ?
-				<ReactLoading
-					type={'spinningBubbles'}
-					color={'#ddd'}
-					height={150}
-					width={150}
-				/>
+				<div className='load-wrapper'>
+					<ReactLoading type={'spinningBubbles'} color={'#ddd'} height={200} width={200} />
+				</div>
 				:
 				<></>
 			}

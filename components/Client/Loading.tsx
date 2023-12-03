@@ -20,8 +20,8 @@ const Loading = ({ auxiliaryObj }: LoadingProps) => {
 					<ReactLoading
 						type={'spinningBubbles'}
 						color={'#ddd'}
-						height={150}
-						width={150}
+						height={200}
+						width={200}
 					/>
 					<h1 className='loading-h2'>Loading...</h1>
 				</div>

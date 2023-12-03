@@ -364,3 +364,10 @@ dd {
 .similar-grid {
 	grid-template-columns: repeat(3, minmax(450px, 1fr));
 }
+
+.load-wrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 10%;
+}

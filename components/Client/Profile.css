@@ -27,6 +27,13 @@
 	background: linear-gradient(90deg, rgba(39,38,43,1) 0%, rgba(66,66,66,1) 35%, rgba(45,56,59,1) 100%);
 }
 
+.load-wrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 10%;
+}
+
 .intro-container {
 	display: flex;
 	padding-top: 65px;

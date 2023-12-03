@@ -23,6 +23,13 @@ h2 {
     flex-direction: row;
 }
 
+.load-wrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 10%;
+}
+
 
 
 @media (min-width: 1200px) {

@@ -62,9 +62,12 @@
 	margin-top: 0.5rem;
 }
 
-/* .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
-	color: #ddd;
-} */
+.load-wrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 10%;
+}
 
 @media (max-width: 3200px) and (min-width: 2750px) {
 	.grid-wrapper {
