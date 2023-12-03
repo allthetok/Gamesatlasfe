@@ -34,7 +34,6 @@ type IndGameProps = {
 const IndGame = ({ id, cover, platforms, rating, age_ratings, releaseDate, likes, title, genres, companies, liked } : IndGameProps) => {
 	const data = useSession()
 	const router = useRouter()
-	const path = usePathname()
 	const [userId, setUserId] = useState<string|null>(null)
 	const [gameLiked, setGameLiked] = useState(liked)
 

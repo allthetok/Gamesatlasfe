@@ -207,7 +207,7 @@ const createUserProfileConfig = (method: string, endpoint: string, userid: strin
 }
 
 const createUserLikeConfig = (method: string, endpoint: string, userid: string, gameid: string | number, gameObj: any, similarObj: any | null) => {
-	const gameObjExploreFormat = {
+	const gameObjExploreFormat = gameObj !== null ? {
 		id: gameObj.id,
 		age_ratings: gameObj.age_ratings,
 		cover: gameObj.cover,
@@ -219,7 +219,7 @@ const createUserLikeConfig = (method: string, endpoint: string, userid: string, 
 		title: gameObj.title,
 		genres: gameObj.genres,
 		involved_companies: gameObj.involved_companies,
-	}
+	} : null
 
 	return {
 		method: method,
