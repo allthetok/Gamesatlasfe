@@ -16,6 +16,7 @@ const Likes = () => {
 	const data = useSession()
 	const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
 	console.log(likeDataFetch)
+	console.log(likeDataFetch.map((item: any) => item.gameobj).map((gme: any) => gme.involved_companies))
 
 	return (
 		<div>
@@ -44,7 +45,7 @@ const Likes = () => {
 								{viewToggle === 'list' ?
 									<div className='grid-wrapper'>
 										{likeDataFetch.map((item: any) => (
-											<IndGame key={item.likeid} cover={item.gameobj.cover!} platforms={item.gameobj.platforms} rating={item.gameobj.rating} age_ratings={item.gameobj.age_ratings} releaseDate={item.gameobj.releaseDate} likes={item.gameobj.likes!} title={item.gameobj.title} genres={item.gameobj.genres} companies={item.gameobj.involved_companies}/>
+											<IndGame key={item.likeid} id={item.gameobj.id} cover={item.gameobj.cover!} platforms={item.gameobj.platforms} rating={item.gameobj.rating} age_ratings={item.gameobj.age_ratings} releaseDate={item.gameobj.releaseDate} likes={item.gameobj.likes!} title={item.gameobj.title} genres={item.gameobj.genres} companies={item.gameobj.involved_companies} liked={true}/>
 										))}
 									</div>
 									: <IndGameTable multiResp={likeDataFetch.map((item: any) => item.gameobj)} />

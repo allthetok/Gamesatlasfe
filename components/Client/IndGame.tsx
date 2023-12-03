@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { deleteGame, formattedYear, likeGame } from '../../helpers/fctns'
 import { AgeRatings, Companies, Platforms } from '../../../backendga/helpers/betypes'
@@ -34,6 +34,7 @@ type IndGameProps = {
 const IndGame = ({ id, cover, platforms, rating, age_ratings, releaseDate, likes, title, genres, companies, liked } : IndGameProps) => {
 	const data = useSession()
 	const router = useRouter()
+	const path = usePathname()
 	const [userId, setUserId] = useState<string|null>(null)
 	const [gameLiked, setGameLiked] = useState(liked)
 
@@ -72,7 +73,6 @@ const IndGame = ({ id, cover, platforms, rating, age_ratings, releaseDate, likes
 		}
 		else {
 			const returnResult = await deleteGame(userId!, String(id))
-			console.log(returnResult)
 			setGameLiked(returnResult.status !== 'deleted')
 		}
 	}
