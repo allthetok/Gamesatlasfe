@@ -15,6 +15,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Profile = () => {
 	const data = useSession()
+	console.log(data)
+
+
 	return (
 		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
