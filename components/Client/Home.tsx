@@ -22,7 +22,7 @@ const HomeCarousel = () => {
 				</h2>
 			</div>
 			<div className='home-carousel-wrapper'>
-				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} sx={{ maxWidth: '1500px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} sx={{ maxWidth: '1500px', display: 'flex', flexDirection: 'column', height: '100%'  }}>
 					{createObjArray(homeData).map((el: any) => (
 						<div className='home-grid-wrapper'>
 							{el.map((item: any) => (
