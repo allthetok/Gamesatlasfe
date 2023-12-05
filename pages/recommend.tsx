@@ -4,17 +4,24 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 'use client'
 import React, { Suspense } from 'react'
+import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { GetServerSidePropsContext } from 'next/types'
 import { RecommendPage } from '../components/Client/RecommendPage'
 import { Inter } from 'next/font/google'
-import '../src/app/globals.css'
 import { Footer } from '../components/Client/Footer'
+import '../src/app/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const Profile = () => {
-	const data = useSession()
+	const router = useRouter()
+	const data = useSession({
+		required: true,
+		onUnauthenticated() {
+			router.push('/signin')
+		}
+	})
 	return (
 		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>

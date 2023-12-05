@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React from 'react'
 import { homeData } from '../../mockdata/homedata'
@@ -6,9 +7,6 @@ import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { IndGame } from './IndGame'
-import './Artworks.css'
-import './GameDtl.css'
-import './IndGameList.css'
 import './Home.css'
 
 const HomeCarousel = () => {

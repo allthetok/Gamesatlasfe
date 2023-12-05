@@ -225,7 +225,7 @@
 	text-decoration: none;
   }
 
-  header {
+ .nav-header {
 	margin: 0;
 	background-color: var(--nav-bg);
 	/* display: flex; */

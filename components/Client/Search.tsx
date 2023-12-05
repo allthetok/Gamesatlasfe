@@ -52,7 +52,7 @@ const Search = () => {
 
 	return (
 		<div>
-			<header>
+			<header className='nav-header'>
 				<nav>
 					<ul className='nav-menu'>
 						<li className={currentPath === '/' ? 'nav-logo-active' : 'nav-logo'}>
