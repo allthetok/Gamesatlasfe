@@ -94,7 +94,7 @@ const homeData = [
 		'involved_companies': [
 			{
 				'name': 'Rockstar Games',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/wcqgg7udjjtzxjsqfnfi.jpg',
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8g0.jpg',
 				'officialSite': ''
 			}
 		]
@@ -713,7 +713,7 @@ const homeData = [
 			}
 		],
 		'rating': 96.34023594684825,
-		'ratingCount': 686,
+		'ratingCount': 687,
 		'releaseDate': '2022-02-25T00:00:00.000Z',
 		'likes': 118,
 		'title': 'Elden Ring',
@@ -770,6 +770,92 @@ const homeData = [
 			{
 				'name': 'TimeGate Studios',
 				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2v0.jpg',
+				'officialSite': ''
+			}
+		]
+	},
+	{
+		'id': 109241,
+		'age_ratings': {
+			'ESRB': 11,
+			'PEGI': 4
+		},
+		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5dfa.jpg',
+		'platforms': [
+			{
+				'name': 'PC (Microsoft Windows)',
+				'category': 4,
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
+				'id': 6,
+				'platform_family': 0
+			},
+			{
+				'name': 'PlayStation 4',
+				'category': 1,
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
+				'id': 48,
+				'platform_family': 1
+			},
+			{
+				'name': 'Xbox One',
+				'category': 1,
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl95.jpg',
+				'id': 49,
+				'platform_family': 2
+			},
+			{
+				'name': 'Nintendo Switch',
+				'category': 1,
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg',
+				'id': 130,
+				'platform_family': 5
+			},
+			{
+				'name': 'PlayStation 5',
+				'category': 1,
+				'url': '',
+				'id': 167,
+				'platform_family': 1
+			},
+			{
+				'name': 'Xbox Series X|S',
+				'category': 1,
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plfl.jpg',
+				'id': 169,
+				'platform_family': 2
+			}
+		],
+		'rating': 95.9352006248075,
+		'ratingCount': 46,
+		'releaseDate': '2021-03-31T00:00:00.000Z',
+		'likes': 14,
+		'title': 'The Binding of Isaac: Repentance',
+		'genres': [
+			{
+				'id': 5,
+				'name': 'Shooter'
+			},
+			{
+				'id': 12,
+				'name': 'Role-playing (RPG)'
+			},
+			{
+				'id': 31,
+				'name': 'Adventure'
+			},
+			{
+				'id': 32,
+				'name': 'Indie'
+			},
+			{
+				'id': 33,
+				'name': 'Arcade'
+			}
+		],
+		'involved_companies': [
+			{
+				'name': 'Edmund McMillen',
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2e0.jpg',
 				'officialSite': ''
 			}
 		]
@@ -838,92 +924,6 @@ const homeData = [
 				'name': 'Konami',
 				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl4vr.jpg',
 				'officialSite': 'https://www.konami.com/'
-			}
-		]
-	},
-	{
-		'id': 109241,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 4
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5dfa.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox One',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl95.jpg',
-				'id': 49,
-				'platform_family': 2
-			},
-			{
-				'name': 'Nintendo Switch',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg',
-				'id': 130,
-				'platform_family': 5
-			},
-			{
-				'name': 'PlayStation 5',
-				'category': 1,
-				'url': '',
-				'id': 167,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox Series X|S',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plfl.jpg',
-				'id': 169,
-				'platform_family': 2
-			}
-		],
-		'rating': 95.7469540328909,
-		'ratingCount': 45,
-		'releaseDate': '2021-03-31T00:00:00.000Z',
-		'likes': 14,
-		'title': 'The Binding of Isaac: Repentance',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 12,
-				'name': 'Role-playing (RPG)'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			},
-			{
-				'id': 32,
-				'name': 'Indie'
-			},
-			{
-				'id': 33,
-				'name': 'Arcade'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Edmund McMillen',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2e0.jpg',
-				'officialSite': ''
 			}
 		]
 	},
@@ -1129,7 +1129,7 @@ const homeData = [
 			},
 			{
 				'name': 'Quest',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl30d.jpg',
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8ew.jpg',
 				'officialSite': ''
 			}
 		]
@@ -1178,8 +1178,8 @@ const homeData = [
 				'platform_family': 0
 			}
 		],
-		'rating': 95.18366780679872,
-		'ratingCount': 193,
+		'rating': 95.18182182566692,
+		'ratingCount': 196,
 		'releaseDate': '2020-10-06T00:00:00.000Z',
 		'likes': 24,
 		'title': 'Baldur\'s Gate 3',
@@ -1258,7 +1258,7 @@ const homeData = [
 		'involved_companies': [
 			{
 				'name': 'Nintendo EPD Production Group No. 3',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl5xs.jpg',
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8cp.jpg',
 				'officialSite': ''
 			}
 		]
@@ -1279,8 +1279,8 @@ const homeData = [
 				'platform_family': 5
 			}
 		],
-		'rating': 95.01206510247775,
-		'ratingCount': 249,
+		'rating': 95.00799477744417,
+		'ratingCount': 251,
 		'releaseDate': '2023-05-12T00:00:00.000Z',
 		'likes': 1,
 		'title': 'The Legend of Zelda: Tears of the Kingdom',
@@ -1297,7 +1297,7 @@ const homeData = [
 		'involved_companies': [
 			{
 				'name': 'Nintendo EPD Production Group No. 3',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl5xs.jpg',
+				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8cp.jpg',
 				'officialSite': ''
 			}
 		]
@@ -1453,8 +1453,8 @@ const homeData = [
 				'platform_family': 1
 			}
 		],
-		'rating': 94.93979724679049,
-		'ratingCount': 2163,
+		'rating': 94.93973332604844,
+		'ratingCount': 2164,
 		'releaseDate': '2018-04-20T00:00:00.000Z',
 		'likes': 548,
 		'title': 'God of War',
@@ -1503,8 +1503,8 @@ const homeData = [
 				'platform_family': 1
 			}
 		],
-		'rating': 94.72789401105318,
-		'ratingCount': 280,
+		'rating': 94.72814067888162,
+		'ratingCount': 281,
 		'releaseDate': '2022-11-09T00:00:00.000Z',
 		'likes': 42,
 		'title': 'God of War Ragnarök',
@@ -1797,8 +1797,8 @@ const homeData = [
 				'platform_family': 5
 			}
 		],
-		'rating': 94.29903510674988,
-		'ratingCount': 775,
+		'rating': 94.29913846238097,
+		'ratingCount': 776,
 		'releaseDate': '2001-11-21T00:00:00.000Z',
 		'likes': 184,
 		'title': 'Super Smash Bros. Melee',
@@ -1887,1015 +1887,6 @@ const homeData = [
 				'name': 'CD Projekt RED',
 				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2dk.jpg',
 				'officialSite': 'http://cdpred.com/'
-			}
-		]
-	},
-	{
-		'id': 9262,
-		'age_ratings': {
-			'ESRB': 8,
-			'PEGI': 0
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2f3u.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'DOS',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/sqgw6vespav1buezgjjn.jpg',
-				'id': 13,
-				'platform_family': 0
-			},
-			{
-				'name': 'Mac',
-				'category': 4,
-				'url': '',
-				'id': 14,
-				'platform_family': 0
-			}
-		],
-		'rating': 94.20073577252295,
-		'ratingCount': 23,
-		'releaseDate': '1994-12-31T00:00:00.000Z',
-		'likes': 10,
-		'title': 'The Incredible Machine 2',
-		'genres': [
-			{
-				'id': 9,
-				'name': 'Puzzle'
-			},
-			{
-				'id': 15,
-				'name': 'Strategy'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Jeff Tunnell Productions',
-				'url': '',
-				'officialSite': ''
-			}
-		]
-	},
-	{
-		'id': 1073,
-		'age_ratings': {
-			'ESRB': 8,
-			'PEGI': 0
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2kn9.jpg',
-		'platforms': [
-			{
-				'name': 'Super Nintendo Entertainment System',
-				'category': 1,
-				'url': '',
-				'id': 19,
-				'platform_family': 5
-			},
-			{
-				'name': 'Super Famicom',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl7j.jpg',
-				'id': 58,
-				'platform_family': 5
-			},
-			{
-				'name': 'Satellaview',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plgj.jpg',
-				'id': 306,
-				'platform_family': 5
-			}
-		],
-		'rating': 93.97279817425385,
-		'ratingCount': 562,
-		'releaseDate': '1995-08-05T00:00:00.000Z',
-		'likes': 175,
-		'title': 'Super Mario World 2: Yoshi\'s Island',
-		'genres': [
-			{
-				'id': 8,
-				'name': 'Platform'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Nintendo EAD',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl5x4.jpg',
-				'officialSite': ''
-			}
-		]
-	},
-	{
-		'id': 236663,
-		'age_ratings': {
-			'ESRB': 10,
-			'PEGI': 3
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co658o.jpg',
-		'platforms': [
-			{
-				'name': 'Nintendo Switch',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg',
-				'id': 130,
-				'platform_family': 5
-			}
-		],
-		'rating': 93.97071620498131,
-		'ratingCount': 37,
-		'releaseDate': '2023-02-08T00:00:00.000Z',
-		'likes': 2,
-		'title': 'Metroid Prime Remastered',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 8,
-				'name': 'Platform'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Retro Studios',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8bj.jpg',
-				'officialSite': 'http://www.retrostudios.com'
-			}
-		]
-	},
-	{
-		'id': 1105,
-		'age_ratings': {
-			'ESRB': 10,
-			'PEGI': 3
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co3w4w.jpg',
-		'platforms': [
-			{
-				'name': 'Nintendo GameCube',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl7a.jpg',
-				'id': 21,
-				'platform_family': 5
-			}
-		],
-		'rating': 93.89719713645269,
-		'ratingCount': 676,
-		'releaseDate': '2002-11-17T00:00:00.000Z',
-		'likes': 249,
-		'title': 'Metroid Prime',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 8,
-				'name': 'Platform'
-			},
-			{
-				'id': 9,
-				'name': 'Puzzle'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Retro Studios',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8bj.jpg',
-				'officialSite': 'http://www.retrostudios.com'
-			}
-		]
-	},
-	{
-		'id': 5514,
-		'age_ratings': {
-			'ESRB': 9,
-			'PEGI': 3
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5phv.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'Mac',
-				'category': 4,
-				'url': '',
-				'id': 14,
-				'platform_family': 0
-			},
-			{
-				'name': 'Nintendo 3DS',
-				'category': 5,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6o.jpg',
-				'id': 37,
-				'platform_family': 5
-			},
-			{
-				'name': 'iOS',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6w.jpg',
-				'id': 39,
-				'platform_family': 0
-			}
-		],
-		'rating': 93.73493975903614,
-		'ratingCount': 9,
-		'releaseDate': '2009-11-25T00:00:00.000Z',
-		'likes': 3,
-		'title': 'Mystery Case Files: Dire Grove',
-		'genres': [
-			{
-				'id': 9,
-				'name': 'Puzzle'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Big Fish Studios',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2e1.jpg',
-				'officialSite': 'https://www.bigfishgames.com/blog/category/big-fish-studios/'
-			},
-			{
-				'name': 'Engine Software',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl1xv.jpg',
-				'officialSite': 'http://engine-software.com/'
-			}
-		]
-	},
-	{
-		'id': 1077,
-		'age_ratings': {
-			'ESRB': 8,
-			'PEGI': 1
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co21ro.jpg',
-		'platforms': [
-			{
-				'name': 'Wii',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl92.jpg',
-				'id': 5,
-				'platform_family': 5
-			}
-		],
-		'rating': 93.67547707985865,
-		'ratingCount': 942,
-		'releaseDate': '2007-11-01T00:00:00.000Z',
-		'likes': 228,
-		'title': 'Super Mario Galaxy',
-		'genres': [
-			{
-				'id': 8,
-				'name': 'Platform'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Nintendo EAD',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl5x4.jpg',
-				'officialSite': ''
-			}
-		]
-	},
-	{
-		'id': 27034,
-		'age_ratings': {
-			'ESRB': 8,
-			'PEGI': 1
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co23vg.jpg',
-		'platforms': [
-			{
-				'name': 'Linux',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plak.jpg',
-				'id': 3,
-				'platform_family': 4
-			},
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'Mac',
-				'category': 4,
-				'url': '',
-				'id': 14,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			},
-			{
-				'name': 'Nintendo Switch',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg',
-				'id': 130,
-				'platform_family': 5
-			},
-			{
-				'name': 'Oculus Quest',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plh7.jpg',
-				'id': 384,
-				'platform_family': 0
-			}
-		],
-		'rating': 93.64480613027173,
-		'ratingCount': 24,
-		'releaseDate': '2017-01-30T00:00:00.000Z',
-		'likes': 6,
-		'title': 'Linelight',
-		'genres': [
-			{
-				'id': 8,
-				'name': 'Platform'
-			},
-			{
-				'id': 9,
-				'name': 'Puzzle'
-			},
-			{
-				'id': 15,
-				'name': 'Strategy'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			},
-			{
-				'id': 32,
-				'name': 'Indie'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'My Dog Zorro',
-				'url': '',
-				'officialSite': ''
-			}
-		]
-	},
-	{
-		'id': 228,
-		'age_ratings': {
-			'ESRB': 10,
-			'PEGI': 3
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1xv9.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'Mac',
-				'category': 4,
-				'url': '',
-				'id': 14,
-				'platform_family': 0
-			}
-		],
-		'rating': 93.52980015611345,
-		'ratingCount': 251,
-		'releaseDate': '2008-11-13T00:00:00.000Z',
-		'likes': 94,
-		'title': 'World of Warcraft: Wrath of the Lich King',
-		'genres': [
-			{
-				'id': 12,
-				'name': 'Role-playing (RPG)'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Blizzard Entertainment',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl4mm.jpg',
-				'officialSite': 'http://blizzard.com'
-			}
-		]
-	},
-	{
-		'id': 124031,
-		'age_ratings': {
-			'ESRB': 10,
-			'PEGI': 4
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2f2q.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'iOS',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6w.jpg',
-				'id': 39,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			},
-			{
-				'name': 'Nintendo Switch',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg',
-				'id': 130,
-				'platform_family': 5
-			},
-			{
-				'name': 'PlayStation 5',
-				'category': 1,
-				'url': '',
-				'id': 167,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox Series X|S',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plfl.jpg',
-				'id': 169,
-				'platform_family': 2
-			}
-		],
-		'rating': 93.50276978046523,
-		'ratingCount': 7,
-		'releaseDate': '2019-09-16T00:00:00.000Z',
-		'likes': 1,
-		'title': 'Grindstone',
-		'genres': [
-			{
-				'id': 9,
-				'name': 'Puzzle'
-			},
-			{
-				'id': 15,
-				'name': 'Strategy'
-			},
-			{
-				'id': 32,
-				'name': 'Indie'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Capybara Games',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/crjw9eh7sskib3drzqou.jpg',
-				'officialSite': 'http://www.capybaragames.com/'
-			}
-		]
-	},
-	{
-		'id': 74,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 5
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co20ac.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 3',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/tuyy1nrqodtmbqajp4jg.jpg',
-				'id': 9,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox 360',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plha.jpg',
-				'id': 12,
-				'platform_family': 2
-			}
-		],
-		'rating': 93.48769963863069,
-		'ratingCount': 2167,
-		'releaseDate': '2010-01-26T00:00:00.000Z',
-		'likes': 802,
-		'title': 'Mass Effect 2',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 12,
-				'name': 'Role-playing (RPG)'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'BioWare',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl4vp.jpg',
-				'officialSite': 'http://www.bioware.com'
-			},
-			{
-				'name': 'BioWare Edmonton',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl5mt.jpg',
-				'officialSite': 'http://www.bioware.com/en/studios/bioware-edmonton/'
-			}
-		]
-	},
-	{
-		'id': 98077,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 0
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1twh.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox One',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl95.jpg',
-				'id': 49,
-				'platform_family': 2
-			}
-		],
-		'rating': 93.48128663698583,
-		'ratingCount': 35,
-		'releaseDate': '2018-04-20T00:00:00.000Z',
-		'likes': 21,
-		'title': 'Grand Theft Auto V: Premium Online Edition',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 10,
-				'name': 'Racing'
-			},
-			{
-				'id': 14,
-				'name': 'Sport'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Rockstar Games',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/wcqgg7udjjtzxjsqfnfi.jpg',
-				'officialSite': ''
-			}
-		]
-	},
-	{
-		'id': 145327,
-		'age_ratings': {
-			'ESRB': 8,
-			'PEGI': 1
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co2wwf.jpg',
-		'platforms': [
-			{
-				'name': 'Web browser',
-				'category': 3,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plal.jpg',
-				'id': 82,
-				'platform_family': 0
-			}
-		],
-		'rating': 93.31641285956007,
-		'ratingCount': 34,
-		'releaseDate': '2020-02-26T00:00:00.000Z',
-		'likes': 21,
-		'title': 'Town Star',
-		'genres': [
-			{
-				'id': 13,
-				'name': 'Simulator'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Gala Games',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl352.jpg',
-				'officialSite': 'https://gala.games/'
-			}
-		]
-	},
-	{
-		'id': 9927,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 4
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1r76.jpg',
-		'platforms': [
-			{
-				'name': 'PlayStation 3',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/tuyy1nrqodtmbqajp4jg.jpg',
-				'id': 9,
-				'platform_family': 1
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			}
-		],
-		'rating': 93.2626801703612,
-		'ratingCount': 804,
-		'releaseDate': '2016-09-15T00:00:00.000Z',
-		'likes': 250,
-		'title': 'Persona 5',
-		'genres': [
-			{
-				'id': 12,
-				'name': 'Role-playing (RPG)'
-			},
-			{
-				'id': 16,
-				'name': 'Turn-based strategy (TBS)'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Atlus',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/ckfhnwwfvnp7xmait71m.jpg',
-				'officialSite': 'http://www.atlusnet.jp/'
-			},
-			{
-				'name': 'P Studio',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/vmxfgljwew4grn7r7qwb.jpg',
-				'officialSite': 'http://p-ch.jp/'
-			}
-		]
-	},
-	{
-		'id': 25076,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 5
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1q1f.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox One',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl95.jpg',
-				'id': 49,
-				'platform_family': 2
-			},
-			{
-				'name': 'Google Stadia',
-				'category': 3,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl94.jpg',
-				'id': 170,
-				'platform_family': 0
-			}
-		],
-		'rating': 93.24044302322719,
-		'ratingCount': 1959,
-		'releaseDate': '2018-10-26T00:00:00.000Z',
-		'likes': 766,
-		'title': 'Red Dead Redemption 2',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 12,
-				'name': 'Role-playing (RPG)'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Rockstar Games',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/wcqgg7udjjtzxjsqfnfi.jpg',
-				'officialSite': ''
-			}
-		]
-	},
-	{
-		'id': 26192,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 5
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co5ziw.jpg',
-		'platforms': [
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			}
-		],
-		'rating': 93.1818961915842,
-		'ratingCount': 977,
-		'releaseDate': '2020-06-19T00:00:00.000Z',
-		'likes': 582,
-		'title': 'The Last of Us Part II',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Naughty Dog',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl52c.jpg',
-				'officialSite': 'http://www.naughtydog.com'
-			}
-		]
-	},
-	{
-		'id': 26758,
-		'age_ratings': {
-			'ESRB': 9,
-			'PEGI': 2
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1mxf.jpg',
-		'platforms': [
-			{
-				'name': 'Nintendo Switch',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg',
-				'id': 130,
-				'platform_family': 5
-			}
-		],
-		'rating': 93.12786008986254,
-		'ratingCount': 1292,
-		'releaseDate': '2017-10-27T00:00:00.000Z',
-		'likes': 369,
-		'title': 'Super Mario Odyssey',
-		'genres': [
-			{
-				'id': 8,
-				'name': 'Platform'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Nintendo',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8bi.jpg',
-				'officialSite': 'http://www.nintendo.com/'
-			}
-		]
-	},
-	{
-		'id': 1942,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 5
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co1wyy.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox One',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl95.jpg',
-				'id': 49,
-				'platform_family': 2
-			},
-			{
-				'name': 'Nintendo Switch',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg',
-				'id': 130,
-				'platform_family': 5
-			},
-			{
-				'name': 'PlayStation 5',
-				'category': 1,
-				'url': '',
-				'id': 167,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox Series X|S',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plfl.jpg',
-				'id': 169,
-				'platform_family': 2
-			}
-		],
-		'rating': 93.03270091868175,
-		'ratingCount': 3703,
-		'releaseDate': '2015-05-19T00:00:00.000Z',
-		'likes': 1542,
-		'title': 'The Witcher 3: Wild Hunt',
-		'genres': [
-			{
-				'id': 12,
-				'name': 'Role-playing (RPG)'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'CD Projekt RED',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl2dk.jpg',
-				'officialSite': 'http://cdpred.com/'
-			}
-		]
-	},
-	{
-		'id': 132181,
-		'age_ratings': {
-			'ESRB': 11,
-			'PEGI': 5
-		},
-		'cover': 'https://images.igdb.com/igdb/image/upload/t_1080p/co6bo0.jpg',
-		'platforms': [
-			{
-				'name': 'PC (Microsoft Windows)',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg',
-				'id': 6,
-				'platform_family': 0
-			},
-			{
-				'name': 'Mac',
-				'category': 4,
-				'url': '',
-				'id': 14,
-				'platform_family': 0
-			},
-			{
-				'name': 'iOS',
-				'category': 4,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6w.jpg',
-				'id': 39,
-				'platform_family': 0
-			},
-			{
-				'name': 'PlayStation 4',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg',
-				'id': 48,
-				'platform_family': 1
-			},
-			{
-				'name': 'PlayStation 5',
-				'category': 1,
-				'url': '',
-				'id': 167,
-				'platform_family': 1
-			},
-			{
-				'name': 'Xbox Series X|S',
-				'category': 1,
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/plfl.jpg',
-				'id': 169,
-				'platform_family': 2
-			}
-		],
-		'rating': 93.01571206869943,
-		'ratingCount': 158,
-		'releaseDate': '2023-03-24T00:00:00.000Z',
-		'likes': 6,
-		'title': 'Resident Evil 4',
-		'genres': [
-			{
-				'id': 5,
-				'name': 'Shooter'
-			},
-			{
-				'id': 9,
-				'name': 'Puzzle'
-			},
-			{
-				'id': 31,
-				'name': 'Adventure'
-			}
-		],
-		'involved_companies': [
-			{
-				'name': 'Capcom Development Division 1',
-				'url': 'https://images.igdb.com/igdb/image/upload/t_thumb/cl8bh.jpg',
-				'officialSite': ''
 			}
 		]
 	}
