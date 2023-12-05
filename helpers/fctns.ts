@@ -314,7 +314,15 @@ const deleteGame = async (userid: string, gameid: string) => {
 	return returnResult
 }
 
+const createObjArray = (homeData: any[]) => {
+	const homeDataArray: any[] = []
+	for (let i = 0; i < homeData.length; i = i + 3) {
+		homeDataArray.push(homeData.slice(i, i + 3))
+	}
+	return homeDataArray
+}
 
-export { ratingFloatToStar, createUserDetailsConfig, createUserGenericConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail, likeGame, deleteGame }
+
+export { ratingFloatToStar, createUserDetailsConfig, createUserGenericConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail, likeGame, deleteGame, createObjArray }
 
 

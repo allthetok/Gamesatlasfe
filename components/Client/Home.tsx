@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 import { homeData } from '../../mockdata/homedata'
+import { createObjArray } from '../../helpers/fctns'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -12,17 +13,14 @@ import './Home.css'
 
 const HomeCarousel = () => {
 
-	const createObjArray = (homeData: any[]) => {
-		const homeDataArray: any[] = []
-		for (let i = 0; i < homeData.length; i = i + 3) {
-			homeDataArray.push(homeData.slice(i, i + 3))
-		}
-		return homeDataArray
-	}
-
-
 	return (
-		<div className='home-wrapper'>
+		<div>
+			<div className='background-image background-home'></div>
+			<div className='header-title'>
+				<h2>
+					Welcome to GamesAtlas!
+				</h2>
+			</div>
 			<div className='home-carousel-wrapper'>
 				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} sx={{ maxWidth: '1500px', display: 'flex', flexDirection: 'column', height: '100%' }}>
 					{createObjArray(homeData).map((el: any) => (

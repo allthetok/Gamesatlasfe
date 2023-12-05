@@ -11,7 +11,37 @@
 	width: 1500px;
 }
 
+.background-image {
+	background: url(../../public/background-login.png);
+}
 
-.home-wrapper {
+.background-home {
+	z-index: -1;
+	margin-top: -100px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-size: cover;
+	background-position: top -95px center;
+    background-repeat: no-repeat;
+    position: fixed;
+}
 
+.header-title {
+	margin-left: auto;
+	margin-right: auto;
+	width:fit-content;
+}
+
+.header-title h2 {
+	font-size: 2.5rem;
+	color: #ddd;
+	padding-bottom: 2.5%;
+	opacity: 1;
+	font-weight: 700;
+	text-shadow:
+		-1px -1px 0 #1f2328,
+		1px -1px 0 #1f2328,
+		-1px 1px 0 #1f2328,
+		1px 1px 0 #1f2328;
 }
