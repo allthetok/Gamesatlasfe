@@ -9,8 +9,8 @@ import { useRouter } from 'next/router'
 import { Checkbox, FormControlLabel } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
-import './Login.css'
 import { regexValidEmail } from '../../helpers/fctns'
+import './Login.css'
 
 const Login = () => {
 	const router = useRouter()

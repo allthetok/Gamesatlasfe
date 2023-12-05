@@ -1,20 +1,17 @@
 .home-grid-wrapper {
-	grid-template-columns: repeat(2, minmax(450px, 1fr));
-	/* grid-auto-flow: column; */
+	grid-template-columns: repeat(3, minmax(450px, 1fr));
 	display: grid;
-	grid-gap: 1.5rem;
-	padding: 10px;
-	/* padding-bottom: 250px; */
+	grid-gap: 1rem;
+	padding: 10px 60px;
 }
 
 .home-carousel-wrapper {
-	/* display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 1500px; */
-	/* display: flex;
-	justify-content: center;
-	align-items: center; */
-	/* width: 950px; */
+	margin-left: auto;
+	margin-right: auto;
+	width: 1500px;
 }
 
+
+.home-wrapper {
+
+}

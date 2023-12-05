@@ -14,8 +14,8 @@ const HomeCarousel = () => {
 
 	const createObjArray = (homeData: any[]) => {
 		const homeDataArray: any[] = []
-		for (let i = 0; i < homeData.length; i = i + 4) {
-			homeDataArray.push(homeData.slice(i, i + 4))
+		for (let i = 0; i < homeData.length; i = i + 3) {
+			homeDataArray.push(homeData.slice(i, i + 3))
 		}
 		return homeDataArray
 	}
@@ -24,7 +24,7 @@ const HomeCarousel = () => {
 	return (
 		<div className='home-wrapper'>
 			<div className='home-carousel-wrapper'>
-				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} autoPlay={false} sx={{ maxWidth: '950px', display: 'flex', flexDirection: 'column', height: 'auto', marginLeft: '37.5%' }}>
+				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} sx={{ maxWidth: '1500px', display: 'flex', flexDirection: 'column', height: '100%' }}>
 					{createObjArray(homeData).map((el: any) => (
 						<div className='home-grid-wrapper'>
 							{el.map((item: any) => (
