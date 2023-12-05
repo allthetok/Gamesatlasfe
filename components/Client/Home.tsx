@@ -8,10 +8,9 @@ import { IndGame } from './IndGame'
 import './Artworks.css'
 import './GameDtl.css'
 import './IndGameList.css'
+import './Home.css'
 
 const HomeCarousel = () => {
-	const homeDataSliced = homeData.slice(0, 2)
-	const homeDataSliced2 = homeData.slice(3, 5)
 
 	const createObjArray = (homeData: any[]) => {
 		const homeDataArray: any[] = []
@@ -21,21 +20,20 @@ const HomeCarousel = () => {
 		return homeDataArray
 	}
 
-	console.log(createObjArray(homeData))
-
-
 
 	return (
 		<div className='home-wrapper'>
-			<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={10000} animation={'fade'}>
-				{createObjArray(homeData).map((el: any) => (
-					<div className='grid-wrapper'>
-						{el.map((item: any) => (
-							<IndGame key={item.id} id={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} companies={item.involved_companies} liked={false}  />
-						))}
-					</div>
-				))}
-			</Carousel>
+			<div className='home-carousel-wrapper'>
+				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} autoPlay={false} sx={{ maxWidth: '950px', display: 'flex', flexDirection: 'column', height: 'auto', marginLeft: '37.5%' }}>
+					{createObjArray(homeData).map((el: any) => (
+						<div className='home-grid-wrapper'>
+							{el.map((item: any) => (
+								<IndGame key={item.id} id={item.id} cover={item.cover} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes} title={item.title} genres={item.genres} companies={item.involved_companies} liked={false}  />
+							))}
+						</div>
+					))}
+				</Carousel>
+			</div>
 		</div>
 	)
 }
