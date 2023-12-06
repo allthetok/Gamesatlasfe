@@ -10,7 +10,7 @@ import '../src/app/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Profile = () => {
+const Recommendations = () => {
 	const router = useRouter()
 	const { data: session } = useSession({
 		required: true,
@@ -30,4 +30,4 @@ const Profile = () => {
 	)
 }
 
-export default Profile
+export default Recommendations

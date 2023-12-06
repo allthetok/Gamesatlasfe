@@ -2,8 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useLikes } from '../../hooks/useLikes'
-import { useSession } from 'next-auth/react'
 import { searchtermToString } from '../../helpers/fctns'
 import { LocalStorageObj, Companies, Explore, GlobalAuxiliaryObj, SimilarGamesObj } from '../../helpers/fetypes'
 import { IndGame } from '../Client/IndGame'
@@ -21,10 +19,6 @@ type SimilarProps = {
 }
 
 const Similar = ({ dataFetch, gameID }: SimilarProps) => {
-	const data = useSession()
-	const { likeDataFetch } = useLikes(data.data !== null ? data?.data.user?.id : null)
-
-
 	const auxiliaryObj: LocalStorageObj = {
 		gameID: gameID,
 		title: dataFetch.title,
@@ -34,7 +28,6 @@ const Similar = ({ dataFetch, gameID }: SimilarProps) => {
 		releaseDate: dataFetch.releaseDate
 	}
 
-
 	return (
 		<div>
 			<Search />
@@ -43,7 +36,7 @@ const Similar = ({ dataFetch, gameID }: SimilarProps) => {
 				<div>
 					<div className='similar-grid-wrapper'>
 						{dataFetch.similar_games.map((item: Explore) => (
-							<IndGame key={item.id} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={likeDataFetch.length !== 0 ? likeDataFetch.map((item: any) => item.gameobj).filter((game: any) => game.id === item.id).length !== 0 : false} />
+							<IndGame key={item.id} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={false} />
 						))}
 					</div>
 				</div>

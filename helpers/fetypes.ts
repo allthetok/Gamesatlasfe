@@ -1,4 +1,3 @@
-// import { AgeRatings, Categories, Companies, Covers, Languages, Platforms, Videos } from '../../backendga/helpers/betypes'
 type AgeRatings = {
 	ESRB: number,
 	PEGI: number

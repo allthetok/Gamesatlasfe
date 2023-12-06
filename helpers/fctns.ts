@@ -281,7 +281,6 @@ const regexValidEmail = (email: string) => {
 
 const likeGame = async (userid: string, gameid: string, gameObj: any, similarObj: any | null ) => {
 	const userLikeConfig = createUserLikeConfig('post', 'userLike', userid, gameid, gameObj, similarObj)
-	console.log(userLikeConfig)
 	let returnResult: any
 	await axios(userLikeConfig)
 		.then((response: AxiosResponse) => {
@@ -289,7 +288,7 @@ const likeGame = async (userid: string, gameid: string, gameObj: any, similarObj
 		})
 		.catch((err: AxiosError) => {
 			console.log(err)
-			return {
+			returnResult =  {
 				gameid: gameid,
 				status: 'nlike'
 			}

@@ -1,17 +1,17 @@
 'use client'
 import React, { Suspense } from 'react'
-import { Login } from '../components/Client/Login'
+import { Forgot } from '../components/Client/Forgot'
 import { Inter } from 'next/font/google'
-import '../src/app/globals.css'
 import { Footer } from '../components/Client/Footer'
+import '../src/app/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function SignInPage() {
+export default function ResetPass() {
 	return (
 		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<Login />
+				<Forgot />
 			</Suspense>
 		</main><Footer /></>
 

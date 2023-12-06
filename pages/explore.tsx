@@ -7,7 +7,7 @@ import { Footer } from '../components/Client/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Game() {
+export default function Explore() {
 	return (
 		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
