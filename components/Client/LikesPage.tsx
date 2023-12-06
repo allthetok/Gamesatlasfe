@@ -14,7 +14,6 @@ const LikesPage = () => {
 					<Likes />
 				</div>
 			</div>
-
 		</>
 	)
 }

@@ -11,13 +11,26 @@ import TableRowsIcon from '@mui/icons-material/TableRows'
 import { IndGameTable } from './IndGameTable'
 import './Recommend.css'
 import './IndGameList.css'
+import { Session } from 'next-auth'
 
-const Likes = () => {
+type LikesProps = {
+	user: Session['user']
+}
+// const user: InternalUser  OAuthUser | DefaultSession['user'] = session?.user
+// const user: (InternalUser & DefaultSession['user']) | (OAuthUser & DefaultSession['user']) = session?.user
+// console.log(session)
+// const user = session?.user
+// console.log(user)
+// console.log(user?.id)
+const Likes = ({ user }: LikesProps) => {
 	const [viewToggle, setViewToggle] = useState('list')
-	const data = useSession()
-	const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
-	console.log(likeDataFetch)
-	console.log(likeDataFetch.map((item: any) => item.gameobj).map((gme: any) => gme.involved_companies))
+	// const data = useSession()
+	// const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
+	// console.log(likeDataFetch)
+	// console.log(likeDataFetch.map((item: any) => item.gameobj).map((gme: any) => gme.involved_companies))
+	const { likeDataFetch, loading } = useLikes(user?.id)
+	// console.log(likeDataFetch)
+	// console.log(likeDataFetch.map((item: any) => item.gameobj).map((gme: any) => gme.involved_companies))
 
 	return (
 		<div>
@@ -37,7 +50,7 @@ const Likes = () => {
 			</div>
 			<div className='explore-wrap'>
 				<h3 className='title-recommend'>
-				All Games You&apos;ve Liked: {data.data?.user.username}
+				All Games You&apos;ve Liked: {user?.username}
 				</h3>
 				{!loading ?
 					<>
@@ -52,7 +65,12 @@ const Likes = () => {
 									: <IndGameTable multiResp={likeDataFetch.map((item: any) => item.gameobj)} />
 								}
 							</>
-							: <div> You haven&apos;t liked any games! </div>
+							:
+							<div className='header-title-error'>
+								<h2>
+									You haven&apos;t liked any games!
+								</h2>
+							</div>
 						}
 					</>
 					:

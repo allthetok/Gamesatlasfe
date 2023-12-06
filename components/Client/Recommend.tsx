@@ -27,6 +27,15 @@ type RecommendProps = {
 }
 
 const Recommend = ({ userData }: RecommendProps) => {
+
+	// const user: InternalUser  OAuthUser | DefaultSession['user'] = session?.user
+	// const user: (InternalUser & DefaultSession['user']) | (OAuthUser & DefaultSession['user']) = session?.user
+	// console.log(session)
+	// const user = session?.user
+	// console.log(user)
+	// console.log(user?.id)
+
+
 	const [errorIGDB, setErrorIGDB] = useState('')
 	const [loadingIGDB, setLoadingIGDB] = useState(true)
 	const [userPrefList, setUserPrefList] = useState<PreferencesRecList[]>([])
