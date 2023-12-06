@@ -284,4 +284,21 @@ interface Explore {
 }
 
 
-export type { ButtonField, GameDetailObj, Explore, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, ProfilePrefSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList, PreferencesRecList, SimpleUserLikeConfig }
+interface InternalUser {
+	emailVerified: boolean,
+	externalId: string | null,
+	id: string,
+	profileid: string,
+	provider: string,
+}
+
+interface OAuthUser {
+	emailVerified: boolean,
+	externalId: string | null,
+	id: string,
+	profileid: string,
+	provider: string,
+}
+
+
+export type { InternalUser, OAuthUser, ButtonField, GameDetailObj, Explore, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, ProfilePrefSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList, PreferencesRecList, SimpleUserLikeConfig }

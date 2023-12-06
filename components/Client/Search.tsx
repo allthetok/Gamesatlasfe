@@ -31,10 +31,7 @@ const Search = () => {
 	const currentPath = usePathname()
 
 
-	const { data: session } = useSession()
-	console.log(session)
-	// console.log(session)
-	// console.log(currentPath)
+	const data = useSession()
 
 	const handleChange= (e: React.ChangeEvent<HTMLInputElement>) => {
 		setGameSearch(e.target.value)
@@ -125,7 +122,7 @@ const Search = () => {
 									</Link>
 								</li>
 								<li className='nav-profile'>
-									{session ?
+									{data.status === 'authenticated' ?
 										<div onClick={() => signOut()} className='link-a-icon'>
 											<div className={currentPath === '/api/auth/' ? 'link-icon-text-active': 'link-icon-text'}>
 												<IconButton sx={{ color: '#ddd', padding: 'none' }}>

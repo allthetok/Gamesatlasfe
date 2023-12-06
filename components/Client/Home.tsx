@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React from 'react'
+import { useSession } from 'next-auth/react'
 import { homeData } from '../../mockdata/homedata'
 import { createObjArray } from '../../helpers/fctns'
 import Carousel from 'react-material-ui-carousel'
@@ -11,6 +12,12 @@ import './Home.css'
 
 const HomeCarousel = () => {
 
+	const { data: session }= useSession()
+	// const user: InternalUser  OAuthUser | DefaultSession['user'] = session?.user
+	// const user: (InternalUser & DefaultSession['user']) | (OAuthUser & DefaultSession['user']) = session?.user
+	const user = session?.user
+	console.log(user)
+	console.log(user?.id)
 	return (
 		<div>
 			<div className='background-image background-home'></div>

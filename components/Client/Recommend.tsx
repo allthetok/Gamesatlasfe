@@ -17,6 +17,7 @@ import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
 import { Explore } from '../../helpers/fetypes'
 import { theme } from '../../sxstyling/theme'
+import { Session } from 'next-auth'
 import './Recommend.css'
 import './IndGameList.css'
 
@@ -34,6 +35,9 @@ const Recommend = ({ userData }: RecommendProps) => {
 	const [limit, setLimit] = useState('10')
 
 	const data = useSession()
+	const sessionData: Session | null = data.data
+
+
 	const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
 
 	const numOptions = ['7', '10', '25', '50']
