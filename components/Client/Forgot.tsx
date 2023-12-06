@@ -63,9 +63,10 @@ const Forgot = () => {
 			await axios(resolveUserConfig)
 				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
-						setUserId(response.data.userId)
+						setUserId(response.data.userid)
 						setProfileId(response.data.profileid)
 						setVerificationStage('emailcode')
+						setError('')
 					}
 				})
 		}
@@ -80,23 +81,29 @@ const Forgot = () => {
 				'Content-Type': 'application/json'
 			},
 			data: {
-				'email': email,
-				'provider': 'GamesAtlas'
+				'email': email
 			}
 		}
 		await axios(retrieveCodeConfig)
 			.then((response: any) => {
-				if (response.data.passcode === passcode) {
+				if (response.data.verificationcode === passcode) {
 					setVerificationStage('password')
+					setError('')
 				}
 				else {
-					setError('Incorrect passcode sent')
+					setError('Incorrect passcode entered')
 				}
 			})
 	}
 
 	const handlePasswordSubmit = async (e: any) => {
 		e.preventDefault()
+
+		if (password !== verPassword) {
+			setError('Passwords do not match')
+			return
+		}
+
 		const patchPasswordConfig = {
 			method: 'patch',
 			url: 'http://localhost:5000/api/userDetails',
@@ -248,7 +255,7 @@ const Forgot = () => {
 									</div>
 								</div>
 							</form>
-							<div className={password === verPassword ? 'enter-wrap' : 'enter-disabled-wrap'}>
+							<div className={password.length === verPassword.length ? 'enter-wrap' : 'enter-disabled-wrap'}>
 								<button type='submit' className='enter-btn-wrap' onClick={handlePasswordSubmit}>
 									<SvgIcon fontSize='large'>
 										<ArrowForwardIcon />
