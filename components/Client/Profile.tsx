@@ -20,12 +20,13 @@ import './Profile.css'
 
 
 type ProfileProps = {
-	// userData: Session | null
-	userData: any
+	user: Session['user'] | undefined
 }
 
-const Profile = ({ userData }: ProfileProps) => {
-	const data = useSession()
+const Profile = ({ user }: ProfileProps) => {
+	// const data = useSession()
+
+
 	const [editAcct, setEditAcct] = useState(false)
 	const [editGame, setEditGame] = useState(false)
 	const [loading, setLoading] = useState(true)
@@ -53,8 +54,8 @@ const Profile = ({ userData }: ProfileProps) => {
 			})
 			.catch((err: any) => {
 				console.log(err)
-				setEmail(userData.data.user.email)
-				setUsername(userData.data.user.username)
+				setEmail(user!.email)
+				setUsername(user!.username)
 			})
 	}
 
@@ -166,12 +167,12 @@ const Profile = ({ userData }: ProfileProps) => {
 	}
 
 	useEffect(() => {
-		if (data.status === 'authenticated') {
+		if (user !== undefined ) {
 			setLoading(false)
-			getUserNameProfile(userData.data.user.id, userData.data.user.profileid, userData.data.user.provider)
-			getUserPrefProfile(userData.data.user.id, userData.data.user.profileid)
+			getUserNameProfile(user.id, user.profileid, user.provider)
+			getUserPrefProfile(user.id, user.profileid)
 		}
-	}, [data, editGame, editAcct])
+	}, [user, editGame, editAcct])
 
 	return (
 		<div>
@@ -183,7 +184,7 @@ const Profile = ({ userData }: ProfileProps) => {
 						</div>
 						<div className='intro-container'>
 							<div className='intro-avatar'>
-								<a><img className='intro-img' src={(userData?.data.user?.image !== undefined && userData?.data.user?.image !== null) ? userData.data.user.image : '/icons8-user-64.png'} alt='User Avatar'/></a>
+								<a><img className='intro-img' src={(user?.image !== undefined && user?.image !== null) ? user.image : '/icons8-user-64.png'} alt='User Avatar'/></a>
 								{errorAcct !== '' ? (
 									<div className='error-credentials'>
 										<span>Error: {errorAcct}</span>
@@ -194,12 +195,12 @@ const Profile = ({ userData }: ProfileProps) => {
 							</div>
 							<div className='intro-name'>
 								<div className='name-container'>
-									<span>{userData.data.user.provider !== 'GamesAtlas' ? userData.data.user.name : username}</span>
+									<span>{user!.provider !== 'GamesAtlas' ? user?.name : username}</span>
 								</div>
 								<div className='id-container'>
-									<span>GamesAtlas ID: {userData.data.user.id}</span>
-									{userData.data.user.externalId ? (
-										<span>{userData.data.user.provider} ID: {userData.data.user.externalId}</span>
+									<span>GamesAtlas ID: {user!.id}</span>
+									{user!.externalId ? (
+										<span>{user!.provider} ID: {user?.externalId}</span>
 									): <></>}
 								</div>
 							</div>
@@ -213,14 +214,14 @@ const Profile = ({ userData }: ProfileProps) => {
 										<Typography sx={{ flex: '1 1 100%',  fontWeight: '700' }} variant='h6' id='tableTitle' component='div'>
 										Account Info
 										</Typography>
-										{userData.data.user.provider === 'GamesAtlas' ?
+										{user!.provider === 'GamesAtlas' ?
 											<>
 												{!editAcct ? <IconButton color='inherit' size='large' onClick={() => setEditAcct(!editAcct)}>
 													<EditIcon/>
 												</IconButton>
 													:
 													<div className='btn-save-cancel-wrap'>
-														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserDetails(userData.data.user.id, userData.data.user.profileid, usernameInput, emailInput, username, email)}>
+														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserDetails(user!.id, user!.profileid, usernameInput, emailInput, username, email)}>
 														Save Changes
 														</Button>
 														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => {
@@ -281,7 +282,7 @@ const Profile = ({ userData }: ProfileProps) => {
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
 														<IconButton color='inherit' size='small'>
-															{(!userData.data.user.emailVerified && userData.data.user.provider === 'GamesAtlas') ?
+															{(!user!.emailVerified && user!.provider === 'GamesAtlas') ?
 																<CheckBoxOutlineBlankIcon/> : <CheckBoxIcon/>}
 															{/* <CheckBoxOutlineBlankIcon/> */}
 														</IconButton>
@@ -292,7 +293,7 @@ const Profile = ({ userData }: ProfileProps) => {
 														Previous Login:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
-														{new Date(Number(userData.data.user.token.iat) * 1000).toLocaleString()}
+														{new Date(Date.now()).toLocaleString()}
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
@@ -300,7 +301,7 @@ const Profile = ({ userData }: ProfileProps) => {
 														Account Created By:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
-														{userData.data.user.provider}
+														{user!.provider}
 													</TableCell>
 												</TableRow>
 												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
@@ -308,16 +309,16 @@ const Profile = ({ userData }: ProfileProps) => {
 														GamesAtlas ID:
 													</TableCell>
 													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
-														{userData.data.user.id}
+														{user!.id}
 													</TableCell>
 												</TableRow>
-												{userData.data.user.externalId !== null ?
+												{user!.externalId !== null ?
 													<TableRow sx={{ backgroundColor: '#1b1e22' }}>
 														<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
-															{userData.data.user.provider} ID:
+															{user!.provider} ID:
 														</TableCell>
 														<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='td' align='right'>
-															{userData.data.user.externalId}
+															{user!.externalId}
 														</TableCell>
 													</TableRow>
 													: <></>
@@ -340,7 +341,7 @@ const Profile = ({ userData }: ProfileProps) => {
 										</IconButton>
 											:
 											<div className='btn-save-cancel-wrap'>
-												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserGamePref(userData.data.user.id, userData.data.user.profileid, platforms, genres, themes, gameModes)}>
+												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserGamePref(user!.id, user!.profileid, platforms, genres, themes, gameModes)}>
 												Save Changes
 												</Button>
 												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(false)}>

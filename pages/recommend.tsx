@@ -7,7 +7,8 @@ import React, { Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { GetServerSidePropsContext } from 'next/types'
-import { RecommendPage } from '../components/Client/RecommendPage'
+import { Search } from '../components/Client/Search'
+import { Recommend } from '../components/Client/Recommend'
 import { Inter } from 'next/font/google'
 import { Footer } from '../components/Client/Footer'
 import '../src/app/globals.css'
@@ -16,7 +17,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Profile = () => {
 	const router = useRouter()
-	const data = useSession({
+	const { data: session } = useSession({
 		required: true,
 		onUnauthenticated() {
 			router.push('/signin')
@@ -25,7 +26,10 @@ const Profile = () => {
 	return (
 		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<RecommendPage userData={data} />
+				<>
+					<Search/>
+					<Recommend user={session?.user}/>
+				</>
 			</Suspense>
 		</main><Footer /></>
 	)

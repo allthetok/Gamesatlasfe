@@ -11,12 +11,14 @@ import { ProfilePage } from '../components/Client/ProfilePage'
 import { Inter } from 'next/font/google'
 import { Footer } from '../components/Client/Footer'
 import '../src/app/globals.css'
+import { Search } from '../components/Client/Search'
+import { Profile } from '../components/Client/Profile'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Profile = () => {
+const Prof = () => {
 	const router = useRouter()
-	const data = useSession({
+	const { data: session } = useSession({
 		required: true,
 		onUnauthenticated() {
 			router.push('/signin')
@@ -26,11 +28,14 @@ const Profile = () => {
 	return (
 		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
-				<ProfilePage userData={data} />
+				<>
+					<Search/>
+					<Profile user={session?.user}/>
+				</>
 			</Suspense>
 		</main><Footer /></>
 
 	)
 }
 
-export default Profile
+export default Prof

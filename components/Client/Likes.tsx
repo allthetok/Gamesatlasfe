@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState } from 'react'
 import { useLikes } from '../../hooks/useLikes'
-import { useSession } from 'next-auth/react'
 import ReactLoading from 'react-loading'
 import { IndGame } from './IndGame'
 import { Button, SvgIcon } from '@mui/material'
@@ -14,7 +13,7 @@ import './IndGameList.css'
 import { Session } from 'next-auth'
 
 type LikesProps = {
-	user: Session['user']
+	user: Session['user'] | undefined
 }
 // const user: InternalUser  OAuthUser | DefaultSession['user'] = session?.user
 // const user: (InternalUser & DefaultSession['user']) | (OAuthUser & DefaultSession['user']) = session?.user

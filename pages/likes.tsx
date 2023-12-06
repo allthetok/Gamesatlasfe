@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 'use client'
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { redirect, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { LikesPage } from '../components/Client/LikesPage'
@@ -18,7 +19,7 @@ import '../components/Client/IndGameList.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Game() {
+const Like = () => {
 	const router = useRouter()
 	const { data: session } = useSession({
 		required: true,
@@ -26,6 +27,7 @@ export default function Game() {
 			router.push('/signin')
 		}
 	})
+
 	return (
 		<><main className={inter.className}>
 			<Suspense fallback={<div>Loading...</div>}>
@@ -42,6 +44,8 @@ export default function Game() {
 
 	)
 }
+
+export default Like
 
 // const Likes = (props: { session: Session | null }) => {
 // 	if (props.session === null) {

@@ -23,10 +23,10 @@ import './IndGameList.css'
 
 
 type RecommendProps = {
-	userData: any
+	user: Session['user'] | undefined
 }
 
-const Recommend = ({ userData }: RecommendProps) => {
+const Recommend = ({ user }: RecommendProps) => {
 
 	// const user: InternalUser  OAuthUser | DefaultSession['user'] = session?.user
 	// const user: (InternalUser & DefaultSession['user']) | (OAuthUser & DefaultSession['user']) = session?.user
@@ -43,11 +43,11 @@ const Recommend = ({ userData }: RecommendProps) => {
 	const [viewToggle, setViewToggle] = useState('list')
 	const [limit, setLimit] = useState('10')
 
-	const data = useSession()
-	const sessionData: Session | null = data.data
+	// const data = useSession()
+	// const sessionData: Session | null = data.data
 
 
-	const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
+	const { likeDataFetch, error, loading } = useLikes(user?.id)
 
 	const numOptions = ['7', '10', '25', '50']
 
@@ -104,10 +104,13 @@ const Recommend = ({ userData }: RecommendProps) => {
 	}
 
 	useEffect(() => {
-		if (data.status === 'authenticated') {
-			getUserPrefProfile(userData.data.user.id, userData.data.user.profileid)
+		// if (data.status === 'authenticated') {
+		if (user !== undefined ) {
+			getUserPrefProfile(user!.id, user!.profileid)
+
 		}
-	}, [data, limit])
+		// }
+	}, [user, limit])
 
 	return (
 		<div>
@@ -154,7 +157,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 									: <IndGameTable multiResp={userSimilarRecList} />}
 							</>
 							: <h3 className='title-recommend'>
-						For Recommendations Fill Your List
+								For Recommendations Fill Your List
 							</h3>
 						}
 					</>
@@ -190,7 +193,7 @@ const Recommend = ({ userData }: RecommendProps) => {
 							))}
 						</>
 						: <h3 className='title-recommend'>
-							For More Recommendations Edit Your Profile Game Info
+							Unable to retrieve recommendations based on your Profile Game Preferences
 						</h3>
 					}
 				</>
