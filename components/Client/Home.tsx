@@ -7,6 +7,7 @@ import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { IndGame } from './IndGame'
+import { CarouselSx } from '../../sxstyling/styles'
 import './Home.css'
 
 const HomeCarousel = () => {
@@ -19,7 +20,7 @@ const HomeCarousel = () => {
 				</h2>
 			</div>
 			<div className='home-carousel-wrapper'>
-				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} sx={{ maxWidth: '1500px', display: 'flex', flexDirection: 'column', height: '100%'  }}>
+				<Carousel NextIcon={<ArrowForwardIcon/>} PrevIcon={<ArrowBackIcon/>} stopAutoPlayOnHover={true} interval={5000} animation={'fade'} sx={CarouselSx}>
 					{createObjArray(homeData).map((el: any) => (
 						<div className='home-grid-wrapper'>
 							{el.map((item: any) => (

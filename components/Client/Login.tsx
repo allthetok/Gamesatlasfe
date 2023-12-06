@@ -42,7 +42,6 @@ const Login = () => {
 			const userEmail = await axios(retrieveUserEmailConfig)
 				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
-						console.log(response)
 						return {
 							email: response.data.email
 						}
@@ -54,7 +53,6 @@ const Login = () => {
 					}
 				})
 				.catch((err: AxiosError) => {
-					console.log(err)
 					return {
 						email: null
 					}
@@ -72,7 +70,6 @@ const Login = () => {
 				router.push('/')
 			}
 			else {
-				console.log('Error :', signInResponse)
 				setError('Incorrect password')
 			}
 		}
@@ -92,7 +89,6 @@ const Login = () => {
 					}
 				})
 				.catch((err: AxiosError) => {
-					console.log(err)
 					return {
 						userExists: false
 					}
@@ -111,7 +107,6 @@ const Login = () => {
 				router.push('/')
 			}
 			else {
-				console.log('Error :', signInResponse)
 				setError('Incorrect password')
 			}
 		}

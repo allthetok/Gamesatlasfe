@@ -16,7 +16,6 @@ const CompanySearchList = ({ searchterm, handleCompanyAdd }: CompanySearchListPr
 	const termSearchConfig = createInnerSearchConfig('post', 'companysearch', searchterm!, 'name, logo')
 
 	const getSearchDtl = async (searchConfig: SimpleNullableSearchConfig) => {
-		console.log(searchConfig)
 		await axios(searchConfig)
 			.then((response) => {
 				if (response.data.length === 0 || response.status === 404) {

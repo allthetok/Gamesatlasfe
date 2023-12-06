@@ -16,7 +16,6 @@ const SuggestionList = ({ searchterm, onClick }: SuggestionListProps) => {
 	const termSearchConfig = createGameDtlConfig('post', 'search', searchterm!)
 
 	const getSearchDtl = async (searchConfig: SimpleSearchConfig) => {
-		console.log(searchConfig)
 		await axios(searchConfig)
 			.then((response) => {
 				if (response.data.length === 0 || response.status === 404) {

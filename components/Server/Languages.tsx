@@ -12,6 +12,7 @@ import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, spl
 import { NavGame } from '../Server/NavGame'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'
+import { GameTableSx, TableCell300Sx, TextAlignSx } from '../../sxstyling/styles'
 
 
 type LanguageProps = {
@@ -62,7 +63,7 @@ const TableCells = ({ language_supports }: LanguageObj) => {
 	return (
 		<TableRow>
 			{supportTypes.map((item: any) => (
-				<TableCell key={item} align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+				<TableCell key={item} align='center' sx={TableCell300Sx}>
 					{item}
 				</TableCell>
 			))}
@@ -75,9 +76,9 @@ const TableRows = ({ language_supports }: LanguageObj) => {
 	return (
 		<>
 			{formattedLanguageTable.map((item: LanguageTable) => (
-				<TableRow sx={{ textAlign: 'center' }}>
+				<TableRow sx={TextAlignSx}>
 					{item.language_support_types.map((arr: any) => (
-						<TableCell align='center' sx={{ color: '#ddd' }}>
+						<TableCell align='center' sx={TextAlignSx}>
 							{arr !== '' ? `${item.native} (${item.locale})` : ''}
 						</TableCell>
 					)
@@ -108,7 +109,7 @@ const Languages = ({ dataFetch, gameID }: LanguageProps) => {
 					<NavGame title={dataFetch.title} gameID={gameID} searchterm={searchtermToString(useRouter().query.searchterm!)}/>
 					<div>
 						<TableContainer component={Paper}>
-							<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
+							<Table sx={GameTableSx} aria-label='language table'>
 								<TableHead>
 									<TableCells language_supports={dataFetch!.language_supports}/>
 								</TableHead>

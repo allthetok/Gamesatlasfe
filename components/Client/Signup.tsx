@@ -47,7 +47,6 @@ const Signup = () => {
 					}
 				})
 				.catch((err: AxiosError) => {
-					console.log(err)
 					return {
 						userExists: false
 					}
@@ -67,7 +66,6 @@ const Signup = () => {
 				router.push('/')
 			}
 			else {
-				console.log('Error :', signInResponse)
 				setError('Invalid email or password')
 			}
 		}

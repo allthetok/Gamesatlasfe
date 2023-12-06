@@ -8,7 +8,7 @@ import ReactLoading from 'react-loading'
 import { Session } from 'next-auth'
 import { TableContainer, Paper, Table, TableHead, TableBody, TableRow, Box, Typography, TableCell, Button, IconButton, TextField } from '@mui/material'
 import { gameModesButtonArray, genresButtonArray, platformButtonArray, themesButtonArray } from '../../helpers/button'
-import { BoxActiveSx, BoxNoBorderSx, ButtonActiveSx, ButtonSx } from '../../sxstyling/styles'
+import { AccountBoxSx, AccountTypographySx, AllCellDSx, AllCellHSx, BackgroundColourSx, BoxActiveSx, BoxNoBorderSx, ButtonActiveSx, ButtonSx, CancelButtonSx, EmailTextFieldSx, PaperProfileSx, PlatformCellDSx, PlatformCellHSx, PrefBoxSx, ProfileCellSx, SaveButtonSx, TableAccSx, TableCellColourSx, TablePrefSx, UserNameTextFieldSx } from '../../sxstyling/styles'
 import EditIcon from '@mui/icons-material/Edit'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
@@ -47,7 +47,6 @@ const Profile = ({ user }: ProfileProps) => {
 				setUsername(response.data.username)
 			})
 			.catch((err: any) => {
-				console.log(err)
 				setEmail(user!.email)
 				setUsername(user!.username)
 			})
@@ -65,7 +64,7 @@ const Profile = ({ user }: ProfileProps) => {
 				setGameModes(prefData.gamemodes)
 			})
 			.catch((err: any) => {
-				console.log(err)
+				return
 			})
 	}
 
@@ -115,7 +114,6 @@ const Profile = ({ user }: ProfileProps) => {
 				})
 				.catch((err: any) => {
 					setErrorAcct(err.response.data.error)
-					console.log(err)
 				})
 		}
 	}
@@ -127,7 +125,7 @@ const Profile = ({ user }: ProfileProps) => {
 				setEditGame(false)
 			})
 			.catch((err: any) => {
-				console.log(err)
+				return
 			})
 	}
 
@@ -173,10 +171,10 @@ const Profile = ({ user }: ProfileProps) => {
 					</div>
 					<div className='account-details-wrapper'>
 						<div className='account-table-wrapper'>
-							<Box sx={{ width: '500px' }}>
-								<Paper sx={{ width: '100%', mb: 2, color: '#ddd', backgroundColor: '#1b1e22' }}>
+							<Box sx={AccountBoxSx}>
+								<Paper sx={PaperProfileSx}>
 									<div className='table-heading-flex'>
-										<Typography sx={{ flex: '1 1 100%',  fontWeight: '700' }} variant='h6' id='tableTitle' component='div'>
+										<Typography sx={AccountTypographySx} variant='h6' id='tableTitle' component='div'>
 										Account Info
 										</Typography>
 										{user!.provider === 'GamesAtlas' ?
@@ -186,10 +184,10 @@ const Profile = ({ user }: ProfileProps) => {
 												</IconButton>
 													:
 													<div className='btn-save-cancel-wrap'>
-														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserDetails(user!.id, user!.profileid, usernameInput, emailInput, username, email)}>
+														<Button sx={SaveButtonSx} color='inherit' size='large' onClick={() => updateUserDetails(user!.id, user!.profileid, usernameInput, emailInput, username, email)}>
 														Save Changes
 														</Button>
-														<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => {
+														<Button sx={CancelButtonSx} color='inherit' size='large' onClick={() => {
 															setEditAcct(false)
 															setUsernameInput('')
 															setEmailInput('')
@@ -202,17 +200,17 @@ const Profile = ({ user }: ProfileProps) => {
 
 									</div>
 									<TableContainer component={Paper}>
-										<Table sx={{ minWidth: 350, color: '#ddd', backgroundColor: '#1b1e22' }} aria-label='Account Details table'>
+										<Table sx={TableAccSx} aria-label='Account Details table'>
 											<TableHead>
 											</TableHead>
 											<TableBody>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={ProfileCellSx} component='th' scope='row' padding='none'>
 														Username:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
+													<TableCell sx={TableCellColourSx} component='td' align='right'>
 														{editAcct ? <TextField
-															sx={{ backgroundColor: 'white', borderRadius: '4px', fontSize: '1rem', border: 'none' }}
+															sx={UserNameTextFieldSx}
 															id='outlined-user-input'
 															label='Username'
 															value={usernameInput}
@@ -223,14 +221,14 @@ const Profile = ({ user }: ProfileProps) => {
 															<p>{username}</p>}
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={ProfileCellSx} component='th' scope='row' padding='none'>
 														Email:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
+													<TableCell sx={TableCellColourSx} component='td' align='right'>
 														{editAcct ?
 															<TextField
-																sx={{ backgroundColor: 'white', borderRadius: '4px', fontSize: '1rem' }}
+																sx={EmailTextFieldSx}
 																id='outlined-email-input'
 																label='Email'
 																value={emailInput}
@@ -241,11 +239,11 @@ const Profile = ({ user }: ProfileProps) => {
 															<p>{email}</p>}
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={ProfileCellSx} component='th' scope='row' padding='none'>
 														Email Verified:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
+													<TableCell sx={TableCellColourSx} component='td' align='right'>
 														<IconButton color='inherit' size='small'>
 															{(!user!.emailVerified && user!.provider === 'GamesAtlas') ?
 																<CheckBoxOutlineBlankIcon/> : <CheckBoxIcon/>}
@@ -253,36 +251,36 @@ const Profile = ({ user }: ProfileProps) => {
 														</IconButton>
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={ProfileCellSx} component='th' scope='row' padding='none'>
 														Previous Login:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
+													<TableCell sx={TableCellColourSx} component='td' align='right'>
 														{new Date(Date.now()).toLocaleString()}
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={ProfileCellSx} component='th' scope='row' padding='none'>
 														Account Created By:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
+													<TableCell sx={TableCellColourSx} component='td' align='right'>
 														{user!.provider}
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={ProfileCellSx} component='th' scope='row' padding='none'>
 														GamesAtlas ID:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd' }} component='td' align='right'>
+													<TableCell sx={TableCellColourSx} component='td' align='right'>
 														{user!.id}
 													</TableCell>
 												</TableRow>
 												{user!.externalId !== null ?
-													<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-														<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='th' scope='row' padding='none'>
+													<TableRow sx={BackgroundColourSx}>
+														<TableCell sx={ProfileCellSx} component='th' scope='row' padding='none'>
 															{user!.provider} ID:
 														</TableCell>
-														<TableCell sx={{ color: '#ddd', fontWeight: '600' }} component='td' align='right'>
+														<TableCell sx={ProfileCellSx} component='td' align='right'>
 															{user!.externalId}
 														</TableCell>
 													</TableRow>
@@ -295,10 +293,10 @@ const Profile = ({ user }: ProfileProps) => {
 							</Box>
 						</div>
 						<div className='game-preferences-table-wrapper'>
-							<Box sx={{ width: '950px' }}>
-								<Paper sx={{ width: '100%', mb: 2, color: '#ddd', backgroundColor: '#1b1e22' }}>
+							<Box sx={PrefBoxSx}>
+								<Paper sx={PaperProfileSx}>
 									<div className='table-heading-flex'>
-										<Typography sx={{ flex: '1 1 100%', fontWeight: '700' }} variant='h6' id='tableTitle' component='div'>
+										<Typography sx={AccountTypographySx} variant='h6' id='tableTitle' component='div'>
 										Game Preferences
 										</Typography>
 										{!editGame ? <IconButton color='inherit' size='large' onClick={() => setEditGame(!editGame)}>
@@ -306,24 +304,24 @@ const Profile = ({ user }: ProfileProps) => {
 										</IconButton>
 											:
 											<div className='btn-save-cancel-wrap'>
-												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '150px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => updateUserGamePref(user!.id, user!.profileid, platforms, genres, themes, gameModes)}>
+												<Button sx={SaveButtonSx} color='inherit' size='large' onClick={() => updateUserGamePref(user!.id, user!.profileid, platforms, genres, themes, gameModes)}>
 												Save Changes
 												</Button>
-												<Button sx={{ bgcolor: '#122e51', border: 'none', color: '#ddd', font: 'Inter', fontWeight: '700', fontSize: '15px', marginTop: '0.5rem', width: '100px', height: '56px', '&:hover': { bgcolor: '#3e83d5', border: 'none', fontWeight: '700' } }} color='inherit' size='large' onClick={() => setEditGame(false)}>
+												<Button sx={CancelButtonSx} color='inherit' size='large' onClick={() => setEditGame(false)}>
 												Cancel
 												</Button>
 											</div>}
 									</div>
 									<TableContainer component={Paper}>
-										<Table sx={{ minWidth: 850, color: '#ddd', backgroundColor: '#1b1e22' }} aria-label='Account Details table'>
+										<Table sx={TablePrefSx} aria-label='Preference Details table'>
 											<TableHead>
 											</TableHead>
 											<TableBody>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', minWidth: '50px', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={PlatformCellHSx} component='th' scope='row' padding='none'>
 														Your Platform:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd', 'padding': '0' }} component='td' align='right'>
+													<TableCell sx={PlatformCellDSx} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
 															{platformButtonArray.map((platform: string) => {
 																const platformIncludes = platforms.includes(platform)
@@ -350,11 +348,11 @@ const Profile = ({ user }: ProfileProps) => {
 														</ul>
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={AllCellHSx} component='th' scope='row' padding='none'>
 														Favorite Genres:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
+													<TableCell sx={AllCellDSx} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
 															{genresButtonArray.map((genre: string) => {
 																const genreIncludes = genres.includes(genre)
@@ -381,11 +379,11 @@ const Profile = ({ user }: ProfileProps) => {
 														</ul>
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={AllCellHSx} component='th' scope='row' padding='none'>
 														Favorite Themes:
 													</TableCell>
-													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
+													<TableCell sx={AllCellDSx} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
 															{themesButtonArray.map((theme: string) => {
 																const themeIncludes = themes.includes(theme)
@@ -412,11 +410,11 @@ const Profile = ({ user }: ProfileProps) => {
 														</ul>
 													</TableCell>
 												</TableRow>
-												<TableRow sx={{ backgroundColor: '#1b1e22' }}>
-													<TableCell sx={{ color: '#ddd', fontWeight: '600', fontSize: '1rem' }} component='th' scope='row' padding='none'>
+												<TableRow sx={BackgroundColourSx}>
+													<TableCell sx={AllCellHSx} component='th' scope='row' padding='none'>
 														Favorite Game Type
 													</TableCell>
-													<TableCell sx={{ color: '#ddd', width: '900' }} component='td' align='right'>
+													<TableCell sx={AllCellDSx} component='td' align='right'>
 														<ul className='adv-nav-tabs-table'>
 															{gameModesButtonArray.map((mode: string) => {
 																const gameModeIncludes = gameModes.includes(mode)

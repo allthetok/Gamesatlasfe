@@ -25,8 +25,6 @@ const IndGameList = () => {
 	const data = useSession()
 	const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
 
-	console.log(likeDataFetch)
-
 	const {
 		sortBy,
 		sortDirection,

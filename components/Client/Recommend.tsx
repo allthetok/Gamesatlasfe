@@ -12,7 +12,7 @@ import { IndGame } from './IndGame'
 import { IndGameTable } from './IndGameTable'
 import { Autocomplete, Button, SvgIcon, TextField } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
-import { ListTblToggleSx, IconSx } from '../../sxstyling/styles'
+import { ListTblToggleSx, IconSx, SmallAutoCompleteSx } from '../../sxstyling/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
 import { Explore } from '../../helpers/fetypes'
@@ -58,7 +58,7 @@ const Recommend = ({ user }: RecommendProps) => {
 				getRecommendationList(userid, prefArrayData)
 			})
 			.catch((err: any) => {
-				console.log(err)
+				return
 			})
 	}
 
@@ -110,7 +110,7 @@ const Recommend = ({ user }: RecommendProps) => {
 							options={numOptions}
 							value={limit}
 							onChange={onLimitChange}
-							sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Limit" />} />
+							sx={SmallAutoCompleteSx} renderInput={(params) => <TextField {...params} label="Limit" />} />
 					</ThemeProvider>
 				</div>
 				<div className='button-wrap'>

@@ -23,8 +23,6 @@ const useSearch = ({ gameSearch	}: UseSearchProps) => {
 		}
 	}
 
-	console.log(gameSearch)
-
 	const getGameDtl = useCallback(async () => {
 		await axios(searchConfig)
 			.then((response) => {
@@ -39,7 +37,6 @@ const useSearch = ({ gameSearch	}: UseSearchProps) => {
 	}, [gameSearch])
 
 	useEffect(() => {
-		// console.log('effect fired')
 		getGameDtl()
 	}, [getGameDtl])
 

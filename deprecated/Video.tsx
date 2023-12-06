@@ -34,8 +34,6 @@ const Video = ({ videoId, name, videoPlaying, changeActiveVideo }: VideoProps) =
 	// // }
 	const pauseOtherVideos: YouTubeProps['onPlay'] = (event) => {
 		changeActiveVideo(videoId)
-		console.log(event.target.getPlayerState())
-		console.log(event.target.getVideoUrl())
 	}
 
 	const pauseOtherVids = (videoElement: YouTubeEvent) => {
@@ -49,7 +47,6 @@ const Video = ({ videoId, name, videoPlaying, changeActiveVideo }: VideoProps) =
 
 	useEffect(() => {
 		if (videoId !== videoPlaying) {
-			console.log('pause this video')
 			pauseOtherVids(videoElement)
 		}
 	}, [videoPlaying])

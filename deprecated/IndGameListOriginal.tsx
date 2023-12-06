@@ -41,7 +41,6 @@ const IndGameList = () => {
 		await axios(searchConfig)
 			.then((response) => {
 				setMultiResp(response.data)
-				console.log(response.data)
 				setLoading(false)
 			})
 			.catch((err) => {

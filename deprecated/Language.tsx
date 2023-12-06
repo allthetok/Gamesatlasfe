@@ -63,7 +63,6 @@ const TableCells = ({ response }: LanguageProps) => {
 
 const TableRows = ( { response }: LanguageProps) => {
 	const formattedLanguageTable: LanguageTable[] = createLanguageTable(response.language_supports)
-	console.log(formattedLanguageTable)
 	return (
 		<>
 			{formattedLanguageTable.map((item: LanguageTable) => (

@@ -8,7 +8,7 @@ import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
-import { IconSx, ListTblToggleSx, AscDescSx } from '../../sxstyling/styles'
+import { IconSx, ListTblToggleSx, AscDescSx, LargeAutoCompleteSx, SmallAutoCompleteSx } from '../../sxstyling/styles'
 import { theme } from '../../sxstyling/theme'
 import './IndGameList.css'
 
@@ -60,7 +60,7 @@ const Filter = () => {
 						options={sortOptions}
 						value={sortBy}
 						onChange={onSortChange}
-						sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Sort By" />} />
+						sx={LargeAutoCompleteSx} renderInput={(params) => <TextField {...params} label="Sort By" />} />
 				</ThemeProvider>
 				{ path === '/explore' ? (
 					<ThemeProvider theme={theme}>
@@ -71,7 +71,7 @@ const Filter = () => {
 							options={platformOptions}
 							value={platform}
 							onChange={onPlatformChange}
-							sx={{ width: 250, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Platform" />} />
+							sx={LargeAutoCompleteSx} renderInput={(params) => <TextField {...params} label="Platform" />} />
 					</ThemeProvider>
 				)
 					: <></>}
@@ -83,7 +83,7 @@ const Filter = () => {
 						options={numOptions}
 						value={limit}
 						onChange={onLimitChange}
-						sx={{ width: 150, bgcolor: '#ddd', backgroundColor: '#121212', borderRadius: '10px', marginRight: '0.75rem' }} renderInput={(params) => <TextField {...params} label="Limit" />} />
+						sx={SmallAutoCompleteSx} renderInput={(params) => <TextField {...params} label="Limit" />} />
 				</ThemeProvider>
 			</div>
 			<div className='button-wrap'>

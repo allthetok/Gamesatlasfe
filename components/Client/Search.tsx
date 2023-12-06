@@ -1,31 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
-// import { TextField } from '@mui/material'
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useSession, signIn, signOut } from 'next-auth/react'
-import { AppBar, Box, Toolbar, IconButton, autocompleteClasses, SvgIcon } from '@mui/material'
+import { IconButton } from '@mui/material'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import LoginIcon from '@mui/icons-material/Login'
-import { useSearchContext } from '@/app/searchcontext'
 import { SuggestionList } from './SuggestionList'
+import { Font25Sx, NavIconSx, OpacitySx } from '../../sxstyling/styles'
 import './Search.css'
 
-
-// type SearchProps = {
-// 	handleSubmit: FormEventHandler<HTMLFormElement> | undefined,
-// 	textInput: LegacyRef<HTMLInputElement> | undefined,
-// 	handleUserLogout: (e: any) => void
-// }
-
 const Search = () => {
-	// const { gameSearch, setGameSearch } = useSearchContext()
 	const [gameSearch, setGameSearch] = useState('')
 	const router = useRouter()
 	const currentPath = usePathname()
@@ -62,7 +52,7 @@ const Search = () => {
 								<input type='text' className='search-bar-input' value={gameSearch} onChange={handleChange} required placeholder='Search Games...' />
 								{gameSearch !== '' ?
 									<IconButton onClick={handleClear} size='medium'>
-										<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+										<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={OpacitySx} />
 									</IconButton>
 									: <></>
 								}
@@ -114,8 +104,8 @@ const Search = () => {
 								<li className='nav-profile'>
 									<Link href='/profile' className='link-a-icon'>
 										<div className={currentPath === '/profile' ? 'link-icon-text-active' : 'link-icon-text'}>
-											<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-												<AccountBoxIcon sx={{ fontSize: '25px' }} />
+											<IconButton sx={NavIconSx}>
+												<AccountBoxIcon sx={Font25Sx} />
 											</IconButton>
 											<p>Profile</p>
 										</div>
@@ -125,8 +115,8 @@ const Search = () => {
 									{data.status === 'authenticated' ?
 										<div onClick={() => signOut()} className='link-a-icon'>
 											<div className={currentPath === '/api/auth/' ? 'link-icon-text-active': 'link-icon-text'}>
-												<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-													<LoginIcon sx={{ fontSize: '25px' }} />
+												<IconButton sx={NavIconSx}>
+													<LoginIcon sx={Font25Sx} />
 												</IconButton>
 												<p>Logout</p>
 											</div>
@@ -134,8 +124,8 @@ const Search = () => {
 										:
 										<div onClick={() => signIn()} className='link-a-icon'>
 											<div className={currentPath === '/api/auth/' ? 'link-icon-text-active': 'link-icon-text'}>
-												<IconButton sx={{ color: '#ddd', padding: 'none' }}>
-													<LoginIcon sx={{ fontSize: '25px' }} />
+												<IconButton sx={NavIconSx}>
+													<LoginIcon sx={Font25Sx} />
 												</IconButton>
 												<p>Login</p>
 											</div>

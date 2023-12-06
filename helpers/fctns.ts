@@ -350,6 +350,7 @@ const createFullSignUpConfig = (method: string, endpoint: string, email: string 
 		data: {
 			'email': email,
 			'username': name,
+			'password': password,
 			'provider': provider
 		}
 	}

@@ -13,7 +13,7 @@ import { TableRow, TableCell, TableContainer, Paper, Table, TableHead, TableBody
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { ESRB, PEGI, placeholderImages } from '../../assets/ratingsvglinks'
-import { TableFavoriteIconSx } from '../../sxstyling/styles'
+import { GameTableSx, TableCell100Sx, TableCell300Sx, TableCellColourSx, TableFavoriteIconSx, TextAlignSx } from '../../sxstyling/styles'
 import './IndGameTable.css'
 
 type IndGameTableProps = {
@@ -38,31 +38,31 @@ type IndGameProps = {
 const TableCells = () => {
 	return (
 		<TableRow>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>Title</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>IGDB Rating</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>Release Date</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>Platforms</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 100, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell100Sx}>
 				<h2 className='column-heading'>Age Ratings</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>Genres</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>Developers</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>Likes</h2>
 			</TableCell>
-			<TableCell align='center' sx={{ minWidth: 300, color: '#ddd' }}>
+			<TableCell align='center' sx={TableCell300Sx}>
 				<h2 className='column-heading'>IGDB Game ID</h2>
 			</TableCell>
 		</TableRow>
@@ -110,19 +110,18 @@ const IndGameRow = ({ id, cover, platforms, rating, ratingCount, age_ratings, re
 		}
 		else {
 			const returnResult = await deleteGame(userId!, String(id))
-			console.log(returnResult)
 			setGameLiked(returnResult.status !== 'deleted')
 		}
 	}
 
 	return (
-		<TableRow key={id} sx={{ textAlign: 'center' }}>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+		<TableRow key={id} sx={TextAlignSx}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<Link href={`/game/${title}`} className='title-nostyle'>
 					<p className='title-link'>{title}</p>
 				</Link>
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<span className='avg-rating'>
 					{rating.toFixed(2)}
 				</span>
@@ -137,26 +136,26 @@ const IndGameRow = ({ id, cover, platforms, rating, ratingCount, age_ratings, re
 							reviews
 				</span>
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<p className='table-text'>{formattedDateLong(releaseDate)}</p>
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				{platforms.map((val: Platforms) => (
 					val.url ? <img key={val.id} className='card-platformlogo' alt={`${val.name} Logo`} src={val.url} /> : <></>
 				))}
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<img className='card-logo' alt='ESRB Rating' src={ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0] ? ESRB.filter((rating) => rating.IGDBRating === age_ratings.ESRB)[0].src : ESRB.filter((rating) => rating.IGDBRating === 7)[0].src} />
 				<img className='card-logo' alt='PEGI Rating' src={PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0] ? PEGI.filter((rating) => rating.IGDBRating === age_ratings.PEGI)[0].src : PEGI.filter((rating) => rating.IGDBRating === 7)[0].src} />
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<div className='genres-wrap'>
 					{genres.map((val: GenericStringObj) => (
 						<a key={val.id} className='tag-link-company'> {val.name}</a>
 					))}
 				</div>
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<div className='companies-wrap'>
 					{companies.map((val: Companies) => (
 						<a key={val.name} className='tag-company' href={val.officialSite} target='_blank'>
@@ -166,7 +165,7 @@ const IndGameRow = ({ id, cover, platforms, rating, ratingCount, age_ratings, re
 					))}
 				</div>
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<div>
 					{!gameLiked ?
 						<SvgIcon sx={TableFavoriteIconSx} htmlColor='#d2042d' fontSize='large' onClick={handleLikeClick}>
@@ -182,7 +181,7 @@ const IndGameRow = ({ id, cover, platforms, rating, ratingCount, age_ratings, re
 					<span className='like-text'>Like this game</span>
 				</div>
 			</TableCell>
-			<TableCell align='center' sx={{ color: '#ddd' }}>
+			<TableCell align='center' sx={TableCellColourSx}>
 				<span className='avg-rating'>
 					{id}
 				</span>
@@ -223,7 +222,7 @@ const IndGameTable = ({ multiResp }: IndGameTableProps) => {
 	return (
 		<div className='marginTable'>
 			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 900, backgroundColor: '#1b1e22' }} aria-label='language table'>
+				<Table sx={GameTableSx} aria-label='language table'>
 					<TableHead>
 						<TableCells/>
 					</TableHead>

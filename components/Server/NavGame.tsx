@@ -9,6 +9,7 @@ import { NavButtonList } from './NavButtonList'
 import { IconButton } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import { TableCellColourSx } from '../../sxstyling/styles'
 import './GameDtl.css'
 
 type NavGameProps = {
@@ -71,7 +72,7 @@ const NavGame = ({ title, gameID, searchterm }: NavGameProps) => {
 											<br />
 											<a className='addto'>
 												<p className='smfontp'>My List</p>
-												<IconButton sx={{ color: '#ddd' }} onClick={handleLikeClick}>
+												<IconButton sx={TableCellColourSx} onClick={handleLikeClick}>
 													<AddBoxIcon />
 												</IconButton>
 											</a>
@@ -82,7 +83,7 @@ const NavGame = ({ title, gameID, searchterm }: NavGameProps) => {
 											<br />
 											<a className='addto'>
 												<p className='smfontp'>My List</p>
-												<IconButton sx={{ color: '#ddd' }} onClick={handleDeleteClick}>
+												<IconButton sx={TableCellColourSx} onClick={handleDeleteClick}>
 													<HighlightOffIcon />
 												</IconButton>
 											</a>

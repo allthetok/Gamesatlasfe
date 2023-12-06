@@ -9,7 +9,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import DateRangeIcon from '@mui/icons-material/DateRange'
 import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500'
 import { CompanySearchList } from './CompanySearchList'
-import { BoxActiveSx, BoxAdvActiveSx, BoxAdvNoBorderSx, BoxNoBorderSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx } from '../../sxstyling/styles'
+import { BoxActiveSx, BoxAdvActiveSx, BoxAdvNoBorderSx, BoxNoBorderSx, BoxRenderSx, ButtonActiveSx, ButtonAdvActiveSx, ButtonAdvSx, ButtonSx, OpacitySx } from '../../sxstyling/styles'
 import './Advanced.css'
 
 const AdvFilter = () => {
@@ -44,7 +44,6 @@ const AdvFilter = () => {
 	}
 
 	const handleRemoveSpecific = (indFilter: string, specified: string): void => {
-		console.log('filter clicked')
 		switch (specified) {
 		case 'platforms':
 			const currentPlatforms = [...platforms].filter((platform: string) => platform !== indFilter)
@@ -105,7 +104,7 @@ const AdvFilter = () => {
 		case 'Release Date':
 			return (
 				<div>
-					<Box sx={{ width: 750 }}>
+					<Box sx={BoxRenderSx}>
 						<Slider
 							value={dateYear}
 							onChange={handleDateChange}
@@ -124,7 +123,7 @@ const AdvFilter = () => {
 		case 'Rating':
 			return (
 				<div>
-					<Box sx={{ width: 750 }}>
+					<Box sx={BoxRenderSx}>
 						<Slider
 							value={rating}
 							onChange={handleRatingChange}
@@ -219,7 +218,7 @@ const AdvFilter = () => {
 						<input type='text' className='search-bar-input' value={companySearch} onChange={handleChange} required placeholder='Search Companies...' />
 						{companySearch !== '' ?
 							<IconButton onClick={handleClear} size='medium'>
-								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={{ opacity: '0.9' }} />
+								<ClearRoundedIcon fontSize='medium' htmlColor='#232B2B' sx={OpacitySx} />
 							</IconButton>
 							: <></>
 						}
@@ -262,7 +261,7 @@ const AdvFilter = () => {
 											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(platform, 'platforms',)}>
 												{platform}
 												<IconButton size='medium'>
-													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 												</IconButton>
 											</li>
 										))}
@@ -277,7 +276,7 @@ const AdvFilter = () => {
 											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(genre, 'genres')}>
 												{genre}
 												<IconButton size='medium'>
-													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 												</IconButton>
 											</li>
 										))}
@@ -292,7 +291,7 @@ const AdvFilter = () => {
 											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(theme, 'themes')}>
 												{theme}
 												<IconButton size='medium'>
-													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 												</IconButton>
 											</li>
 										))}
@@ -307,7 +306,7 @@ const AdvFilter = () => {
 											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(gameMode, 'gameModes')}>
 												{gameMode}
 												<IconButton size='medium'>
-													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 												</IconButton>
 											</li>
 										))}
@@ -322,7 +321,7 @@ const AdvFilter = () => {
 											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(category, 'categories')}>
 												{category}
 												<IconButton size='medium'>
-													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 												</IconButton>
 											</li>
 										))}
@@ -337,7 +336,7 @@ const AdvFilter = () => {
 											<li className='tag-link-filter' key={index} onClick={() => handleRemoveSpecific(company, 'companyList')}>
 												{company}
 												<IconButton size='medium'>
-													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+													<ClearIcon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 												</IconButton>
 											</li>
 										))}
@@ -352,13 +351,13 @@ const AdvFilter = () => {
 									<li className='tag-link-filter' key='releaseDate' onClick={() => setSearchTab('Release Date')}>
 										{dateYear[0]} - {dateYear[1]}
 										<IconButton size='medium'>
-											<DateRangeIcon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+											<DateRangeIcon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 										</IconButton>
 									</li>
 									<li className='tag-link-filter' key='rating' onClick={() => setSearchTab('Rating')}>
 										{rating[0]} - {rating[1]}
 										<IconButton size='medium'>
-											<StarBorderPurple500Icon fontSize='medium' htmlColor='#ddd' sx={{ opacity: '0.9' }} />
+											<StarBorderPurple500Icon fontSize='medium' htmlColor='#ddd' sx={OpacitySx} />
 										</IconButton>
 									</li>
 								</ul>

@@ -40,7 +40,6 @@ const Forgot = () => {
 				}
 			})
 			.catch((err: AxiosError) => {
-				console.log(err)
 				return {
 					userExists: false
 				}

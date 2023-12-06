@@ -14,9 +14,6 @@ const GameContext = createContext<GameContextObj>({ dataFetch: undefined, error:
 
 const ContextDtl = ({ children }: any) => {
 	const { gameSearch } = useSearchContext()
-
-	// const { dataFetch, error, loading } = useSearch({ gameSearch: 'sekiro' })
-	console.log(gameSearch)
 	const { dataFetch, error, loading } = useSearch({ gameSearch })
 	return (
 		<ContextSear>
