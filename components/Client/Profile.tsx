@@ -12,7 +12,7 @@ import { BoxActiveSx, BoxNoBorderSx, ButtonActiveSx, ButtonSx } from '../../sxst
 import EditIcon from '@mui/icons-material/Edit'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
-import { createUserDetailsConfig, createUserProfileConfig, regexValidEmail } from '../../helpers/fctns'
+import { createGamePrefPatchConfig, createUserDetailsConfig, createUserPatchConfig, createUserProfileConfig, regexValidEmail } from '../../helpers/fctns'
 import './Profile.css'
 
 
@@ -103,22 +103,7 @@ const Profile = ({ user }: ProfileProps) => {
 		}
 
 		if (specField !== '') {
-			const userProfileConfig = {
-				method: 'patch',
-				url: 'http://localhost:5000/api/userDetails',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				data: {
-					'userid': Number(userid),
-					'profileid': Number(profileid),
-					'username': username,
-					'email': email,
-					'specField': specField,
-					'provider': 'GamesAtlas'
-				}
-			}
-
+			const userProfileConfig = createUserPatchConfig('patch', 'userDetails', userid, profileid, 'GamesAtlas', specField, email, username, '')
 			await axios(userProfileConfig)
 				.then((response: any) => {
 					if (response.status === 200) {
@@ -136,23 +121,9 @@ const Profile = ({ user }: ProfileProps) => {
 	}
 
 	const updateUserGamePref = async (userid: string, profileid: string, platforms: string[], genres: string[], themes: string[], gameModes: string[]) => {
-		const profilePrefConfig = {
-			method: 'patch',
-			url: 'http://localhost:5000/api/profileDetails',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'userid': Number(userid),
-				'profileid': Number(profileid),
-				'platforms': platforms,
-				'genres': genres,
-				'themes': themes,
-				'gameModes': gameModes
-			}
-		}
-		await axios(profilePrefConfig)
-			.then((response: any) => {
+		const profileGamePrefConfig = createGamePrefPatchConfig('patch', 'profileDetails', userid, profileid, platforms, genres, themes, gameModes)
+		await axios(profileGamePrefConfig)
+			.then(() => {
 				setEditGame(false)
 			})
 			.catch((err: any) => {

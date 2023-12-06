@@ -8,7 +8,8 @@ import GithubProvider from 'next-auth/providers/github'
 import TwitchProvider from 'next-auth/providers/twitch'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
-import { resolve } from 'path'
+import { createFullSignUpConfig, createLoginConfig, createOAuthConfig, createUserEmailConfig } from '../../../helpers/fctns'
+
 
 export const options: NextAuthOptions = {
 	providers: [
@@ -16,21 +17,23 @@ export const options: NextAuthOptions = {
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				const oauthProviderConfig = {
-					method: 'post',
-					url: 'http://localhost:5000/api/loginOAuthUser',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						'email': profile.email,
-						'emailverified': profile.email_verified,
-						'username': profile.name,
-						'image': profile.picture,
-						'externalId': profile.sub,
-						'provider': 'Google'
-					}
-				}
+				// const oauthProviderConfig = {
+				// 	method: 'post',
+				// 	url: 'http://localhost:5000/api/loginOAuthUser',
+				// 	headers: {
+				// 		'Content-Type': 'application/json'
+				// 	},
+				// 	data: {
+				// 		'email': profile.email,
+				// 		'emailverified': profile.email_verified,
+				// 		'username': profile.name,
+				// 		'image': profile.picture,
+				// 		'externalId': profile.sub,
+				// 		'provider': 'Google'
+				// 	}
+				// }
+
+				const oauthProviderConfig = createOAuthConfig('post', 'loginOAuthUser', profile.email, profile.email_verified, profile.name, profile.picture, profile.sub, 'Google')
 				const internalUser = await axios(oauthProviderConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
@@ -66,21 +69,23 @@ export const options: NextAuthOptions = {
 			clientId: process.env.SPOTIFY_CLIENT_ID as string,
 			clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				const oauthProviderConfig = {
-					method: 'post',
-					url: 'http://localhost:5000/api/loginOAuthUser',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						'email': profile.email,
-						'emailverified': false,
-						'username': profile.display_name,
-						'image': profile.images.length !== 0 ? profile.images[0].url : '',
-						'externalId': profile.id,
-						'provider': 'Spotify'
-					}
-				}
+				// const oauthProviderConfig = {
+				// 	method: 'post',
+				// 	url: 'http://localhost:5000/api/loginOAuthUser',
+				// 	headers: {
+				// 		'Content-Type': 'application/json'
+				// 	},
+				// 	data: {
+				// 		'email': profile.email,
+				// 		'emailverified': false,
+				// 		'username': profile.display_name,
+				// 		'image': profile.images.length !== 0 ? profile.images[0].url : '',
+				// 		'externalId': profile.id,
+				// 		'provider': 'Spotify'
+				// 	}
+				// }
+
+				const oauthProviderConfig = createOAuthConfig('post', 'loginOAuthUser', profile.email, false, profile.display_name, profile.images.length !== 0 ? profile.images[0].url : '', profile.id, 'Spotify')
 				const internalUser = await axios(oauthProviderConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
@@ -116,21 +121,23 @@ export const options: NextAuthOptions = {
 			clientId: process.env.DISCORD_CLIENT_ID as string,
 			clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				const oauthProviderConfig = {
-					method: 'post',
-					url: 'http://localhost:5000/api/loginOAuthUser',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						'email': profile.email,
-						'emailverified': profile.verified,
-						'username': profile.global_name,
-						'image': `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
-						'externalId': profile.id,
-						'provider': 'Discord'
-					}
-				}
+				// const oauthProviderConfig = {
+				// 	method: 'post',
+				// 	url: 'http://localhost:5000/api/loginOAuthUser',
+				// 	headers: {
+				// 		'Content-Type': 'application/json'
+				// 	},
+				// 	data: {
+				// 		'email': profile.email,
+				// 		'emailverified': profile.verified,
+				// 		'username': profile.global_name,
+				// 		'image': `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
+				// 		'externalId': profile.id,
+				// 		'provider': 'Discord'
+				// 	}
+				// }
+
+				const oauthProviderConfig = createOAuthConfig('post', 'loginOAuthUser', profile.email, profile.verified, profile.global_name, `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`, profile.id, 'Discord')
 				const internalUser = await axios(oauthProviderConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
@@ -165,21 +172,23 @@ export const options: NextAuthOptions = {
 			clientId: process.env.GITHUB_CLIENT_ID as string,
 			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				const oauthProviderConfig = {
-					method: 'post',
-					url: 'http://localhost:5000/api/loginOAuthUser',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						'email': profile.email,
-						'emailverified': false,
-						'username': profile.name,
-						'image': profile.avatar_url,
-						'externalId': profile.id,
-						'provider': 'Github'
-					}
-				}
+				// const oauthProviderConfig = {
+				// 	method: 'post',
+				// 	url: 'http://localhost:5000/api/loginOAuthUser',
+				// 	headers: {
+				// 		'Content-Type': 'application/json'
+				// 	},
+				// 	data: {
+				// 		'email': profile.email,
+				// 		'emailverified': false,
+				// 		'username': profile.name,
+				// 		'image': profile.avatar_url,
+				// 		'externalId': profile.id,
+				// 		'provider': 'Github'
+				// 	}
+				// }
+
+				const oauthProviderConfig = createOAuthConfig('post', 'loginOAuthUser', profile.email, false, profile.name, profile.avatar_url, profile.id, 'Github')
 				const internalUser = await axios(oauthProviderConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
@@ -214,21 +223,23 @@ export const options: NextAuthOptions = {
 			clientId: process.env.TWITCH_CLIENT_ID as string,
 			clientSecret: process.env.TWITCH_CLIENT_SECRET as string,
 			profile: async function(profile) {
-				const oauthProviderConfig = {
-					method: 'post',
-					url: 'http://localhost:5000/api/loginOAuthUser',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						'email': profile.email,
-						'emailverified': false,
-						'username': profile.preferred_username,
-						'image': profile.picture,
-						'externalId': profile.sub,
-						'provider': 'Twitch'
-					}
-				}
+				// const oauthProviderConfig = {
+				// 	method: 'post',
+				// 	url: 'http://localhost:5000/api/loginOAuthUser',
+				// 	headers: {
+				// 		'Content-Type': 'application/json'
+				// 	},
+				// 	data: {
+				// 		'email': profile.email,
+				// 		'emailverified': false,
+				// 		'username': profile.preferred_username,
+				// 		'image': profile.picture,
+				// 		'externalId': profile.sub,
+				// 		'provider': 'Twitch'
+				// 	}
+				// }
+
+				const oauthProviderConfig = createOAuthConfig('post', 'loginOAuthUser', profile.email, false, profile.preferred_username, profile.picture, profile.sub, 'Twitch')
 				const internalUser = await axios(oauthProviderConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
@@ -278,17 +289,19 @@ export const options: NextAuthOptions = {
 			},
 			authorize: async (credentials) => {
 				let userObj: any
-				const resolveUserConfig = {
-					method: 'post',
-					url: 'http://localhost:5000/api/resolveUser',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					data: {
-						'email': credentials?.email,
-						'provider': 'GamesAtlas'
-					}
-				}
+				// const resolveUserConfig = {
+				// 	method: 'post',
+				// 	url: 'http://localhost:5000/api/resolveUser',
+				// 	headers: {
+				// 		'Content-Type': 'application/json'
+				// 	},
+				// 	data: {
+				// 		'email': credentials?.email,
+				// 		'provider': 'GamesAtlas'
+				// 	}
+				// }
+
+				const resolveUserConfig = createUserEmailConfig('post', 'resolveUser', credentials?.email, 'GamesAtlas')
 				const resolveUser = await axios(resolveUserConfig)
 					.then((response: any) => {
 						if (response.status === 200) {
@@ -310,18 +323,20 @@ export const options: NextAuthOptions = {
 					})
 
 				if (resolveUser.userExists) {
-					const loginConfig = {
-						method: 'post',
-						url: 'http://localhost:5000/api/login',
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						data: {
-							'email': credentials?.email,
-							'password': credentials?.password,
-							'provider': 'GamesAtlas'
-						}
-					}
+					// const loginConfig = {
+					// 	method: 'post',
+					// 	url: 'http://localhost:5000/api/login',
+					// 	headers: {
+					// 		'Content-Type': 'application/json'
+					// 	},
+					// 	data: {
+					// 		'email': credentials?.email,
+					// 		'password': credentials?.password,
+					// 		'provider': 'GamesAtlas'
+					// 	}
+					// }
+
+					const loginConfig = createLoginConfig('post', 'login', credentials?.email, credentials?.password, 'GamesAtlas')
 
 					userObj = await axios(loginConfig)
 						.then((response: any) => {
@@ -345,19 +360,21 @@ export const options: NextAuthOptions = {
 						})
 				}
 				else {
-					const signUpConfig = {
-						method: 'post',
-						url: 'http://localhost:5000/api/createUser',
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						data: {
-							'email': credentials?.email,
-							'username': credentials?.username,
-							'password': credentials?.password,
-							'provider': 'GamesAtlas'
-						}
-					}
+					// const signUpConfig = {
+					// 	method: 'post',
+					// 	url: 'http://localhost:5000/api/createUser',
+					// 	headers: {
+					// 		'Content-Type': 'application/json'
+					// 	},
+					// 	data: {
+					// 		'email': credentials?.email,
+					// 		'username': credentials?.username,
+					// 		'password': credentials?.password,
+					// 		'provider': 'GamesAtlas'
+					// 	}
+					// }
+
+					const signUpConfig = createFullSignUpConfig('post', 'createUser', credentials?.email, credentials?.username, credentials?.password, 'GamesAtlas')
 
 					userObj = await axios(signUpConfig)
 						.then((response: any) => {

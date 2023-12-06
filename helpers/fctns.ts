@@ -282,7 +282,7 @@ const createUserGenericConfig = (method: string, endpoint: string, userid: strin
 	}
 }
 
-const createUserEmailConfig = (method: string, endpoint: string, email: string, provider: string) => {
+const createUserEmailConfig = (method: string, endpoint: string, email: string | undefined, provider: string) => {
 	return {
 		method: method,
 		url: `${process.env.DEV_BASE_URL}${endpoint}`,
@@ -310,6 +310,21 @@ const createUserNameConfig = (method: string, endpoint: string, name: string, pr
 	}
 }
 
+const createLoginConfig = (method: string, endpoint: string, email: string | undefined, password: string | undefined, provider: string) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'email': email,
+			'password': password,
+			'provider': provider
+		}
+	}
+}
+
 const createSignUpConfig = (method: string, endpoint: string, email: string, name: string, provider: string) => {
 	return {
 		method: method,
@@ -320,6 +335,57 @@ const createSignUpConfig = (method: string, endpoint: string, email: string, nam
 		data: {
 			'email': email,
 			'username': name,
+			'provider': provider
+		}
+	}
+}
+
+const createFullSignUpConfig = (method: string, endpoint: string, email: string | undefined, name: string | undefined, password: string | undefined, provider: string) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'email': email,
+			'username': name,
+			'provider': provider
+		}
+	}
+}
+
+const createGamePrefPatchConfig = (method: string, endpoint: string, userid: string, profileid: string, platforms: string[], genres: string[], themes: string[], gameModes: string[]) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'userid': Number(userid),
+			'profileid': Number(profileid),
+			'platforms': platforms,
+			'genres': genres,
+			'themes': themes,
+			'gameModes': gameModes
+		}
+	}
+}
+
+const createOAuthConfig = (method: string, endpoint: string, email: string, emailverified: boolean | null | undefined, username: string, image: string, externalId: string, provider: string) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'email': email,
+			'emailverified': emailverified,
+			'username': username,
+			'image': image,
+			'externalId': externalId,
 			'provider': provider
 		}
 	}
@@ -384,6 +450,6 @@ const createObjArray = (homeData: any[]) => {
 }
 
 
-export { ratingFloatToStar, createUserPatchConfig, createSignUpConfig, createUserEmailConfig, createUserNameConfig, createUserDetailsConfig, createUserGenericConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail, likeGame, deleteGame, createObjArray }
+export { ratingFloatToStar, createOAuthConfig, createUserPatchConfig, createGamePrefPatchConfig, createSignUpConfig, createFullSignUpConfig, createLoginConfig, createUserEmailConfig, createUserNameConfig, createUserDetailsConfig, createUserGenericConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail, likeGame, deleteGame, createObjArray }
 
 
