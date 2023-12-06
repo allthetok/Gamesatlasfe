@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+require('dotenv').config()
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { LocalStorageObj, NestedSearchConfig, ProfilePrefSearchConfig, SimpleNullableSearchConfig, SimpleSearchConfig } from './fetypes'
 
@@ -12,7 +14,7 @@ const formattedYear = (inpDate: string | Date) => inpDate !== 'N/A' ? new Date(i
 const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, platform: string, limit: string, genre: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -31,7 +33,7 @@ const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: stri
 const createAdvancedAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, limit: string, platforms: string[], genres: string[], themes: string[], gameModes: string[], categories: string[], rating: number[], releaseDate: number[], companies: string[]) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -57,7 +59,7 @@ const createAdvancedAxiosConfig = (method: string, endpoint: string, sortBy: str
 const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchTerm: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -70,7 +72,7 @@ const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchT
 const createDeprecatedNestedConfig = (method: string, endpoint: string, gameid: number) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -91,7 +93,7 @@ const createGameDtlConfig = (method: string, endpoint: string, searchTerm: strin
 	}
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -112,7 +114,7 @@ const createInnerSearchConfig = (method: string, endpoint: string, searchTerm: s
 	}
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -134,7 +136,7 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string 
 	}
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -147,7 +149,7 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string 
 const createUserPrefSearchConfig = (method: string, endpoint: string, platforms: string[], genres: string[], themes: string[], gameModes: string[], nullable: string, limit: number, sortBy: string, sortDirection: string): ProfilePrefSearchConfig => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -167,7 +169,7 @@ const createUserPrefSearchConfig = (method: string, endpoint: string, platforms:
 const createUserRecommendConfig = (method: string, endpoint: string, userid: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -180,7 +182,7 @@ const createUserRecommendConfig = (method: string, endpoint: string, userid: str
 const createUserDetailsConfig = (method: string, endpoint: string, userid: string, profileid: string, provider: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -195,7 +197,7 @@ const createUserDetailsConfig = (method: string, endpoint: string, userid: strin
 const createUserProfileConfig = (method: string, endpoint: string, userid: string, profileid: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -223,7 +225,7 @@ const createUserLikeConfig = (method: string, endpoint: string, userid: string, 
 
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -239,7 +241,7 @@ const createUserLikeConfig = (method: string, endpoint: string, userid: string, 
 const createUserDeleteConfig = (method: string, endpoint: string, userid: string, gameid: string | number) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -253,7 +255,7 @@ const createUserDeleteConfig = (method: string, endpoint: string, userid: string
 const createUserPatchConfig = (method: string, endpoint: string, userid: string, profileid: string, provider: string, specField: string, email: string, username: string, password: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -272,7 +274,7 @@ const createUserPatchConfig = (method: string, endpoint: string, userid: string,
 const createUserGenericConfig = (method: string, endpoint: string, userid: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -285,7 +287,7 @@ const createUserGenericConfig = (method: string, endpoint: string, userid: strin
 const createUserEmailConfig = (method: string, endpoint: string, email: string | undefined, provider: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -299,7 +301,7 @@ const createUserEmailConfig = (method: string, endpoint: string, email: string |
 const createUserNameConfig = (method: string, endpoint: string, name: string, provider: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -313,7 +315,7 @@ const createUserNameConfig = (method: string, endpoint: string, name: string, pr
 const createLoginConfig = (method: string, endpoint: string, email: string | undefined, password: string | undefined, provider: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -328,7 +330,7 @@ const createLoginConfig = (method: string, endpoint: string, email: string | und
 const createSignUpConfig = (method: string, endpoint: string, email: string, name: string, provider: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -343,7 +345,7 @@ const createSignUpConfig = (method: string, endpoint: string, email: string, nam
 const createFullSignUpConfig = (method: string, endpoint: string, email: string | undefined, name: string | undefined, password: string | undefined, provider: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -359,7 +361,7 @@ const createFullSignUpConfig = (method: string, endpoint: string, email: string 
 const createGamePrefPatchConfig = (method: string, endpoint: string, userid: string, profileid: string, platforms: string[], genres: string[], themes: string[], gameModes: string[]) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -377,7 +379,7 @@ const createGamePrefPatchConfig = (method: string, endpoint: string, userid: str
 const createOAuthConfig = (method: string, endpoint: string, email: string, emailverified: boolean | null | undefined, username: string, image: string, externalId: string, provider: string) => {
 	return {
 		method: method,
-		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		url: `http://localhost:5000/api/${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
