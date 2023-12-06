@@ -12,7 +12,7 @@ const formattedYear = (inpDate: string | Date) => inpDate !== 'N/A' ? new Date(i
 const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, platform: string, limit: string, genre: string) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -31,7 +31,7 @@ const createExploreAxiosConfig = (method: string, endpoint: string, sortBy: stri
 const createAdvancedAxiosConfig = (method: string, endpoint: string, sortBy: string, sortDirection: string, limit: string, platforms: string[], genres: string[], themes: string[], gameModes: string[], categories: string[], rating: number[], releaseDate: number[], companies: string[]) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -57,7 +57,7 @@ const createAdvancedAxiosConfig = (method: string, endpoint: string, sortBy: str
 const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchTerm: string) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -70,7 +70,7 @@ const createDeprecatedGameDtlConfig = (method: string, endpoint: string, searchT
 const createDeprecatedNestedConfig = (method: string, endpoint: string, gameid: number) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -91,7 +91,7 @@ const createGameDtlConfig = (method: string, endpoint: string, searchTerm: strin
 	}
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -112,7 +112,7 @@ const createInnerSearchConfig = (method: string, endpoint: string, searchTerm: s
 	}
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -134,7 +134,7 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string 
 	}
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -147,7 +147,7 @@ const createAuxiliaryConfig = (method: string, endpoint: string, gameID: string 
 const createUserPrefSearchConfig = (method: string, endpoint: string, platforms: string[], genres: string[], themes: string[], gameModes: string[], nullable: string, limit: number, sortBy: string, sortDirection: string): ProfilePrefSearchConfig => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -167,7 +167,7 @@ const createUserPrefSearchConfig = (method: string, endpoint: string, platforms:
 const createUserRecommendConfig = (method: string, endpoint: string, userid: string) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -180,7 +180,7 @@ const createUserRecommendConfig = (method: string, endpoint: string, userid: str
 const createUserDetailsConfig = (method: string, endpoint: string, userid: string, profileid: string, provider: string) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -195,7 +195,7 @@ const createUserDetailsConfig = (method: string, endpoint: string, userid: strin
 const createUserProfileConfig = (method: string, endpoint: string, userid: string, profileid: string) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -223,7 +223,7 @@ const createUserLikeConfig = (method: string, endpoint: string, userid: string, 
 
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -239,7 +239,7 @@ const createUserLikeConfig = (method: string, endpoint: string, userid: string, 
 const createUserDeleteConfig = (method: string, endpoint: string, userid: string, gameid: string | number) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -250,15 +250,77 @@ const createUserDeleteConfig = (method: string, endpoint: string, userid: string
 	}
 }
 
+const createUserPatchConfig = (method: string, endpoint: string, userid: string, profileid: string, provider: string, specField: string, email: string, username: string, password: string) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'userid': Number(userid),
+			'profileid': Number(profileid),
+			'provider': provider,
+			'username': username,
+			'email': email,
+			'password': password,
+			'specField': specField
+		}
+	}
+}
+
 const createUserGenericConfig = (method: string, endpoint: string, userid: string) => {
 	return {
 		method: method,
-		url: `http://localhost:5000/api/${endpoint}`,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		data: {
 			'userid': Number(userid)
+		}
+	}
+}
+
+const createUserEmailConfig = (method: string, endpoint: string, email: string, provider: string) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'email': email,
+			'provider': provider
+		}
+	}
+}
+
+const createUserNameConfig = (method: string, endpoint: string, name: string, provider: string) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'username': name,
+			'provider': provider
+		}
+	}
+}
+
+const createSignUpConfig = (method: string, endpoint: string, email: string, name: string, provider: string) => {
+	return {
+		method: method,
+		url: `${process.env.DEV_BASE_URL}${endpoint}`,
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: {
+			'email': email,
+			'username': name,
+			'provider': provider
 		}
 	}
 }
@@ -322,6 +384,6 @@ const createObjArray = (homeData: any[]) => {
 }
 
 
-export { ratingFloatToStar, createUserDetailsConfig, createUserGenericConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail, likeGame, deleteGame, createObjArray }
+export { ratingFloatToStar, createUserPatchConfig, createSignUpConfig, createUserEmailConfig, createUserNameConfig, createUserDetailsConfig, createUserGenericConfig, createUserProfileConfig, formattedDateLong, formattedYear, createExploreAxiosConfig, createAdvancedAxiosConfig, createGameDtlConfig, createAuxiliaryConfig, createUserPrefSearchConfig, createUserRecommendConfig, retrieveLocalStorageObj, retrieveSearchTerm, splitRouteQuery, createDeprecatedNestedConfig, createDeprecatedGameDtlConfig, createInnerSearchConfig, searchtermToString, regexValidEmail, likeGame, deleteGame, createObjArray }
 
 

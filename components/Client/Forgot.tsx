@@ -5,7 +5,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { regexValidEmail } from '../../helpers/fctns'
+import { createUserEmailConfig, createUserPatchConfig, regexValidEmail } from '../../helpers/fctns'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
@@ -24,17 +24,8 @@ const Forgot = () => {
 
 	const handleEmailSubmit = async (e: any) => {
 		e.preventDefault()
-		const resolveUserConfig = {
-			method: 'post',
-			url: 'http://localhost:5000/api/resolveUser',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'email': email,
-				'provider': 'GamesAtlas'
-			}
-		}
+
+		const resolveUserConfig = createUserEmailConfig('post', 'resolveUser', email, 'GamesAtlas')
 		const resolveUser = await axios(resolveUserConfig)
 			.then((response: AxiosResponse) => {
 				if (response.status === 200) {
@@ -59,7 +50,7 @@ const Forgot = () => {
 			return
 		}
 		else {
-			resolveUserConfig.url = 'http://localhost:5000/api/verificationCode'
+			resolveUserConfig.url = `${process.env.DEV_BASE_URL}verificationCode`
 			await axios(resolveUserConfig)
 				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
@@ -74,16 +65,7 @@ const Forgot = () => {
 
 	const handlePasscodeSubmit = async (e: any) => {
 		e.preventDefault()
-		const retrieveCodeConfig = {
-			method: 'post',
-			url: 'http://localhost:5000/api/resolveCode',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'email': email
-			}
-		}
+		const retrieveCodeConfig = createUserEmailConfig('post', 'resolveCode', email, '')
 		await axios(retrieveCodeConfig)
 			.then((response: any) => {
 				if (response.data.verificationcode === passcode) {
@@ -103,21 +85,7 @@ const Forgot = () => {
 			setError('Passwords do not match')
 			return
 		}
-
-		const patchPasswordConfig = {
-			method: 'patch',
-			url: 'http://localhost:5000/api/userDetails',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			data: {
-				'userid': Number(userId),
-				'profileid': Number(profileId),
-				'provider': 'GamesAtlas',
-				'specField': 'password',
-				'password': password
-			}
-		}
+		const patchPasswordConfig = createUserPatchConfig('patch', 'userDetails', userId, profileId, 'GamesAtlas', 'password', '', '', password)
 		await axios(patchPasswordConfig)
 			.then((response: any) => {
 				response.status === 200 ? router.push('/signin') : setError('Failed to update password')

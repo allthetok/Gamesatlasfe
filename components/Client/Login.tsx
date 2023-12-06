@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { Checkbox, FormControlLabel } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
-import { regexValidEmail } from '../../helpers/fctns'
+import { createUserEmailConfig, createUserNameConfig, regexValidEmail } from '../../helpers/fctns'
 import './Login.css'
 
 const Login = () => {
@@ -38,17 +38,7 @@ const Login = () => {
 			return
 		}
 		if (loginMethod === 'username') {
-			const retrieveUserEmailConfig = {
-				method: 'post',
-				url: 'http://localhost:5000/api/usernameEmail',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				data: {
-					'username': username,
-					'provider': 'GamesAtlas'
-				}
-			}
+			const retrieveUserEmailConfig = createUserNameConfig('post', 'usernameEmail', username, 'GamesAtlas')
 			const userEmail = await axios(retrieveUserEmailConfig)
 				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
@@ -87,17 +77,7 @@ const Login = () => {
 			}
 		}
 		else {
-			const resolveUserConfig = {
-				method: 'post',
-				url: 'http://localhost:5000/api/resolveUser',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				data: {
-					'email': email,
-					'provider': 'GamesAtlas'
-				}
-			}
+			const resolveUserConfig = createUserEmailConfig('post', 'resolveUser', email, 'GamesAtlas')
 			const resolveUser = await axios(resolveUserConfig)
 				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
