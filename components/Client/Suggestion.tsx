@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { formattedYear } from '../../helpers/fctns'
-import { Companies, Platforms } from '../../../backendga/helpers/betypes'
+import { Companies, Platforms } from '../../helpers/fetypes'
 import { placeholderImages } from '../../assets/ratingsvglinks'
 import './Suggestion.css'
 

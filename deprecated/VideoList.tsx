@@ -1,24 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
-import Youtube, { YouTubeProps } from 'react-youtube'
+// import Youtube, { YouTubeProps } from 'react-youtube'
+// import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+// import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import React, { useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { createAuxiliaryConfig, createDeprecatedNestedConfig, retrieveLocalStorageObj, splitRouteQuery } from '../helpers/fctns'
+import { Videos } from '../../backendga/helpers/betypes'
+import { GameContextObj, LocalStorageObj, VideoObj } from '../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { GameDetailObj } from '../helpers/fetypes'
-import './Artworks.css'
-import { Videos } from '../../backendga/helpers/requests'
+import { useGameContext } from '@/app/gamecontext'
+import { Loading } from '../components/Client/Loading'
 import { Video } from './Video'
+import { NavGame } from './NavGame'
+import { Description } from '../components/Client/Description'
+import { Search } from '../components/Client/Search'
+import './Artworks.css'
 
-type VideoListProps = {
-	response: GameDetailObj
-}
 
-const VideoList = ({ response }: VideoListProps) => {
-	// const opts: YouTubeProps['opts'] = {
-	// 	height: '700',
-	// 	width: '1200'
-	// }
+
+
+const VideoList = () => {
+	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
 
 	const [videoPlaying, setVideoPlaying] = useState('')
 
@@ -26,20 +30,58 @@ const VideoList = ({ response }: VideoListProps) => {
 		setVideoPlaying(videoId)
 	}
 
+	const [dataFetch, setDataFetch] = useState<VideoObj>()
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(true)
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(false))
+
+	const gameID = parseInt(splitRouteQuery(useRouter().asPath, '?').replace('id=',''))
+
+	const searchConfig = createDeprecatedNestedConfig('post', 'videos', gameID)
+	const getGameDtl = useCallback(async () => {
+		await axios(searchConfig)
+			.then((response) => {
+				setDataFetch(response.data)
+				setLoading(false)
+			})
+			.catch((err) => {
+				setError(err)
+				console.error(err)
+
+			})
+	}, [gameID])
+
+	useEffect(() => {
+		getGameDtl()
+	}, [getGameDtl])
+
 	return (
-		<Carousel autoPlay={false}>
-			{response.videos.map((el: Videos) => (
-				// <>
-				// 	<h2>{el.name}</h2>
-				// 	<iframe src={el.ytlink} width='1373.88' height='730' allowFullScreen={true}></iframe>
-				// </>
-				// <div>
-				// 	<h2>{el.name}</h2>
-				// 	<Youtube videoId={el.ytlink} opts={opts}/>
-				// </div>
-				<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
-			))}
-		</Carousel>
+		<div>
+			{!loading && !error && dataFetch ?
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame title={auxiliaryObj.title} gameID={gameID} />
+						<Carousel autoPlay={false}>
+							{dataFetch?.videos.map((el: Videos) => (
+								// <>
+								// 	<h2>{el.name}</h2>
+								// 	<iframe src={el.ytlink} width='1373.88' height='730' allowFullScreen={true}></iframe>
+								// </>
+								// <div>
+								// 	<h2>{el.name}</h2>
+								// 	<Youtube videoId={el.ytlink} opts={opts}/>
+								// </div>
+								<Video videoId={el.ytlink} name={el.name} videoPlaying={videoPlaying} changeActiveVideo={changeActiveVideo} />
+							))}
+						</Carousel>
+						<Description auxiliaryObj={auxiliaryObj} />
+					</div>
+				</div>
+				:
+				<Loading auxiliaryObj={auxiliaryObj}/>
+			}
+		</div>
 	)
 	{/* <h2>{response.videos[0].name}</h2>
 			<iframe src={response.videos[0].ytlink} width='560' height='315' frameBorder={0} allowFullScreen={true}></iframe> */}

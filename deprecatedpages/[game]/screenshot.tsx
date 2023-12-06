@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Screenshots } from '../../components/Client/Screenshots'
+import { Screenshots } from '../../deprecated/Screenshots'
 import { ContextDtl } from '../../src/app/gamecontext'
 import { ContextSear } from '@/app/searchcontext'
 import '../../src/app/globals.css'

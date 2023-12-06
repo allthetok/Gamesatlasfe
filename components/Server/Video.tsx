@@ -27,7 +27,7 @@ const Video = ({ videoId, name }: VideoProps) => {
 
 	return (
 		<div className='video'>
-			<h2>{name}</h2>
+			<h2 className='h2-game'>{name}</h2>
 			<Youtube videoId={videoId} opts={opts} onReady={_onReady} />
 		</div>
 

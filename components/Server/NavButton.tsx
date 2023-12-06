@@ -16,8 +16,6 @@ type NavButtonProps = {
 const NavButton = ({ link, formatName, gameID, searchterm }: NavButtonProps) => {
 	let currentPath = usePathname()
 	currentPath = usePathname()?.replace('/game/','').replaceAll('%20',' ') === searchterm ? '/game' : currentPath!.replace('/game/','').replaceAll('%20',' ').replace(`${searchterm}`,'').replace(`/${gameID.toString()}`,'')
-	// console.log(currentPath)
-	// console.log(searchterm)
 
 	return (
 		<Box sx={currentPath === link ? BoxActiveSx : BoxSx}>

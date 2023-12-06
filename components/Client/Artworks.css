@@ -23,3 +23,14 @@
 	margin-left: 50px;
 	margin-right: auto;
 }
+
+.h2-game {
+	margin-bottom: var(--spacing-xxs);
+	color: var(--header-color);
+}
+
+@media (min-width: 1200px) {
+	.h2-game {
+		font-size: 1.75rem;
+	}
+}

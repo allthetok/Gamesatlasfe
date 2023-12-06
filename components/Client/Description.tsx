@@ -1,21 +1,19 @@
 import React from 'react'
 import { formattedDateLong } from '../../helpers/fctns'
-import { GameContextObj, LocalStorageObj } from '../../helpers/fetypes'
-import { useGameContext } from '@/app/gamecontext'
+import { LocalStorageObj } from '../../helpers/fetypes'
+import '../Server/GameDtl.css'
 
 type DescriptionProps = {
 	auxiliaryObj: LocalStorageObj
 }
 
 const Description = ({ auxiliaryObj }: DescriptionProps) => {
-	// const { dataFetch, error, loading }: GameContextObj = useGameContext()
-	// const response: GameDetailObj = useContext(GameContext)
 
 	return (
 		<>
 			{auxiliaryObj ?
 				<div>
-					<h2>Official Description</h2>
+					<h2 className='h2-game'>Official Description</h2>
 					<div className='shrink-headings toggle-long-text line-clamp'>
 						<p className='text-desc'>
 							{auxiliaryObj.summary}

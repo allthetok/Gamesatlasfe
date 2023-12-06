@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
+// import Youtube, { YouTubeProps, YouTubePlayer, YouTubeEvent } from 'react-youtube'
+// import Carousel from 'react-material-ui-carousel'
 import React, { useEffect } from 'react'
-import Youtube, { YouTubeProps, YouTubePlayer, YouTubeEvent } from 'react-youtube'
-import Carousel from 'react-material-ui-carousel'
-import { GameDetailObj } from '../helpers/fetypes'
+import Youtube, { YouTubeProps, YouTubeEvent } from 'react-youtube'
 import './Artworks.css'
+
 
 type VideoProps = {
 	videoId: string,
@@ -56,7 +57,7 @@ const Video = ({ videoId, name, videoPlaying, changeActiveVideo }: VideoProps) =
 
 	return (
 		<div className='video'>
-			<h2>{name}</h2>
+			<h2 className='h2-game'>{name}</h2>
 			<Youtube videoId={videoId} opts={opts} onPlay={pauseOtherVideos} onReady={_onReady} />
 		</div>
 

@@ -7,8 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useLikes } from '../../hooks/useLikes'
 import ReactLoading from 'react-loading'
-import { AgeRatings, Companies, Explore, Platforms } from '../../../backendga/helpers/betypes'
-import { GenericStringObj } from '../../helpers/fetypes'
+import { GenericStringObj, AgeRatings, Companies, Explore, Platforms } from '../../helpers/fetypes'
 import { deleteGame, formattedDateLong, likeGame } from '../../helpers/fctns'
 import { TableRow, TableCell, TableContainer, Paper, Table, TableHead, TableBody, SvgIcon } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
@@ -195,7 +194,8 @@ const IndGameRow = ({ id, cover, platforms, rating, ratingCount, age_ratings, re
 
 const TableRows = ({ multiResp }: IndGameTableProps) => {
 	const data = useSession()
-	const { likeDataFetch, loading } = useLikes(data.data?.user.id | null)
+	const { likeDataFetch, loading } = useLikes(data.data?.user.id)
+	// const { likeDataFetch, loading } = useLikes(data.status === 'authenticated' ? data.data.user.id : null)
 
 	return (
 		<>

@@ -1,23 +1,72 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-import React, { useState, Suspense } from 'react'
-import { IconButton } from '@mui/material'
-import AddBoxIcon from '@mui/icons-material/AddBox'
-import { NavButtonList } from './NavButtonList'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @next/next/no-img-element */
+import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { useRouter } from 'next/router'
+import axios from 'axios'
+import ReactLoading from 'react-loading'
+import { AuxiliaryObj, GameContextObj, GenericStringObj, LocalStorageObj, AgeRatings, Categories, Companies, Platforms, GameObj } from '../helpers/fetypes'
+import { createDeprecatedGameDtlConfig, createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm } from '../helpers/fctns'
+import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../assets/ratingsvglinks'
+import { Description } from '../components/Client/Description'
+import { Search } from '../components/Client/Search'
+import { NavGame } from './NavGame'
 import { Overview } from './Overview'
-import { Artworks } from './Artworks'
-import { VideoList } from './VideoList'
-import { Language } from './Language'
-import { Similar } from './Similar'
-import { Website } from './Website'
-import { GameDetailObj, AgeRatings, Categories, Companies, Platforms, Videos, Languages } from '../../backendga/helpers/requests'
-import { response } from '../mockdata/response'
-import { ESRB, PEGI, ExternalCategories, WebsiteCategories } from '../assets/ratingsvglinks'
 import './GameDtl.css'
 
+const splitRouteQuery = (inputStr: string, separator: string) => {
+	const result = inputStr.substring(inputStr.lastIndexOf(separator)+1)
+	return result !== inputStr ? result : ''
+}
 const GameDtl = () => {
-	const [tabSelect, setTabSelect] = useState('overview')
+	// const response: GameDetailObj = useContext(GameContext)
+	//const { dataFetch, error, loading }: GameContextObj = useGameContext()
+	const [dataFetch, setDataFetch] = useState<GameObj>()
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(true)
+	const [auxiliaryObj, setAuxiliaryObj] = useState<LocalStorageObj>(retrieveLocalStorageObj(true))
+	const [navProps, setNavProps] = useState<AuxiliaryObj>()
+
+	const searchTerm = splitRouteQuery(useRouter().asPath, '?').replace('search=','')
+
+	const searchConfig = createDeprecatedGameDtlConfig('post', 'overview', searchTerm!)
+
+	const getGameDtl = useCallback(async () => {
+		await axios(searchConfig)
+			.then((response) => {
+				setDataFetch(response.data)
+				// setNavProps({
+				// 	title: response.data.title,
+				// 	involved_companies: response.data.involved_companies,
+				// 	summary: response.data.summary,
+				// 	story: response.data.story,
+				// 	releaseDate: response.data.releaseDate
+				// })
+				localStorage.removeItem('auxiliaryObj')
+				localStorage.removeItem('gameID')
+				const dataFetchAuxiliary: LocalStorageObj = {
+					gameID: response.data.id!.toString(),
+					title: response.data.title,
+					involved_companies: response.data.involved_companies.map((company: Companies) => company.name).join(', '),
+					summary: response.data.summary,
+					story: response.data.story,
+					releaseDate: response.data.releaseDate
+				}
+				setAuxiliaryObj(dataFetchAuxiliary)
+				localStorage.setItem('auxiliaryObj', JSON.stringify(dataFetchAuxiliary))
+				setLoading(false)
+			})
+			.catch((err) => {
+				setError(err)
+				console.error(err)
+
+			})
+	}, [searchTerm])
+
+	useEffect(() => {
+		getGameDtl()
+	}, [getGameDtl])
+
 
 	const getPlatformCompanies = (platformsArr: Platforms[] | Companies[]): React.JSX.Element => {
 		return (
@@ -47,6 +96,18 @@ const GameDtl = () => {
 		)
 	}
 
+	const getGenericArr = (stringArr: GenericStringObj[]): React.JSX.Element => {
+		return (
+			<>
+				{stringArr.map((val: GenericStringObj) => (
+					<div key={val.id}>
+						<a href=''>{val.name}</a>
+					</div>
+				))}
+			</>
+		)
+	}
+
 	const getStringArr = (stringArr: string[]): React.JSX.Element => {
 		return (
 			<>
@@ -70,7 +131,7 @@ const GameDtl = () => {
 								<img className='logo pad-left' alt={`${ExternalCategories.filter((field) => field.source === el.category)[0].category}`} src={`${ExternalCategories.filter((field) => field.source === el.category)[0].src}`} />
 							</p>
 							<a href={el.url} target='_blank' rel='noreferrer'>Visit
-								<img className='link-external' alt='Open Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
+								<img className='link-external' alt='Open Website' src={placeholderImages.LinkButtons}/>
 							</a>
 						</div>
 					))}
@@ -85,7 +146,7 @@ const GameDtl = () => {
 								<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === el.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === el.category)[0].src}`} />
 							</p>
 							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
-								<img className='link-external' alt='Open Website' src='https://www.mobygames.com/static/img/icon-link-external.c0245369.svg'/>
+								<img className='link-external' alt='Open Website' src={placeholderImages.LinkButtons}/>
 							</a>
 						</div>
 					))}
@@ -93,96 +154,27 @@ const GameDtl = () => {
 			)
 	}
 
-	const ratingFloatToStar = (rating: number) : number => rating / 20
-
-	const formattedDateLong = (inpDate: string) => new Date(inpDate).toLocaleDateString('en-us', { year: 'numeric', 'month': 'long', 'day': 'numeric' })
-
-	const handleActiveChange = (tabSelected: string) => {
-		setTabSelect(tabSelected)
-	}
-
-
 	return (
-		<div className='header-wrapper'>
-			<div className='title'>
-				<div className='mb'>
-					<h1>
-						{response.title}
-					</h1>
+		<div>
+			{loading ?
+				<div className='load-wrapper'>
+					<ReactLoading type={'spinningBubbles'} color={'#ddd'} height={200} width={200} />
 				</div>
-				<div className='flex flex-end'>
-					<div className='titleactions'>
-						<div className='collection'>
-							<div>
-								<b>Add To</b>
-								<br/>
-								<a className='addto' href=''>
-									<p className='smfontp'>My List</p>
-									<IconButton sx={{ color: '#ddd' }}>
-										<AddBoxIcon/>
-									</IconButton>
-								</a>
-							</div>
-						</div>
+				:
+				<></>
+			}
+			{!loading && !error && dataFetch ?
+				<div>
+					<Search />
+					<div className='header-wrapper'>
+						<NavGame title={dataFetch.title} gameID={dataFetch.id} />
+						<Overview dataFetch={dataFetch} loading={loading} error={error} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getGenericArr={getGenericArr} getStringArr={getStringArr} getWebsites={getWebsites}/>
+						<Description auxiliaryObj={auxiliaryObj} />
 					</div>
 				</div>
-			</div>
-			<NavButtonList tabSelect={tabSelect} handleActiveChange={handleActiveChange}/>
-			{
-				tabSelect === 'overview' ?
-					<Overview response={response} formattedDateLong={formattedDateLong} getPlatformCompanies={getPlatformCompanies} getAgeRatings={getAgeRatings} getStringArr={getStringArr} getWebsites={getWebsites} ratingFloatToStar={ratingFloatToStar} />
-					: <></>
+				: <></>
 			}
-			{
-				tabSelect === 'artworks' ?
-					<Artworks response={response} tabSelected='artworks'/>
-					: <></>
-			}
-			{
-				tabSelect === 'screenshots' ?
-					<Artworks response={response} tabSelected='screenshots'/>
-					: <></>
-			}
-			{
-				tabSelect === 'videos' ?
-					<VideoList response={response} />
-					: <></>
-			}
-			{
-				tabSelect === 'languages' ?
-					<Language response={response} />
-					: <></>
-			}
-			{
-				tabSelect === 'websites' ?
-					<Website response={response} />
-					: <></>
-			}
-			{
-				tabSelect === 'similargames' ?
-					<Similar response={response} />
-					: <></>
-			}
-			<div>
-				<h2>Official Description</h2>
-				<div className='shrink-headings toggle-long-text line-clamp'>
-					<p className='text-desc'>
-						{response.summary}
-					</p>
-					<p className='text-desc'>
-						In&nbsp;
-						<strong>
-							<em>{response.title}</em>
-						</strong>
-						,&nbsp;{response.story.charAt(0).toLowerCase() + response.story.slice(1)}
-					</p>
-					<p className='text-desc'>
-						Released by {response.involved_companies.map(company => company.name).join(', ')} on {formattedDateLong(response.releaseDate)}.
-					</p>
-				</div>
-			</div>
 		</div>
-
 	)
 }
 

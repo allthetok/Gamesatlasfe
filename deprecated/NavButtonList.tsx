@@ -5,20 +5,20 @@ import { ButtonField } from '../helpers/fetypes'
 import './GameDtl.css'
 
 type NavButtonListProps = {
-	tabSelect: string,
-	handleActiveChange: (tabSelected: string) => void
+	gameID: number
 }
 
-const NavButtonList = ({ tabSelect, handleActiveChange }: NavButtonListProps) => {
+const NavButtonList = ({ gameID }: NavButtonListProps) => {
 	return (
 		<ul className='nav-tabs mb'>
 			{buttonArray.map((el: ButtonField) => (
-				<li className='nav-tabs-li' key={el.stateSrc}>
-					<NavButton tabSelect={tabSelect} handleActiveChange={handleActiveChange} src={el.stateSrc} formatName={el.formatName} />
+				<li className='nav-tabs-li' key={el.link}>
+					<NavButton link={el.link} formatName={el.formatName} gameID={gameID} />
 				</li>
 			))}
 		</ul>
 	)
 }
+
 
 export { NavButtonList }

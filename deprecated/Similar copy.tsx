@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { GameDetailObj } from '../../helpers/fetypes'
-import { Covers } from '../../../backendga/helpers/betypes'
+import { GameDetailObj } from '../helpers/fetypes'
+import { Covers } from '../../backendga/helpers/betypes'
 import './GameDtl.css'
 
 type SimilarProps = {

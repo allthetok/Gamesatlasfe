@@ -1,4 +1,45 @@
-import { AgeRatings, Categories, Companies, Covers, Languages, Platforms, Videos } from '../../backendga/helpers/betypes'
+// import { AgeRatings, Categories, Companies, Covers, Languages, Platforms, Videos } from '../../backendga/helpers/betypes'
+type AgeRatings = {
+	ESRB: number,
+	PEGI: number
+}
+
+type Categories = {
+	category: number,
+	url: string
+}
+
+type Companies = {
+	name: string,
+	url: string,
+	officialSite: string
+}
+
+type Platforms = {
+	name: string,
+	category: number,
+	url: string,
+	id: number,
+	platform_family: number,
+}
+
+type Covers = {
+	name: string,
+	cover: string | number
+}
+
+type Languages = {
+	language: string | number,
+	language_support_type: string,
+	marked: boolean,
+	locale: string,
+	native: string
+}
+
+type Videos = {
+	name: string,
+	ytlink: string
+}
 
 type ButtonField = {
 	link: string,
@@ -300,5 +341,82 @@ interface OAuthUser {
 	provider: string,
 }
 
+type SimilarGamesObj = {
+	similar_games: Explore[]
+}
 
-export type { InternalUser, OAuthUser, ButtonField, GameDetailObj, Explore, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, ProfilePrefSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList, PreferencesRecList, SimpleUserLikeConfig }
+type GameObj = {
+	id: number,
+	age_ratings: any | AgeRatingsInter[] | AgeRatings,
+	artworks: string[],
+	category: string | undefined,
+	cover: string,
+	external_games: Categories[],
+	releaseDate: Date | string,
+	likes: number,
+	game_modes: string[],
+	genres: GenericStringObj[],
+	hypes: number,
+	involved_companies: Companies[],
+	keywords: string[],
+	title: string,
+	platforms: Platforms[],
+	player_perspectives: string[],
+	screenshots: string[],
+	similar_games: Explore[],
+	slug: string,
+	story: string,
+	summary: string,
+	tags: string,
+	themes: GenericStringObj[],
+	rating: number,
+	ratingCount: number,
+	url: string,
+	videos: Videos[],
+	websites: Categories[],
+	languages: Languages[],
+	game_localizations: {
+		name: string,
+		region: string
+	}[],
+}
+
+interface Explore {
+	id: number | null,
+	age_ratings: any | AgeRatingsInter[] | AgeRatings
+	cover: string | null,
+	platforms: Platforms[],
+	rating: number,
+	ratingCount: number | null,
+	releaseDate: Date | string,
+	likes: number | null,
+	title: string,
+	genres: GenericStringObj[],
+	involved_companies: Companies[],
+}
+
+type GlobalAuxiliaryObj = {
+	title: string,
+	involved_companies: Companies[],
+	summary: string,
+	story: string,
+	releaseDate: Date | string
+}
+
+interface ArtworksObj {
+	artworks: string[]
+}
+
+interface ScreenshotObj {
+	screenshots: string[]
+}
+
+interface VideosObj {
+	videos: Videos[]
+}
+
+interface WebsitesObj {
+	websites: Categories[]
+}
+
+export type { ArtworksObj, ScreenshotObj, VideosObj, WebsitesObj, SimilarGamesObj, GameObj, AgeRatings, Platforms, Covers, Videos, Categories, Languages, Companies, GlobalAuxiliaryObj, InternalUser, OAuthUser, ButtonField, GameDetailObj, Explore, LanguageTable, GameContextObj, OverviewObj, ArtworkObj, LanguageObj, ScreenshotsObj, SimilarObj, VideoObj, WebsiteObj, AuxiliaryObj, MultiObj, GenericStringObj, LocalStorageObj, SimpleSearchConfig, SimpleNullableSearchConfig, NestedSearchConfig, ProfilePrefSearchConfig, SearchResultsObj, FilterContextObj, AdvFilterContextObj, AxiosConfigIndGameList, PreferencesRecList, SimpleUserLikeConfig }

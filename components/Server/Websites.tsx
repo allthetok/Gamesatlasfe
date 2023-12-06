@@ -3,14 +3,11 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {  } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
-import { Categories, Companies, GlobalAuxiliaryObj } from '../../../backendga/helpers/betypes'
-import { GameDetailObj, GameContextObj, WebsiteObj, LocalStorageObj } from '../../helpers/fetypes'
-import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, splitRouteQuery } from '../../helpers/fctns'
+import { WebsiteObj, LocalStorageObj, Categories, Companies, GlobalAuxiliaryObj } from '../../helpers/fetypes'
+import { searchtermToString } from '../../helpers/fctns'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import { useGameContext } from '@/app/gamecontext'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'
 import { NavGame } from '../Server/NavGame'

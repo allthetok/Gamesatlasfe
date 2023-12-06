@@ -3,9 +3,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react'
-import { AgeRatings, Categories, Companies, GameObj, Platforms } from '../../../backendga/helpers/betypes'
-import { GenericStringObj } from '../../helpers/fetypes'
+import React from 'react'
+import { GenericStringObj, AgeRatings, Categories, Companies, GameObj, Platforms } from '../../helpers/fetypes'
 import { ratingFloatToStar, formattedDateLong } from '../../helpers/fctns'
 import { Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'

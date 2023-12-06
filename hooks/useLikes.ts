@@ -24,6 +24,9 @@ const useLikes = (userid: string | null | undefined) => {
 		if (userid !== undefined && userid !== null) {
 			getLikes(userid)
 		}
+		else {
+			setLoading(false)
+		}
 	}, [userid])
 
 	return { likeDataFetch, error, loading }

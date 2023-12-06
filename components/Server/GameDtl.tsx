@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useCallback, useEffect, useRef } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
-import ReactLoading from 'react-loading'
-import { AgeRatings, Categories, Companies, GameObj, GlobalAuxiliaryObj, Platforms } from '../../../backendga/helpers/betypes'
-import { useGameContext } from '@/app/gamecontext'
-import { AuxiliaryObj, GameContextObj, GenericStringObj, LocalStorageObj, OverviewObj } from '../../helpers/fetypes'
-import { createGameDtlConfig, retrieveLocalStorageObj, retrieveSearchTerm, searchtermToString } from '../../helpers/fctns'
+import { AgeRatings, Categories, Companies, Platforms, GenericStringObj, LocalStorageObj, GameObj } from '../../helpers/fetypes'
+import { searchtermToString } from '../../helpers/fctns'
 import { ESRB, PEGI, ExternalCategories, WebsiteCategories, placeholderImages } from '../../assets/ratingsvglinks'
 import { Description } from '../Client/Description'
 import { Search } from '../Client/Search'

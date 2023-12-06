@@ -58,7 +58,7 @@ const NavGame = ({ title, gameID, searchterm }: NavGameProps) => {
 				<div>
 					<div className='title'>
 						<div className='mb'>
-							<h1>
+							<h1 className='h1-nav-title'>
 								{title}
 							</h1>
 						</div>

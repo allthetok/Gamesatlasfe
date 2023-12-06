@@ -45,19 +45,19 @@
 	display: flex;
 }
 
-h1 {
+.h1-nav-title {
 	margin-bottom: 0!important;
 	color: #fff;
 	font-size: 1.75rem;
 }
 
-h2 {
+.h2-game {
 	margin-bottom: var(--spacing-xxs);
 	color: var(--header-color);
 }
 
 @media (min-width: 1200px) {
-	h2 {
+	.h2-game {
 		font-size: 1.75rem;
 	}
 }

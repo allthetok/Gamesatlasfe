@@ -6,7 +6,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { createAuxiliaryConfig, retrieveLocalStorageObj, searchtermToString, splitRouteQuery } from '../../helpers/fctns'
-import { GameContextObj, AuxiliaryObj, ArtworkObj, LocalStorageObj } from '../../helpers/fetypes'
+import { GameContextObj, AuxiliaryObj, ArtworkObj, LocalStorageObj, Companies, GlobalAuxiliaryObj } from '../../helpers/fetypes'
 import Carousel from 'react-material-ui-carousel'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -16,7 +16,6 @@ import { Search } from '../Client/Search'
 import { NavGame } from '../Server/NavGame'
 import './../Client/Artworks.css'
 import './GameDtl.css'
-import { Companies, GlobalAuxiliaryObj } from '../../../backendga/helpers/betypes'
 
 type ArtworkProps = {
 	dataFetch: ArtworkObj & GlobalAuxiliaryObj,

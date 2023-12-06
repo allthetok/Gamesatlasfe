@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback, SyntheticEvent } from 'react'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
 import { createExploreAxiosConfig } from '../helpers/fctns'
-import { Explore } from '../../backendga/helpers/betypes'
+import { Explore } from '../helpers/fetypes'
 import { Button, Autocomplete, TextField, SvgIcon } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
@@ -132,7 +132,7 @@ const IndGameList = () => {
 						{viewToggle === 'list' ?
 							<div className='grid-wrapper'>
 								{multiResp.map((item: Explore) => (
-									<IndGame key={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} />
+									<IndGame key={item.id} id={item.id} cover={item.cover!} platforms={item.platforms} rating={item.rating} age_ratings={item.age_ratings} releaseDate={item.releaseDate} likes={item.likes!} title={item.title} genres={item.genres} companies={item.involved_companies} liked={false} />
 								))}
 							</div>
 							: <IndGameTable multiResp={multiResp} />}
