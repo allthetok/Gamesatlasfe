@@ -1,14 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import ReactLoading from 'react-loading'
-import Image from 'next/image'
 import { Session } from 'next-auth'
-import { TableRows } from '@mui/icons-material'
 import { TableContainer, Paper, Table, TableHead, TableBody, TableRow, Box, Typography, TableCell, Button, IconButton, TextField } from '@mui/material'
 import { gameModesButtonArray, genresButtonArray, platformButtonArray, themesButtonArray } from '../../helpers/button'
 import { BoxActiveSx, BoxNoBorderSx, ButtonActiveSx, ButtonSx } from '../../sxstyling/styles'
@@ -24,9 +22,6 @@ type ProfileProps = {
 }
 
 const Profile = ({ user }: ProfileProps) => {
-	// const data = useSession()
-
-
 	const [editAcct, setEditAcct] = useState(false)
 	const [editGame, setEditGame] = useState(false)
 	const [loading, setLoading] = useState(true)

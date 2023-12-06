@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { deleteGame, formattedYear, likeGame } from '../../helpers/fctns'
 import { AgeRatings, Companies, Platforms } from '../../../backendga/helpers/betypes'

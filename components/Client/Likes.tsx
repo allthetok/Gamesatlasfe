@@ -2,34 +2,23 @@
 import React, { useState } from 'react'
 import { useLikes } from '../../hooks/useLikes'
 import ReactLoading from 'react-loading'
+import { Session } from 'next-auth'
 import { IndGame } from './IndGame'
+import { IndGameTable } from './IndGameTable'
 import { Button, SvgIcon } from '@mui/material'
 import { ListTblToggleSx, IconSx } from '../../sxstyling/styles'
 import GridViewIcon from '@mui/icons-material/GridView'
 import TableRowsIcon from '@mui/icons-material/TableRows'
-import { IndGameTable } from './IndGameTable'
 import './Recommend.css'
 import './IndGameList.css'
-import { Session } from 'next-auth'
 
 type LikesProps = {
 	user: Session['user'] | undefined
 }
-// const user: InternalUser  OAuthUser | DefaultSession['user'] = session?.user
-// const user: (InternalUser & DefaultSession['user']) | (OAuthUser & DefaultSession['user']) = session?.user
-// console.log(session)
-// const user = session?.user
-// console.log(user)
-// console.log(user?.id)
+
 const Likes = ({ user }: LikesProps) => {
 	const [viewToggle, setViewToggle] = useState('list')
-	// const data = useSession()
-	// const { likeDataFetch, error, loading } = useLikes(data.data?.user.id)
-	// console.log(likeDataFetch)
-	// console.log(likeDataFetch.map((item: any) => item.gameobj).map((gme: any) => gme.involved_companies))
 	const { likeDataFetch, loading } = useLikes(user?.id)
-	// console.log(likeDataFetch)
-	// console.log(likeDataFetch.map((item: any) => item.gameobj).map((gme: any) => gme.involved_companies))
 
 	return (
 		<div>

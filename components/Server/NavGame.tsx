@@ -27,6 +27,7 @@ const NavGame = ({ title, gameID, searchterm }: NavGameProps) => {
 	useEffect(() => {
 		if (data.status === 'authenticated') {
 			setUserId(data.data.user.id)
+			setUserId(data.data.user.id)
 			setGameLiked(likeDataFetch.map((item: any) => item.gameobj.id).includes(gameID))
 		}
 	}, [data, loading])

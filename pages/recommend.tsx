@@ -1,12 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 'use client'
 import React, { Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import { GetServerSidePropsContext } from 'next/types'
 import { Search } from '../components/Client/Search'
 import { Recommend } from '../components/Client/Recommend'
 import { Inter } from 'next/font/google'

@@ -1,11 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { SyntheticEvent, useEffect, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { createUserPrefSearchConfig, createUserProfileConfig, createUserRecommendConfig } from '../../helpers/fctns'
-import { MultiObj, PreferencesRecList, ProfilePrefSearchConfig, SimpleUserLikeConfig } from '../../helpers/fetypes'
-import { useSession } from 'next-auth/react'
+import { PreferencesRecList, ProfilePrefSearchConfig, SimpleUserLikeConfig } from '../../helpers/fetypes'
 import { useLikes } from '../../hooks/useLikes'
 import ReactLoading from 'react-loading'
 import { IndGame } from './IndGame'
@@ -28,24 +28,12 @@ type RecommendProps = {
 
 const Recommend = ({ user }: RecommendProps) => {
 
-	// const user: InternalUser  OAuthUser | DefaultSession['user'] = session?.user
-	// const user: (InternalUser & DefaultSession['user']) | (OAuthUser & DefaultSession['user']) = session?.user
-	// console.log(session)
-	// const user = session?.user
-	// console.log(user)
-	// console.log(user?.id)
-
-
 	const [errorIGDB, setErrorIGDB] = useState('')
 	const [loadingIGDB, setLoadingIGDB] = useState(true)
 	const [userPrefList, setUserPrefList] = useState<PreferencesRecList[]>([])
 	const [userSimilarRecList, setUserSimilarRecList] = useState<Explore[]>([])
 	const [viewToggle, setViewToggle] = useState('list')
 	const [limit, setLimit] = useState('10')
-
-	// const data = useSession()
-	// const sessionData: Session | null = data.data
-
 
 	const { likeDataFetch, error, loading } = useLikes(user?.id)
 
@@ -104,12 +92,10 @@ const Recommend = ({ user }: RecommendProps) => {
 	}
 
 	useEffect(() => {
-		// if (data.status === 'authenticated') {
 		if (user !== undefined ) {
 			getUserPrefProfile(user!.id, user!.profileid)
 
 		}
-		// }
 	}, [user, limit])
 
 	return (
