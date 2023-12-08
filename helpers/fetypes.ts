@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type AgeRatings = {
 	ESRB: number,
 	PEGI: number
