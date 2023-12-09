@@ -49,7 +49,7 @@ const Forgot = () => {
 			return
 		}
 		else {
-			resolveUserConfig.url = `${process.env.DEV_APP_API_ENDPOINT}verificationCode`
+			resolveUserConfig.url = 'http://localhost:5000/api/user/verificationCode'
 			await axios(resolveUserConfig)
 				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
