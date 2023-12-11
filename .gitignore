@@ -14,6 +14,8 @@
 
 # production
 /build
+/deprecated
+/prod-env
 
 # misc
 .DS_Store
