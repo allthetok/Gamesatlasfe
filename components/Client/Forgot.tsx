@@ -9,7 +9,6 @@ import { createUserEmailConfig, createUserPatchConfig, regexValidEmail } from '.
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import SvgIcon from '@mui/icons-material/ArrowForward'
 import './Login.css'
-import { prodIPV4 } from '../../prod-env/env-var'
 
 const Forgot = () => {
 	const [error, setError] = useState<string | null>(null)
@@ -51,7 +50,7 @@ const Forgot = () => {
 		}
 		else {
 			// resolveUserConfig.url = 'http://localhost:5000/api/user/verificationCode'
-			resolveUserConfig.url = `http://${prodIPV4}:5000/api/user/verificationCode`
+			resolveUserConfig.url = `http://${process.env.PROD_API_ENDPOINT}:5000/api/user/verificationCode`
 			await axios(resolveUserConfig)
 				.then((response: AxiosResponse) => {
 					if (response.status === 200) {
