@@ -250,9 +250,13 @@
 	display: flex;
   }
 
-  .css-b1zumk-MuiButtonBase-root-MuiIconButton-root {
+  /* .css-b1zumk-MuiButtonBase-root-MuiIconButton-root {
 	padding: 0;
-  }
+  } */
+
+  /* .MuiButtonBase-root {
+	padding: 0;
+  } */
 
   .link-icon-text {
 	height: 100%;

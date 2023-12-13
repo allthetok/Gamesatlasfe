@@ -195,20 +195,19 @@
 }
 
 .MuiSlider-colorPrimary	{
-	color: var(--primary-color);
-	/* color: #ddd; */
+	color: var(--primary-color) !important;
 }
 
 .MuiSlider-marked {
-	background-color: var(--body-bg-color);
+	background-color: var(--body-bg-color) !important;
 }
 
 .MuiSlider-valueLabelOpen {
-	background-color: var(--body-bg-color);
-	color: var(--text-color);
+	background-color: var(--body-bg-color) !important;
+	color: var(--text-color) !important;
 }
 
 .MuiSlider-markLabel {
-	color: var(--text-color);
-	font-size: 1.125rem;
+	color: var(--text-color) !important;
+	font-size: 1.125rem !important;
 }

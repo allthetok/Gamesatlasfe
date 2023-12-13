@@ -96,11 +96,11 @@ const TypographySx = {
 
 const NavIconSx = {
 	color: '#ddd',
-	padding: 'none'
+	padding: '0',
 }
 
 const Font25Sx = {
-	fontSize: '25px'
+	fontSize: '25px',
 }
 
 const BoxSx = {

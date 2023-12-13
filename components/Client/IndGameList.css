@@ -120,15 +120,26 @@
 	}
 }
 
+.MuiOutlinedInput-notchedOutline {
+	border-style: none !important;
+}
 
-fieldset.css-9425fu-MuiOutlinedInput-notchedOutline {
+.MuiInputLabel-root {
+	color: var(--text-color) !important;
+}
+
+.Mui-focused {
+	color: var(--text-color) !important;
+}
+
+/* fieldset.css-9425fu-MuiOutlinedInput-notchedOutline {
 	border-style: none;
 }
 
-label.css-17y3sg2-MuiFormLabel-root-MuiInputLabel-root {
+/*label.css-17y3sg2-MuiFormLabel-root-MuiInputLabel-root {
 	color: var(--text-color);
-}
+}*/
 
-label.css-17y3sg2-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+/* label.css-17y3sg2-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
 	color: var(--text-color);
-}
+} */

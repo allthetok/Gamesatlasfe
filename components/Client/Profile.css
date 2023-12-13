@@ -209,8 +209,8 @@
 }
 
 .MuiButton-root.Mui-disabled {
-	color: var(--primary-color);
-	cursor: crosshair;
+	color: var(--primary-color) !important;
+	cursor: crosshair !important;
 	pointer-events: all !important;
 }
 
