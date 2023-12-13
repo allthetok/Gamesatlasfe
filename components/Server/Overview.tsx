@@ -49,7 +49,7 @@ const Overview = ({ dataFetch, getPlatformCompanies, getAgeRatings, getGenericAr
 						<dt>Localizations</dt>
 						<dd>
 							{dataFetch?.game_localizations.map((indLocal: any) => (
-								<p key={indLocal.region}>{indLocal.name} ({indLocal.region})</p>
+								<p key={indLocal.region}>{indLocal.name !== '' ? `${indLocal.name} (${indLocal.region})` : 'No Localizations'}</p>
 							))}
 						</dd>
 					</dl>
@@ -132,11 +132,11 @@ const Overview = ({ dataFetch, getPlatformCompanies, getAgeRatings, getGenericAr
 					<dl className='releasedata'>
 						<dt>Buy</dt>
 						<dd>
-							{getWebsites(dataFetch!.external_games, 'External')}
+							{getWebsites(dataFetch?.external_games, 'External')}
 						</dd>
 						<dt>Official Sites</dt>
 						<dd>
-							{getWebsites(dataFetch!.websites, 'Official')}
+							{getWebsites(dataFetch?.websites, 'Official')}
 						</dd>
 					</dl>
 				</div>

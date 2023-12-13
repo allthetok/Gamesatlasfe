@@ -86,8 +86,8 @@ const GameDtl = ({ dataFetch }: GameDtlProps) => {
 					{categoriesArr.map((el: Categories) => (
 						<div key={el.category}>
 							<p className='max-rating smallmargin'>
-								{ExternalCategories.filter((field) => field.source === el.category)[0].category}
-								<img className='logo pad-left' alt={`${ExternalCategories.filter((field) => field.source === el.category)[0].category}`} src={`${ExternalCategories.filter((field) => field.source === el.category)[0].src}`} />
+								{ExternalCategories.filter((field) => field.source === el.category).length !== 0 ? ExternalCategories.filter((field) => field.source === el.category)[0].category : 'Unknown'}
+								<img className='logo pad-left' alt={`${ExternalCategories.filter((field) => field.source === el.category).length !== 0 ? ExternalCategories.filter((field) => field.source === el.category)[0].category : 'Unknown'}`} src={`${ExternalCategories.filter((field) => field.source === el.category).length !== 0 ? ExternalCategories.filter((field) => field.source === el.category)[0].src : placeholderImages.NoLogo}`} />
 							</p>
 							<a href={el.url} target='_blank' rel='noreferrer'>Visit
 								<img className='link-external' alt='Open Website' src={placeholderImages.LinkButtons}/>
@@ -101,8 +101,8 @@ const GameDtl = ({ dataFetch }: GameDtlProps) => {
 					{categoriesArr.map((el: Categories) => (
 						<div key={el.category}>
 							<p className='max-rating smallmargin'>
-								{WebsiteCategories.filter((field) => field.source === el.category)[0].category}
-								<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === el.category)[0].category}`} src={`${WebsiteCategories.filter((field) => field.source === el.category)[0].src}`} />
+								{WebsiteCategories.filter((field) => field.source === el.category).length !== 0 ? WebsiteCategories.filter((field) => field.source === el.category)[0].category : 'Unknown'}
+								<img className='logo pad-left' alt={`${WebsiteCategories.filter((field) => field.source === el.category).length !== 0 ? WebsiteCategories.filter((field) => field.source === el.category)[0].category : 'Unknown'}`} src={`${WebsiteCategories.filter((field) => field.source === el.category).length !== 0 ? WebsiteCategories.filter((field) => field.source === el.category)[0].src : placeholderImages.NoLogo}`} />
 							</p>
 							<a href={el.url} target='_blank' rel='noreferrer'>Visit{/* </a> <a href={el.url} className='link-external'> */}
 								<img className='link-external' alt='Open Website' src={placeholderImages.LinkButtons}/>
