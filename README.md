@@ -4,7 +4,7 @@ This app was created and bootstraped by NextJS using > NextJSv13.0 with /pages r
 
 Frameworks and Libraries Used:
 - NextJS
-- ReactJS v18.2.0 with ES6 Arrow Function Components, Custom Hooks and Standard React Hooks (useState, useEffect, useCallback, useMemo, useContext. As well as Custom Context Providers.
+- ReactJS v18.2.0 with ES6 Arrow Function Components, Custom Hooks (see /hooks) and Standard React Hooks (useState, useEffect, useCallback, useMemo, useContext). As well as Custom Context Providers.
 - NextAuth
 - TypeScript
 - ESLint
