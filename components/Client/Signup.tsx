@@ -92,7 +92,9 @@ const Signup = () => {
 			<div className='background-image background'></div>
 			<header className='logo-header'>
 				<div>
-					<Image className='logo-image' src='/logo-highres-circle.png' width={132.14} height={95} alt='GamesAtlas Logo' />
+					<Link href='/'>
+						<Image className='logo-image' src='/logo-highres-circle.png' width={132.14} height={95} alt='GamesAtlas Logo' />
+					</Link>
 				</div>
 			</header>
 			<div className='form-wrapper'>

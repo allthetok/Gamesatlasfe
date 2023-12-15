@@ -49,8 +49,6 @@ const Forgot = () => {
 			return
 		}
 		else {
-			// resolveUserConfig.url = 'http://localhost:5000/api/user/verificationCode'
-			// resolveUserConfig.url = `http://${process.env.PROD_API_ENDPOINT}:5000/api/user/verificationCode/`
 			resolveUserConfig.url = `https://${process.env.PROD_API_ENDPOINT}/api/user/verificationCode/`
 
 			await axios(resolveUserConfig)
@@ -115,8 +113,9 @@ const Forgot = () => {
 			<div className='background-image background'></div>
 			<header className='logo-header'>
 				<div>
-					<Image className='logo-image' src='/logo-highres-circle.png' width={132.14} height={95} alt='GamesAtlas Logo' />
-				</div>
+					<Link href='/'>
+						<Image className='logo-image' src='/logo-highres-circle.png' width={132.14} height={95} alt='GamesAtlas Logo' />
+					</Link>				</div>
 			</header>
 			<div className='form-wrapper'>
 				<div className='form-div'>
