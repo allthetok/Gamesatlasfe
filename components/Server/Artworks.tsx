@@ -23,7 +23,6 @@ type ArtworkProps = {
 }
 
 const Artworks = ({ dataFetch, gameID }: ArtworkProps) => {
-
 	const auxiliaryObj: LocalStorageObj = {
 		gameID: gameID,
 		title: dataFetch.title,
@@ -32,7 +31,6 @@ const Artworks = ({ dataFetch, gameID }: ArtworkProps) => {
 		story: dataFetch.story,
 		releaseDate: dataFetch.releaseDate
 	}
-
 	return (
 		<div>
 			<Search />
