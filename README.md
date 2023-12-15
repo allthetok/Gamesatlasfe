@@ -1,6 +1,6 @@
 Please visit https://at.games-atlas.xyz/ to enter GamesAtlas!
 
-This app was created and bootstraped by NextJS using > NextJSv13.0 with /pages router as well as /app router for authentication integration. Please refer to https://github.com/allthetok/GamesAtlas/tree/main/backendga to see the NodeJS/Postgres/Caddy Dockerized Container to serve API calls made here.
+This app was created and bootstraped by NextJS using NextJS v13.0 < with /pages router as well as /app router for authentication integration. Please refer to https://github.com/allthetok/GamesAtlas/tree/main/backendga to see the NodeJS/Postgres/Caddy Dockerized Container to serve API calls made here.
 
 Frameworks and Libraries Used:
 - NextJS
