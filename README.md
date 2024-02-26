@@ -1,34 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Please visit https://at.games-atlas.xyz/ to enter GamesAtlas!
 
-## Getting Started
+This app was created and bootstraped by NextJS using NextJS v13.0 < with /pages router as well as /app router for authentication integration. Please refer to https://github.com/allthetok/GamesAtlas/tree/main/backendga to see the NodeJS/Postgres/Caddy Dockerized REST API Container to serve API calls made here.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Frameworks and Libraries Used:
+- NextJS with v13.0 Server Components (getServerSideProps see /Components/Server) and Client Components (see /Components/Client)
+- ReactJS v18.2.0 with ES6 Arrow Function Components, Custom Hooks (see /hooks) and Standard React Hooks (useState, useEffect, useCallback, useMemo, useContext). As well as Custom Context Providers.
+- NextAuth with internal Authentication as well as OAuth2.0 integration on: Google, Spotify, Discord, Github, Twitch. 
+- TypeScript (Interfaces/Types/Unions)
+- ESLint with Typescript Integration
+- MaterialUI V5 with sx prop styling.
+- Axios
+- CSS Component Stylesheets (Flexbox and Grid)
+- Icons8 for Static Assets
