@@ -181,11 +181,11 @@ const TableCell100Sx = {
 
 const TextAlignSx = {
 	textAlign: 'center',
-	color: '#ddd'
+	color: '#ddd !important'
 }
 
 const TableCellColourSx = {
-	color: '#ddd'
+	color: '#ddd !important'
 }
 
 const GameTableSx = {
