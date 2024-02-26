@@ -171,7 +171,7 @@ const CarouselSx = {
 
 const TableCell300Sx = {
 	minWidth: 300,
-	color: '#ddd'
+	color: '#ddd '
 }
 
 const TableCell100Sx = {
@@ -180,7 +180,8 @@ const TableCell100Sx = {
 }
 
 const TextAlignSx = {
-	textAlign: 'center'
+	textAlign: 'center',
+	color: '#ddd'
 }
 
 const TableCellColourSx = {

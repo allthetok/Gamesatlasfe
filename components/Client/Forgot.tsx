@@ -24,7 +24,6 @@ const Forgot = () => {
 
 	const handleEmailSubmit = async (e: any) => {
 		e.preventDefault()
-
 		const resolveUserConfig = createUserEmailConfig('post', 'resolveUser', email, 'GamesAtlas')
 		const resolveUser = await axios(resolveUserConfig)
 			.then((response: AxiosResponse) => {
@@ -115,7 +114,8 @@ const Forgot = () => {
 				<div>
 					<Link href='/'>
 						<Image className='logo-image' src='/logo-highres-circle.png' width={132.14} height={95} alt='GamesAtlas Logo' />
-					</Link>				</div>
+					</Link>
+				</div>
 			</header>
 			<div className='form-wrapper'>
 				<div className='form-div'>
