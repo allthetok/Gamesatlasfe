@@ -12,3 +12,52 @@ Frameworks and Libraries Used:
 - Axios
 - CSS Component Stylesheets (Flexbox and Grid)
 - Icons8 for Static Assets
+
+
+Here are some screenshots from the web app:
+
+![ss1](images/GA1.JPG)
+
+![ss2](images/GA2.JPG)
+
+![ss3](images/GA3.JPG)
+
+![ss4](images/GA4.JPG)
+
+![ss5](images/GA5.JPG)
+
+![ss6](images/GA6.JPG)
+
+![ss7](images/GA7.JPG)
+
+![ss8](images/GA8.JPG)
+
+![ss9](images/GA9.JPG)
+
+![ss10](images/GA10.JPG)
+
+![ss11](images/GA11.JPG)
+
+![ss12](images/GA12.JPG)
+
+![ss13](images/GA13.JPG)
+
+![ss14](images/GA14.JPG)
+
+![ss15](images/GA15.JPG)
+
+![ss16](images/GA16.JPG)
+
+![ss17](images/GA17.JPG)
+
+![ss18](images/GA18.JPG)
+
+![ss19](images/GA19.JPG)
+
+![ss20](images/GA20.JPG)
+
+![ss21](images/GA21.JPG)
+
+![ss22](images/GA22.JPG)
+
+![ss23](images/GA23.JPG)
